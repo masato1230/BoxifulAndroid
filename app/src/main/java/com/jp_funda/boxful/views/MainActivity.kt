@@ -1,6 +1,7 @@
 package com.jp_funda.boxful.views
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.media.audiofx.BassBoost
 import android.media.audiofx.BassBoost.Settings
 import android.net.Uri
@@ -22,6 +23,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.android.gms.tasks.Task
+import com.google.mlkit.vision.pose.Pose
+import com.google.mlkit.vision.pose.PoseDetection
+import com.google.mlkit.vision.pose.defaults.PoseDetectorOptions
+import com.jp_funda.boxful.R
 import com.jp_funda.boxful.ui.theme.BoxfulTheme
 import com.jp_funda.boxful.views.components.CameraPreview
 import com.jp_funda.boxful.views.components.Permission
@@ -32,6 +38,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Base pose detector with streaming frames, when depending on the pose-detection sdk
+        val options = PoseDetectorOptions.Builder()
+            .setDetectorMode(PoseDetectorOptions.STREAM_MODE)
+            .build()
+        val poseDetector = PoseDetection.getClient(options)
+
+//        val result: Task<Pose> = poseDetector.process()
+//        result.addOnSuccessListener {
+//            it.allPoseLandmarks
+//        }
+
         setContent {
             BoxfulTheme {
                 // A surface container using the 'background' color from the theme
