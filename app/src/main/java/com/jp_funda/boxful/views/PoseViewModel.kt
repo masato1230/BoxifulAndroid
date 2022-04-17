@@ -1,5 +1,6 @@
 package com.jp_funda.boxful.views
 
+import android.util.Size
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,4 +18,7 @@ class PoseViewModel @Inject constructor() : ViewModel() {
     fun setPose(value: Pose) {
         _pose.value = value
     }
+
+    /** Image Analysis Resolution */
+    var imageAnalysisResolution = Size(0, 0)
 }
