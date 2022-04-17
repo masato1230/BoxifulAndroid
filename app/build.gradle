@@ -69,13 +69,18 @@ dependencies {
 
     // CameraX
     def camera_x_version = "1.1.0-beta03"
-    implementation "androidx.camera:camera-camera2:camera_x_version"
-    implementation "androidx.camera:camera-lifecycle:camera_x_version"
-    implementation "androidx.camera:camera-view:camera_x_version"
+    implementation "androidx.camera:camera-camera2:$camera_x_version"
+    implementation "androidx.camera:camera-lifecycle:$camera_x_version"
+    implementation "androidx.camera:camera-view:$camera_x_version"
+    implementation "androidx.camera:camera-core:$camera_x_version"
+    implementation "androidx.camera:camera-view:$camera_x_version"
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+
+    // Accompanist
+    implementation "com.google.accompanist:accompanist-permissions:0.18.0"
 }
