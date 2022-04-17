@@ -15,7 +15,6 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.jp_funda.boxful.extensions.getCameraProvider
 import com.jp_funda.boxful.views.PoseImageAnalyzer
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 @Composable
