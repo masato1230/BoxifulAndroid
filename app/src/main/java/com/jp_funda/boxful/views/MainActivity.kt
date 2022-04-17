@@ -39,17 +39,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Base pose detector with streaming frames, when depending on the pose-detection sdk
-        val options = PoseDetectorOptions.Builder()
-            .setDetectorMode(PoseDetectorOptions.STREAM_MODE)
-            .build()
-        val poseDetector = PoseDetection.getClient(options)
-
-//        val result: Task<Pose> = poseDetector.process()
-//        result.addOnSuccessListener {
-//            it.allPoseLandmarks
-//        }
-
         setContent {
             BoxfulTheme {
                 // A surface container using the 'background' color from the theme
