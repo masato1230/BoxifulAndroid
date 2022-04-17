@@ -31,6 +31,7 @@ import com.jp_funda.boxful.R
 import com.jp_funda.boxful.ui.theme.BoxfulTheme
 import com.jp_funda.boxful.views.components.CameraPreview
 import com.jp_funda.boxful.views.components.Permission
+import com.jp_funda.boxful.views.components.PoseGraphic
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPermissionsApi
@@ -76,6 +77,7 @@ fun MainContent(modifier: Modifier = Modifier) {
         }
     ) {
         CameraPreview()
+        PoseGraphic()
     }
 }
 

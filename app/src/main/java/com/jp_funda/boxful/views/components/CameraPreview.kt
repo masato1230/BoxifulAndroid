@@ -56,7 +56,12 @@ fun CameraPreview(
                         .setTargetResolution(Size(1280, 720))
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build()
-                        .also { it.setAnalyzer(Executors.newSingleThreadExecutor(), PoseImageAnalyzer()) }
+                        .also {
+                            it.setAnalyzer(
+                                Executors.newSingleThreadExecutor(),
+                                PoseImageAnalyzer(poseViewModel)
+                            )
+                        }
 
                     // Must unbind the use-cases before rebinding them.
                     cameraProvider.unbindAll()
