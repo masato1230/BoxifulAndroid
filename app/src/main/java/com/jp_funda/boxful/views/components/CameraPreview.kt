@@ -51,6 +51,7 @@ fun CameraPreview(
             coroutineScope.launch {
                 val cameraProvider = context.getCameraProvider()
                 try {
+                    Log.d("Screen", "${previewView.width} ,${previewView.height}")
                     // Analyzer
                     val imageAnalysis = ImageAnalysis.Builder()
                         // enable the following line if RGBA output is needed.

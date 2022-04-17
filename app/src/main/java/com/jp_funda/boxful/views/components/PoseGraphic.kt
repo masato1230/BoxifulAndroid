@@ -39,14 +39,16 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
 //                ?: 0).toString()
 //        )
 
-        val posX = pose.getPoseLandmark(PoseLandmark.NOSE)?.position?.x ?: 0f
-        val posY = pose.getPoseLandmark(PoseLandmark.NOSE)?.position?.y ?: 0f
+
+        val posX = pose.getPoseLandmark(PoseLandmark.RIGHT_WRIST)?.position3D?.x ?: 0f
+        val posY = pose.getPoseLandmark(PoseLandmark.RIGHT_WRIST)?.position3D?.y ?: 0f
 
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
             Box(modifier = Modifier
                 .offset {
+                    Log.d("Size after", (screenHeightDp * density).toString())
                     IntOffset(
                         x = (screenWidthDp * density - posX).toInt(),
                         y = posY.toInt(),
