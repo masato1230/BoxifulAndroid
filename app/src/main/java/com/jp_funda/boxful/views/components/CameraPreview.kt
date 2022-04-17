@@ -12,7 +12,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jp_funda.boxful.extensions.getCameraProvider
+import com.jp_funda.boxful.views.PoseViewModel
 import com.jp_funda.boxful.views.PoseImageAnalyzer
 import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
@@ -22,6 +24,7 @@ fun CameraPreview(
     modifier: Modifier = Modifier,
     scaleType: PreviewView.ScaleType = PreviewView.ScaleType.FILL_CENTER,
     cameraSelector: CameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA,
+    poseViewModel: PoseViewModel = viewModel(),
 ) {
     val coroutineScope = rememberCoroutineScope()
     val lifecycleOwner = LocalLifecycleOwner.current
