@@ -14,6 +14,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -23,6 +24,9 @@ import com.jp_funda.boxful.views.PoseViewModel
 @Composable
 fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
     val observedPose by poseViewModel.pose.observeAsState()
+
+    val screenWidthDp = LocalConfiguration.current.screenWidthDp
+    val screenHeightDp = LocalConfiguration.current.screenHeightDp
 
     observedPose?.let { pose ->
 
@@ -35,16 +39,17 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
 //                ?: 0).toString()
 //        )
 
+        val posX = pose.getPoseLandmark(PoseLandmark.NOSE)?.position?.x ?: 0f
+        val posY = pose.getPoseLandmark(PoseLandmark.NOSE)?.position?.y ?: 0f
+
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
             Box(modifier = Modifier
                 .offset {
                     IntOffset(
-                        x = pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW)?.position3D?.x?.toInt()?.times(10)
-                            ?: 0,
-                        y = pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW)?.position?.y?.toInt()
-                            ?: 0,
+                        x = (screenWidthDp * density - posX).toInt(),
+                        y = posY.toInt(),
                     )
                 }
                 .size(50.dp)

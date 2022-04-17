@@ -30,12 +30,6 @@ fun CameraPreview(
     val coroutineScope = rememberCoroutineScope()
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    val localConfig = LocalConfiguration.current
-    val screenDensity = localConfig.densityDpi / 160f
-    val screenWidthPixel = (localConfig.screenWidthDp / screenDensity).toInt()
-    val screenHeightPixel = (localConfig.screenHeightDp / screenDensity).toInt()
-
-
     AndroidView(
         modifier = modifier,
         factory = { context ->
