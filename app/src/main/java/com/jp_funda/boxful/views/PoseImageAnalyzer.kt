@@ -31,10 +31,6 @@ class PoseImageAnalyzer(private val poseViewModel: PoseViewModel) : ImageAnalysi
             // update viewModels pose landmarks
             result.addOnSuccessListener {
                 poseViewModel.setPose(it)
-                Log.d(
-                    "right wrist",
-                    it.getPoseLandmark(PoseLandmark.LEFT_WRIST)?.position?.x.toString(),
-                )
             }
 
             result.addOnFailureListener {

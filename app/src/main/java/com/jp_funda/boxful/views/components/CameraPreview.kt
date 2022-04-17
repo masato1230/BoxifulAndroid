@@ -10,6 +10,7 @@ import androidx.camera.view.PreviewView
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -28,6 +29,13 @@ fun CameraPreview(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val lifecycleOwner = LocalLifecycleOwner.current
+
+    val localConfig = LocalConfiguration.current
+    val screenDensity = localConfig.densityDpi / 160f
+    val screenWidthPixel = (localConfig.screenWidthDp / screenDensity).toInt()
+    val screenHeightPixel = (localConfig.screenHeightDp / screenDensity).toInt()
+
+
     AndroidView(
         modifier = modifier,
         factory = { context ->
@@ -53,7 +61,7 @@ fun CameraPreview(
                     val imageAnalysis = ImageAnalysis.Builder()
                         // enable the following line if RGBA output is needed.
                         // .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
-                        .setTargetResolution(Size(1280, 720))
+                        .setTargetResolution(Size(previewView.width, previewView.height))
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build()
                         .also {
