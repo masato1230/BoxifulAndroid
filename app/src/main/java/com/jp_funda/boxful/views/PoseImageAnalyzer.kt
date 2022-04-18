@@ -35,7 +35,14 @@ class PoseImageAnalyzer(private val poseViewModel: PoseViewModel) : ImageAnalysi
 
             // update viewModels pose landmarks
             result.addOnSuccessListener {
-                poseViewModel.imageAnalysisResolution = Size(mediaImage.width, mediaImage.height)
+                // Port lait mode
+                if (mediaImage.width > mediaImage.height) {
+                    poseViewModel.imageAnalysisResolution =
+                        Size(mediaImage.width, mediaImage.height)
+                } else {
+                    poseViewModel.imageAnalysisResolution =
+                        Size(mediaImage.height, mediaImage.width)
+                }
                 poseViewModel.setPose(it)
             }
 

@@ -43,16 +43,14 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
         ) {
             Box(modifier = Modifier
                 .offset {
-                    val analyzedImageScaleX =
-                        poseViewModel.imageAnalysisResolution.width / (screenWidthDp * density)
-                    val analyzedImageScaleY =
-                        poseViewModel.imageAnalysisResolution.height / (screenHeightDp * density)
+                    val scaleFactor = (screenHeightDp * density) / poseViewModel.imageAnalysisResolution.width
 
                     Log.d("Size after", (screenHeightDp * density).toString())
-                    Log.d("Scale", "$analyzedImageScaleX ,$analyzedImageScaleY")
+                    Log.d("Scale", "$scaleFactor")
+                    Log.d("Nose", "$posNoseX, $posNoseY")
                     IntOffset(
-                        x = (screenWidthDp * density - posNoseX).toInt(),
-                        y = (posNoseY).toInt(),
+                        x = (screenWidthDp * density - posNoseX * scaleFactor).toInt(),
+                        y = (posNoseY * scaleFactor).toInt(),
                     )
                 }
                 .size(15.dp)
@@ -62,14 +60,10 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
 
             Box(modifier = Modifier
                 .offset {
-                    val analyzedImageScaleX =
-                        poseViewModel.imageAnalysisResolution.width / (screenWidthDp * density)
-                    val analyzedImageScaleY =
-                        poseViewModel.imageAnalysisResolution.height / (screenHeightDp * density)
-                    Log.d("Size after", (screenHeightDp * density).toString())
+                    val scaleFactor = (screenHeightDp * density) / poseViewModel.imageAnalysisResolution.width
                     IntOffset(
-                        x = (screenWidthDp * density - posLeftEyeX).toInt(),
-                        y = (posLeftEyeY).toInt(),
+                        x = (screenWidthDp * density - posLeftEyeX * scaleFactor).toInt(),
+                        y = (posLeftEyeY * scaleFactor).toInt(),
                     )
                 }
                 .size(15.dp)
@@ -79,14 +73,10 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
 
             Box(modifier = Modifier
                 .offset {
-                    val analyzedImageScaleX =
-                        poseViewModel.imageAnalysisResolution.width / (screenWidthDp * density)
-                    val analyzedImageScaleY =
-                        poseViewModel.imageAnalysisResolution.height / (screenHeightDp * density)
-                    Log.d("Size after", (screenHeightDp * density).toString())
+                    val scaleFactor = (screenHeightDp * density) / poseViewModel.imageAnalysisResolution.width
                     IntOffset(
-                        x = (screenWidthDp * density - posRightEyeX).toInt(),
-                        y = (posRightEyeY).toInt(),
+                        x = (screenWidthDp * density - posRightEyeX * scaleFactor).toInt(),
+                        y = (posRightEyeY * scaleFactor).toInt(),
                     )
                 }
                 .size(15.dp)

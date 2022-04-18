@@ -56,7 +56,6 @@ fun CameraPreview(
                     val imageAnalysis = ImageAnalysis.Builder()
                         // enable the following line if RGBA output is needed.
                         // .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
-                        .setTargetResolution(Size(previewView.width, previewView.height))
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build()
                         .also {
