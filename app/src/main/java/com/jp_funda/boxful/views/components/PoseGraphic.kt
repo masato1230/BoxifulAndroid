@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.mlkit.vision.pose.PoseLandmark
+import com.jp_funda.boxful.utils.PoseConstants
 import com.jp_funda.boxful.views.PoseViewModel
 
 @Composable
@@ -29,7 +30,6 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
     val screenHeightDp = LocalConfiguration.current.screenHeightDp
 
     observedPose?.let { pose ->
-        // Draw all landmarks
         with(LocalDensity.current) {
             val scaleFactor =
                 (screenHeightDp * density) / poseViewModel.imageAnalysisResolution.height
@@ -37,6 +37,7 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                 (screenHeightDp * poseViewModel.imageAnalysisResolution.width / poseViewModel.imageAnalysisResolution.height - screenWidthDp) / 2 - 10
 
             Canvas(modifier = Modifier.fillMaxSize()) {
+                // Draw all landmarks
                 for (landmark in pose.allPoseLandmarks) {
                     drawCircle(
                         color = Color.Cyan,
@@ -45,6 +46,26 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                             y = ((landmark.position.y * scaleFactor) - 15),
                         ),
                         radius = 20f,
+                    )
+                }
+
+                // Draw all bones
+                for (bonePair in PoseConstants.BONE_LANDMARK_SETS) {
+                    val startLandmark = pose.getPoseLandmark(bonePair.first)
+                    val endLandmark = pose.getPoseLandmark(bonePair.second)
+
+                    if (startLandmark == null || endLandmark == null) continue
+                    drawLine(
+                        color = Color.LightGray,
+                        start = Offset(
+                            x = (screenWidthDp * density - startLandmark.position.x * scaleFactor) + offsetXDp * density,
+                            y = (startLandmark.position.y * scaleFactor) - 15,
+                        ),
+                        end = Offset(
+                            x = (screenWidthDp * density - endLandmark.position.x * scaleFactor) + offsetXDp * density,
+                            y = (endLandmark.position.y * scaleFactor) - 15,
+                        ),
+                        strokeWidth = 10f,
                     )
                 }
             }
