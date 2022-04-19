@@ -42,7 +42,7 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                         color = Color.Cyan,
                         center = Offset(
                             x = ((screenWidthDp * density - landmark.position.x * scaleFactor) + offsetXDp * density),
-                            y = ((landmark.position.y * scaleFactor) - 20),
+                            y = ((landmark.position.y * scaleFactor) - 15),
                         ),
                         radius = 20f,
                     )
