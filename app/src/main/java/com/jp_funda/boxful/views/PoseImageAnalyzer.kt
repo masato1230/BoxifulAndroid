@@ -2,8 +2,10 @@ package com.jp_funda.boxful.views
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.util.Size
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.pose.Pose
@@ -11,7 +13,7 @@ import com.google.mlkit.vision.pose.PoseDetection
 import com.google.mlkit.vision.pose.PoseLandmark
 import com.google.mlkit.vision.pose.defaults.PoseDetectorOptions
 
-class PoseImageAnalyzer(private val listener: () -> Unit = {}) : ImageAnalysis.Analyzer {
+class PoseImageAnalyzer(private val poseViewModel: PoseViewModel) : ImageAnalysis.Analyzer {
 
     // Base pose detector with streaming frames, when depending on the pose-detection sdk
     private val options = PoseDetectorOptions.Builder()
@@ -21,17 +23,27 @@ class PoseImageAnalyzer(private val listener: () -> Unit = {}) : ImageAnalysis.A
 
     @SuppressLint("UnsafeOptInUsageError")
     override fun analyze(imageProxy: ImageProxy) {
-        listener()
         val mediaImage = imageProxy.image
         if (mediaImage != null) {
+            Log.d(
+                "Before Analysis",
+                mediaImage.width.toString() + " ," + mediaImage.height.toString()
+            )
             val image = InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
 
             val result: Task<Pose> = poseDetector.process(image)
+
+            // update viewModels pose landmarks
             result.addOnSuccessListener {
-                Log.d(
-                    "right wrist",
-                    it.getPoseLandmark(PoseLandmark.LEFT_WRIST)?.position?.x.toString(),
-                )
+                // Port lait mode
+                if (mediaImage.width > mediaImage.height) {
+                    poseViewModel.imageAnalysisResolution =
+                        Size(mediaImage.height, mediaImage.width)
+                } else {
+                    poseViewModel.imageAnalysisResolution =
+                        Size(mediaImage.width, mediaImage.height)
+                }
+                poseViewModel.setPose(it)
             }
 
             result.addOnFailureListener {

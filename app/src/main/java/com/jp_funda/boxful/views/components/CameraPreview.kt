@@ -10,9 +10,12 @@ import androidx.camera.view.PreviewView
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jp_funda.boxful.extensions.getCameraProvider
+import com.jp_funda.boxful.views.PoseViewModel
 import com.jp_funda.boxful.views.PoseImageAnalyzer
 import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
@@ -22,9 +25,11 @@ fun CameraPreview(
     modifier: Modifier = Modifier,
     scaleType: PreviewView.ScaleType = PreviewView.ScaleType.FILL_CENTER,
     cameraSelector: CameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA,
+    poseViewModel: PoseViewModel = viewModel(),
 ) {
     val coroutineScope = rememberCoroutineScope()
     val lifecycleOwner = LocalLifecycleOwner.current
+
     AndroidView(
         modifier = modifier,
         factory = { context ->
@@ -46,14 +51,19 @@ fun CameraPreview(
             coroutineScope.launch {
                 val cameraProvider = context.getCameraProvider()
                 try {
+                    Log.d("Screen", "${previewView.width} ,${previewView.height}")
                     // Analyzer
                     val imageAnalysis = ImageAnalysis.Builder()
                         // enable the following line if RGBA output is needed.
                         // .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
-                        .setTargetResolution(Size(1280, 720))
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build()
-                        .also { it.setAnalyzer(Executors.newSingleThreadExecutor(), PoseImageAnalyzer()) }
+                        .also {
+                            it.setAnalyzer(
+                                Executors.newSingleThreadExecutor(),
+                                PoseImageAnalyzer(poseViewModel)
+                            )
+                        }
 
                     // Must unbind the use-cases before rebinding them.
                     cameraProvider.unbindAll()
