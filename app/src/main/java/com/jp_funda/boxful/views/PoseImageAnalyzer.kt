@@ -38,10 +38,10 @@ class PoseImageAnalyzer(private val poseViewModel: PoseViewModel) : ImageAnalysi
                 // Port lait mode
                 if (mediaImage.width > mediaImage.height) {
                     poseViewModel.imageAnalysisResolution =
-                        Size(mediaImage.width, mediaImage.height)
+                        Size(mediaImage.height, mediaImage.width)
                 } else {
                     poseViewModel.imageAnalysisResolution =
-                        Size(mediaImage.height, mediaImage.width)
+                        Size(mediaImage.width, mediaImage.height)
                 }
                 poseViewModel.setPose(it)
             }
