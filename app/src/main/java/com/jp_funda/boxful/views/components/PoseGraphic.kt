@@ -68,22 +68,23 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                         else -> null
                     }
                     landmarkColor?.let {
+                        // Landmark Background
                         drawCircle(
-                            color = landmarkColor,
+                            color = Color.White,
                             center = Offset(
                                 x = ((screenWidthDp * density - landmark.position.x * scaleFactor) + offsetXDp * density),
                                 y = ((landmark.position.y * scaleFactor) - 15),
                             ),
                             radius = 30f,
                         )
-                        // Front joint
+                        // Front Landmark
                         drawCircle(
-                            color = landmarkColor,
+                            color = it,
                             center = Offset(
                                 x = ((screenWidthDp * density - landmark.position.x * scaleFactor) + offsetXDp * density),
                                 y = ((landmark.position.y * scaleFactor) - 15),
                             ),
-                            radius = 30f,
+                            radius = 20f,
                         )
                     }
                 }
