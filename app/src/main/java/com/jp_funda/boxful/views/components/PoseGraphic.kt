@@ -75,7 +75,7 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                                 x = ((screenWidthDp * density - landmark.position.x * scaleFactor) + offsetXDp * density),
                                 y = ((landmark.position.y * scaleFactor) - 15),
                             ),
-                            radius = 30f,
+                            radius = 25f,
                         )
                         // Front Landmark
                         drawCircle(
