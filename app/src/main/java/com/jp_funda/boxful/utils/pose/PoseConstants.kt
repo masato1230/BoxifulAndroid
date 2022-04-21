@@ -1,4 +1,4 @@
-package com.jp_funda.boxful.utils
+package com.jp_funda.boxful.utils.pose
 
 import com.google.mlkit.vision.pose.PoseLandmark
 

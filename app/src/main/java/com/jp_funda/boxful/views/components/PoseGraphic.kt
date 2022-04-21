@@ -1,25 +1,17 @@
 package com.jp_funda.boxful.views.components
 
-import android.util.Log
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.mlkit.vision.pose.PoseLandmark
-import com.jp_funda.boxful.utils.PoseConstants
+import com.jp_funda.boxful.utils.pose.PoseConstants
 import com.jp_funda.boxful.views.PoseViewModel
 
 @Composable
