@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -104,6 +105,7 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                             lastPoint = lastPoint,
                         ).toString(),
                         color = Color.Blue,
+                        style = MaterialTheme.typography.h3,
                     )
                     Log.d(
                         "Elbow",
