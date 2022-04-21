@@ -14,7 +14,7 @@ enum class JointInfo(
     val firstLandmark: Int,
     val midLandmark: Int,
     val lastLandmark: Int?,
-    val lastPoint: PointF?
+    val lastPoint: PointF?,
 ) {
     LeftElbowJoint(
         firstLandmark = PoseLandmark.LEFT_WRIST,
