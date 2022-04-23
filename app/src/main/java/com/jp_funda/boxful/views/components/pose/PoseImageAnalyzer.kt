@@ -1,4 +1,4 @@
-package com.jp_funda.boxful.views
+package com.jp_funda.boxful.views.components.pose
 
 import android.annotation.SuppressLint
 import android.util.Size

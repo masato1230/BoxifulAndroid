@@ -1,7 +1,6 @@
-package com.jp_funda.boxful.views.components
+package com.jp_funda.boxful.views.components.pose
 
 import android.util.Log
-import android.util.Size
 import android.view.ViewGroup
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -10,13 +9,10 @@ import androidx.camera.view.PreviewView
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jp_funda.boxful.extensions.getCameraProvider
-import com.jp_funda.boxful.views.PoseViewModel
-import com.jp_funda.boxful.views.PoseImageAnalyzer
 import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
 
