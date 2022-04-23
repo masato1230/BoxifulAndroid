@@ -1,9 +1,6 @@
 package com.jp_funda.boxful.views
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.media.audiofx.BassBoost
-import android.media.audiofx.BassBoost.Settings
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
@@ -23,11 +20,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.android.gms.tasks.Task
-import com.google.mlkit.vision.pose.Pose
-import com.google.mlkit.vision.pose.PoseDetection
-import com.google.mlkit.vision.pose.defaults.PoseDetectorOptions
-import com.jp_funda.boxful.R
 import com.jp_funda.boxful.ui.theme.BoxfulTheme
 import com.jp_funda.boxful.views.components.CameraPreview
 import com.jp_funda.boxful.views.components.Permission
@@ -47,8 +39,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
-                    MainContent()
+                    MainScreen()
                 }
             }
         }
