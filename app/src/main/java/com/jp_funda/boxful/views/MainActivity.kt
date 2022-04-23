@@ -21,9 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxful.ui.theme.BoxfulTheme
-import com.jp_funda.boxful.views.components.CameraPreview
 import com.jp_funda.boxful.views.components.Permission
-import com.jp_funda.boxful.views.components.PoseGraphic
+import com.jp_funda.boxful.views.components.pose.CameraPreview
+import com.jp_funda.boxful.views.components.pose.PoseGraphic
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPermissionsApi

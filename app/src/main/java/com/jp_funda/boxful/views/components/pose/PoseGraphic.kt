@@ -1,4 +1,4 @@
-package com.jp_funda.boxful.views.components
+package com.jp_funda.boxful.views.components.pose
 
 import android.util.Log
 import androidx.compose.foundation.Canvas
@@ -18,7 +18,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jp_funda.boxful.utils.pose.AngleCalculator
 import com.jp_funda.boxful.utils.pose.JointInfo
 import com.jp_funda.boxful.utils.pose.PoseConstants
-import com.jp_funda.boxful.views.PoseViewModel
 
 @Composable
 fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
