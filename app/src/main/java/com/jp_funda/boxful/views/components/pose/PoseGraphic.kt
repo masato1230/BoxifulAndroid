@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jp_funda.boxful.models.JointInfo
 import com.jp_funda.boxful.utils.pose.AngleCalculator
-import com.jp_funda.boxful.utils.pose.JointInfo
 import com.jp_funda.boxful.utils.pose.PoseConstants
 
 @Composable

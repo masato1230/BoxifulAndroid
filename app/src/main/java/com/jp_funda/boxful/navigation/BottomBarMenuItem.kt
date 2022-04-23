@@ -11,22 +11,22 @@ import com.jp_funda.boxful.R
 sealed class BottomBarMenuItem(
     val route: String,
     @StringRes
-    val titleResource: Int,
+    val titleRes: Int,
     val icon: ImageVector,
 ) {
     object Home: BottomBarMenuItem(
         route = "home",
-        titleResource = R.string.home,
+        titleRes = R.string.home,
         icon = Icons.Default.Home,
     )
     object Record: BottomBarMenuItem(
         route = "record",
-        titleResource = R.string.record,
+        titleRes = R.string.record,
         icon = Icons.Default.List,
     )
     object Settings: BottomBarMenuItem(
         route = "settings",
-        titleResource = R.string.settings,
+        titleRes = R.string.settings,
         icon = Icons.Default.Settings,
     )
 }

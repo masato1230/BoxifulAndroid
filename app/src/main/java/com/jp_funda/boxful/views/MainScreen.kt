@@ -54,7 +54,7 @@ fun RowScope.AddItem(
     navController: NavHostController,
 ) {
     BottomNavigationItem(
-        label = { Text(text = stringResource(id = menuItem.titleResource)) },
+        label = { Text(text = stringResource(id = menuItem.titleRes)) },
         icon = { Icon(imageVector = menuItem.icon, contentDescription = "Navigation Icon") },
         selected = currentDestination?.hierarchy?.any { it.route == menuItem.route } == true,
         onClick = { navController.navigate(menuItem.route) },
