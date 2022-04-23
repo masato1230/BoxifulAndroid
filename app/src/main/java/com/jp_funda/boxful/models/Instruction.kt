@@ -2,8 +2,10 @@ package com.jp_funda.boxful.models
 
 import android.graphics.PointF
 import androidx.annotation.StringRes
+import androidx.compose.ui.res.stringResource
 import com.google.mlkit.vision.pose.Pose
 import com.google.mlkit.vision.pose.PoseLandmark
+import com.jp_funda.boxful.R
 import com.jp_funda.boxful.utils.pose.AngleCalculator
 
 /**
@@ -15,7 +17,8 @@ enum class Instruction(
     val detectStartCallback: (allPoseLandmark: List<PoseLandmark>) -> Boolean,
     val detectEndCallback: (allPoseLandmark: List<PoseLandmark>) -> Boolean,
 ) {
-    E();
+    LeftArmLeftPunch(
+        titleRes = stringResource(id = R.string.settings);
 
 
     companion object {
