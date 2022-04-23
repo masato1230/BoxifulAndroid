@@ -75,7 +75,9 @@ fun HomeMainContent(modifier: Modifier = Modifier) {
         TopSection()
 
         // Dashboard Section for logged in user
-        DashboardSection()
+        if (viewModel.isLoggedIn) {
+            DashboardSection()
+        }
 
         // Menus List Section for logged in users
         MenuListSection()
