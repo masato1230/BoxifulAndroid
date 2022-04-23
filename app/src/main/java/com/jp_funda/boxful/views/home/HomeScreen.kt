@@ -1,11 +1,38 @@
 package com.jp_funda.boxful.views.home
 
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import com.jp_funda.boxful.R
+import com.jp_funda.boxful.ui.theme.Gray900
+import com.jp_funda.boxful.ui.theme.Yellow500
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
 ) {
-    Text(text = viewModel.title)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Boxiful") },
+                navigationIcon = {
+                    IconButton(onClick = { /* do something */ }) {
+                        Icon(
+                            modifier = Modifier.size(24.dp),
+                            painter = painterResource(id = R.drawable.ic_boxiful),
+                            contentDescription = "Service icon",
+                            tint = Yellow500,
+                        )
+                    }
+                },
+                backgroundColor = Gray900,
+            )
+        }
+    ) {
+        it
+        Text(text = viewModel.title)
+    }
 }
