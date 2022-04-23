@@ -5,6 +5,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
@@ -53,7 +54,7 @@ fun RowScope.AddItem(
     navController: NavHostController,
 ) {
     BottomNavigationItem(
-        label = { Text(text = menuItem.title) },
+        label = { Text(text = stringResource(id = menuItem.titleResource)) },
         icon = { Icon(imageVector = menuItem.icon, contentDescription = "Navigation Icon") },
         selected = currentDestination?.hierarchy?.any { it.route == menuItem.route } == true,
         onClick = { navController.navigate(menuItem.route) },

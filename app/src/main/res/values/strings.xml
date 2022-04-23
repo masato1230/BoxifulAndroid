@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Boxful</string>
     <!-- common -->
+    <string name="home">ホーム</string>
+    <string name="record">記録</string>
+    <string name="settings">設定</string>
     <string name="kickboxing">キックボクシング</string>
     <!--  home  -->
     <string name="home_menu_list">メニュー一覧</string>
