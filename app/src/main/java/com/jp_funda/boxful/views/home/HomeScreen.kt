@@ -5,6 +5,9 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxful.R
 import com.jp_funda.boxful.ui.theme.Gray900
@@ -17,7 +20,16 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Boxiful") },
+                title = {
+                    Text(
+                        buildAnnotatedString {
+                            append("Boxi")
+                            withStyle(style = SpanStyle(color = Yellow500)) {
+                                append("ful")
+                            }
+                        }
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = { /* do something */ }) {
                         Icon(
