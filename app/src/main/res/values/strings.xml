@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Boxful</string>
+    <!-- common -->
+    <string name="kickboxing">キックボクシング</string>
+    <!--  home  -->
     <string name="home_menu_list">メニュー一覧</string>
+    <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
+    <string name="home_service_description">メニュー一覧からトレーニング内容を選択して運動を始めましょう!</string>
 </resources>
