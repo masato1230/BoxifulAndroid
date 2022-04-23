@@ -9,14 +9,13 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.jp_funda.boxful.R
 import com.jp_funda.boxful.ui.theme.Gray900
 import com.jp_funda.boxful.ui.theme.Yellow500
 
 @Composable
-fun HomeScreen(
-    viewModel: HomeViewModel,
-) {
+fun HomeScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -45,6 +44,16 @@ fun HomeScreen(
         }
     ) {
         it
-        Text(text = viewModel.title)
+        HomeMainContent()
     }
+}
+
+/**
+ * ホーム画面メイン.
+ *
+ */
+@Composable
+fun HomeMainContent() {
+    val viewModel: HomeViewModel = hiltViewModel()
+    Text(viewModel.title)
 }
