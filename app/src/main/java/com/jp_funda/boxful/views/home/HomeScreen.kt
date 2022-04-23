@@ -7,6 +7,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -76,10 +77,12 @@ fun HomeMainContent(modifier: Modifier = Modifier) {
 
         // Dashboard Section for logged in user
         if (viewModel.isLoggedIn) {
+            Spacer(modifier = Modifier.height(30.dp))
             DashboardSection()
         }
 
         // Menus List Section for logged in users
+        Spacer(modifier = Modifier.height(30.dp))
         MenuListSection()
     }
 }
@@ -105,12 +108,13 @@ fun TopSection() {
             modifier = Modifier.padding(start = 20.dp, top = 20.dp, end = 20.dp),
             style = MaterialTheme.typography.h5,
             fontFamily = FontFamily.Serif,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
         )
         Text(
             text = stringResource(id = R.string.home_service_description),
             modifier = Modifier.padding(start = 20.dp, top = 10.dp, end = 20.dp),
-            fontFamily = FontFamily.Serif
+            fontFamily = FontFamily.Serif,
+            color = Color.LightGray,
         )
     }
 }
@@ -131,9 +135,11 @@ fun MenuListSection() {
         Text(
             text = stringResource(id = R.string.home_menu_list),
             modifier = Modifier.padding(start = 20.dp),
+            style = MaterialTheme.typography.h6,
+            fontWeight = FontWeight.Bold,
         )
         Row {
-            // TODO menu card
+            // TODO show menu cards
         }
     }
 }
