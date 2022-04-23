@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Boxful</string>
+    <string name="home_menu_list">メニュー一覧</string>
 </resources>
