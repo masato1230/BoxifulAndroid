@@ -4,6 +4,8 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +22,7 @@ import com.jp_funda.boxful.R
 import com.jp_funda.boxful.models.SingleMenu
 import com.jp_funda.boxful.ui.theme.Gray900
 import com.jp_funda.boxful.ui.theme.Yellow500
+import com.jp_funda.boxful.views.components.CameraOpenDialog
 import com.jp_funda.boxful.views.components.SingleMenuCard
 
 @Composable
@@ -133,6 +136,13 @@ fun DashboardSection() {
 
 @Composable
 fun MenuListSection() {
+    // Camera open dialog
+    val isShowCameraOpenDialog = remember { mutableStateOf(false) }
+    CameraOpenDialog(isShowCameraOpenDialog) {
+        // TODO something
+    }
+
+    // Section Contents
     Column {
         // Section Title
         Text(
@@ -152,7 +162,10 @@ fun MenuListSection() {
 
             // Single menu cards
             for (menu in SingleMenu.values()) {
-                SingleMenuCard(menu = menu)
+                SingleMenuCard(menu = menu) {
+                    // Todo navigate to training screen
+                    isShowCameraOpenDialog.value = true
+                }
                 Spacer(modifier = Modifier.width(20.dp))
             }
         }
