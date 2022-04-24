@@ -1,5 +1,6 @@
 package com.jp_funda.boxful.models
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.jp_funda.boxful.R
 
@@ -66,5 +67,15 @@ enum class SingleMenu(
         instructionTypes = Instruction.values().toSet(),
         calorieConsumption = 45,
         durationInMinutes = 3,
-    )
+    );
+
+    @DrawableRes
+    fun getThumbnail(): Int {
+        return when (this) {
+            EasyMenu -> R.drawable.ic_menu_easy
+            KickMenu -> R.drawable.ic_menu_normal
+            NormalMenu -> R.drawable.ic_menu_normal
+            HardMenu -> R.drawable.ic_menu_hard
+        }
+    }
 }
