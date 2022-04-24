@@ -44,8 +44,34 @@ enum class Instruction(
             checkLeftLegKickIsEnd(pose = it, direction = HorizontalDirection.RIGHT)
         },
     ),
-    // TODO Add right
-    ;
+    RightHandLeftPunch(
+        titleRes = R.string.instructions_right_hand_left_punch,
+        detectStartCallback = { checkRightArmIsFolded(it) },
+        detectEndCallback = {
+            checkRightArmPunchIsEnd(pose = it, direction = HorizontalDirection.LEFT)
+        },
+    ),
+    RightHandRightPunch(
+        titleRes = R.string.instructions_right_hand_right_punch,
+        detectStartCallback = { checkRightArmIsFolded(it) },
+        detectEndCallback = {
+            checkRightArmPunchIsEnd(pose = it, direction = HorizontalDirection.RIGHT)
+        },
+    ),
+    RightFootLeftKick(
+        titleRes = R.string.instructions_right_foot_left_kick,
+        detectStartCallback = { checkRightLegIsLowered(it) },
+        detectEndCallback = {
+            checkRightLegKickIsEnd(pose = it, direction = HorizontalDirection.LEFT)
+        },
+    ),
+    RightFootRightKick(
+        titleRes = R.string.instructions_right_foot_right_kick,
+        detectStartCallback = { checkRightLegIsLowered(it) },
+        detectEndCallback = {
+            checkRightLegKickIsEnd(pose = it, direction = HorizontalDirection.RIGHT)
+        },
+    );
 
 
     companion object {
@@ -146,7 +172,7 @@ enum class Instruction(
          * Check if the right arm is Folded.
          * When right arm is folded, then it is ready to punch
          */
-        fun checkIsRightArmIsFolded(pose: Pose): Boolean {
+        fun checkRightArmIsFolded(pose: Pose): Boolean {
             val isSatisfyMinimumInFlameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
