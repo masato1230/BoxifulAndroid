@@ -1,7 +1,6 @@
 package com.jp_funda.boxful.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,9 +15,16 @@ fun BottomNavGraph(navController: NavHostController) {
         navController = navController,
         startDestination = BottomBarMenuItem.Home.route,
     ) {
+        /** Home Screen. */
         composable(route = BottomBarMenuItem.Home.route) {
-            HomeScreen()
+            HomeScreen(navController)
         }
+
+        /** Training Screen. */
+        composable(route = "training") {
+            MainContent()
+        }
+
         composable(route = BottomBarMenuItem.Record.route) {
             // TODO change
             MainContent()

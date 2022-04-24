@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.jp_funda.boxful.R
 import com.jp_funda.boxful.models.SingleMenu
 import com.jp_funda.boxful.ui.theme.Gray900
@@ -26,7 +27,7 @@ import com.jp_funda.boxful.views.components.CameraOpenDialog
 import com.jp_funda.boxful.views.components.SingleMenuCard
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -60,7 +61,7 @@ fun HomeScreen() {
             )
         }
     ) {
-        HomeMainContent(modifier = Modifier.padding(it))
+        HomeMainContent(modifier = Modifier.padding(it), navController = navController)
     }
 }
 
@@ -72,7 +73,7 @@ fun HomeScreen() {
  * ・Menu List Section
  */
 @Composable
-fun HomeMainContent(modifier: Modifier = Modifier) {
+fun HomeMainContent(modifier: Modifier = Modifier, navController: NavController) {
     val viewModel: HomeViewModel = hiltViewModel()
 
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
@@ -87,7 +88,7 @@ fun HomeMainContent(modifier: Modifier = Modifier) {
 
         // Menus List Section for logged in users
         Spacer(modifier = Modifier.height(20.dp))
-        MenuListSection()
+        MenuListSection(navController)
     }
 }
 
@@ -135,11 +136,11 @@ fun DashboardSection() {
 }
 
 @Composable
-fun MenuListSection() {
+fun MenuListSection(navController: NavController) {
     // Camera open dialog
     val isShowCameraOpenDialog = remember { mutableStateOf(false) }
     CameraOpenDialog(isShowCameraOpenDialog) {
-        // TODO something
+        navController.navigate("training") // todo remove hard coded route
     }
 
     // Section Contents
