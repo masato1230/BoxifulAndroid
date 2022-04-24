@@ -3,11 +3,16 @@ package com.jp_funda.boxful.views.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.jp_funda.boxful.R
+import com.jp_funda.boxful.ui.theme.Green500
+import com.jp_funda.boxful.ui.theme.Yellow500
 
 @Composable
 fun CameraOpenDialog(
@@ -20,11 +25,11 @@ fun CameraOpenDialog(
                 isShowDialog.value = false
             },
             title = {
-                Text(text = "Title")
+                Text(text = stringResource(id = R.string.launch_camera_title))
             },
             text = {
-                Column() {
-                    Text("Custom Text")
+                Column {
+                    Text(text = stringResource(id = R.string.lauch_camera_message))
                 }
             },
             buttons = {
@@ -32,11 +37,24 @@ fun CameraOpenDialog(
                     modifier = Modifier.padding(all = 8.dp),
                     horizontalArrangement = Arrangement.Center
                 ) {
+                    Spacer(modifier = Modifier.weight(1f))
                     Button(
-                        modifier = Modifier.fillMaxWidth(),
-                        onClick = { isShowDialog.value = false }
+                        modifier = Modifier.width(120.dp),
+                        onClick = { isShowDialog.value = false },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Green500)
                     ) {
-                        Text("Dismiss")
+                        Text(text = stringResource(id = R.string.cancel))
+                    }
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Button(
+                        modifier = Modifier.width(120.dp),
+                        onClick = {
+                            isShowDialog.value = false
+                            onClickOk()
+                        },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500)
+                    ) {
+                        Text(text = stringResource(id = R.string.ok))
                     }
                 }
             }
