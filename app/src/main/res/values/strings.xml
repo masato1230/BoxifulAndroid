@@ -18,4 +18,13 @@
     <string name="instructions_left_foot_right_kick">左足で右にキック</string>
     <string name="instructions_right_foot_left_kick">右足で左にキック</string>
     <string name="instructions_right_foot_right_kick">右足で右にキック</string>
+    <!-- menu -->
+    <string name="menu_easy_title">イージーメニュー</string>
+    <string name="menu_kick_title">キックメニュー</string>
+    <string name="menu_normal_title">ノーマルメニュー</string>
+    <string name="menu_hard_title">ハードメニュー</string>
+    <string name="menu_easy_description">パンチだめの短めのメニューです。ノーマルメニューが難しい人におすすめ</string>
+    <string name="menu_kick_description">キックだけのメニューです。キックに集中的に取り組みたい人におすすめ</string>
+    <string name="menu_normal_description">おすすめメニュー！ パンチとキックを組み合わせたコースで、短い時間で気持ちよく運動できます。</string>
+    <string name="menu_hard_description">ノーマルメニューでは物足りない方におすすめ、長くて少しキツいメニューです。</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.jp_funda.boxful.models
 
 import androidx.annotation.StringRes
+import com.jp_funda.boxful.R
 
 /** Menu for one term training. */
 enum class SingleMenu(
@@ -8,7 +9,7 @@ enum class SingleMenu(
     val titleRes: Int,
     @StringRes
     val descriptionRes: Int,
-    val InstructionTypes: List<Instruction>,
+    val instructionTypes: Set<Instruction>,
     val calorieConsumption: Int,
     val durationInMinutes: Int,
 ) {
@@ -16,4 +17,54 @@ enum class SingleMenu(
      * Easy Menu.
      * Menu which contains only punch instructions
      */
+    EasyMenu(
+        titleRes = R.string.menu_easy_title,
+        descriptionRes = R.string.menu_easy_description,
+        instructionTypes = setOf(
+            Instruction.LeftHandLeftPunch,
+            Instruction.LeftHandRightPunch,
+            Instruction.RightHandLeftPunch,
+            Instruction.RightHandRightPunch,
+        ),
+        calorieConsumption = 9,
+        durationInMinutes = 1,
+    ),
+    /**
+     * Kick Menu.
+     * Menu which contains only kick instructions
+     */
+    KickMenu(
+        titleRes = R.string.menu_kick_title,
+        descriptionRes = R.string.menu_kick_description,
+        instructionTypes = setOf(
+            Instruction.LeftFootLeftKick,
+            Instruction.LeftFootRightKick,
+            Instruction.RightFootLeftKick,
+            Instruction.RightFootRightKick,
+        ),
+        calorieConsumption = 18,
+        durationInMinutes = 2,
+    ),
+    /**
+     * Normal Menu.
+     * Menu which contains punch and kick instructions
+     */
+    NormalMenu(
+        titleRes = R.string.menu_normal_title,
+        descriptionRes = R.string.menu_normal_description,
+        instructionTypes = Instruction.values().toSet(),
+        calorieConsumption = 15,
+        durationInMinutes = 2,
+    ),
+    /**
+     * Hard Menu.
+     * Menu which is longer than normal menu
+     */
+    HardMenu(
+        titleRes = R.string.menu_hard_title,
+        descriptionRes = R.string.menu_hard_description,
+        instructionTypes = Instruction.values().toSet(),
+        calorieConsumption = 45,
+        durationInMinutes = 3,
+    )
 }
