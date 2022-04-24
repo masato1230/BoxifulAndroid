@@ -1,5 +1,6 @@
 package com.jp_funda.boxful.models
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.jp_funda.boxful.R
 
@@ -30,22 +31,6 @@ enum class SingleMenu(
         durationInMinutes = 1,
     ),
     /**
-     * Kick Menu.
-     * Menu which contains only kick instructions
-     */
-    KickMenu(
-        titleRes = R.string.menu_kick_title,
-        descriptionRes = R.string.menu_kick_description,
-        instructionTypes = setOf(
-            Instruction.LeftFootLeftKick,
-            Instruction.LeftFootRightKick,
-            Instruction.RightFootLeftKick,
-            Instruction.RightFootRightKick,
-        ),
-        calorieConsumption = 18,
-        durationInMinutes = 2,
-    ),
-    /**
      * Normal Menu.
      * Menu which contains punch and kick instructions
      */
@@ -66,5 +51,31 @@ enum class SingleMenu(
         instructionTypes = Instruction.values().toSet(),
         calorieConsumption = 45,
         durationInMinutes = 3,
-    )
+    ),
+    /**
+     * Kick Menu.
+     * Menu which contains only kick instructions
+     */
+    KickMenu(
+        titleRes = R.string.menu_kick_title,
+        descriptionRes = R.string.menu_kick_description,
+        instructionTypes = setOf(
+            Instruction.LeftFootLeftKick,
+            Instruction.LeftFootRightKick,
+            Instruction.RightFootLeftKick,
+            Instruction.RightFootRightKick,
+        ),
+        calorieConsumption = 18,
+        durationInMinutes = 2,
+    );
+
+    @DrawableRes
+    fun getThumbnail(): Int {
+        return when (this) {
+            EasyMenu -> R.drawable.ic_menu_easy
+            KickMenu -> R.drawable.ic_menu_normal
+            NormalMenu -> R.drawable.ic_menu_normal
+            HardMenu -> R.drawable.ic_menu_hard
+        }
+    }
 }
