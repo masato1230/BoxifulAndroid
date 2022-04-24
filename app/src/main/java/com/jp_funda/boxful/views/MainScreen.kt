@@ -1,9 +1,12 @@
 package com.jp_funda.boxful.views
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
@@ -16,18 +19,24 @@ import com.jp_funda.boxful.navigation.BottomBarMenuItem
 import com.jp_funda.boxful.navigation.BottomNavGraph
 import com.jp_funda.boxful.ui.theme.Yellow500
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPermissionsApi
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    Scaffold(bottomBar = { BottomBar(navController = navController) }) {
-        it
-        BottomNavGraph(navController = navController)
+    val bottomBarState = remember { mutableStateOf(true) }
+
+    Scaffold(bottomBar = {
+        if (bottomBarState.value) {
+            BottomBar(navController = navController)
+        }
+    }) {
+        BottomNavGraph(navController = navController, bottomBarState = bottomBarState)
     }
 }
 
 @Composable
-fun BottomBar(navController: NavHostController) {
+fun BottomBar(navController: NavHostController,) {
     val menuItems = listOf(
         BottomBarMenuItem.Home,
         BottomBarMenuItem.Record,
