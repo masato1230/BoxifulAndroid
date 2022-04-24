@@ -31,22 +31,6 @@ enum class SingleMenu(
         durationInMinutes = 1,
     ),
     /**
-     * Kick Menu.
-     * Menu which contains only kick instructions
-     */
-    KickMenu(
-        titleRes = R.string.menu_kick_title,
-        descriptionRes = R.string.menu_kick_description,
-        instructionTypes = setOf(
-            Instruction.LeftFootLeftKick,
-            Instruction.LeftFootRightKick,
-            Instruction.RightFootLeftKick,
-            Instruction.RightFootRightKick,
-        ),
-        calorieConsumption = 18,
-        durationInMinutes = 2,
-    ),
-    /**
      * Normal Menu.
      * Menu which contains punch and kick instructions
      */
@@ -67,6 +51,22 @@ enum class SingleMenu(
         instructionTypes = Instruction.values().toSet(),
         calorieConsumption = 45,
         durationInMinutes = 3,
+    ),
+    /**
+     * Kick Menu.
+     * Menu which contains only kick instructions
+     */
+    KickMenu(
+        titleRes = R.string.menu_kick_title,
+        descriptionRes = R.string.menu_kick_description,
+        instructionTypes = setOf(
+            Instruction.LeftFootLeftKick,
+            Instruction.LeftFootRightKick,
+            Instruction.RightFootLeftKick,
+            Instruction.RightFootRightKick,
+        ),
+        calorieConsumption = 18,
+        durationInMinutes = 2,
     );
 
     @DrawableRes

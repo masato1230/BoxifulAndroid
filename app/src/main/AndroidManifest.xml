@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jp_funda.boxful">
 
     <uses-feature android:name="android.hardware.camera" />
@@ -15,8 +16,10 @@
         android:theme="@style/Theme.Boxful">
         <activity
             android:name=".views.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
-            android:theme="@style/Theme.Boxful">
+            android:theme="@style/Theme.Boxful"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
