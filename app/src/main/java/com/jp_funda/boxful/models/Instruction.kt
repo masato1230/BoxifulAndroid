@@ -247,7 +247,7 @@ enum class Instruction(
         /**
          * Check if the left arm is stretched.
          */
-        fun checkLeftArmIsStretched(pose: Pose): Boolean {
+        private fun checkLeftArmIsStretched(pose: Pose): Boolean {
             val isSatisfyMinimumInFlameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -272,7 +272,7 @@ enum class Instruction(
         /**
          * Check if the right arm is stretched.
          */
-        fun checkRightArmIsStretched(pose: Pose): Boolean {
+        private fun checkRightArmIsStretched(pose: Pose): Boolean {
             val isSatisfyMinimumInFrameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -297,7 +297,7 @@ enum class Instruction(
         /**
          * Check if the left leg is stretched.
          */
-        fun checkLeftLegIsStretched(pose: Pose): Boolean {
+        private fun checkLeftLegIsStretched(pose: Pose): Boolean {
             val isSatisfyMinimumInFrameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -321,7 +321,7 @@ enum class Instruction(
         /**
          * Check if the right leg is stretched.
          */
-        fun checkRightLegIsStretched(pose: Pose): Boolean {
+        private fun checkRightLegIsStretched(pose: Pose): Boolean {
             val isSatisfyMinimumInFrameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
