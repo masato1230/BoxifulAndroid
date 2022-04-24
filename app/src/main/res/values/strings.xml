@@ -9,4 +9,13 @@
     <string name="home_menu_list">メニュー一覧</string>
     <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
     <string name="home_service_description">メニュー一覧からトレーニング内容を選択して運動を始めましょう!</string>
+    <!-- instructions -->
+    <string name="instructions_left_hand_left_punch">左手で左にパンチ</string>
+    <string name="instructions_left_hand_right_punch">左手で右にパンチ</string>
+    <string name="instructions_right_hand_left_punch">右手で左にパンチ</string>
+    <string name="instructions_right_hand_right_punch">右手で右にパンチ</string>
+    <string name="instructions_left_foot_left_kick">左足で左にキック</string>
+    <string name="instructions_left_foot_right_kick">左足で右にキック</string>
+    <string name="instructions_right_foot_left_kick">右足で左にキック</string>
+    <string name="instructions_right_foot_right_kick">右足で右にキック</string>
 </resources>

@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jp_funda.boxful.models.JointInfo
 import com.jp_funda.boxful.utils.pose.AngleCalculator
-import com.jp_funda.boxful.utils.pose.JointInfo
 import com.jp_funda.boxful.utils.pose.PoseConstants
 
 @Composable
@@ -93,16 +93,10 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                 val firstLandmark = pose.getPoseLandmark(leftElbowJoint.firstLandmark)
                 val midLandmark = pose.getPoseLandmark(leftElbowJoint.midLandmark)
                 val lastPoint = leftElbowJoint.lastLandmark?.let { pose.getPoseLandmark(it) }
-                Log.d("First", firstLandmark.toString())
-                Log.d("Mid", midLandmark.toString())
-                Log.d("Last", lastPoint.toString())
+                Log.d("LEFT WRIST", "${firstLandmark?.position?.x}, ${firstLandmark?.position?.y}")
                 if (firstLandmark != null && midLandmark != null && lastPoint != null) {
                     Text(
-                        text = AngleCalculator.getAngle(
-                            firstPoint = firstLandmark,
-                            midPoint = midLandmark,
-                            lastPoint = lastPoint,
-                        ).toString(),
+                        text = "${firstLandmark?.position?.x}, ${firstLandmark?.position?.y}",
                         color = Color.Blue,
                         style = MaterialTheme.typography.h3,
                     )

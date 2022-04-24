@@ -1,9 +1,10 @@
-package com.jp_funda.boxful.utils.pose
+package com.jp_funda.boxful.models
 
 import android.graphics.PointF
 import com.google.mlkit.vision.pose.PoseLandmark
 
 /**
+ * TODO delete
  * Enum for representing joints which angle is needed to be calculated
  * @param firstLandmark LandmarkType of first landmark
  * @param midLandmark LandmarkType of mid landmark
