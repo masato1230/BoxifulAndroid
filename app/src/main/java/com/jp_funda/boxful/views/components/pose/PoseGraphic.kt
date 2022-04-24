@@ -93,16 +93,10 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                 val firstLandmark = pose.getPoseLandmark(leftElbowJoint.firstLandmark)
                 val midLandmark = pose.getPoseLandmark(leftElbowJoint.midLandmark)
                 val lastPoint = leftElbowJoint.lastLandmark?.let { pose.getPoseLandmark(it) }
-                Log.d("First", firstLandmark.toString())
-                Log.d("Mid", midLandmark.toString())
-                Log.d("Last", lastPoint.toString())
+                Log.d("LEFT WRIST", "${firstLandmark?.position?.x}, ${firstLandmark?.position?.y}")
                 if (firstLandmark != null && midLandmark != null && lastPoint != null) {
                     Text(
-                        text = AngleCalculator.getAngle(
-                            firstPoint = firstLandmark,
-                            midPoint = midLandmark,
-                            lastPoint = lastPoint,
-                        ).toString(),
+                        text = "${firstLandmark?.position?.x}, ${firstLandmark?.position?.y}",
                         color = Color.Blue,
                         style = MaterialTheme.typography.h3,
                     )

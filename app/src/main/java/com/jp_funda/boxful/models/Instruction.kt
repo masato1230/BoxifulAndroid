@@ -2,7 +2,6 @@ package com.jp_funda.boxful.models
 
 import android.graphics.PointF
 import androidx.annotation.StringRes
-import androidx.compose.ui.res.stringResource
 import com.google.mlkit.vision.pose.Pose
 import com.google.mlkit.vision.pose.PoseLandmark
 import com.jp_funda.boxful.R
@@ -17,15 +16,90 @@ enum class Instruction(
     val detectStartCallback: (pose: Pose) -> Boolean,
     val detectEndCallback: (pose: Pose) -> Boolean,
 ) {
-    LeftArmLeftPunch(
+    LeftHandLeftPunch(
         titleRes = R.string.instructions_left_hand_left_punch,
-        detectStartCallback = { checkIsLeftArmIsReadyToPunch(it) },
-        detectEndCallback = { checkIs }
-    )
+        detectStartCallback = { checkLeftArmIsFolded(it) },
+        detectEndCallback = {
+            checkLeftArmPunchIsEnd(pose = it, direction = HorizontalDirection.LEFT)
+        },
+    ),
+    LeftHandRightPunch(
+        titleRes = R.string.instructions_left_hand_right_punch,
+        detectStartCallback = { checkLeftArmIsFolded(it) },
+        detectEndCallback = {
+            checkLeftArmPunchIsEnd(pose = it, direction = HorizontalDirection.RIGHT)
+        },
+    ),
+    LeftFootLeftKick(
+        titleRes = R.string.instructions_left_foot_left_kick,
+        detectStartCallback = { checkLeftLegIsLowered(it) },
+        detectEndCallback = {
+            checkLeftLegKickIsEnd(pose = it, direction = HorizontalDirection.LEFT)
+        },
+    ),
+    LeftFootRightKick(
+        titleRes = R.string.instructions_left_foot_right_kick,
+        detectStartCallback = { checkLeftLegIsLowered(it) },
+        detectEndCallback = {
+            checkLeftLegKickIsEnd(pose = it, direction = HorizontalDirection.RIGHT)
+        },
+    ),
+    // TODO Add right
     ;
 
 
     companion object {
+        /**
+         * Check if left arm is at punch end state.
+         */
+        fun checkLeftArmPunchIsEnd(pose: Pose, direction: HorizontalDirection): Boolean {
+            val isStretched = checkLeftArmIsStretched(pose)
+            if (!isStretched) return false
+
+            return direction == getHorizontalVectorDirection(
+                from = pose.getPoseLandmark(PoseLandmark.LEFT_ELBOW)!!,
+                to = pose.getPoseLandmark(PoseLandmark.LEFT_WRIST)!!,
+            )
+        }
+
+        /**
+         * Check if right arm is at punch end state.
+         */
+        fun checkRightArmPunchIsEnd(pose: Pose, direction: HorizontalDirection): Boolean {
+            val isStretched = checkRightArmIsStretched(pose)
+            if (!isStretched) return false
+
+            return direction == getHorizontalVectorDirection(
+                from = pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW)!!,
+                to = pose.getPoseLandmark(PoseLandmark.RIGHT_WRIST)!!,
+            )
+        }
+
+        /**
+         * Check if left leg is at kick end state.
+         */
+        fun checkLeftLegKickIsEnd(pose: Pose, direction: HorizontalDirection): Boolean {
+            val isStretched = checkLeftLegIsStretched(pose)
+            if (!isStretched) return false
+
+            return direction == getHorizontalVectorDirection(
+                from = pose.getPoseLandmark(PoseLandmark.LEFT_HIP)!!,
+                to = pose.getPoseLandmark(PoseLandmark.LEFT_KNEE)!!,
+            )
+        }
+
+        /**
+         * Check if right leg is at end state.
+         */
+        fun checkRightLegKickIsEnd(pose: Pose, direction: HorizontalDirection): Boolean {
+            val isStretched = checkRightLegIsStretched(pose)
+            if (!isStretched) return false
+
+            return direction == getHorizontalVectorDirection(
+                from = pose.getPoseLandmark(PoseLandmark.RIGHT_HIP)!!,
+                to = pose.getPoseLandmark(PoseLandmark.RIGHT_KNEE)!!,
+            )
+        }
 
         /**
          * Check all needed Landmarks is satisfying minimum in frame likely food.
@@ -98,7 +172,7 @@ enum class Instruction(
          * Check if the left leg is lowered.
          * When left leg is lowered, then it is ready to kick
          */
-        fun checkIsLeftLegIsLowered(pose: Pose): Boolean {
+        fun checkLeftLegIsLowered(pose: Pose): Boolean {
             val isSatisfyMinimumInFlameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -123,7 +197,7 @@ enum class Instruction(
          * Check if the right leg is lowered.
          * When right leg is lowered, then it is ready to kick
          */
-        fun checkIsRightLegIsLowered(pose: Pose): Boolean {
+        fun checkRightLegIsLowered(pose: Pose): Boolean {
             val isSatisfyMinimumInFlameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -147,7 +221,7 @@ enum class Instruction(
         /**
          * Check if the left arm is stretched.
          */
-        fun checkIsLeftArmIsStretched(pose: Pose): Boolean {
+        fun checkLeftArmIsStretched(pose: Pose): Boolean {
             val isSatisfyMinimumInFlameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -172,7 +246,7 @@ enum class Instruction(
         /**
          * Check if the right arm is stretched.
          */
-        fun checkIsRightArmIsStretched(pose: Pose): Boolean {
+        fun checkRightArmIsStretched(pose: Pose): Boolean {
             val isSatisfyMinimumInFrameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -197,7 +271,7 @@ enum class Instruction(
         /**
          * Check if the left leg is stretched.
          */
-        fun checkIsLeftLegIsStretched(pose: Pose): Boolean {
+        fun checkLeftLegIsStretched(pose: Pose): Boolean {
             val isSatisfyMinimumInFrameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -221,7 +295,7 @@ enum class Instruction(
         /**
          * Check if the right leg is stretched.
          */
-        fun checkIsRightLegIsStretched(pose: Pose): Boolean {
+        fun checkRightLegIsStretched(pose: Pose): Boolean {
             val isSatisfyMinimumInFrameLikelyFood =
                 checkIsSatisfyMinimumInFrameLikelyFood(
                     pose = pose,
@@ -242,6 +316,22 @@ enum class Instruction(
             }
         }
 
-        // TODO left leg stretch
+        /**
+         * Get Horizontal Vector direction.
+         */
+        private fun getHorizontalVectorDirection(
+            from: PoseLandmark,
+            to: PoseLandmark,
+        ): HorizontalDirection {
+            val horizontalVector = to.position.x - from.position.x
+            return if (horizontalVector > 0) {
+                HorizontalDirection.LEFT
+            } else HorizontalDirection.RIGHT
+        }
+    }
+
+    enum class HorizontalDirection {
+        LEFT,
+        RIGHT;
     }
 }
