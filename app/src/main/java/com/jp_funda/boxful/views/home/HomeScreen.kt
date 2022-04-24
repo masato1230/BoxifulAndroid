@@ -137,10 +137,11 @@ fun DashboardSection() {
 
 @Composable
 fun MenuListSection(navController: NavController) {
+    val viewModel: HomeViewModel = hiltViewModel()
     // Camera open dialog
     val isShowCameraOpenDialog = remember { mutableStateOf(false) }
     CameraOpenDialog(isShowCameraOpenDialog) {
-        navController.navigate("training") // todo remove hard coded route
+        navController.navigate("training/${viewModel.getSelectedMenu().name}") // todo remove hard coded route
     }
 
     // Section Contents
@@ -164,7 +165,7 @@ fun MenuListSection(navController: NavController) {
             // Single menu cards
             for (menu in SingleMenu.values()) {
                 SingleMenuCard(menu = menu) {
-                    // Todo navigate to training screen
+                    viewModel.setSelectedMenu(menu)
                     isShowCameraOpenDialog.value = true
                 }
                 Spacer(modifier = Modifier.width(20.dp))

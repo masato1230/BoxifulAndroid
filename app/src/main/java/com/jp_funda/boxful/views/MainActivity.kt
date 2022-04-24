@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.jp_funda.boxful.models.SingleMenu
 import com.jp_funda.boxful.ui.theme.BoxfulTheme
 import com.jp_funda.boxful.views.components.Permission
 import com.jp_funda.boxful.views.components.pose.CameraPreview
@@ -48,7 +50,8 @@ class MainActivity : ComponentActivity() {
 
 @ExperimentalPermissionsApi
 @Composable
-fun MainContent(modifier: Modifier = Modifier) {
+fun MainContent(modifier: Modifier = Modifier, menu: SingleMenu? = null) { // TODO change second param
+    Log.d("Single Menu", menu?.name.toString())
     val context = LocalContext.current
     Permission(
         permission = android.Manifest.permission.CAMERA,
