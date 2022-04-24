@@ -1,10 +1,7 @@
 package com.jp_funda.boxful.views.home
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -75,7 +72,7 @@ fun HomeScreen() {
 fun HomeMainContent(modifier: Modifier = Modifier) {
     val viewModel: HomeViewModel = hiltViewModel()
 
-    Column(modifier = modifier) {
+    Column(modifier = modifier.verticalScroll(rememberScrollState())) {
         // Top Section
         TopSection()
 
@@ -138,17 +135,22 @@ fun MenuListSection() {
     Column {
         Text(
             text = stringResource(id = R.string.home_menu_list),
-            modifier = Modifier.padding(start = 20.dp),
             style = MaterialTheme.typography.h6,
             fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(start = 20.dp),
         )
+        Spacer(modifier = Modifier.height(20.dp))
         Row(
-            modifier = Modifier.horizontalScroll(rememberScrollState())
+            modifier = Modifier.horizontalScroll(rememberScrollState()),
         ) {
-            // TODO show menu cards
+            Spacer(modifier = Modifier.width(20.dp))
+
+            // Single menu cards
             for (menu in SingleMenu.values()) {
-                SingleMenuCard(menu = menu, modifier = Modifier.size(200.dp))
+                SingleMenuCard(menu = menu)
+                Spacer(modifier = Modifier.width(10.dp))
             }
         }
+        Spacer(modifier = Modifier.height(100.dp))
     }
 }
