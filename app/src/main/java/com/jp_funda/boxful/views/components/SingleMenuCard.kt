@@ -27,7 +27,7 @@ import com.jp_funda.boxful.ui.theme.*
 fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
-            .heightIn(min = 300.dp)
+            .heightIn(min = 270.dp)
             .width(250.dp)
     ) {
         Column {
@@ -44,21 +44,21 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier) {
             // Menu Title
             Text(
                 text = stringResource(id = menu.titleRes),
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier.padding(5.dp),
                 style = MaterialTheme.typography.button,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.ExtraBold,
             )
 
             // Menu Description
             Text(
                 text = stringResource(id = menu.descriptionRes),
                 modifier = Modifier.padding(horizontal = 5.dp),
-                style = MaterialTheme.typography.body2,
+                style = MaterialTheme.typography.caption,
                 color = Color.LightGray,
                 fontFamily = FontFamily.Serif,
             )
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(1f).heightIn(10.dp))
 
             // Approximate calorie consumption
             val approximateCalorieText =

@@ -78,12 +78,12 @@ fun HomeMainContent(modifier: Modifier = Modifier) {
 
         // Dashboard Section for logged in user
         if (viewModel.isLoggedIn) {
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             DashboardSection()
         }
 
         // Menus List Section for logged in users
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         MenuListSection()
     }
 }
@@ -102,12 +102,13 @@ fun TopSection() {
             Image(
                 painter = painterResource(id = R.drawable.ic_service_thumbnail),
                 contentDescription = "Service thumbnail",
+                modifier = Modifier.heightIn(max = 300.dp)
             )
         }
         Text(
             text = stringResource(id = R.string.home_service_slogan),
-            modifier = Modifier.padding(start = 20.dp, top = 20.dp, end = 20.dp),
-            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 20.dp, top = 15.dp, end = 15.dp),
+            style = MaterialTheme.typography.h6,
             fontFamily = FontFamily.Serif,
             fontWeight = FontWeight.ExtraBold,
         )
@@ -133,13 +134,17 @@ fun DashboardSection() {
 @Composable
 fun MenuListSection() {
     Column {
+        // Section Title
         Text(
             text = stringResource(id = R.string.home_menu_list),
             style = MaterialTheme.typography.h6,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(start = 20.dp),
         )
-        Spacer(modifier = Modifier.height(20.dp))
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        // List
         Row(
             modifier = Modifier.horizontalScroll(rememberScrollState()),
         ) {
@@ -148,7 +153,7 @@ fun MenuListSection() {
             // Single menu cards
             for (menu in SingleMenu.values()) {
                 SingleMenuCard(menu = menu)
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(20.dp))
             }
         }
         Spacer(modifier = Modifier.height(100.dp))
