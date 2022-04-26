@@ -15,6 +15,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxful.models.SingleMenu
 import com.jp_funda.boxful.views.MainContent
 import com.jp_funda.boxful.views.home.HomeScreen
+import com.jp_funda.boxful.views.training.TrainingScreen
 
 @ExperimentalAnimationApi
 @ExperimentalPermissionsApi
@@ -30,7 +31,6 @@ fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableStat
             HomeScreen(navController)
         }
 
-        /** Training Screen. */
         /** Training Screen. */
         val singleMenuKey = "singleMenu"
         composable(
@@ -62,7 +62,11 @@ fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableStat
             }
         ) { backStackEntry ->
             bottomBarState.value = false
-            MainContent(menu = SingleMenu.fromName(backStackEntry.arguments?.getString(singleMenuKey)))
+            TrainingScreen(
+                navController = navController,
+                menu = SingleMenu.fromName(backStackEntry.arguments?.getString(singleMenuKey))
+                    ?: SingleMenu.NormalMenu
+            )
         }
 
         composable(route = BottomBarMenuItem.Record.route) {

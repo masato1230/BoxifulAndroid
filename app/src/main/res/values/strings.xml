@@ -7,6 +7,7 @@
     <string name="menu">メニュー</string>
     <string name="kickboxing">キックボクシング</string>
     <string name="ok">OK</string>
+    <string name="start">スタート</string>
     <string name="cancel">キャンセル</string>
     <string name="kcal">kcal</string>
     <!--  home  -->
@@ -33,9 +34,9 @@
     <string name="menu_hard_description">ノーマルメニューでは物足りない方におすすめ、長くて少しキツいメニューです。</string>
     <string name="menu_approximate_calorie_consumption">消費カロリー目安</string>
     <string name="menu_duration_in_minutes">所要時間 約%s分</string>
-    <!-- launch camera -->
-    <string name="launch_camera_title">インカメラを起動します</string>
-    <string name="lauch_camera_message">トレーニング中はカメラを使って姿勢推定を行います。</string>
+    <!-- training start -->
+    <string name="training_start_title">トレーニングスタート</string>
+    <string name="training_start_message">トレーニング中はカメラを使って姿勢推定を行います。</string>
     <!-- content description -->
     <string name="desc_icon">アイコン</string>
 </resources>
