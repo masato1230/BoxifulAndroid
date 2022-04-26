@@ -95,7 +95,6 @@ fun HomeMainContent(modifier: Modifier = Modifier, navController: NavController)
 /** TopSection. */
 @Composable
 fun TopSection() {
-    // TODO add brand thumbnail image
     Column {
         Box(
             modifier = Modifier
