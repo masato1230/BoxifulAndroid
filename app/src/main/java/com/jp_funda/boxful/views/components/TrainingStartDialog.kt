@@ -25,11 +25,11 @@ fun CameraOpenDialog(
                 isShowDialog.value = false
             },
             title = {
-                Text(text = stringResource(id = R.string.launch_camera_title))
+                Text(text = stringResource(id = R.string.training_start_title))
             },
             text = {
                 Column {
-                    Text(text = stringResource(id = R.string.lauch_camera_message))
+                    Text(text = stringResource(id = R.string.training_start_message))
                 }
             },
             buttons = {
@@ -54,7 +54,7 @@ fun CameraOpenDialog(
                         },
                         colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500)
                     ) {
-                        Text(text = stringResource(id = R.string.ok))
+                        Text(text = stringResource(id = R.string.start))
                     }
                 }
             }
