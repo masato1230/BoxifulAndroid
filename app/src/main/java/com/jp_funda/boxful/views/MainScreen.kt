@@ -1,6 +1,8 @@
 package com.jp_funda.boxful.views
 
 import android.annotation.SuppressLint
+import android.util.Log
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -13,17 +15,18 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxful.navigation.BottomBarMenuItem
 import com.jp_funda.boxful.navigation.BottomNavGraph
 import com.jp_funda.boxful.ui.theme.Yellow500
 
+@ExperimentalAnimationApi
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPermissionsApi
 @Composable
 fun MainScreen() {
-    val navController = rememberNavController()
+    val navController = rememberAnimatedNavController()
     val bottomBarState = remember { mutableStateOf(true) }
 
     Scaffold(bottomBar = {
@@ -36,7 +39,7 @@ fun MainScreen() {
 }
 
 @Composable
-fun BottomBar(navController: NavHostController,) {
+fun BottomBar(navController: NavHostController) {
     val menuItems = listOf(
         BottomBarMenuItem.Home,
         BottomBarMenuItem.Record,
@@ -66,7 +69,10 @@ fun RowScope.AddItem(
         label = { Text(text = stringResource(id = menuItem.titleRes)) },
         icon = { Icon(imageVector = menuItem.icon, contentDescription = "Navigation Icon") },
         selected = currentDestination?.hierarchy?.any { it.route == menuItem.route } == true,
-        onClick = { navController.navigate(menuItem.route) },
+        onClick = {
+            Log.d("route", menuItem.route)
+            navController.navigate(menuItem.route)
+        },
         selectedContentColor = Yellow500,
         unselectedContentColor = Color.Gray,
     )
