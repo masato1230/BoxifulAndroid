@@ -4,15 +4,16 @@ import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionRequired
 import com.google.accompanist.permissions.rememberPermissionState
+import com.jp_funda.boxful.R
 
 @ExperimentalPermissionsApi
 @Composable
 fun Permission(
     permission: String = android.Manifest.permission.CAMERA,
-    rationale: String = "This permission is important for this app. Please grant the permission.",
     permissionNotAvailableContent: @Composable () -> Unit = { },
     content: @Composable () -> Unit = { }
 ) {
@@ -21,7 +22,6 @@ fun Permission(
         permissionState = permissionState,
         permissionNotGrantedContent = {
             Rationale(
-                text = rationale,
                 onRequestPermission = { permissionState.launchPermissionRequest() }
             )
         },
@@ -32,20 +32,19 @@ fun Permission(
 
 @Composable
 private fun Rationale(
-    text: String,
     onRequestPermission: () -> Unit
 ) {
     AlertDialog(
         onDismissRequest = { /* Don't */ },
         title = {
-            Text(text = "Permission request")
+            Text(text = stringResource(id = R.string.permission_camera_title))
         },
         text = {
-            Text(text)
+            Text(text = stringResource(id = R.string.permission_camera_rationale))
         },
         confirmButton = {
             Button(onClick = onRequestPermission) {
-                Text("Ok")
+                Text(text = stringResource(id = R.string.ok))
             }
         }
     )

@@ -57,7 +57,6 @@ fun MainContent(modifier: Modifier = Modifier, menu: SingleMenu? = null) { // TO
     val context = LocalContext.current
     Permission(
         permission = android.Manifest.permission.CAMERA,
-        rationale = "Please allow the use of the camera to recognize body movements.",
         permissionNotAvailableContent = {
             Column(modifier) {
                 Text("O noes! No Camera!")
