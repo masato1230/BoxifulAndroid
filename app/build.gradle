@@ -86,5 +86,7 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 
     // Accompanist
-    implementation "com.google.accompanist:accompanist-permissions:0.18.0"
+    def accompanist_version = "0.24.1-alpha"
+    implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
 }

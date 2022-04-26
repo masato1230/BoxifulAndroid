@@ -3,6 +3,7 @@ package com.jp_funda.boxful.views.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -24,11 +25,12 @@ import com.jp_funda.boxful.models.SingleMenu
 import com.jp_funda.boxful.ui.theme.*
 
 @Composable
-fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier) {
+fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Card(
         modifier = modifier
             .heightIn(min = 270.dp)
             .width(250.dp)
+            .clickable { onClick() }
     ) {
         Column {
             // Menu Thumbnail

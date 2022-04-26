@@ -4,6 +4,8 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,14 +18,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.jp_funda.boxful.R
 import com.jp_funda.boxful.models.SingleMenu
 import com.jp_funda.boxful.ui.theme.Gray900
 import com.jp_funda.boxful.ui.theme.Yellow500
+import com.jp_funda.boxful.views.components.CameraOpenDialog
 import com.jp_funda.boxful.views.components.SingleMenuCard
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -57,7 +61,7 @@ fun HomeScreen() {
             )
         }
     ) {
-        HomeMainContent(modifier = Modifier.padding(it))
+        HomeMainContent(modifier = Modifier.padding(it), navController = navController)
     }
 }
 
@@ -69,7 +73,7 @@ fun HomeScreen() {
  * ・Menu List Section
  */
 @Composable
-fun HomeMainContent(modifier: Modifier = Modifier) {
+fun HomeMainContent(modifier: Modifier = Modifier, navController: NavController) {
     val viewModel: HomeViewModel = hiltViewModel()
 
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
@@ -84,7 +88,7 @@ fun HomeMainContent(modifier: Modifier = Modifier) {
 
         // Menus List Section for logged in users
         Spacer(modifier = Modifier.height(20.dp))
-        MenuListSection()
+        MenuListSection(navController)
     }
 }
 
@@ -132,7 +136,15 @@ fun DashboardSection() {
 }
 
 @Composable
-fun MenuListSection() {
+fun MenuListSection(navController: NavController) {
+    val viewModel: HomeViewModel = hiltViewModel()
+    // Camera open dialog
+    val isShowCameraOpenDialog = remember { mutableStateOf(false) }
+    CameraOpenDialog(isShowCameraOpenDialog) {
+        navController.navigate("training/${viewModel.getSelectedMenu().name}") // todo remove hard coded route
+    }
+
+    // Section Contents
     Column {
         // Section Title
         Text(
@@ -152,7 +164,10 @@ fun MenuListSection() {
 
             // Single menu cards
             for (menu in SingleMenu.values()) {
-                SingleMenuCard(menu = menu)
+                SingleMenuCard(menu = menu) {
+                    viewModel.setSelectedMenu(menu)
+                    isShowCameraOpenDialog.value = true
+                }
                 Spacer(modifier = Modifier.width(20.dp))
             }
         }

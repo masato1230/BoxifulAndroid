@@ -78,4 +78,8 @@ enum class SingleMenu(
             HardMenu -> R.drawable.ic_menu_hard
         }
     }
+
+    companion object {
+        fun fromName(name: String?): SingleMenu? = values().find { it.name == name }
+    }
 }
