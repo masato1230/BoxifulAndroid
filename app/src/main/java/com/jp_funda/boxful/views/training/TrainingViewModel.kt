@@ -1,6 +1,5 @@
 package com.jp_funda.boxful.views.training
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,8 +33,11 @@ class TrainingViewModel @Inject constructor() : ViewModel() {
     private fun generateInstructions(menu: SingleMenu) {
         for (i in 1..menu.numOfInstructions) {
             val randomlySelectedInstruction = menu.instructionTypes.random()
-            Log.d("Instruction", randomlySelectedInstruction.name)
             instructions.add(randomlySelectedInstruction)
         }
+    }
+
+    fun getInstruction(index: Int): Instruction {
+        return instructions[index]
     }
 }
