@@ -13,6 +13,7 @@ enum class SingleMenu(
     val instructionTypes: Set<Instruction>,
     val calorieConsumption: Int,
     val durationInMinutes: Int,
+    val numOfInstructions: Int,
 ) {
     /**
      * Easy Menu.
@@ -29,6 +30,7 @@ enum class SingleMenu(
         ),
         calorieConsumption = 9,
         durationInMinutes = 1,
+        numOfInstructions = 30,
     ),
     /**
      * Normal Menu.
@@ -40,6 +42,7 @@ enum class SingleMenu(
         instructionTypes = Instruction.values().toSet(),
         calorieConsumption = 15,
         durationInMinutes = 2,
+        numOfInstructions = 30,
     ),
     /**
      * Hard Menu.
@@ -51,6 +54,7 @@ enum class SingleMenu(
         instructionTypes = Instruction.values().toSet(),
         calorieConsumption = 45,
         durationInMinutes = 3,
+        numOfInstructions = 100,
     ),
     /**
      * Kick Menu.
@@ -67,6 +71,7 @@ enum class SingleMenu(
         ),
         calorieConsumption = 18,
         durationInMinutes = 2,
+        numOfInstructions = 30,
     );
 
     @DrawableRes

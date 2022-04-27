@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -39,4 +40,6 @@ fun TrainingMainContent(modifier: Modifier = Modifier, navController: NavControl
         CameraPreview()
         PoseGraphic()
     }
+
+    val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
 }
