@@ -15,7 +15,7 @@ import com.jp_funda.boxful.ui.theme.Green500
 import com.jp_funda.boxful.ui.theme.Yellow500
 
 @Composable
-fun CameraOpenDialog(
+fun TrainingStartDailog(
     isShowDialog: MutableState<Boolean>,
     onClickOk: () -> Unit,
 ) {

@@ -23,7 +23,7 @@ import com.jp_funda.boxful.R
 import com.jp_funda.boxful.models.SingleMenu
 import com.jp_funda.boxful.ui.theme.Gray900
 import com.jp_funda.boxful.ui.theme.Yellow500
-import com.jp_funda.boxful.views.components.CameraOpenDialog
+import com.jp_funda.boxful.views.components.TrainingStartDailog
 import com.jp_funda.boxful.views.components.SingleMenuCard
 
 @Composable
@@ -139,7 +139,7 @@ fun MenuListSection(navController: NavController) {
     val viewModel: HomeViewModel = hiltViewModel()
     // Camera open dialog
     val isShowCameraOpenDialog = remember { mutableStateOf(false) }
-    CameraOpenDialog(isShowCameraOpenDialog) {
+    TrainingStartDailog(isShowCameraOpenDialog) {
         navController.navigate("training/${viewModel.getSelectedMenu().name}") // todo remove hard coded route
     }
 
