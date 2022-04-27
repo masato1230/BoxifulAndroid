@@ -32,7 +32,7 @@ fun RequestCameraPermission(
         val isShowDialog = remember { mutableStateOf(true) }
         if (isShowDialog.value) {
             AlertDialog(
-                onDismissRequest = { isShowDialog.value = false },
+                onDismissRequest = { navController.popBackStack() },
                 title = {
                     Text(text = stringResource(id = R.string.permission_camera_title))
                 },
@@ -60,8 +60,6 @@ fun RequestCameraPermission(
                     }
                 }
             )
-        } else {
-            navController.popBackStack()
         }
     }
 }
