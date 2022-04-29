@@ -42,4 +42,6 @@
     <string name="permission_camera_rationale">姿勢推定を用いた動作評価を行うのにカメラの使用が必要です。\nカメラ情報がデバイスの外に出ることは一切ございません。</string>
     <!-- content description -->
     <string name="desc_icon">アイコン</string>
+    <string name="desc_left">左</string>
+    <string name="desc_right">右</string>
 </resources>
