@@ -18,6 +18,7 @@ import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose.CameraPreview
 import com.jp_funda.boxiful.views.components.pose.PoseGraphic
 import com.jp_funda.boxiful.views.training.component.BottomInstructionOverlay
+import com.jp_funda.boxiful.views.training.component.UpperInstructionOverlay
 
 @ExperimentalPermissionsApi
 @Composable
@@ -48,7 +49,7 @@ fun TrainingMainContent(modifier: Modifier = Modifier, navController: NavControl
         // instruction overlays
         val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
         observedInstructionIndex.value?.let {
-            InstructionOverlay(instruction = viewModel.getInstruction(it))
+            InstructionOverlay(instructionIndex = it, instructions = viewModel.getInstructions())
         }
     }
 }
@@ -57,14 +58,17 @@ fun TrainingMainContent(modifier: Modifier = Modifier, navController: NavControl
  * Instruction overlay contents.
  */
 @Composable
-fun InstructionOverlay(instruction: Instruction) {
+fun InstructionOverlay(instructionIndex: Int, instructions: List<Instruction>) {
+    val currentInstruction = instructions[instructionIndex]
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Bottom,
     ) {
-        // TODO Upper
+        // Upper overlay
+        UpperInstructionOverlay(instructionIndex, instructions)
 
-        // Bottom
-        BottomInstructionOverlay(instruction)
+        // Bottom overlay
+        BottomInstructionOverlay(currentInstruction)
     }
 }

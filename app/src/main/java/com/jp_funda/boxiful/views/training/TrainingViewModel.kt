@@ -40,4 +40,8 @@ class TrainingViewModel @Inject constructor() : ViewModel() {
     fun getInstruction(index: Int): Instruction {
         return instructions[index]
     }
+
+    fun getInstructions(): List<Instruction> {
+        return instructions
+    }
 }
