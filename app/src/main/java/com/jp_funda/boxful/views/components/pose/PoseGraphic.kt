@@ -1,11 +1,7 @@
 package com.jp_funda.boxful.views.components.pose
 
-import android.util.Log
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -15,8 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.jp_funda.boxful.models.JointInfo
-import com.jp_funda.boxful.utils.pose.AngleCalculator
 import com.jp_funda.boxful.utils.pose.PoseConstants
 
 @Composable
@@ -84,30 +78,6 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
                             radius = 20f,
                         )
                     }
-                }
-            }
-
-            // todo delete for debug
-            Column {
-                val leftElbowJoint = JointInfo.LeftElbowJoint
-                val firstLandmark = pose.getPoseLandmark(leftElbowJoint.firstLandmark)
-                val midLandmark = pose.getPoseLandmark(leftElbowJoint.midLandmark)
-                val lastPoint = leftElbowJoint.lastLandmark?.let { pose.getPoseLandmark(it) }
-                Log.d("LEFT WRIST", "${firstLandmark?.position?.x}, ${firstLandmark?.position?.y}")
-                if (firstLandmark != null && midLandmark != null && lastPoint != null) {
-                    Text(
-                        text = "${firstLandmark?.position?.x}, ${firstLandmark?.position?.y}",
-                        color = Color.Blue,
-                        style = MaterialTheme.typography.h3,
-                    )
-                    Log.d(
-                        "Elbow",
-                        AngleCalculator.getAngle(
-                            firstPoint = firstLandmark,
-                            midPoint = midLandmark,
-                            lastPoint = lastPoint,
-                        ).toString()
-                    )
                 }
             }
         }
