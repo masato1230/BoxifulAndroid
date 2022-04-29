@@ -14,6 +14,7 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.views.MainContent
+import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.home.HomeScreen
 import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.training.TrainingScreen
@@ -21,7 +22,11 @@ import com.jp_funda.boxiful.views.training.TrainingScreen
 @ExperimentalAnimationApi
 @ExperimentalPermissionsApi
 @Composable
-fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableState<Boolean>) {
+fun BottomNavGraph(
+    navController: NavHostController,
+    bottomBarState: MutableState<Boolean>,
+    mainViewModel: MainViewModel,
+) {
     AnimatedNavHost(
         navController = navController,
         startDestination = BottomBarMenuItem.Home.route,
@@ -73,7 +78,7 @@ fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableStat
         /** Result Screen */
         composable(route = NavigationRoutes.RESULT) {
             bottomBarState.value = true
-            ResultScreen()
+            ResultScreen(mainViewModel.singleMenuScores)
         }
 
         composable(route = BottomBarMenuItem.Record.route) {

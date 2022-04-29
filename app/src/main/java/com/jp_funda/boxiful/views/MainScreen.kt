@@ -24,7 +24,7 @@ import com.jp_funda.boxiful.ui.theme.Yellow500
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPermissionsApi
 @Composable
-fun MainScreen() {
+fun MainScreen(viewModel: MainViewModel) {
     val navController = rememberAnimatedNavController()
     val bottomBarState = remember { mutableStateOf(true) }
 
@@ -33,7 +33,11 @@ fun MainScreen() {
             BottomBar(navController = navController)
         }
     }) {
-        BottomNavGraph(navController = navController, bottomBarState = bottomBarState)
+        BottomNavGraph(
+            navController = navController,
+            bottomBarState = bottomBarState,
+            mainViewModel = viewModel,
+        )
     }
 }
 
