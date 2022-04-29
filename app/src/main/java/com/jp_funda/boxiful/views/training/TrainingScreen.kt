@@ -44,14 +44,20 @@ fun TrainingMainContent(navController: NavController) {
     ) {
         PosePreview(poseObservers = listOf(viewModel))
 
-        // instruction overlays
+        // Show training contents
         val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
-        observedInstructionIndex.value?.let {
-            InstructionOverlay(
-                title = stringResource(viewModel.getSingleMenu().titleRes),
-                instructionIndex = it,
-                instructions = viewModel.getInstructions(),
-            )
+        observedInstructionIndex.value?.let { index ->
+            if (index >= viewModel.getInstructions().size) {
+                // TODO Navigate to training screen
+                navController.navigate("result") { popUpTo("home") }
+            } else {
+                // Instruction overlay
+                InstructionOverlay(
+                    title = stringResource(viewModel.getSingleMenu().titleRes),
+                    instructionIndex = index,
+                    instructions = viewModel.getInstructions(),
+                )
+            }
         }
     }
 }

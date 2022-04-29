@@ -15,6 +15,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.views.MainContent
 import com.jp_funda.boxiful.views.home.HomeScreen
+import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.training.TrainingScreen
 
 @ExperimentalAnimationApi
@@ -67,6 +68,12 @@ fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableStat
                 menu = SingleMenu.fromName(backStackEntry.arguments?.getString(singleMenuKey))
                     ?: SingleMenu.NormalMenu
             )
+        }
+
+        /** Result Screen */
+        composable(route = "result") {
+            bottomBarState.value = true
+            ResultScreen()
         }
 
         composable(route = BottomBarMenuItem.Record.route) {

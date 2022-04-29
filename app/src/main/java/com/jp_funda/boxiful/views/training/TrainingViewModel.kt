@@ -23,9 +23,13 @@ class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
     val instructionIndex: LiveData<Int> = _instructionIndex
 
     /** Getter for current instruction */
-    private val currentInstruction: Instruction
+    private val currentInstruction: Instruction?
         get() {
-            return instructions[instructionIndex.value!!]
+            return try {
+                instructions[instructionIndex.value!!]
+            } catch (_: Exception) {
+                null
+            }
         }
 
     /** Whether current instruction's movement is started. */
@@ -67,12 +71,13 @@ class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
         // Before start movement
         if (!isMoveStarted) {
             moveStartTime = Date().time
-            isMoveStarted = currentInstruction.detectStartCallback(pose)
+            isMoveStarted = currentInstruction?.detectStartCallback?.invoke(pose) ?: false
         } else { // During movement
-            val isMoveEnd = currentInstruction.detectEndCallback(pose)
+            val isMoveEnd = currentInstruction?.detectEndCallback?.invoke(pose) ?: false
             if (isMoveEnd) {
                 // TODO record score
                 isMoveStarted = false
+                // Increment instruction index to show next instruction
                 _instructionIndex.value = _instructionIndex.value!! + 1
             }
         }
