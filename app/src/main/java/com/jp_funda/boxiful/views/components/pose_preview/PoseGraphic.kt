@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.components.pose
+package com.jp_funda.boxiful.views.components.pose_preview
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,12 +10,13 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.jp_funda.boxiful.utils.pose.PoseConstants
 
 @Composable
-fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
-    val observedPose by poseViewModel.pose.observeAsState()
+fun PoseGraphic() {
+    val poseGraphicViewModel = hiltViewModel<PoseGraphicViewModel>()
+    val observedPose by poseGraphicViewModel.pose.observeAsState()
 
     val screenWidthDp = LocalConfiguration.current.screenWidthDp
     val screenHeightDp = LocalConfiguration.current.screenHeightDp
@@ -23,9 +24,9 @@ fun PoseGraphic(poseViewModel: PoseViewModel = viewModel()) {
     observedPose?.let { pose ->
         with(LocalDensity.current) {
             val scaleFactor =
-                (screenHeightDp * density) / poseViewModel.imageAnalysisResolution.height
+                (screenHeightDp * density) / poseGraphicViewModel.imageAnalysisResolution.height
             val offsetXDp =
-                (screenHeightDp * poseViewModel.imageAnalysisResolution.width / poseViewModel.imageAnalysisResolution.height - screenWidthDp) / 2 - 10
+                (screenHeightDp * poseGraphicViewModel.imageAnalysisResolution.width / poseGraphicViewModel.imageAnalysisResolution.height - screenWidthDp) / 2 - 10
 
             Canvas(modifier = Modifier.fillMaxSize()) {
                 // Draw all bones

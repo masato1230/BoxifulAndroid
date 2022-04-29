@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.components.pose
+package com.jp_funda.boxiful.views.components.pose_preview
 
 import android.util.Log
 import android.view.ViewGroup
@@ -11,18 +11,19 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.jp_funda.boxiful.extensions.getCameraProvider
 import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
 
 @Composable
 fun CameraPreview(
+    poseObservers: List<PoseObserver>,
     modifier: Modifier = Modifier,
     scaleType: PreviewView.ScaleType = PreviewView.ScaleType.FILL_CENTER,
     cameraSelector: CameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA,
-    poseViewModel: PoseViewModel = viewModel(),
 ) {
+    val poseGraphicViewModel = hiltViewModel<PoseGraphicViewModel>()
     val coroutineScope = rememberCoroutineScope()
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -47,7 +48,6 @@ fun CameraPreview(
             coroutineScope.launch {
                 val cameraProvider = context.getCameraProvider()
                 try {
-                    Log.d("Screen", "${previewView.width} ,${previewView.height}")
                     // Analyzer
                     val imageAnalysis = ImageAnalysis.Builder()
                         // enable the following line if RGBA output is needed.
@@ -57,7 +57,10 @@ fun CameraPreview(
                         .also {
                             it.setAnalyzer(
                                 Executors.newSingleThreadExecutor(),
-                                PoseImageAnalyzer(poseViewModel)
+                                PoseImageAnalyzer(
+                                    poseGraphicViewModel = poseGraphicViewModel,
+                                    poseObservers = poseObservers,
+                                )
                             )
                         }
 

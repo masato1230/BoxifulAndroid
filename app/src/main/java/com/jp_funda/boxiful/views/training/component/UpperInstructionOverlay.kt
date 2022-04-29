@@ -51,7 +51,7 @@ fun UpperInstructionOverlay(
             Spacer(modifier = Modifier.width(10.dp))
 
             Text(
-                text = "${instructionIndex + 1} / ${instructions.size}",
+                text = "$instructionIndex / ${instructions.size}",
                 color = Color.White,
                 fontWeight = FontWeight.ExtraBold,
             )

@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.ui.theme.BoxfulTheme
-import com.jp_funda.boxiful.views.components.pose.CameraPreview
-import com.jp_funda.boxiful.views.components.pose.PoseGraphic
+import com.jp_funda.boxiful.views.components.pose_preview.CameraPreview
+import com.jp_funda.boxiful.views.components.pose_preview.PoseGraphic
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalAnimationApi
@@ -49,7 +49,7 @@ fun MainContent(
 ) { // TODO change second param
     Log.d("Single Menu", menu?.name.toString())
     val context = LocalContext.current
-    CameraPreview()
+    CameraPreview(poseObservers = listOf())
     PoseGraphic()
 }
 

@@ -138,7 +138,7 @@ enum class Instruction(
         ): Boolean {
             return checkLandmarkIds.all { id ->
                 val landmark = pose.getPoseLandmark(id)
-                landmark?.inFrameLikelihood ?: 0f < minimumLikelyFood
+                landmark?.inFrameLikelihood ?: 0f > minimumLikelyFood
             }
         }
 

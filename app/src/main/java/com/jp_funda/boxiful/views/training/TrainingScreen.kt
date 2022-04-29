@@ -15,8 +15,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
-import com.jp_funda.boxiful.views.components.pose.CameraPreview
-import com.jp_funda.boxiful.views.components.pose.PoseGraphic
+import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
 import com.jp_funda.boxiful.views.training.component.BottomInstructionOverlay
 import com.jp_funda.boxiful.views.training.component.UpperInstructionOverlay
 
@@ -43,8 +42,7 @@ fun TrainingMainContent(navController: NavController) {
     RequestCameraPermission(
         navController = navController,
     ) {
-        CameraPreview()
-        PoseGraphic()
+        PosePreview(poseObservers = listOf(viewModel))
 
         // instruction overlays
         val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
