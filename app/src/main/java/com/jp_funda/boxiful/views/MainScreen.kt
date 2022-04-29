@@ -1,7 +1,6 @@
 package com.jp_funda.boxiful.views
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.*
@@ -69,10 +68,7 @@ fun RowScope.AddItem(
         label = { Text(text = stringResource(id = menuItem.titleRes)) },
         icon = { Icon(imageVector = menuItem.icon, contentDescription = "Navigation Icon") },
         selected = currentDestination?.hierarchy?.any { it.route == menuItem.route } == true,
-        onClick = {
-            Log.d("route", menuItem.route)
-            navController.navigate(menuItem.route)
-        },
+        onClick = { navController.navigate(menuItem.route) },
         selectedContentColor = Yellow500,
         unselectedContentColor = Color.Gray,
     )

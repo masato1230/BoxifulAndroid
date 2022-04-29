@@ -15,17 +15,17 @@ sealed class BottomBarMenuItem(
     val icon: ImageVector,
 ) {
     object Home: BottomBarMenuItem(
-        route = "home",
+        route = NavigationRoutes.HOME,
         titleRes = R.string.home,
         icon = Icons.Default.Home,
     )
     object Record: BottomBarMenuItem(
-        route = "record",
+        route = NavigationRoutes.RECORD,
         titleRes = R.string.record,
         icon = Icons.Default.List,
     )
     object Settings: BottomBarMenuItem(
-        route = "settings",
+        route = NavigationRoutes.SETTINGS,
         titleRes = R.string.settings,
         icon = Icons.Default.Settings,
     )

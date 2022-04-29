@@ -35,7 +35,7 @@ fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableStat
         /** Training Screen. */
         val singleMenuKey = "singleMenu"
         composable(
-            route = "training/{$singleMenuKey}",
+            route = "${NavigationRoutes.TRAINING}/{$singleMenuKey}",
             arguments = listOf(navArgument(singleMenuKey) { type = NavType.StringType }),
             enterTransition = {
                 slideIntoContainer(
@@ -71,7 +71,7 @@ fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableStat
         }
 
         /** Result Screen */
-        composable(route = "result") {
+        composable(route = NavigationRoutes.RESULT) {
             bottomBarState.value = true
             ResultScreen()
         }

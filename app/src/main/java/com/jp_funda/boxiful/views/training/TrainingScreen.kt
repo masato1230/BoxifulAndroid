@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
+import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
 import com.jp_funda.boxiful.views.training.component.BottomInstructionOverlay
@@ -48,8 +49,8 @@ fun TrainingMainContent(navController: NavController) {
         val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
         observedInstructionIndex.value?.let { index ->
             if (index >= viewModel.getInstructions().size) {
-                // TODO Navigate to training screen
-                navController.navigate("result") { popUpTo("home") }
+                // Navigate to result screen
+                navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
             } else {
                 // Instruction overlay
                 InstructionOverlay(
