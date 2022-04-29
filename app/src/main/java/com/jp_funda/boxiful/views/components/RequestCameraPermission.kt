@@ -16,8 +16,8 @@ import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.ui.theme.Yellow500
 
 @ExperimentalPermissionsApi
 @Composable
