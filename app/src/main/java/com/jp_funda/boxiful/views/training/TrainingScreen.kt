@@ -14,6 +14,8 @@ import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
+import com.jp_funda.boxiful.navigation.NavigationRoutes
+import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
 import com.jp_funda.boxiful.views.training.component.BottomInstructionOverlay
@@ -22,7 +24,7 @@ import com.jp_funda.boxiful.views.training.component.UpperInstructionOverlay
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPermissionsApi
 @Composable
-fun TrainingScreen(navController: NavController, menu: SingleMenu) {
+fun TrainingScreen(navController: NavController, menu: SingleMenu, mainViewModel: MainViewModel) {
     // Set menu to viewModel
     hiltViewModel<TrainingViewModel>().setSingleMenu(menu)
 
@@ -44,14 +46,20 @@ fun TrainingMainContent(navController: NavController) {
     ) {
         PosePreview(poseObservers = listOf(viewModel))
 
-        // instruction overlays
+        // Show training contents
         val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
-        observedInstructionIndex.value?.let {
-            InstructionOverlay(
-                title = stringResource(viewModel.getSingleMenu().titleRes),
-                instructionIndex = it,
-                instructions = viewModel.getInstructions(),
-            )
+        observedInstructionIndex.value?.let { index ->
+            if (index >= viewModel.getInstructions().size) {
+                // Navigate to result screen
+                navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
+            } else {
+                // Instruction overlay
+                InstructionOverlay(
+                    title = stringResource(viewModel.getSingleMenu().titleRes),
+                    instructionIndex = index,
+                    instructions = viewModel.getInstructions(),
+                )
+            }
         }
     }
 }

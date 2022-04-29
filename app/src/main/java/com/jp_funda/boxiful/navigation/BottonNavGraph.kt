@@ -14,13 +14,19 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.views.MainContent
+import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.home.HomeScreen
+import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.training.TrainingScreen
 
 @ExperimentalAnimationApi
 @ExperimentalPermissionsApi
 @Composable
-fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableState<Boolean>) {
+fun BottomNavGraph(
+    navController: NavHostController,
+    bottomBarState: MutableState<Boolean>,
+    mainViewModel: MainViewModel,
+) {
     AnimatedNavHost(
         navController = navController,
         startDestination = BottomBarMenuItem.Home.route,
@@ -34,7 +40,7 @@ fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableStat
         /** Training Screen. */
         val singleMenuKey = "singleMenu"
         composable(
-            route = "training/{$singleMenuKey}",
+            route = "${NavigationRoutes.TRAINING}/{$singleMenuKey}",
             arguments = listOf(navArgument(singleMenuKey) { type = NavType.StringType }),
             enterTransition = {
                 slideIntoContainer(
@@ -65,15 +71,25 @@ fun BottomNavGraph(navController: NavHostController, bottomBarState: MutableStat
             TrainingScreen(
                 navController = navController,
                 menu = SingleMenu.fromName(backStackEntry.arguments?.getString(singleMenuKey))
-                    ?: SingleMenu.NormalMenu
+                    ?: SingleMenu.NormalMenu,
+                mainViewModel = mainViewModel,
             )
         }
 
+        /** Result Screen. */
+        composable(route = NavigationRoutes.RESULT) {
+            bottomBarState.value = true
+            ResultScreen(mainViewModel.singleMenuScores)
+        }
+
+        /** Record Screen. */
         composable(route = BottomBarMenuItem.Record.route) {
             bottomBarState.value = true
             // TODO change
             MainContent()
         }
+
+        /** Settings Screen. */
         composable(route = BottomBarMenuItem.Settings.route) {
             bottomBarState.value = true
             // TODO change

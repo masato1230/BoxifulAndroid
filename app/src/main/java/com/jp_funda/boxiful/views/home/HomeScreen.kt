@@ -21,10 +21,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenu
+import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Gray900
 import com.jp_funda.boxiful.ui.theme.Yellow500
-import com.jp_funda.boxiful.views.components.TrainingStartDailog
 import com.jp_funda.boxiful.views.components.SingleMenuCard
+import com.jp_funda.boxiful.views.components.TrainingStartDailog
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -140,7 +141,7 @@ fun MenuListSection(navController: NavController) {
     // Camera open dialog
     val isShowCameraOpenDialog = remember { mutableStateOf(false) }
     TrainingStartDailog(isShowCameraOpenDialog) {
-        navController.navigate("training/${viewModel.getSelectedMenu().name}") // todo remove hard coded route
+        navController.navigate("${NavigationRoutes.TRAINING}/${viewModel.getSelectedMenu().name}")
     }
 
     // Section Contents
