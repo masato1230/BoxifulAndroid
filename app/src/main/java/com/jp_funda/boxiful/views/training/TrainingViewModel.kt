@@ -3,13 +3,15 @@ package com.jp_funda.boxiful.views.training
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.mlkit.vision.pose.Pose
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
+import com.jp_funda.boxiful.views.components.pose_preview.PoseObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class TrainingViewModel @Inject constructor() : ViewModel() {
+class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
     private lateinit var singleMenu: SingleMenu
 
     /** Punch or Kick Instructions. */
@@ -44,5 +46,9 @@ class TrainingViewModel @Inject constructor() : ViewModel() {
 
     fun getInstructions(): List<Instruction> {
         return instructions
+    }
+
+    override fun updatePose(pose: Pose) {
+        // TODO
     }
 }

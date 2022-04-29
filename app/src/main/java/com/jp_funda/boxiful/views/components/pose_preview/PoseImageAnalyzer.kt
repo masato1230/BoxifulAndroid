@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.components.pose
+package com.jp_funda.boxiful.views.components.pose_preview
 
 import android.annotation.SuppressLint
 import android.util.Size
@@ -10,7 +10,10 @@ import com.google.mlkit.vision.pose.Pose
 import com.google.mlkit.vision.pose.PoseDetection
 import com.google.mlkit.vision.pose.defaults.PoseDetectorOptions
 
-class PoseImageAnalyzer(private val poseViewModel: PoseViewModel) : ImageAnalysis.Analyzer {
+class PoseImageAnalyzer(
+    private val poseGraphicViewModel: PoseGraphicViewModel,
+    private val poseObservers: List<PoseObserver>,
+) : ImageAnalysis.Analyzer {
 
     // Base pose detector with streaming frames, when depending on the pose-detection sdk
     private val options = PoseDetectorOptions.Builder()
@@ -30,13 +33,16 @@ class PoseImageAnalyzer(private val poseViewModel: PoseViewModel) : ImageAnalysi
             result.addOnSuccessListener {
                 // Port lait mode
                 if (mediaImage.width > mediaImage.height) {
-                    poseViewModel.imageAnalysisResolution =
+                    poseGraphicViewModel.imageAnalysisResolution =
                         Size(mediaImage.height, mediaImage.width)
                 } else {
-                    poseViewModel.imageAnalysisResolution =
+                    poseGraphicViewModel.imageAnalysisResolution =
                         Size(mediaImage.width, mediaImage.height)
                 }
-                poseViewModel.setPose(it)
+                poseGraphicViewModel.setPose(it)
+                poseObservers.forEach { observer ->
+                    observer.updatePose(it)
+                }
             }
 
             result.addOnFailureListener {

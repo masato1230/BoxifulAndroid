@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.components.pose
+package com.jp_funda.boxiful.views.components.pose_preview
 
 import android.util.Size
 import androidx.lifecycle.LiveData
@@ -9,7 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class PoseViewModel @Inject constructor() : ViewModel() {
+class PoseGraphicViewModel @Inject constructor() : ViewModel() {
 
     /** Pose landmarks. */
     private val _pose = MutableLiveData<Pose>()
