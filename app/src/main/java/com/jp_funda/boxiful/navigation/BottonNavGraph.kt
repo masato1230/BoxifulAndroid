@@ -71,21 +71,25 @@ fun BottomNavGraph(
             TrainingScreen(
                 navController = navController,
                 menu = SingleMenu.fromName(backStackEntry.arguments?.getString(singleMenuKey))
-                    ?: SingleMenu.NormalMenu
+                    ?: SingleMenu.NormalMenu,
+                mainViewModel = mainViewModel,
             )
         }
 
-        /** Result Screen */
+        /** Result Screen. */
         composable(route = NavigationRoutes.RESULT) {
             bottomBarState.value = true
             ResultScreen(mainViewModel.singleMenuScores)
         }
 
+        /** Record Screen. */
         composable(route = BottomBarMenuItem.Record.route) {
             bottomBarState.value = true
             // TODO change
             MainContent()
         }
+
+        /** Settings Screen. */
         composable(route = BottomBarMenuItem.Settings.route) {
             bottomBarState.value = true
             // TODO change
