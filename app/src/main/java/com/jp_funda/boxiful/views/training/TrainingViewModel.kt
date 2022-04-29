@@ -31,6 +31,7 @@ class TrainingViewModel @Inject constructor() : ViewModel() {
 
     /** Generate instructions from given single menu and update livedata value. */
     private fun generateInstructions(menu: SingleMenu) {
+        instructions.clear()
         for (i in 1..menu.numOfInstructions) {
             val randomlySelectedInstruction = menu.instructionTypes.random()
             instructions.add(randomlySelectedInstruction)
