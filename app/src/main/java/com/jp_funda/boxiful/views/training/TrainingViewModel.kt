@@ -8,6 +8,7 @@ import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.views.components.pose_preview.PoseObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +22,20 @@ class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
     private val _instructionIndex = MutableLiveData(0)
     val instructionIndex: LiveData<Int> = _instructionIndex
 
-    fun getSingleMenu() : SingleMenu {
+    /** Getter for current instruction */
+    private val currentInstruction: Instruction
+        get() {
+            return instructions[instructionIndex.value!!]
+        }
+
+    /** Whether current instruction's movement is started. */
+    private var isMoveStarted = false
+
+    /** Start time of current movement. */
+    private var moveStartTime = Date().time
+
+    /** Getter for single menu. */
+    fun getSingleMenu(): SingleMenu {
         return singleMenu
     }
 
@@ -29,6 +43,11 @@ class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
     fun setSingleMenu(menu: SingleMenu) {
         singleMenu = menu
         generateInstructions(menu)
+    }
+
+    /** Getter for instructions */
+    fun getInstructions(): List<Instruction> {
+        return instructions
     }
 
     /** Generate instructions from given single menu and update livedata value. */
@@ -40,15 +59,22 @@ class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
         }
     }
 
-    fun getInstruction(index: Int): Instruction {
-        return instructions[index]
-    }
-
-    fun getInstructions(): List<Instruction> {
-        return instructions
-    }
-
-    override fun updatePose(pose: Pose) {
-        // TODO
+    /**
+     * Pose Preview Callback.
+     * called from PosePreview when pose is detected. (about 30 ~ 60fps)
+     */
+    override fun onPoseUpdated(pose: Pose) {
+        // Before start movement
+        if (!isMoveStarted) {
+            moveStartTime = Date().time
+            isMoveStarted = currentInstruction.detectStartCallback(pose)
+        } else { // During movement
+            val isMoveEnd = currentInstruction.detectEndCallback(pose)
+            if (isMoveEnd) {
+                // TODO record score
+                isMoveStarted = false
+                _instructionIndex.value = _instructionIndex.value!! + 1
+            }
+        }
     }
 }

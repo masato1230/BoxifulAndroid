@@ -41,7 +41,7 @@ class PoseImageAnalyzer(
                 }
                 poseGraphicViewModel.setPose(it)
                 poseObservers.forEach { observer ->
-                    observer.updatePose(it)
+                    observer.onPoseUpdated(it)
                 }
             }
 
