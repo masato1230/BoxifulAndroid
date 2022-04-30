@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
+import com.jp_funda.boxiful.models.SingleMenuScores
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
@@ -29,7 +30,7 @@ fun TrainingScreen(navController: NavController, menu: SingleMenu, mainViewModel
     hiltViewModel<TrainingViewModel>().setSingleMenu(menu)
 
     Scaffold {
-        TrainingMainContent(navController = navController)
+        TrainingMainContent(navController = navController, mainViewModel = mainViewModel)
     }
 }
 
@@ -38,7 +39,7 @@ fun TrainingScreen(navController: NavController, menu: SingleMenu, mainViewModel
  */
 @ExperimentalPermissionsApi
 @Composable
-fun TrainingMainContent(navController: NavController) {
+fun TrainingMainContent(navController: NavController, mainViewModel: MainViewModel) {
     val viewModel = hiltViewModel<TrainingViewModel>()
 
     RequestCameraPermission(
@@ -50,6 +51,11 @@ fun TrainingMainContent(navController: NavController) {
         val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
         observedInstructionIndex.value?.let { index ->
             if (index >= viewModel.getInstructions().size) {
+                // Pass data to MainViewModel
+                mainViewModel.singleMenuScores = SingleMenuScores(
+                    singleMenu = viewModel.getSingleMenu(),
+                    scores = viewModel.getScores(),
+                )
                 // Navigate to result screen
                 navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
             } else {
