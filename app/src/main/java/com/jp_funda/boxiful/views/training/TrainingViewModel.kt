@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.mlkit.vision.pose.Pose
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
+import com.jp_funda.boxiful.utils.scoring.ScoreCalculator
 import com.jp_funda.boxiful.views.components.pose_preview.PoseObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
@@ -32,6 +33,9 @@ class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
             }
         }
 
+    /** Scores. */
+    private val scores = mutableListOf<Int>()
+
     /** Whether current instruction's movement is started. */
     private var isMoveStarted = false
 
@@ -52,6 +56,11 @@ class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
     /** Getter for instructions */
     fun getInstructions(): List<Instruction> {
         return instructions
+    }
+
+    /** Get for scores. */
+    fun getScores(): List<Int> {
+        return scores
     }
 
     /** Generate instructions from given single menu and update livedata value. */
@@ -75,7 +84,10 @@ class TrainingViewModel @Inject constructor() : ViewModel(), PoseObserver {
         } else { // During movement
             val isMoveEnd = currentInstruction?.detectEndCallback?.invoke(pose) ?: false
             if (isMoveEnd) {
-                // TODO record score
+                // Record score
+                val score =
+                    ScoreCalculator.getSingleMenuMoveScore(time = (Date().time - moveStartTime) / 1000f)
+                scores.add(score)
                 isMoveStarted = false
                 // Increment instruction index to show next instruction
                 _instructionIndex.value = _instructionIndex.value!! + 1

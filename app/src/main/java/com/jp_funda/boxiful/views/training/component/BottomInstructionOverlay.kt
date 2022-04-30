@@ -1,5 +1,7 @@
 package com.jp_funda.boxiful.views.training.component
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -9,6 +11,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,7 +30,7 @@ import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Purple500
 
 @Composable
-fun BottomInstructionOverlay(instruction: Instruction) {
+fun BottomInstructionOverlay(instructionIndex: Int, instruction: Instruction) {
     val iconDegree = when (instruction) {
         Instruction.LeftHandLeftPunch,
         Instruction.RightHandLeftPunch,
@@ -48,6 +52,15 @@ fun BottomInstructionOverlay(instruction: Instruction) {
         Instruction.RightFootRightKick -> Purple500
     }
 
+    val animatedIconSize = remember { Animatable(0f) }
+    LaunchedEffect(key1 = instructionIndex) {
+        animatedIconSize.animateTo(targetValue = 0f, animationSpec = tween(0))
+        animatedIconSize.animateTo(
+            targetValue = 100f,
+            animationSpec = tween(300),
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -65,14 +78,21 @@ fun BottomInstructionOverlay(instruction: Instruction) {
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Icon(
-            imageVector = Icons.Rounded.ArrowBack,
-            contentDescription = stringResource(id = R.string.desc_left),
+        Row(
             modifier = Modifier
-                .size(100.dp)
-                .clip(CircleShape)
-                .background(iconColor)
-                .rotate(iconDegree)
-        )
+                .fillMaxWidth()
+                .height(100.dp),
+            horizontalArrangement = Arrangement.Center,
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.ArrowBack,
+                contentDescription = stringResource(id = R.string.desc_left),
+                modifier = Modifier
+                    .size(animatedIconSize.value.toInt().dp)
+                    .clip(CircleShape)
+                    .background(iconColor)
+                    .rotate(iconDegree)
+            )
+        }
     }
 }
