@@ -9,6 +9,7 @@
     <string name="ok">OK</string>
     <string name="start">スタート</string>
     <string name="cancel">キャンセル</string>
+    <string name="finish">終了!</string>
     <string name="kcal">kcal</string>
     <!--  home  -->
     <string name="home_menu_list">メニュー一覧</string>

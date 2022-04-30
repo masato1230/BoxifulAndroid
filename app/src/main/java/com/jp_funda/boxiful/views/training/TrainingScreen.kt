@@ -1,17 +1,22 @@
 package com.jp_funda.boxiful.views.training
 
 import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.models.SingleMenuScores
@@ -20,7 +25,10 @@ import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
 import com.jp_funda.boxiful.views.training.component.BottomInstructionOverlay
+import com.jp_funda.boxiful.views.training.component.FinishModal
 import com.jp_funda.boxiful.views.training.component.UpperInstructionOverlay
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPermissionsApi
@@ -41,6 +49,11 @@ fun TrainingScreen(navController: NavController, menu: SingleMenu, mainViewModel
 @Composable
 fun TrainingMainContent(navController: NavController, mainViewModel: MainViewModel) {
     val viewModel = hiltViewModel<TrainingViewModel>()
+    val context = LocalContext.current
+    val greatSoundPlayer = remember { MediaPlayer.create(context, R.raw.great_punch) }
+    val goodSoundPlayer = remember { MediaPlayer.create(context, R.raw.good_punch) }
+    val missSoundPlayer = remember { MediaPlayer.create(context, R.raw.miss_punch) }
+    val finishSoundPlayer = remember { MediaPlayer.create(context, R.raw.finish) }
 
     RequestCameraPermission(
         navController = navController,
@@ -50,15 +63,39 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
         // Show training contents
         val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
         observedInstructionIndex.value?.let { index ->
+            // Play soundEffect
+            when (index) {
+                0 -> {}
+                in 1 until viewModel.getInstructions().size -> {
+                    val previousScore = viewModel.getScores()[index - 1]
+                    when {
+                        previousScore > 80 -> greatSoundPlayer.start()
+                        previousScore < 20 -> missSoundPlayer.start()
+                        else -> goodSoundPlayer.start()
+                    }
+                }
+                viewModel.getInstructions().size -> {
+                    if (!finishSoundPlayer.isPlaying) finishSoundPlayer.start()
+                }
+            }
+
+            // UI
+            // When finish menu
             if (index >= viewModel.getInstructions().size) {
                 // Pass data to MainViewModel
                 mainViewModel.singleMenuScores = SingleMenuScores(
                     singleMenu = viewModel.getSingleMenu(),
                     scores = viewModel.getScores(),
                 )
-                // Navigate to result screen
-                navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
-            } else {
+                // Show finish modal
+                FinishModal()
+                // Navigate to result screen with delay
+                val composableScope = rememberCoroutineScope()
+                composableScope.launch {
+                    delay(1500)
+                    navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
+                }
+            } else { // Next instruction
                 // Instruction overlay
                 InstructionOverlay(
                     title = stringResource(viewModel.getSingleMenu().titleRes),
