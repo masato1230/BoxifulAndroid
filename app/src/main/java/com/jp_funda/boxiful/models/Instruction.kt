@@ -164,7 +164,7 @@ enum class Instruction(
                     midPoint = pose.getPoseLandmark(PoseLandmark.LEFT_ELBOW)!!,
                     lastPoint = pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER)!!,
                 )
-                leftArmAngle <= 90
+                leftArmAngle <= 60
             }
         }
 
@@ -190,7 +190,7 @@ enum class Instruction(
                     midPoint = pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW)!!,
                     lastPoint = pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER)!!,
                 )
-                rightArmAngle <= 90
+                rightArmAngle <= 60
             }
         }
 
@@ -215,7 +215,7 @@ enum class Instruction(
                     midPoint = pose.getPoseLandmark(PoseLandmark.LEFT_HIP)!!,
                     lastPoint = PointF(0f, Float.MAX_VALUE),
                 )
-                leftLegAngle < 30
+                leftLegAngle < 20
             }
         }
 
@@ -240,7 +240,7 @@ enum class Instruction(
                     midPoint = pose.getPoseLandmark(PoseLandmark.RIGHT_HIP)!!,
                     lastPoint = PointF(0f, Float.MAX_VALUE),
                 )
-                rightLegAngle < 30
+                rightLegAngle < 20
             }
         }
 
@@ -265,7 +265,7 @@ enum class Instruction(
                     midPoint = pose.getPoseLandmark(PoseLandmark.LEFT_ELBOW)!!,
                     lastPoint = pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER)!!,
                 )
-                return leftArmAngle >= 130
+                return leftArmAngle >= 150
             }
         }
 
@@ -290,7 +290,7 @@ enum class Instruction(
                     midPoint = pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW)!!,
                     lastPoint = pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER)!!,
                 )
-                return rightArmAngle >= 130
+                return rightArmAngle >= 150
             }
         }
 
