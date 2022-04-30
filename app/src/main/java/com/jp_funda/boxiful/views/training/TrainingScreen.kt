@@ -84,6 +84,6 @@ fun InstructionOverlay(title: String, instructionIndex: Int, instructions: List<
         Spacer(modifier = Modifier.weight(1f))
 
         // Bottom overlay
-        BottomInstructionOverlay(currentInstruction)
+        BottomInstructionOverlay(instructionIndex, currentInstruction)
     }
 }
