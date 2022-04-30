@@ -37,11 +37,23 @@ fun AnimatedPieChart(
             )
         )
         // Indicator foreground
+        drawArc(
+            size = Size(size.width - indicatorStrokeWidth, size.height - indicatorStrokeWidth),
+            topLeft = Offset(indicatorStrokeWidth / 2, indicatorStrokeWidth / 2),
+            color = indicatorColor,
+            startAngle = -90f,
+            sweepAngle = 360f * indicatorValue.toFloat() / maxIndicatorValue,
+            useCenter = false,
+            style = Stroke(
+                width = indicatorStrokeWidth,
+                cap = StrokeCap.Round,
+            )
+        )
     }
 }
 
 @Preview
 @Composable
 fun AnimatedPieChartPreview() {
-    AnimatedPieChart(indicatorValue = 100)
+    AnimatedPieChart(indicatorValue = 50)
 }
