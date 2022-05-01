@@ -22,5 +22,5 @@ fun ResultScreen(navController: NavController, singleMenuScores: SingleMenuScore
 @Composable
 fun ResultMainContent(navController: NavController) {
     val viewModel = hiltViewModel<ResultViewModel>()
-    AnimatedPieChart(indicatorValue = 100)
+    AnimatedPieChart(indicatorValue = 50f)
 }
