@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import com.jp_funda.boxiful.models.SingleMenuScores
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.views.components.AnimatedPieChart
+import com.jp_funda.boxiful.views.components.Header
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -27,7 +28,7 @@ fun ResultScreen(navController: NavController, singleMenuScores: SingleMenuScore
     // Set result scores to viewModel
     hiltViewModel<ResultViewModel>().setSingleMenuScores(singleMenuScores)
 
-    Scaffold {
+    Scaffold(topBar = { Header() }) {
         ResultMainContent(navController = navController)
     }
 }
@@ -40,7 +41,7 @@ fun ResultMainContent(navController: NavController) {
         Text(
             text = "トレーニング評価",
             color = Color.White,
-            style = MaterialTheme.typography.h5,
+            style = MaterialTheme.typography.h4,
             fontWeight = FontWeight.ExtraBold,
             fontFamily = FontFamily.Serif,
             modifier = Modifier.padding(10.dp)
