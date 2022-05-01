@@ -2,7 +2,9 @@ package com.jp_funda.boxiful.views.home
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -11,57 +13,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.navigation.NavigationRoutes
-import com.jp_funda.boxiful.ui.theme.Gray900
 import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.views.components.Header
 import com.jp_funda.boxiful.views.components.SingleMenuCard
 import com.jp_funda.boxiful.views.components.TrainingStartDailog
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        buildAnnotatedString {
-                            append("Boxi")
-                            withStyle(style = SpanStyle(color = Yellow500)) {
-                                append("ful")
-                            }
-                        }
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
-                    Text(
-                        text = stringResource(id = R.string.kickboxing),
-                        style = MaterialTheme.typography.caption,
-                        fontFamily = FontFamily.Serif,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(
-                            modifier = Modifier.size(24.dp),
-                            painter = painterResource(id = R.drawable.ic_boxiful),
-                            contentDescription = "Service icon",
-                            tint = Yellow500,
-                        )
-                    }
-                },
-                backgroundColor = Gray900,
-            )
-        }
-    ) {
+    Scaffold(topBar = { Header() }) {
         HomeMainContent(modifier = Modifier.padding(it), navController = navController)
     }
 }

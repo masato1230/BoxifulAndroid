@@ -77,9 +77,35 @@ fun BottomNavGraph(
         }
 
         /** Result Screen. */
-        composable(route = NavigationRoutes.RESULT) {
+        composable(
+            route = NavigationRoutes.RESULT,
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentScope.SlideDirection.Left,
+                    animationSpec = tween(700)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentScope.SlideDirection.Left,
+                    animationSpec = tween(700)
+                )
+            },
+            popEnterTransition = {
+                slideIntoContainer(
+                    AnimatedContentScope.SlideDirection.Right,
+                    animationSpec = tween(700)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentScope.SlideDirection.Right,
+                    animationSpec = tween(700)
+                )
+            }
+        ) {
             bottomBarState.value = true
-            ResultScreen(mainViewModel.singleMenuScores)
+            ResultScreen(navController, mainViewModel.singleMenuScores)
         }
 
         /** Record Screen. */
