@@ -24,4 +24,11 @@ object ScoreCalculator {
         val exceptOutlierScores = sortedScores.slice(3..scores.size - 3)
         return exceptOutlierScores.average().roundToInt()
     }
+
+    /** Calculate boxiful age by single menu scores. */
+    fun getBoxifulAge(score: Int): Int {
+        var age = 110 - score
+        if (age < 20) age = 20
+        return age
+    }
 }

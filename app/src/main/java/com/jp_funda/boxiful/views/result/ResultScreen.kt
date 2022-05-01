@@ -40,8 +40,10 @@ fun ResultMainContent(navController: NavController) {
     ) {
         // Section for overall score
         OverallScoreSection(viewModel.singleMenuOverallScore)
+        Spacer(modifier = Modifier.height(10.dp))
         // Section for boxiful age
-        BoxifulAgeSection()
+        BoxifulAgeSection(viewModel.boxifulAge)
+        Spacer(modifier = Modifier.height(10.dp))
         // Section for result detail
         ResultDetailSection()
         // Punch and Kick score
@@ -62,6 +64,6 @@ fun ResultMainContent(navController: NavController) {
             )
         }
         // buffer for vertical scroll
-        Spacer(modifier = Modifier.height(200.dp))
+        Spacer(modifier = Modifier.height(100.dp))
     }
 }

@@ -17,6 +17,12 @@ class ResultViewModel @Inject constructor() : ViewModel() {
             return ScoreCalculator.getSingleMenuOverallScore(singleMenuScores.scores)
         }
 
+    /** Boxiful Age calculated by single menu scores(overall score). */
+    val boxifulAge: Int
+        get() {
+            return ScoreCalculator.getBoxifulAge(singleMenuOverallScore)
+        }
+
     /** Getter for single menu scores. */
     fun getSingleMenuScores(): SingleMenuScores {
         return singleMenuScores
