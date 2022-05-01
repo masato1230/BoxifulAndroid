@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.jp_funda.boxiful.ui.theme.Gray900
 import com.jp_funda.boxiful.ui.theme.Pink500
 import com.jp_funda.boxiful.views.components.AnimatedPieChart
 
@@ -34,6 +35,7 @@ fun OverallScoreSection() {
                 indicatorColor = Pink500,
                 modifier = Modifier.fillMaxSize(),
                 indicatorStrokeWidth = 100f,
+                backgroundIndicator = Gray900,
             )
             Text(text = "88点", color = Color.LightGray, style = MaterialTheme.typography.h3)
         }

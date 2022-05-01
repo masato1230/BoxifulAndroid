@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.jp_funda.boxiful.ui.theme.Gray900
 
 /**
  * Animated Pie chart with title and center label.
@@ -25,7 +26,7 @@ fun LabeledPieChart(
         Text(text = title, color = titleColor)
         Spacer(modifier = Modifier.height(10.dp))
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-            AnimatedPieChart(indicatorValue = indicatorValue)
+            AnimatedPieChart(indicatorValue = indicatorValue, backgroundIndicator = Gray900)
             Text(text = centerLabel, color = centerLabelColor, style = MaterialTheme.typography.h4)
         }
     }
