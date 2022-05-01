@@ -26,19 +26,21 @@ fun AnimatedPieChart(
     indicatorColor: Color = MaterialTheme.colors.primary,
     backgroundIndicator: Color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
     indicatorStrokeWidth: Float = 50f,
+    animationDelay: Long = 500,
+    animationDuration: Int = 1000,
 ) {
     val animatedIndicatorValue = remember { Animatable(0f) }
     val composableScope = rememberCoroutineScope()
     LaunchedEffect(key1 = indicatorValue) {
         animatedIndicatorValue.animateTo(0f)
         composableScope.launch {
-            delay(500)
+            delay(animationDelay)
             animatedIndicatorValue.animateTo(indicatorValue)
         }
     }
     val animatedSweepAngle by animateFloatAsState(
         targetValue = 360f * animatedIndicatorValue.value / maxIndicatorValue,
-        animationSpec = tween(1000),
+        animationSpec = tween(animationDuration),
     )
 
     Canvas(modifier = modifier.aspectRatio(1f)) {
