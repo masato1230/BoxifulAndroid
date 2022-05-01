@@ -36,6 +36,7 @@ fun ResultMainContent(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
+            .padding(horizontal = 20.dp)
     ) {
         // Section for overall score
         OverallScoreSection(viewModel.singleMenuOverallScore)

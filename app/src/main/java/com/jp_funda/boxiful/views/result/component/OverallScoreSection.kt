@@ -46,7 +46,7 @@ fun OverallScoreSection(score: Int) {
             color = Color.White,
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.ExtraBold,
-            modifier = Modifier.padding(10.dp)
+            modifier = Modifier.padding(top = 10.dp),
         )
         Box(
             modifier = Modifier.padding(horizontal = 70.dp, vertical = 10.dp),
