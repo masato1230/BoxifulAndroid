@@ -38,7 +38,7 @@ fun ResultMainContent(navController: NavController) {
             .verticalScroll(rememberScrollState())
     ) {
         // Section for overall score
-        OverallScoreSection()
+        OverallScoreSection(viewModel.singleMenuOverallScore)
         // Section for boxiful age
         BoxifulAgeSection()
         // Section for result detail
