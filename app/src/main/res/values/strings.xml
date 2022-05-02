@@ -21,11 +21,13 @@
     <string name="home_service_description">メニュー一覧からトレーニング内容を選択して運動を始めましょう!</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
-    <string name="result_score_unit">%d点</string>
+    <string name="result_unit_score">%d点</string>
     <string name="result_your_boxiful_age_is">あなたボクシフル年齢は</string>
     <string name="result_age">%d歳です。</string>
     <string name="result_detail">結果詳細</string>
     <string name="result_times">回です。</string>
+    <string name="result_punch_evaluation">パンチ評価</string>
+    <string name="result_kick_evaluation">キック評価</string>
     <!-- instructions -->
     <string name="instructions_left_hand_left_punch">左手で左にパンチ</string>
     <string name="instructions_left_hand_right_punch">左手で右にパンチ</string>

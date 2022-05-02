@@ -73,8 +73,20 @@ enum class Instruction(
         },
     );
 
-
     companion object {
+        val PUNCH_INSTRUCTIONS = setOf(
+            LeftHandLeftPunch,
+            LeftHandRightPunch,
+            RightHandLeftPunch,
+            RightHandRightPunch,
+        )
+        val KICK_INSTRUCTIONS = setOf(
+            LeftFootLeftKick,
+            LeftFootRightKick,
+            RightFootLeftKick,
+            RightFootRightKick
+        )
+
         /**
          * Check if left arm is at punch end state.
          */

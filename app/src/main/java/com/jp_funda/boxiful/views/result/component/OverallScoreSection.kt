@@ -60,7 +60,7 @@ fun OverallScoreSection(score: Int) {
                 backgroundIndicator = Gray900,
             )
             Text(
-                text = stringResource(id = R.string.result_score_unit, animatedScore),
+                text = stringResource(id = R.string.result_unit_score, animatedScore),
                 color = Color.LightGray,
                 style = MaterialTheme.typography.h3
             )

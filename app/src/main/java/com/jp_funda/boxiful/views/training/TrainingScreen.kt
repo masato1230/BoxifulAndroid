@@ -20,7 +20,7 @@ import com.jp_funda.boxiful.AppConst
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
-import com.jp_funda.boxiful.models.SingleMenuScores
+import com.jp_funda.boxiful.models.SingleMenuResult
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
@@ -84,9 +84,10 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
             // When finish menu
             if (index >= viewModel.getInstructions().size) {
                 // Pass data to MainViewModel
-                mainViewModel.singleMenuScores = SingleMenuScores(
+                mainViewModel.singleMenuScores = SingleMenuResult(
                     singleMenu = viewModel.getSingleMenu(),
                     scores = viewModel.getScores(),
+                    instructions = viewModel.getInstructions()
                 )
                 // Show finish modal
                 FinishModal()

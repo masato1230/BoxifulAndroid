@@ -7,10 +7,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.jp_funda.boxiful.models.SingleMenuScores
+import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.models.SingleMenuResult
+import com.jp_funda.boxiful.ui.theme.Blue500
 import com.jp_funda.boxiful.views.components.Header
 import com.jp_funda.boxiful.views.components.LabeledPieChart
 import com.jp_funda.boxiful.views.result.component.BoxifulAgeSection
@@ -19,9 +23,9 @@ import com.jp_funda.boxiful.views.result.component.ResultDetailSection
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ResultScreen(navController: NavController, singleMenuScores: SingleMenuScores) {
+fun ResultScreen(navController: NavController, singleMenuResult: SingleMenuResult) {
     // Set result scores to viewModel
-    hiltViewModel<ResultViewModel>().setSingleMenuScores(singleMenuScores)
+    hiltViewModel<ResultViewModel>().setSingleMenuScores(singleMenuResult)
 
     Scaffold(topBar = { Header() }) {
         ResultMainContent(navController = navController)
@@ -46,22 +50,29 @@ fun ResultMainContent(navController: NavController) {
         Spacer(modifier = Modifier.height(10.dp))
         // Section for result detail
         ResultDetailSection(viewModel.resultStats)
+        Spacer(modifier = Modifier.height(10.dp))
         // Punch and Kick score
         Row(modifier = Modifier.fillMaxWidth()) {
             // Section for punch score
-            LabeledPieChart(
-                indicatorValue = 77f,
-                title = "パンチ評価",
-                centerLabel = "77点",
-                modifier = Modifier.weight(0.5f),
-            )
+            viewModel.punchScore?.let { score ->
+                LabeledPieChart(
+                    indicatorValue = score.toFloat(),
+                    title = stringResource(id = R.string.result_punch_evaluation),
+                    centerLabel = stringResource(id = R.string.result_unit_score, score),
+                    modifier = Modifier.weight(0.5f),
+                    indicatorColor = Blue500,
+                )
+            } ?: Spacer(modifier = Modifier.weight(0.5f))
             // Section for kick score
-            LabeledPieChart(
-                indicatorValue = 93f,
-                title = "キック評価",
-                centerLabel = "93点",
-                modifier = Modifier.weight(0.5f),
-            )
+            viewModel.kickScore?.let { score ->
+                LabeledPieChart(
+                    indicatorValue = score.toFloat(),
+                    title = stringResource(id = R.string.result_kick_evaluation),
+                    centerLabel = stringResource(id = R.string.result_unit_score, score),
+                    modifier = Modifier.weight(0.5f),
+                    indicatorColor = Color.Yellow,
+                )
+            } ?: Spacer(modifier = Modifier.weight(0.5f))
         }
         // buffer for vertical scroll
         Spacer(modifier = Modifier.height(100.dp))

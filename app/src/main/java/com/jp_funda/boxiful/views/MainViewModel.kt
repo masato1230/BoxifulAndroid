@@ -2,7 +2,7 @@ package com.jp_funda.boxiful.views
 
 import androidx.lifecycle.ViewModel
 import com.jp_funda.boxiful.models.SingleMenu
-import com.jp_funda.boxiful.models.SingleMenuScores
+import com.jp_funda.boxiful.models.SingleMenuResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -13,8 +13,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor() : ViewModel() {
     /** Single Menu scores */
-    var singleMenuScores = SingleMenuScores(
+    var singleMenuScores = SingleMenuResult(
         singleMenu = SingleMenu.EasyMenu,
-        scores = listOf()
+        scores = listOf(),
+        instructions = listOf()
     ) // TODO remove initial value
 }
