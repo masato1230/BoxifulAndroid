@@ -1,6 +1,7 @@
 package com.jp_funda.boxiful.views.result
 
 import androidx.lifecycle.ViewModel
+import com.jp_funda.boxiful.AppConst
 import com.jp_funda.boxiful.models.ResultStats
 import com.jp_funda.boxiful.models.SingleMenuScores
 import com.jp_funda.boxiful.utils.scoring.ScoreCalculator
@@ -24,11 +25,6 @@ class ResultViewModel @Inject constructor() : ViewModel() {
             return ScoreCalculator.getBoxifulAge(singleMenuOverallScore)
         }
 
-    /** Getter for single menu scores. */
-    fun getSingleMenuScores(): SingleMenuScores {
-        return singleMenuScores
-    }
-
     /** Setter for single menu scores. */
     fun setSingleMenuScores(scores: SingleMenuScores) {
         singleMenuScores = scores
@@ -38,9 +34,9 @@ class ResultViewModel @Inject constructor() : ViewModel() {
     val resultStats: ResultStats
         get() {
             return ResultStats(
-                greatCount = singleMenuScores.scores.count { it > 80 },
-                goodCount = singleMenuScores.scores.count { it in 30..79 },
-                missCount = singleMenuScores.scores.count { it < 30 },
+                greatCount = singleMenuScores.scores.count { it > AppConst.MAX_GOOD_SCORE },
+                goodCount = singleMenuScores.scores.count { it in AppConst.MIN_GOOD_SCORE..AppConst.MAX_GOOD_SCORE },
+                missCount = singleMenuScores.scores.count { it < AppConst.MIN_GOOD_SCORE },
                 caloriesBurned = singleMenuScores.singleMenu.calorieConsumption,
             )
         }
