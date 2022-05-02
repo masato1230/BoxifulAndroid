@@ -28,6 +28,7 @@
     <string name="result_times">回です。</string>
     <string name="result_punch_evaluation">パンチ評価</string>
     <string name="result_kick_evaluation">キック評価</string>
+    <string name="result_share_template">【Boxifulのトレーニング結果】\n\nイージーメニューでボクシフル年齢は%d歳でした！\nGreat %d回\nGood %d回\nMiss %d回\nhttps://boxiful.jp</string>
     <!-- instructions -->
     <string name="instructions_left_hand_left_punch">左手で左にパンチ</string>
     <string name="instructions_left_hand_right_punch">左手で右にパンチ</string>

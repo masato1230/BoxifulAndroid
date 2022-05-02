@@ -5,4 +5,5 @@ data class ResultStats(
     val goodCount: Int,
     val missCount: Int,
     val caloriesBurned: Int,
+    val boxifulAge: Int,
 )

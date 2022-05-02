@@ -46,7 +46,7 @@ fun ResultMainContent(navController: NavController) {
         OverallScoreSection(viewModel.singleMenuOverallScore)
         Spacer(modifier = Modifier.height(10.dp))
         // Section for boxiful age
-        BoxifulAgeSection(viewModel.boxifulAge)
+        BoxifulAgeSection(viewModel.resultStats)
         Spacer(modifier = Modifier.height(10.dp))
         // Section for result detail
         ResultDetailSection(viewModel.resultStats)
