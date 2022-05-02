@@ -17,6 +17,8 @@ import com.jp_funda.boxiful.models.ResultStats
 import com.jp_funda.boxiful.ui.theme.Blue500
 import com.jp_funda.boxiful.ui.theme.Pink500
 import com.jp_funda.boxiful.ui.theme.Red500
+import com.jp_funda.boxiful.views.components.StackedColumnChart
+import com.jp_funda.boxiful.views.components.ValueColorSet
 
 @Composable
 fun ResultDetailSection(resultStats: ResultStats) {
@@ -26,13 +28,25 @@ fun ResultDetailSection(resultStats: ResultStats) {
         contentColor = Color.Black,
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
+            // Title
             Text(
                 text = stringResource(id = R.string.result_detail),
                 color = Color.Black,
                 style = MaterialTheme.typography.h6,
                 fontWeight = FontWeight.ExtraBold,
             )
-            // TODO Graph
+            // Stacked Column Chart
+            val valueColorSets = listOf(
+                ValueColorSet(resultStats.greatCount, Pink500),
+                ValueColorSet(resultStats.goodCount, Blue500),
+                ValueColorSet(resultStats.missCount, Color.Gray),
+            )
+            val stackedValue = resultStats.let { it.greatCount + it.goodCount + it.missCount }
+            StackedColumnChart(
+                modifier = Modifier.fillMaxWidth(),
+                valueColorSets = valueColorSets,
+                maxValue = stackedValue,
+            )
             // Great count
             Text(
                 text = "${stringResource(id = R.string.great)} ${resultStats.greatCount} ${
