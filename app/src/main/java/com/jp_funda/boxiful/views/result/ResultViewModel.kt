@@ -40,7 +40,8 @@ class ResultViewModel @Inject constructor() : ViewModel() {
             return ResultStats(
                 greatCount = singleMenuScores.scores.count { it > 80 },
                 goodCount = singleMenuScores.scores.count { it in 30..79 },
-                missCount = singleMenuScores.scores.count { it < 30 }
+                missCount = singleMenuScores.scores.count { it < 30 },
+                caloriesBurned = singleMenuScores.singleMenu.calorieConsumption,
             )
         }
 }

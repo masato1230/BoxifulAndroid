@@ -66,8 +66,7 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
             val approximateCalorieText =
                 stringResource(id = R.string.menu_approximate_calorie_consumption) +
                         " " +
-                        menu.calorieConsumption +
-                        stringResource(R.string.kcal)
+                        stringResource(R.string.unit_kcal, menu.calorieConsumption)
             IconLabel(
                 iconRes = R.drawable.ic_fire,
                 label = approximateCalorieText,
