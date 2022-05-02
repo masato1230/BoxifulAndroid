@@ -15,6 +15,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
     /** Single Menu scores */
     var singleMenuScores = SingleMenuScores(
         singleMenu = SingleMenu.EasyMenu,
-        scores = listOf()
+        scores = listOf(),
+        instructions = listOf()
     ) // TODO remove initial value
 }

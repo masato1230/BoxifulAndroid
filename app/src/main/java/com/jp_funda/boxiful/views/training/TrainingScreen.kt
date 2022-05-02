@@ -87,6 +87,7 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 mainViewModel.singleMenuScores = SingleMenuScores(
                     singleMenu = viewModel.getSingleMenu(),
                     scores = viewModel.getScores(),
+                    instructions = viewModel.getInstructions()
                 )
                 // Show finish modal
                 FinishModal()

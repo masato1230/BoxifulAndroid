@@ -40,4 +40,9 @@ class ResultViewModel @Inject constructor() : ViewModel() {
                 caloriesBurned = singleMenuScores.singleMenu.calorieConsumption,
             )
         }
+
+    val punchScore: Int
+    get() {
+        return
+    }
 }

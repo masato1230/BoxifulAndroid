@@ -7,15 +7,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenuScores
 import com.jp_funda.boxiful.views.components.Header
 import com.jp_funda.boxiful.views.components.LabeledPieChart
 import com.jp_funda.boxiful.views.result.component.BoxifulAgeSection
 import com.jp_funda.boxiful.views.result.component.OverallScoreSection
 import com.jp_funda.boxiful.views.result.component.ResultDetailSection
+import kotlin.math.roundToInt
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -49,17 +52,19 @@ fun ResultMainContent(navController: NavController) {
         // Punch and Kick score
         Row(modifier = Modifier.fillMaxWidth()) {
             // Section for punch score
+            val punchScore = 77f
             LabeledPieChart(
-                indicatorValue = 77f,
-                title = "パンチ評価",
-                centerLabel = "77点",
+                indicatorValue = punchScore,
+                title = stringResource(id = R.string.result_punch_evaluation),
+                centerLabel = stringResource(id = R.string.result_unit_score, punchScore.roundToInt()),
                 modifier = Modifier.weight(0.5f),
             )
             // Section for kick score
+            val kickScore = 93f
             LabeledPieChart(
-                indicatorValue = 93f,
-                title = "キック評価",
-                centerLabel = "93点",
+                indicatorValue = kickScore,
+                title = stringResource(id = R.string.result_kick_evaluation),
+                centerLabel = stringResource(id = R.string.result_kick_evaluation, kickScore.roundToInt()),
                 modifier = Modifier.weight(0.5f),
             )
         }
