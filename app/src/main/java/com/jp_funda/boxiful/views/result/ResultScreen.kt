@@ -45,7 +45,7 @@ fun ResultMainContent(navController: NavController) {
         BoxifulAgeSection(viewModel.boxifulAge)
         Spacer(modifier = Modifier.height(10.dp))
         // Section for result detail
-        ResultDetailSection(viewModel.getSingleMenuScores())
+        ResultDetailSection(viewModel.resultStats)
         // Punch and Kick score
         Row(modifier = Modifier.fillMaxWidth()) {
             // Section for punch score

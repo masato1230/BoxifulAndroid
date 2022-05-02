@@ -1,6 +1,7 @@
 package com.jp_funda.boxiful.views.result
 
 import androidx.lifecycle.ViewModel
+import com.jp_funda.boxiful.models.ResultStats
 import com.jp_funda.boxiful.models.SingleMenuScores
 import com.jp_funda.boxiful.utils.scoring.ScoreCalculator
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,4 +33,14 @@ class ResultViewModel @Inject constructor() : ViewModel() {
     fun setSingleMenuScores(scores: SingleMenuScores) {
         singleMenuScores = scores
     }
+
+    /** Training Result Stats for showing result detail. */
+    val resultStats: ResultStats
+        get() {
+            return ResultStats(
+                greatCount = singleMenuScores.scores.count { it > 80 },
+                goodCount = singleMenuScores.scores.count { it in 30..79 },
+                missCount = singleMenuScores.scores.count { it < 30 }
+            )
+        }
 }
