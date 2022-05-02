@@ -18,7 +18,6 @@ import com.jp_funda.boxiful.views.components.LabeledPieChart
 import com.jp_funda.boxiful.views.result.component.BoxifulAgeSection
 import com.jp_funda.boxiful.views.result.component.OverallScoreSection
 import com.jp_funda.boxiful.views.result.component.ResultDetailSection
-import kotlin.math.roundToInt
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -52,21 +51,23 @@ fun ResultMainContent(navController: NavController) {
         // Punch and Kick score
         Row(modifier = Modifier.fillMaxWidth()) {
             // Section for punch score
-            val punchScore = 77f
-            LabeledPieChart(
-                indicatorValue = punchScore,
-                title = stringResource(id = R.string.result_punch_evaluation),
-                centerLabel = stringResource(id = R.string.result_unit_score, punchScore.roundToInt()),
-                modifier = Modifier.weight(0.5f),
-            )
+            viewModel.punchScore?.let { score ->
+                LabeledPieChart(
+                    indicatorValue = score.toFloat(),
+                    title = stringResource(id = R.string.result_punch_evaluation),
+                    centerLabel = stringResource(id = R.string.result_unit_score, score),
+                    modifier = Modifier.weight(0.5f),
+                )
+            }
             // Section for kick score
-            val kickScore = 93f
-            LabeledPieChart(
-                indicatorValue = kickScore,
-                title = stringResource(id = R.string.result_kick_evaluation),
-                centerLabel = stringResource(id = R.string.result_kick_evaluation, kickScore.roundToInt()),
-                modifier = Modifier.weight(0.5f),
-            )
+            viewModel.kickScore?.let { score ->
+                LabeledPieChart(
+                    indicatorValue = score.toFloat(),
+                    title = stringResource(id = R.string.result_kick_evaluation),
+                    centerLabel = stringResource(id = R.string.result_unit_score, score),
+                    modifier = Modifier.weight(0.5f),
+                )
+            }
         }
         // buffer for vertical scroll
         Spacer(modifier = Modifier.height(100.dp))

@@ -41,8 +41,21 @@ class ResultViewModel @Inject constructor() : ViewModel() {
             )
         }
 
-    val punchScore: Int
-    get() {
-        return
-    }
+    /** Punch Score. Null means no punch instruction is exist. */
+    val punchScore: Int?
+        get() {
+            return ScoreCalculator.getSingleMenuPunchScore(
+                scores = singleMenuScores.scores,
+                instructions = singleMenuScores.instructions,
+            )
+        }
+
+    /** Kick Score. Null means no kick instruction is exist. */
+    val kickScore: Int?
+        get() {
+            return ScoreCalculator.getSingleMenuKickScore(
+                scores = singleMenuScores.scores,
+                instructions = singleMenuScores.instructions,
+            )
+        }
 }
