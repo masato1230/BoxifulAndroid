@@ -70,7 +70,7 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                     val previousScore = viewModel.getScores()[index - 1]
                     when {
                         previousScore > 80 -> greatSoundPlayer.start()
-                        previousScore < 20 -> missSoundPlayer.start()
+                        previousScore < 30 -> missSoundPlayer.start()
                         else -> goodSoundPlayer.start()
                     }
                 }
