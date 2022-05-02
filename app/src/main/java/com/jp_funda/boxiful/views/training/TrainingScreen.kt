@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.jp_funda.boxiful.AppConst
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
@@ -69,8 +70,8 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 in 1 until viewModel.getInstructions().size -> {
                     val previousScore = viewModel.getScores()[index - 1]
                     when {
-                        previousScore > 80 -> greatSoundPlayer.start()
-                        previousScore < 20 -> missSoundPlayer.start()
+                        previousScore > AppConst.MAX_GOOD_SCORE -> greatSoundPlayer.start()
+                        previousScore < AppConst.MIN_GOOD_SCORE -> missSoundPlayer.start()
                         else -> goodSoundPlayer.start()
                     }
                 }
