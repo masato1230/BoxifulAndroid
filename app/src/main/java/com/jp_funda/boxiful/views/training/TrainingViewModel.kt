@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.mlkit.vision.pose.Pose
 import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.SingleMenu
-import com.jp_funda.boxiful.utils.scoring.ScoreCalculator
+import com.jp_funda.boxiful.utils.calculator.ScoreCalculator
 import com.jp_funda.boxiful.views.components.pose_preview.PoseObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*

@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
-import com.jp_funda.boxiful.models.SingleMenuScores
+import com.jp_funda.boxiful.models.SingleMenuResult
 import com.jp_funda.boxiful.ui.theme.Blue500
 import com.jp_funda.boxiful.views.components.Header
 import com.jp_funda.boxiful.views.components.LabeledPieChart
@@ -23,9 +23,9 @@ import com.jp_funda.boxiful.views.result.component.ResultDetailSection
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ResultScreen(navController: NavController, singleMenuScores: SingleMenuScores) {
+fun ResultScreen(navController: NavController, singleMenuResult: SingleMenuResult) {
     // Set result scores to viewModel
-    hiltViewModel<ResultViewModel>().setSingleMenuScores(singleMenuScores)
+    hiltViewModel<ResultViewModel>().setSingleMenuScores(singleMenuResult)
 
     Scaffold(topBar = { Header() }) {
         ResultMainContent(navController = navController)

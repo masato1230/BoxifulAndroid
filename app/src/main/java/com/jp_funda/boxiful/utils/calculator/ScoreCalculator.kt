@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.utils.scoring
+package com.jp_funda.boxiful.utils.calculator
 
 import com.jp_funda.boxiful.models.Instruction
 import kotlin.math.roundToInt
