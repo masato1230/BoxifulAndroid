@@ -11,6 +11,9 @@
     <string name="cancel">キャンセル</string>
     <string name="finish">終了!</string>
     <string name="kcal">kcal</string>
+    <string name="great">Great</string>
+    <string name="good">Good</string>
+    <string name="miss">Miss</string>
     <!--  home  -->
     <string name="home_menu_list">メニュー一覧</string>
     <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
@@ -20,6 +23,8 @@
     <string name="result_score_unit">%d点</string>
     <string name="result_your_boxiful_age_is">あなたボクシフル年齢は</string>
     <string name="result_age">%d歳です。</string>
+    <string name="result_detail">結果詳細</string>
+    <string name="result_times">回です。</string>
     <!-- instructions -->
     <string name="instructions_left_hand_left_punch">左手で左にパンチ</string>
     <string name="instructions_left_hand_right_punch">左手で右にパンチ</string>
