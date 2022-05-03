@@ -22,13 +22,13 @@ import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Yellow500
-import com.jp_funda.boxiful.views.components.Header
+import com.jp_funda.boxiful.views.components.header.Header
 import com.jp_funda.boxiful.views.components.SingleMenuCard
 import com.jp_funda.boxiful.views.components.TrainingStartDailog
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    Scaffold(topBar = { Header() }) {
+    Scaffold(topBar = { Header(navController) }) {
         HomeMainContent(modifier = Modifier.padding(it), navController = navController)
     }
 }
