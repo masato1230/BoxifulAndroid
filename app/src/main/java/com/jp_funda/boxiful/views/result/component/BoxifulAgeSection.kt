@@ -14,10 +14,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.models.ResultStats
 import com.jp_funda.boxiful.views.components.SnsShareButtons
 
 @Composable
-fun BoxifulAgeSection(boxifulAge: Int) {
+fun BoxifulAgeSection(resultStats: ResultStats) {
     Column {
         // Rational
         Text(
@@ -28,7 +29,7 @@ fun BoxifulAgeSection(boxifulAge: Int) {
         Spacer(modifier = Modifier.height(20.dp))
         // Age label
         Text(
-            text = stringResource(id = R.string.result_age, boxifulAge),
+            text = stringResource(id = R.string.result_age, resultStats.boxifulAge),
             color = Color.White,
             style = MaterialTheme.typography.h3,
             textAlign = TextAlign.Center,
@@ -37,6 +38,6 @@ fun BoxifulAgeSection(boxifulAge: Int) {
         )
         Spacer(modifier = Modifier.height(20.dp))
         // SNS share buttons
-        SnsShareButtons()
+        SnsShareButtons(resultStats)
     }
 }

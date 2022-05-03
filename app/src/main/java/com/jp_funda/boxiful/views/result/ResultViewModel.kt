@@ -20,12 +20,6 @@ class ResultViewModel @Inject constructor() : ViewModel() {
             return ScoreCalculator.getSingleMenuOverallScore(singleMenuResult.scores)
         }
 
-    /** Boxiful Age calculated by single menu scores(overall score). */
-    val boxifulAge: Int
-        get() {
-            return ScoreCalculator.getBoxifulAge(singleMenuOverallScore)
-        }
-
     /** Setter for single menu scores. */
     fun setSingleMenuScores(result: SingleMenuResult) {
         singleMenuResult = result
@@ -39,6 +33,7 @@ class ResultViewModel @Inject constructor() : ViewModel() {
                 goodCount = singleMenuResult.scores.count { it in AppConst.MIN_GOOD_SCORE..AppConst.MAX_GOOD_SCORE },
                 missCount = singleMenuResult.scores.count { it < AppConst.MIN_GOOD_SCORE },
                 caloriesBurned = CalorieCalculator.getCaloriesBurned(singleMenuResult.instructions),
+                boxifulAge = ScoreCalculator.getBoxifulAge(singleMenuOverallScore),
             )
         }
 
