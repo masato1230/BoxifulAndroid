@@ -49,7 +49,7 @@ fun Header(navController: NavController) {
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.ic_boxiful),
-                    contentDescription = "Service icon",
+                    contentDescription = stringResource(id = R.string.desc_icon),
                     tint = Yellow500,
                 )
             }
