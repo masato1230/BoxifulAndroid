@@ -15,8 +15,8 @@ import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenuResult
 import com.jp_funda.boxiful.ui.theme.Blue500
-import com.jp_funda.boxiful.views.components.Header
 import com.jp_funda.boxiful.views.components.LabeledPieChart
+import com.jp_funda.boxiful.views.components.header.Header
 import com.jp_funda.boxiful.views.result.component.BoxifulAgeSection
 import com.jp_funda.boxiful.views.result.component.OverallScoreSection
 import com.jp_funda.boxiful.views.result.component.ResultDetailSection
@@ -27,7 +27,7 @@ fun ResultScreen(navController: NavController, singleMenuResult: SingleMenuResul
     // Set result scores to viewModel
     hiltViewModel<ResultViewModel>().setSingleMenuScores(singleMenuResult)
 
-    Scaffold(topBar = { Header() }) {
+    Scaffold(topBar = { Header(navController) }) {
         ResultMainContent(navController = navController)
     }
 }

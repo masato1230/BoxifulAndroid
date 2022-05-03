@@ -121,5 +121,11 @@ fun BottomNavGraph(
             // TODO change
             MainContent()
         }
+
+        /** Login Screen. */
+        composable(route = NavigationRoutes.LOGIN) {
+            // TODO change
+            MainContent()
+        }
     }
 }

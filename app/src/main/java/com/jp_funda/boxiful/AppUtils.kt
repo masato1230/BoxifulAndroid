@@ -8,6 +8,6 @@ class AppUtils @Inject constructor() {
     val isLoggedIn: Boolean
         get() {
             // TODO check cookie
-            return false
+            return true
         }
 }

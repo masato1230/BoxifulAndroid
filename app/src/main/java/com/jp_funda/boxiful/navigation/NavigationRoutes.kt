@@ -8,4 +8,5 @@ object NavigationRoutes {
     // Other
     const val TRAINING = "training"
     const val RESULT = "result"
+    const val LOGIN = "login"
 }
