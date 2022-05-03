@@ -9,14 +9,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Yellow500
 
 @ExperimentalPermissionsApi
@@ -63,6 +67,37 @@ fun RequestCameraPermission(
                     }
                 }
             )
+        } else { // On permission denied & while permission dialog showing
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(50.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = stringResource(id = R.string.permission_request_camera_permission),
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                )
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Button(
+                        onClick = { navController.popBackStack() },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Green500),
+                        modifier = Modifier.weight(0.5f),
+                    ) {
+                        Text(text = stringResource(id = R.string.permission_back_to_home))
+                    }
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Button(
+                        onClick = { permissionState.launchPermissionRequest() },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
+                        modifier = Modifier.weight(0.5f),
+                    ) {
+                        Text(text = stringResource(id = R.string.permission_allow))
+                    }
+                }
+            }
         }
     }
 }
