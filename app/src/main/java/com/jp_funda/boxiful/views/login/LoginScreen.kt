@@ -44,7 +44,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.weight(0.2f))
+        Spacer(modifier = Modifier.weight(1f))
 
         // Thumbnail
         Box(
@@ -71,18 +71,6 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
             fontWeight = FontWeight.ExtraBold,
         )
         Spacer(modifier = Modifier.height(30.dp))
-
-        // Title(Login)
-        Text(
-            text = stringResource(id = R.string.login),
-            color = Color.White,
-            style = MaterialTheme.typography.h5,
-            fontWeight = FontWeight.ExtraBold,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp)
-        )
-        Spacer(modifier = Modifier.height(10.dp))
 
         // TextField for mail address
         TextField(
@@ -124,28 +112,52 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
                 .border(width = 1.dp, color = Yellow500, shape = RoundedCornerShape(1000.dp))
                 .clip(RoundedCornerShape(1000.dp))
         )
-        Spacer(modifier = Modifier.weight(0.2f))
+        Spacer(modifier = Modifier.height(50.dp))
 
         // Login Button
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Spacer(modifier = Modifier.weight(1f))
-            Button(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
-                shape = RoundedCornerShape(1000.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
-            ) {
-                Text(
-                    text = stringResource(id = R.string.login),
-                    color = Color.White,
-                    style = MaterialTheme.typography.h5,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
+        Button(
+            onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
+            shape = RoundedCornerShape(1000.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+        ) {
+            Text(
+                text = stringResource(id = R.string.login),
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+            )
         }
 
-        Spacer(modifier = Modifier.weight(0.1f))
+        // Divider
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ) {
+            Divider(modifier = modifier.weight(1f), color = Color.Gray)
+            Text(text = stringResource(id = R.string.or), modifier = Modifier.padding(horizontal = 10.dp))
+            Divider(modifier = modifier.weight(1f), color = Color.Gray)
+        }
+
+        // Register Button
+        Button(
+            onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
+            shape = RoundedCornerShape(1000.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+        ) {
+            Text(
+                text = stringResource(id = R.string.sign_up),
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+        Spacer(modifier = Modifier.height(70.dp))
     }
 }

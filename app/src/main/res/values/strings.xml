@@ -15,7 +15,9 @@
     <string name="good">Good</string>
     <string name="miss">Miss</string>
     <string name="calories_burned">消費カロリー</string>
-    <string name="login">Login</string>
+    <string name="login">ログイン</string>
+    <string name="sign_up">新規会員登録</string>
+    <string name="or">もしくは</string>
     <!--  home  -->
     <string name="home_menu_list">メニュー一覧</string>
     <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
