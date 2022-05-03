@@ -22,6 +22,7 @@ import com.jp_funda.boxiful.ui.theme.Blue500
 import com.jp_funda.boxiful.ui.theme.Green500
 import java.net.URLEncoder
 
+
 @Composable
 fun SnsShareButtons(resultStats: ResultStats) {
     val context = LocalContext.current
@@ -44,7 +45,7 @@ fun SnsShareButtons(resultStats: ResultStats) {
             backgroundColor = Green500,
             contentDescription = stringResource(id = R.string.desc_line_icon)
         ) {
-            // Share result line
+            // Share result at line
             val encodedMessage = URLEncoder.encode(message, "utf-8")
             val intent = Intent()
             intent.action = Intent.ACTION_VIEW
@@ -54,12 +55,15 @@ fun SnsShareButtons(resultStats: ResultStats) {
         Spacer(modifier = Modifier.width(10.dp))
         // Twitter share button
         SnsShareButton(
-            title = stringResource(id = R.string.sns_share_line),
+            title = stringResource(id = R.string.sns_share_twitter),
             iconPainter = painterResource(id = R.drawable.ic_twitter),
             backgroundColor = Blue500,
             contentDescription = stringResource(id = R.string.desc_twitter_icon)
         ) {
-            // TODO intent to twitter
+            // Share result at twitter
+            val tweetUrl = ("https://twitter.com/intent/tweet?text=$message")
+            val uri = Uri.parse(tweetUrl)
+            context.startActivity(Intent(Intent.ACTION_VIEW, uri))
         }
     }
 }
