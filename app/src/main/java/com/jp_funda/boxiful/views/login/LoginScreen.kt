@@ -5,11 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -73,10 +76,11 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
         Spacer(modifier = Modifier.height(30.dp))
 
         // TextField for mail address
+        val email = viewModel.email.observeAsState()
         TextField(
-            value = "",
-            onValueChange = {},
-            placeholder = { Text(text = "メールアドレス") },
+            value = email.value ?: "",
+            onValueChange = { viewModel.setEmail(it) },
+            placeholder = { Text(text = stringResource(id = R.string.auth_email)) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Email,
@@ -94,10 +98,12 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
         Spacer(modifier = Modifier.height(20.dp))
 
         // TextField for password
+        val password = viewModel.password.observeAsState()
         TextField(
-            value = "",
-            onValueChange = {},
-            placeholder = { Text(text = "パスワード") },
+            value = password.value ?: "",
+            onValueChange = { viewModel.setPassword(it) },
+            placeholder = { Text(text = stringResource(id = R.string.auth_password)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Lock,
@@ -116,7 +122,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
 
         // Login Button
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { viewModel.login() },
             colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
             shape = RoundedCornerShape(1000.dp),
             modifier = Modifier
@@ -124,7 +130,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
                 .height(50.dp),
         ) {
             Text(
-                text = stringResource(id = R.string.login),
+                text = stringResource(id = R.string.auth_login),
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
             )
@@ -139,7 +145,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
             horizontalArrangement = Arrangement.Center,
         ) {
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
-            Text(text = stringResource(id = R.string.or), modifier = Modifier.padding(horizontal = 10.dp))
+            Text(text = stringResource(id = R.string.auth_or), modifier = Modifier.padding(horizontal = 10.dp))
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
         }
 
@@ -153,7 +159,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
                 .height(50.dp),
         ) {
             Text(
-                text = stringResource(id = R.string.sign_up),
+                text = stringResource(id = R.string.auth_sign_up),
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
             )

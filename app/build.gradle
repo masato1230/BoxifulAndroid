@@ -97,4 +97,7 @@ dependencies {
 
     // Moshi
     implementation "com.squareup.moshi:moshi-kotlin:1.13.0"
+
+    // OkHttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 }

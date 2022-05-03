@@ -3,6 +3,7 @@ package com.jp_funda.boxiful.di
 import android.content.Context
 import com.jp_funda.boxiful.AppUtils
 import com.jp_funda.boxiful.data.network.AuthService
+import com.jp_funda.boxiful.data.repository.auth.AuthRepository
 import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -11,6 +12,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -36,13 +39,25 @@ class AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(moshi: Moshi): Retrofit {
+        val interpolator = HttpLoggingInterceptor()
+        interpolator.level = HttpLoggingInterceptor.Level.BODY
+        val client = OkHttpClient.Builder()
+            .addInterceptor(interpolator)
+            .build()
         return Retrofit.Builder()
             .baseUrl("https://masato.pythonanywhere.com")
+            .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideAuthService(retrofit: Retrofit): AuthService = retrofit.create(AuthService::class.java)
+    fun provideAuthService(retrofit: Retrofit): AuthService =
+        retrofit.create(AuthService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(authService: AuthService): AuthRepository =
+        AuthRepository(authService = authService)
 }
