@@ -57,6 +57,9 @@
     <string name="training_start_message">トレーニング中はカメラを使って姿勢推定を行います。</string>
     <!-- permission -->
     <string name="permission_camera_title">カメラの使用許可が必要です</string>
+    <string name="permission_request_camera_permission">トレーニングを実施するにはカメラの\n使用を許可してください</string>
+    <string name="permission_back_to_home">ホームに戻る</string>
+    <string name="permission_allow">許可する</string>
     <string name="permission_camera_rationale">姿勢推定を用いた動作評価を行うのにカメラの使用が必要です。\nカメラ情報がデバイスの外に出ることは一切ございません。</string>
     <!-- content description -->
     <string name="desc_icon">アイコン</string>
