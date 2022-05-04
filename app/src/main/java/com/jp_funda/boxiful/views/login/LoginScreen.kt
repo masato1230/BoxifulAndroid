@@ -34,8 +34,8 @@ import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.views.components.ConfirmDialog
 import com.jp_funda.boxiful.views.components.LoadingDialog
-import com.jp_funda.boxiful.views.login.components.LoginSuccessDialog
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -46,7 +46,12 @@ fun LoginScreen(navController: NavController) {
         LoadingDialog(indicatorColor = Green500)
     } else if (networkStatus.value is NetworkStatus.Success<*>) {
         // Show login success dialog
-        LoginSuccessDialog { navController.popBackStack(NavigationRoutes.HOME, inclusive = false) }
+        ConfirmDialog(title = stringResource(id = R.string.auth_success)) {
+            navController.popBackStack(
+                NavigationRoutes.HOME,
+                inclusive = false
+            )
+        }
     }
 
     Scaffold {
