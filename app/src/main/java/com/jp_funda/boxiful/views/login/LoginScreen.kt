@@ -29,16 +29,22 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.NetworkStatus
+import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.components.LoadingDialog
+import com.jp_funda.boxiful.views.login.components.LoginSuccessDialog
 
 @Composable
 fun LoginScreen(navController: NavController) {
     val viewModel = hiltViewModel<LoginViewModel>()
     val networkStatus = viewModel.networkStatus.observeAsState()
     if (networkStatus.value is NetworkStatus.Loading) {
+        // Show loading dialog
         LoadingDialog(indicatorColor = Green500)
+    } else if (networkStatus.value is NetworkStatus.Success<*>) {
+        // Show login success dialog
+        LoginSuccessDialog { navController.popBackStack(NavigationRoutes.HOME, inclusive = false) }
     }
 
     Scaffold {
@@ -164,7 +170,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
         // Register Button
         Button(
             onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Green500),
             shape = RoundedCornerShape(1000.dp),
             modifier = Modifier
                 .fillMaxWidth()

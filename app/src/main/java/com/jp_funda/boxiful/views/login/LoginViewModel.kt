@@ -38,7 +38,11 @@ class LoginViewModel @Inject constructor(
             if (!_email.value.isNullOrBlank() && !_password.value.isNullOrBlank()) {
                 val tokenInfo = authRepository.login(_email.value!!, _password.value!!)
                 // Update network status
-                _networkStatus.value = NetworkStatus.Success("ログインに成功しました。")
+                if (tokenInfo != null) {
+                    _networkStatus.value = NetworkStatus.Success(tokenInfo)
+                } else {
+                    _networkStatus.value = NetworkStatus.Error("メールアドレスかパスワードが間違っています。")
+                }
             } else {
                 _networkStatus.value = NetworkStatus.Error("メールアドレスかパスワードが空です。")
             }
