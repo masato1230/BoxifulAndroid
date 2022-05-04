@@ -79,4 +79,5 @@
     <!-- error -->
     <string name="error_invalid_email_or_password">メールアドレスかパスワードが間違っています。</string>
     <string name="error_empty_email_or_password">メールアドレスかパスワードが空です。</string>
+    <string name="error_already_used_or_invalid_email">既にこのメールアドレスは使用されているか、不正なメールアドレスです。</string>
 </resources>

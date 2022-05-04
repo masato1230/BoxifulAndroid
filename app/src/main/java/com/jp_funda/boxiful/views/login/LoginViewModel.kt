@@ -38,7 +38,7 @@ class LoginViewModel @Inject constructor(
     fun login() {
         _networkStatus.value = NetworkStatus.Loading
         viewModelScope.launch {
-            // TODO use input data
+            // Validate and send input data
             if (!_email.value.isNullOrBlank() && !_password.value.isNullOrBlank()) {
                 val tokenInfo = authRepository.login(_email.value!!, _password.value!!)
                 // Update network status
@@ -46,10 +46,36 @@ class LoginViewModel @Inject constructor(
                     // Cache tokens
                     authPreferences.putString(PreferenceKey.ACCESS_TOKEN, tokenInfo.accessToken)
                     authPreferences.putString(PreferenceKey.REFRESH_TOKEN, tokenInfo.refreshToken)
+                    authPreferences.putString(PreferenceKey.EMAIL, _email.value!!)
                     _networkStatus.value = NetworkStatus.Success(tokenInfo)
                 } else {
                     _networkStatus.value =
                         NetworkStatus.Error(R.string.error_invalid_email_or_password)
+                }
+            } else {
+                _networkStatus.value = NetworkStatus.Error(R.string.error_empty_email_or_password)
+            }
+        }
+    }
+
+    fun register() {
+        _networkStatus.value = NetworkStatus.Loading
+        viewModelScope.launch {
+            // Validate and send input data
+            if (!_email.value.isNullOrBlank() && !_password.value.isNullOrBlank()) {
+                val isRegisterSucceed = authRepository.register(_email.value!!, _password.value!!)
+
+                // When register Succeed
+                if (isRegisterSucceed) {
+                    val tokenInfo = authRepository.login(_email.value!!, _password.value!!)
+                    // Cache tokens
+                    authPreferences.putString(PreferenceKey.ACCESS_TOKEN, tokenInfo!!.accessToken)
+                    authPreferences.putString(PreferenceKey.REFRESH_TOKEN, tokenInfo.refreshToken)
+                    authPreferences.putString(PreferenceKey.EMAIL, _email.value!!)
+                    _networkStatus.value = NetworkStatus.Success(tokenInfo)
+                } else { // When register failed
+                    _networkStatus.value =
+                        NetworkStatus.Error(R.string.error_already_used_or_invalid_email)
                 }
             } else {
                 _networkStatus.value = NetworkStatus.Error(R.string.error_empty_email_or_password)
