@@ -46,6 +46,7 @@ class LoginViewModel @Inject constructor(
                     // Cache tokens
                     authPreferences.putString(PreferenceKey.ACCESS_TOKEN, tokenInfo.accessToken)
                     authPreferences.putString(PreferenceKey.REFRESH_TOKEN, tokenInfo.refreshToken)
+                    authPreferences.putString(PreferenceKey.EMAIL, _email.value!!)
                     _networkStatus.value = NetworkStatus.Success(tokenInfo)
                 } else {
                     _networkStatus.value =
@@ -70,6 +71,7 @@ class LoginViewModel @Inject constructor(
                     // Cache tokens
                     authPreferences.putString(PreferenceKey.ACCESS_TOKEN, tokenInfo!!.accessToken)
                     authPreferences.putString(PreferenceKey.REFRESH_TOKEN, tokenInfo.refreshToken)
+                    authPreferences.putString(PreferenceKey.EMAIL, _email.value!!)
                     _networkStatus.value = NetworkStatus.Success(tokenInfo)
                 } else { // When register failed
                     _networkStatus.value =
