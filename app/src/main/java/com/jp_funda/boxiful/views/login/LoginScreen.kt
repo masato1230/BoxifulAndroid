@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -34,6 +35,7 @@ import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
+import com.jp_funda.boxiful.ui.theme.Blue500
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
@@ -167,19 +169,31 @@ fun LoginMainContent(
                 .border(width = 1.dp, color = Yellow500, shape = RoundedCornerShape(1000.dp))
                 .clip(RoundedCornerShape(1000.dp))
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(5.dp))
 
         // Reset password link
-        Button(onClick = {
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://masato.pythonanywhere.com/users/password_reset"),
-            )
-            context.startActivity(intent)
-        }) {
-            Text(text = "パスワードを忘れた方はこちら")
-        }
-        Spacer(modifier = Modifier.height(30.dp))
+        Text(
+            text = buildAnnotatedString {
+                append("パスワードを忘れた方は")
+                withStyle(style = SpanStyle(color = Blue500)) {
+                    append("こちら")
+                }
+            },
+            textAlign = TextAlign.End,
+            color = Color.Gray,
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 10.dp)
+                .clickable {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://masato.pythonanywhere.com/users/password_reset"),
+                    )
+                    context.startActivity(intent)
+                },
+        )
+        Spacer(modifier = Modifier.height(40.dp))
 
         // Login Button
         Button(
@@ -208,6 +222,8 @@ fun LoginMainContent(
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
             Text(
                 text = stringResource(id = R.string.auth_or),
+                color = Color.Gray,
+                style = MaterialTheme.typography.caption,
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
