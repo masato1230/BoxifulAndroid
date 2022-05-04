@@ -1,8 +1,11 @@
 package com.jp_funda.boxiful.views.login
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -16,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -31,6 +35,7 @@ import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
+import com.jp_funda.boxiful.ui.theme.Blue500
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
@@ -70,6 +75,7 @@ fun LoginMainContent(
     networkStatus: NetworkStatus
 ) {
     val viewModel = hiltViewModel<LoginViewModel>()
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -163,7 +169,31 @@ fun LoginMainContent(
                 .border(width = 1.dp, color = Yellow500, shape = RoundedCornerShape(1000.dp))
                 .clip(RoundedCornerShape(1000.dp))
         )
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(5.dp))
+
+        // Reset password link
+        Text(
+            text = buildAnnotatedString {
+                append("パスワードを忘れた方は")
+                withStyle(style = SpanStyle(color = Blue500)) {
+                    append("こちら")
+                }
+            },
+            textAlign = TextAlign.End,
+            color = Color.Gray,
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 10.dp)
+                .clickable {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://masato.pythonanywhere.com/users/password_reset"),
+                    )
+                    context.startActivity(intent)
+                },
+        )
+        Spacer(modifier = Modifier.height(40.dp))
 
         // Login Button
         Button(
@@ -192,6 +222,8 @@ fun LoginMainContent(
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
             Text(
                 text = stringResource(id = R.string.auth_or),
+                color = Color.Gray,
+                style = MaterialTheme.typography.caption,
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
