@@ -20,4 +20,15 @@ class AuthRepository @Inject constructor(private val authService: AuthService) {
             accessToken = response.body()!!.accessToken,
         )
     }
+
+    /**
+     * @return register success or not.
+     */
+    suspend fun register(email: String, password: String): Boolean {
+        val request = LoginRequest(email, password)
+        val response = authService.register(request)
+
+        // Return null when failed
+        return response.isSuccessful
+    }
 }

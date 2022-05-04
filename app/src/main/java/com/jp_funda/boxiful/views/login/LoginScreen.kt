@@ -194,7 +194,7 @@ fun LoginMainContent(
 
         // Register Button
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { viewModel.register() },
             colors = ButtonDefaults.buttonColors(backgroundColor = Green500),
             shape = RoundedCornerShape(1000.dp),
             modifier = Modifier
