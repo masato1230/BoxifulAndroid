@@ -44,9 +44,6 @@ fun HomeScreen(navController: NavController) {
 fun HomeMainContent(modifier: Modifier = Modifier, navController: NavController) {
     val viewModel: HomeViewModel = hiltViewModel()
 
-    // TODO delete
-    viewModel.getTrainingResults()
-
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
         // Top Section
         TopSection()
