@@ -29,6 +29,10 @@
     <string name="home_menu_list">メニュー一覧</string>
     <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
     <string name="home_service_description">メニュー一覧からトレーニング内容を選択して運動を始めましょう!</string>
+    <!-- record -->
+    <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
+    <string name="record_login">ログインする</string>
+    <string name="record_back_to_home">ホームに戻る</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
     <string name="result_unit_score">%d点</string>
