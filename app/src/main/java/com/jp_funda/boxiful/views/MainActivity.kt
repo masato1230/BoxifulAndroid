@@ -30,6 +30,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Refresh auth tokens
+        viewModel.refreshAuthTokens()
+
         setContent {
             BoxfulTheme {
                 // A surface container using the 'background' color from the theme
