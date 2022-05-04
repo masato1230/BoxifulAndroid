@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.components.ConfirmDialog
 import com.jp_funda.boxiful.views.components.header.Header
@@ -32,7 +33,10 @@ fun MyPageMainContent(modifier: Modifier = Modifier, navController: NavControlle
     if (isShowLoggedOutDialog.value) {
         ConfirmDialog(title = stringResource(id = R.string.auth_logged_out)) {
             isShowLoggedOutDialog.value = false
-            navController.popBackStack()
+            navController.popBackStack(
+                NavigationRoutes.HOME,
+                inclusive = false,
+            )
         }
     }
 
