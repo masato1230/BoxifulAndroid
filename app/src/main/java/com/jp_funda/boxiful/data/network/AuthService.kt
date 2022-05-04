@@ -7,7 +7,7 @@ import retrofit2.http.POST
 
 interface AuthService {
 
-    @POST("users/token/refresh")
+    @POST("users/token/refresh/")
     suspend fun fetchTokens(@Body request: RefreshTokensRequest): Response<RefreshTokensResponse>
 
     @POST("users/token/")
