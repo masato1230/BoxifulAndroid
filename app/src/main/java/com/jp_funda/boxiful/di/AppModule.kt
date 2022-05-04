@@ -3,7 +3,9 @@ package com.jp_funda.boxiful.di
 import android.content.Context
 import com.jp_funda.boxiful.AppUtils
 import com.jp_funda.boxiful.data.network.AuthService
+import com.jp_funda.boxiful.data.network.TrainingResultService
 import com.jp_funda.boxiful.data.repository.auth.AuthRepository
+import com.jp_funda.boxiful.data.repository.training_result.TrainingResultRepository
 import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -61,4 +63,14 @@ class AppModule {
     @Singleton
     fun provideAuthRepository(authService: AuthService): AuthRepository =
         AuthRepository(authService = authService)
+
+    @Provides
+    @Singleton
+    fun provideTrainingResultService(retrofit: Retrofit): TrainingResultService =
+        retrofit.create(TrainingResultService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTrainingResultRepository(trainingResultService: TrainingResultService): TrainingResultRepository =
+        TrainingResultRepository(trainingResultService)
 }
