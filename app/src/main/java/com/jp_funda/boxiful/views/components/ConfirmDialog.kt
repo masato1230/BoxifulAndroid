@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.login.components
+package com.jp_funda.boxiful.views.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.AlertDialog
@@ -15,7 +15,7 @@ import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.ui.theme.Yellow500
 
 @Composable
-fun LoginSuccessDialog(onDismiss: () -> Unit) {
+fun ConfirmDialog(title: String, onDismiss: () -> Unit) {
     val isShowDialog = remember { mutableStateOf(true) }
     AlertDialog(
         onDismissRequest = {
@@ -23,7 +23,7 @@ fun LoginSuccessDialog(onDismiss: () -> Unit) {
             onDismiss()
         },
         title = {
-            Text(text = stringResource(id = R.string.auth_success))
+            Text(text = title)
         },
         buttons = {
             Row(

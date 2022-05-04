@@ -60,7 +60,13 @@ fun Header(navController: NavController) {
                 contentDescription = stringResource(id = R.string.desc_account_icon),
                 modifier = Modifier
                     .size(32.dp)
-                    .clickable { navController.navigate(NavigationRoutes.LOGIN) },
+                    .clickable {
+                        if (viewModel.isLoggedIn) {
+                            navController.navigate(NavigationRoutes.MY_PAGE)
+                        } else {
+                            navController.navigate(NavigationRoutes.LOGIN)
+                        }
+                    },
                 tint = if (viewModel.isLoggedIn) Yellow500 else Color.Gray,
             )
             Spacer(modifier = Modifier.width(10.dp))

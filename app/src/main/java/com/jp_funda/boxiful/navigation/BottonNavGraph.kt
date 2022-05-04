@@ -17,6 +17,7 @@ import com.jp_funda.boxiful.views.MainContent
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.home.HomeScreen
 import com.jp_funda.boxiful.views.login.LoginScreen
+import com.jp_funda.boxiful.views.my_page.MyPageScreen
 import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.training.TrainingScreen
 
@@ -126,6 +127,11 @@ fun BottomNavGraph(
         /** Login Screen. */
         composable(route = NavigationRoutes.LOGIN) {
             LoginScreen(navController = navController)
+        }
+
+        /** My Page Screen. */
+        composable(route = NavigationRoutes.MY_PAGE) {
+            MyPageScreen(navController = navController)
         }
     }
 }

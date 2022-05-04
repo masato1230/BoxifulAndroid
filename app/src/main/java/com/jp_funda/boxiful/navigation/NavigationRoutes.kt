@@ -9,4 +9,5 @@ object NavigationRoutes {
     const val TRAINING = "training"
     const val RESULT = "result"
     const val LOGIN = "login"
+    const val MY_PAGE = "my page"
 }
