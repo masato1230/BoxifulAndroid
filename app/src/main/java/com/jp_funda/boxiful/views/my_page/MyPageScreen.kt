@@ -37,7 +37,10 @@ fun MyPageMainContent(modifier: Modifier = Modifier, navController: NavControlle
         }
         Spacer(modifier = Modifier.height(30.dp))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                viewModel.logout()
+                navController.popBackStack()
+            },
             colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
             modifier = Modifier.fillMaxWidth()
         ) {

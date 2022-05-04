@@ -16,4 +16,13 @@ class MyPageViewModel @Inject constructor(
         get() {
             return authPreferences.getString(PreferenceKey.EMAIL) ?: ""
         }
+
+    /** Logout. */
+    fun logout() {
+        authPreferences.apply {
+            putString(PreferenceKey.EMAIL, "")
+            putString(PreferenceKey.ACCESS_TOKEN, "")
+            putString(PreferenceKey.REFRESH_TOKEN, "")
+        }
+    }
 }
