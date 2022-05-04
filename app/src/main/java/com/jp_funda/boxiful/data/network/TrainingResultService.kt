@@ -7,6 +7,6 @@ import retrofit2.http.HeaderMap
 
 interface TrainingResultService {
 
-    @GET("training_results/")
+    @GET("training_results")
     suspend fun fetchTrainingResults(@HeaderMap headers: Map<String, String>): Response<List<TrainingResult>>
 }
