@@ -23,6 +23,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -31,6 +32,7 @@ import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Green500
+import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.components.LoadingDialog
 import com.jp_funda.boxiful.views.login.components.LoginSuccessDialog
@@ -48,12 +50,20 @@ fun LoginScreen(navController: NavController) {
     }
 
     Scaffold {
-        LoginMainContent(modifier = Modifier.padding(it), navController = navController)
+        LoginMainContent(
+            modifier = Modifier.padding(it),
+            navController = navController,
+            networkStatus = networkStatus.value!!,
+        )
     }
 }
 
 @Composable
-fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController) {
+fun LoginMainContent(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    networkStatus: NetworkStatus
+) {
     val viewModel = hiltViewModel<LoginViewModel>()
 
     Column(
@@ -90,6 +100,18 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
             fontWeight = FontWeight.ExtraBold,
         )
         Spacer(modifier = Modifier.height(30.dp))
+
+        // Error message
+        if (networkStatus is NetworkStatus.Error) {
+            Text(
+                text = stringResource(id = networkStatus.errorRes),
+                color = Red500,
+                modifier = Modifier.padding(10.dp),
+                style = MaterialTheme.typography.body2,
+                textAlign = TextAlign.Center,
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+        }
 
         // TextField for mail address
         val email = viewModel.email.observeAsState()
@@ -163,7 +185,10 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
             horizontalArrangement = Arrangement.Center,
         ) {
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
-            Text(text = stringResource(id = R.string.auth_or), modifier = Modifier.padding(horizontal = 10.dp))
+            Text(
+                text = stringResource(id = R.string.auth_or),
+                modifier = Modifier.padding(horizontal = 10.dp)
+            )
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
         }
 

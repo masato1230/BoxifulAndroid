@@ -76,4 +76,7 @@
     <string name="desc_line_icon">Lineアイコン</string>
     <string name="desc_twitter_icon">Twitterアイコン</string>
     <string name="desc_account_icon">アカウントアイコン</string>
+    <!-- error -->
+    <string name="error_invalid_email_or_password">メールアドレスかパスワードが間違っています。</string>
+    <string name="error_empty_email_or_password">メールアドレスかパスワードが空です。</string>
 </resources>

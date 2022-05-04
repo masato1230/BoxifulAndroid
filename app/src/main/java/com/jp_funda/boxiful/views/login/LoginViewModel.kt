@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.data.repository.auth.AuthRepository
 import com.jp_funda.boxiful.models.NetworkStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,10 +42,11 @@ class LoginViewModel @Inject constructor(
                 if (tokenInfo != null) {
                     _networkStatus.value = NetworkStatus.Success(tokenInfo)
                 } else {
-                    _networkStatus.value = NetworkStatus.Error("メールアドレスかパスワードが間違っています。")
+                    _networkStatus.value =
+                        NetworkStatus.Error(R.string.error_invalid_email_or_password)
                 }
             } else {
-                _networkStatus.value = NetworkStatus.Error("メールアドレスかパスワードが空です。")
+                _networkStatus.value = NetworkStatus.Error(R.string.error_empty_email_or_password)
             }
         }
     }
