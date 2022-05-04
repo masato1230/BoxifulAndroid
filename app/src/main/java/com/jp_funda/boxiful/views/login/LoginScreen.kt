@@ -22,6 +22,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -89,6 +90,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
             value = email.value ?: "",
             onValueChange = { viewModel.setEmail(it) },
             placeholder = { Text(text = stringResource(id = R.string.auth_email)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Email,
@@ -111,6 +113,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
             value = password.value ?: "",
             onValueChange = { viewModel.setPassword(it) },
             placeholder = { Text(text = stringResource(id = R.string.auth_password)) },
+            visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = {
                 Icon(
