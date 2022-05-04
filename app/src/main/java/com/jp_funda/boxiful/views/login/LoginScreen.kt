@@ -27,10 +27,18 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.views.components.LoadingDialog
 
 @Composable
 fun LoginScreen(navController: NavController) {
+    val viewModel = hiltViewModel<LoginViewModel>()
+    val networkStatus = viewModel.networkStatus.observeAsState()
+    if (networkStatus.value is NetworkStatus.Loading) {
+        LoadingDialog()
+    }
+
     Scaffold {
         LoginMainContent(modifier = Modifier.padding(it), navController = navController)
     }
