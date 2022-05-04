@@ -31,6 +31,7 @@ import com.jp_funda.boxiful.views.training.component.UpperInstructionOverlay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+// TODO calculate boxiful point <- sum(score) / 10
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPermissionsApi
 @Composable

@@ -18,6 +18,7 @@ import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.home.HomeScreen
 import com.jp_funda.boxiful.views.login.LoginScreen
 import com.jp_funda.boxiful.views.my_page.MyPageScreen
+import com.jp_funda.boxiful.views.record.RecordScreen
 import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.training.TrainingScreen
 
@@ -113,8 +114,7 @@ fun BottomNavGraph(
         /** Record Screen. */
         composable(route = BottomBarMenuItem.Record.route) {
             bottomBarState.value = true
-            // TODO change
-            MainContent()
+            RecordScreen(navController)
         }
 
         /** Settings Screen. */
