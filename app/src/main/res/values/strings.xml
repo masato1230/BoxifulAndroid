@@ -15,9 +15,14 @@
     <string name="good">Good</string>
     <string name="miss">Miss</string>
     <string name="calories_burned">消費カロリー</string>
-    <string name="login">ログイン</string>
-    <string name="sign_up">新規会員登録</string>
-    <string name="or">もしくは</string>
+
+    <!-- auth -->
+    <string name="auth_login">ログイン</string>
+    <string name="auth_sign_up">新規会員登録</string>
+    <string name="auth_or">もしくは</string>
+    <string name="auth_email">メールアドレス</string>
+    <string name="auth_password">パスワード</string>
+    <string name="auth_success">ログイン/新規会員登録に成功しました。</string>
     <!--  home  -->
     <string name="home_menu_list">メニュー一覧</string>
     <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
@@ -71,4 +76,7 @@
     <string name="desc_line_icon">Lineアイコン</string>
     <string name="desc_twitter_icon">Twitterアイコン</string>
     <string name="desc_account_icon">アカウントアイコン</string>
+    <!-- error -->
+    <string name="error_invalid_email_or_password">メールアドレスかパスワードが間違っています。</string>
+    <string name="error_empty_email_or_password">メールアドレスかパスワードが空です。</string>
 </resources>

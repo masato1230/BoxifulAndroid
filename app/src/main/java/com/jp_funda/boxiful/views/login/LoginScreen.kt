@@ -5,11 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,22 +21,49 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.models.NetworkStatus
+import com.jp_funda.boxiful.navigation.NavigationRoutes
+import com.jp_funda.boxiful.ui.theme.Green500
+import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.views.components.LoadingDialog
+import com.jp_funda.boxiful.views.login.components.LoginSuccessDialog
 
 @Composable
 fun LoginScreen(navController: NavController) {
+    val viewModel = hiltViewModel<LoginViewModel>()
+    val networkStatus = viewModel.networkStatus.observeAsState()
+    if (networkStatus.value is NetworkStatus.Loading) {
+        // Show loading dialog
+        LoadingDialog(indicatorColor = Green500)
+    } else if (networkStatus.value is NetworkStatus.Success<*>) {
+        // Show login success dialog
+        LoginSuccessDialog { navController.popBackStack(NavigationRoutes.HOME, inclusive = false) }
+    }
+
     Scaffold {
-        LoginMainContent(modifier = Modifier.padding(it), navController = navController)
+        LoginMainContent(
+            modifier = Modifier.padding(it),
+            navController = navController,
+            networkStatus = networkStatus.value!!,
+        )
     }
 }
 
 @Composable
-fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController) {
+fun LoginMainContent(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    networkStatus: NetworkStatus
+) {
     val viewModel = hiltViewModel<LoginViewModel>()
 
     Column(
@@ -72,11 +101,25 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
         )
         Spacer(modifier = Modifier.height(30.dp))
 
+        // Error message
+        if (networkStatus is NetworkStatus.Error) {
+            Text(
+                text = stringResource(id = networkStatus.errorRes),
+                color = Red500,
+                modifier = Modifier.padding(10.dp),
+                style = MaterialTheme.typography.body2,
+                textAlign = TextAlign.Center,
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+        }
+
         // TextField for mail address
+        val email = viewModel.email.observeAsState()
         TextField(
-            value = "",
-            onValueChange = {},
-            placeholder = { Text(text = "メールアドレス") },
+            value = email.value ?: "",
+            onValueChange = { viewModel.setEmail(it) },
+            placeholder = { Text(text = stringResource(id = R.string.auth_email)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Email,
@@ -94,10 +137,13 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
         Spacer(modifier = Modifier.height(20.dp))
 
         // TextField for password
+        val password = viewModel.password.observeAsState()
         TextField(
-            value = "",
-            onValueChange = {},
-            placeholder = { Text(text = "パスワード") },
+            value = password.value ?: "",
+            onValueChange = { viewModel.setPassword(it) },
+            placeholder = { Text(text = stringResource(id = R.string.auth_password)) },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Lock,
@@ -116,7 +162,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
 
         // Login Button
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { viewModel.login() },
             colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
             shape = RoundedCornerShape(1000.dp),
             modifier = Modifier
@@ -124,7 +170,7 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
                 .height(50.dp),
         ) {
             Text(
-                text = stringResource(id = R.string.login),
+                text = stringResource(id = R.string.auth_login),
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
             )
@@ -139,21 +185,24 @@ fun LoginMainContent(modifier: Modifier = Modifier, navController: NavController
             horizontalArrangement = Arrangement.Center,
         ) {
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
-            Text(text = stringResource(id = R.string.or), modifier = Modifier.padding(horizontal = 10.dp))
+            Text(
+                text = stringResource(id = R.string.auth_or),
+                modifier = Modifier.padding(horizontal = 10.dp)
+            )
             Divider(modifier = modifier.weight(1f), color = Color.Gray)
         }
 
         // Register Button
         Button(
             onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Green500),
             shape = RoundedCornerShape(1000.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),
         ) {
             Text(
-                text = stringResource(id = R.string.sign_up),
+                text = stringResource(id = R.string.auth_sign_up),
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
             )
