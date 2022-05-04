@@ -23,7 +23,8 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideAppUtils() = AppUtils()
+    fun provideAppUtils(authPreferences: AuthPreferences) =
+        AppUtils(authPreferences = authPreferences)
 
     @Provides
     @Singleton

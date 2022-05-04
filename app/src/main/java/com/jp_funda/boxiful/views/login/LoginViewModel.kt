@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.data.repository.auth.AuthRepository
+import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
+import com.jp_funda.boxiful.data.shared_preference.PreferenceKey
 import com.jp_funda.boxiful.models.NetworkStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,6 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val authRepository: AuthRepository,
+    private val authPreferences: AuthPreferences,
 ) : ViewModel() {
     private val _networkStatus = MutableLiveData<NetworkStatus>(NetworkStatus.Waiting)
     val networkStatus: LiveData<NetworkStatus> = _networkStatus
@@ -40,6 +43,9 @@ class LoginViewModel @Inject constructor(
                 val tokenInfo = authRepository.login(_email.value!!, _password.value!!)
                 // Update network status
                 if (tokenInfo != null) {
+                    // Cache tokens
+                    authPreferences.putString(PreferenceKey.ACCESS_TOKEN, tokenInfo.accessToken)
+                    authPreferences.putString(PreferenceKey.REFRESH_TOKEN, tokenInfo.refreshToken)
                     _networkStatus.value = NetworkStatus.Success(tokenInfo)
                 } else {
                     _networkStatus.value =
