@@ -1,5 +1,7 @@
 package com.jp_funda.boxiful.views.login
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -70,6 +73,7 @@ fun LoginMainContent(
     networkStatus: NetworkStatus
 ) {
     val viewModel = hiltViewModel<LoginViewModel>()
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -163,7 +167,19 @@ fun LoginMainContent(
                 .border(width = 1.dp, color = Yellow500, shape = RoundedCornerShape(1000.dp))
                 .clip(RoundedCornerShape(1000.dp))
         )
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(10.dp))
+
+        // Reset password link
+        Button(onClick = {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://masato.pythonanywhere.com/users/password_reset"),
+            )
+            context.startActivity(intent)
+        }) {
+            Text(text = "パスワードを忘れた方はこちら")
+        }
+        Spacer(modifier = Modifier.height(30.dp))
 
         // Login Button
         Button(
