@@ -17,6 +17,7 @@ import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.views.components.PopupWindowDialog
 import com.jp_funda.boxiful.views.components.header.Header
 
 @Composable
@@ -32,6 +33,7 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
     if (viewModel.isLoggedIn) {
         // If logged in, then fetch training results
         viewModel.getTrainingResults()
+        PopupWindowDialog(isShowDialog = true, modifier = Modifier.size(100.dp))
     } else {
         NotLoggedInContent(navController)
     }
