@@ -2,11 +2,9 @@ package com.jp_funda.boxiful.views.record
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -16,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Yellow500
@@ -37,13 +36,25 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
     if (viewModel.isLoggedIn) {
         // If logged in, then fetch training results
         viewModel.getTrainingResults()
-        CalendarHeatmap(
-            startDate = LocalDate.now().minusDays(180),
-            cellSize = DpSize(20.dp, 20.dp),
-            cellPadding = 2.dp,
-            roundSize = 5.dp,
-            cellLevelMap = mapOf(LocalDate.now() to CalendarHeatMapLevel.Level5), // TODO
-        )
+        val networkStatus = viewModel.networkStatus.observeAsState()
+
+        when (networkStatus.value) {
+            is NetworkStatus.Success<*> -> {
+                CalendarHeatmap(
+                    startDate = LocalDate.now().minusDays(180),
+                    cellSize = DpSize(20.dp, 20.dp),
+                    cellPadding = 2.dp,
+                    roundSize = 5.dp,
+                    cellLevelMap = mapOf(LocalDate.now() to CalendarHeatMapLevel.Level5), // TODO
+                )
+            }
+            is NetworkStatus.Error -> {
+                Text(text = stringResource((networkStatus.value as NetworkStatus.Error).errorRes))
+            }
+            else -> {
+                CircularProgressIndicator()
+            }
+        }
     } else {
         NotLoggedInContent(navController)
     }

@@ -31,21 +31,25 @@ class MainViewModel @Inject constructor(
     /** Refresh cached auth tokens. */
     fun refreshAuthTokens() {
         viewModelScope.launch {
-            val refreshToken = authPreferences.getString(PreferenceKey.REFRESH_TOKEN)
-            if (!refreshToken.isNullOrBlank()) {
-                val response = authRepository.fetchTokens(refreshToken)
+            try {
+                val refreshToken = authPreferences.getString(PreferenceKey.REFRESH_TOKEN)
+                if (!refreshToken.isNullOrBlank()) {
+                    val response = authRepository.fetchTokens(refreshToken)
 
-                // When token session is valid
-                response?.let {
-                    authPreferences.putString(PreferenceKey.REFRESH_TOKEN, it.refreshToken)
-                    authPreferences.putString(PreferenceKey.ACCESS_TOKEN, it.accessToken)
-                } ?: run { // When token timeout -> reset tokens
-                    authPreferences.apply {
-                        putString(PreferenceKey.REFRESH_TOKEN, "")
-                        putString(PreferenceKey.ACCESS_TOKEN, "")
-                        putString(PreferenceKey.EMAIL, "")
+                    // When token session is valid
+                    response?.let {
+                        authPreferences.putString(PreferenceKey.REFRESH_TOKEN, it.refreshToken)
+                        authPreferences.putString(PreferenceKey.ACCESS_TOKEN, it.accessToken)
+                    } ?: run { // When token timeout -> reset tokens
+                        authPreferences.apply {
+                            putString(PreferenceKey.REFRESH_TOKEN, "")
+                            putString(PreferenceKey.ACCESS_TOKEN, "")
+                            putString(PreferenceKey.EMAIL, "")
+                        }
                     }
                 }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
