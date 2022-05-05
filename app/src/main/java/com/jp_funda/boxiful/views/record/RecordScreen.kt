@@ -41,6 +41,7 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
             cellSize = DpSize(20.dp, 20.dp),
             cellPadding = 2.dp,
             roundSize = 5.dp,
+            cellLevelMap = mapOf(), // TODO
         )
     } else {
         NotLoggedInContent(navController)

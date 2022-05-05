@@ -1,18 +1,13 @@
 package com.jp_funda.boxiful.views.components.calendar_heat_map
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import com.jp_funda.boxiful.ui.theme.Green500
-import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.utils.date.DateIterator
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -21,6 +16,7 @@ import java.util.*
 
 @Composable
 fun CalendarHeatmap(
+    cellLevelMap: Map<LocalDate, CalendarHeatMapLevel>,
     startDate: LocalDate,
     endDate: LocalDate = LocalDate.now(),
     cellSize: DpSize,
@@ -75,35 +71,40 @@ fun CalendarHeatmap(
                 datesSeparatedByDate.forEach { datesInOneColumn ->
                     Column {
                         datesInOneColumn.forEach { date ->
+                            // First week's offset
                             if (date == startDate && date.dayOfWeek != DayOfWeek.SUNDAY) {
                                 val offsetCount = 1 + date.dayOfWeek.ordinal
                                 for (i in 1..offsetCount) {
-                                    // TODO use TransparentColor
-                                    CalendarHeatmapCell(date, cellSize, cellPadding, roundSize)
+                                    Box(
+                                        modifier = Modifier
+                                            .padding(cellPadding)
+                                            .size(cellSize)
+                                    )
                                 }
                             }
-                            CalendarHeatmapCell(date, cellSize, cellPadding, roundSize)
+
+                            val cellLevel = cellLevelMap[date]
+                            if (cellLevel != null) {
+                                CalendarHeatmapCell(
+                                    date = date,
+                                    cellSize = cellSize,
+                                    cellPadding = cellPadding,
+                                    roundSize = roundSize,
+                                    level = cellLevel,
+                                )
+                            } else {
+                                CalendarHeatmapCell(
+                                    date = date,
+                                    cellSize = cellSize,
+                                    cellPadding = cellPadding,
+                                    roundSize = roundSize,
+                                    level = CalendarHeatMapLevel.Level0,
+                                )
+                            }
                         }
                     }
                 }
             }
         }
     }
-}
-
-
-@Composable
-fun CalendarHeatmapCell(
-    date: LocalDate,
-    cellSize: DpSize,
-    cellPadding: Dp,
-    roundSize: Dp,
-) {
-    Box(
-        modifier = Modifier
-            .padding(cellPadding)
-            .size(cellSize)
-            .clip(RoundedCornerShape(roundSize))
-            .background(if (date.dayOfMonth == 1) Yellow500 else Green500)
-    )
 }
