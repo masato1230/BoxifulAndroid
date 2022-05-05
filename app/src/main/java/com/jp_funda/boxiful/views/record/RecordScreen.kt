@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,7 +55,10 @@ fun NotLoggedInContent(navController: NavController) {
             contentDescription = stringResource(id = R.string.desc_icon),
             modifier = Modifier.padding(50.dp),
         )
-        Text(text = stringResource(id = R.string.record_login_needed_to_recording))
+        Text(
+            text = stringResource(id = R.string.record_login_needed_to_recording),
+            textAlign = TextAlign.Center,
+        )
         Row(modifier = Modifier.fillMaxWidth()) {
             Button(
                 onClick = { navController.popBackStack() },

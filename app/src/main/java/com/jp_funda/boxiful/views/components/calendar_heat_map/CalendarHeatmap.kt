@@ -1,11 +1,10 @@
 package com.jp_funda.boxiful.views.components.calendar_heat_map
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -13,6 +12,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.ui.theme.Green500
+import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.utils.date.DateIterator
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -26,8 +26,9 @@ fun CalendarHeatmap(
     roundSize: Dp,
 ) {
     val dates = DateIterator(startDate, endDate, 1)
-    val datesSeparatedByDate = mutableListOf<List<LocalDate>>()
 
+    // Create dates list which is separated by week
+    val datesSeparatedByDate = mutableListOf<List<LocalDate>>()
     var datesInOneWeek = mutableListOf<LocalDate>()
     dates.forEach { date ->
         datesInOneWeek.add(date)
@@ -37,29 +38,55 @@ fun CalendarHeatmap(
         }
     }
 
-    LazyRow() {
-        item {
-            WeekDayLabel(cellSize = cellSize, cellPadding = cellPadding)
+    // Create map list of column index in heat map and first day of month
+    val columnIndexesOfFirstDateInMonth = mutableMapOf<LocalDate, Int>()
+    datesSeparatedByDate.forEachIndexed { index, weekDates ->
+        weekDates.find { it.dayOfMonth == 1 }?.let { date ->
+            columnIndexesOfFirstDateInMonth[date] = index
         }
-        items(datesSeparatedByDate) { datesInOneColumn ->
-            Column() {
-                datesInOneColumn.forEach { date ->
-                    if (date == startDate && date.dayOfWeek != DayOfWeek.SUNDAY) {
-                        val offsetCount = 1 + date.dayOfWeek.ordinal
-                        for (i in 1..offsetCount) {
-                            // TODO use TransparentColor
-                            CalendarHeatmapCell(cellSize, cellPadding, roundSize)
+    }
+
+    // Heatmap Contents
+    val monthLabelHeight = 20.dp
+
+    Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
+        WeekDayLabel(
+            cellSize = cellSize,
+            cellPadding = cellPadding,
+            initialOffset = monthLabelHeight,
+        )
+        Spacer(modifier = Modifier.width(2.dp))
+        Column {
+            MonthLabel(
+                columnIndexesOfFirstDateInMonth = columnIndexesOfFirstDateInMonth,
+                cellSize = cellSize,
+                cellPadding = cellPadding,
+                height = monthLabelHeight,
+            )
+            Row {
+                datesSeparatedByDate.forEach { datesInOneColumn ->
+                    Column {
+                        datesInOneColumn.forEach { date ->
+                            if (date == startDate && date.dayOfWeek != DayOfWeek.SUNDAY) {
+                                val offsetCount = 1 + date.dayOfWeek.ordinal
+                                for (i in 1..offsetCount) {
+                                    // TODO use TransparentColor
+                                    CalendarHeatmapCell(date, cellSize, cellPadding, roundSize)
+                                }
+                            }
+                            CalendarHeatmapCell(date, cellSize, cellPadding, roundSize)
                         }
                     }
-                    CalendarHeatmapCell(cellSize, cellPadding, roundSize)
                 }
             }
         }
     }
 }
 
+
 @Composable
 fun CalendarHeatmapCell(
+    date: LocalDate,
     cellSize: DpSize,
     cellPadding: Dp,
     roundSize: Dp,
@@ -69,34 +96,6 @@ fun CalendarHeatmapCell(
             .padding(cellPadding)
             .size(cellSize)
             .clip(RoundedCornerShape(roundSize))
-            .background(Green500)
+            .background(if (date.dayOfMonth == 1) Yellow500 else Green500)
     )
-}
-
-@Composable
-fun WeekDayLabel(
-    cellSize: DpSize,
-    cellPadding: Dp,
-) {
-    val cellHeightIncludePadding = cellSize.height + cellPadding * 2
-
-    Column(modifier = Modifier.padding(end = 5.dp)) {
-        // Offset for text top aligned
-        Spacer(modifier = Modifier.height(cellPadding))
-        Spacer(modifier = Modifier.height(cellHeightIncludePadding))
-        Text(
-            text = "Mon",
-            modifier = Modifier.height(cellHeightIncludePadding),
-        )
-        Spacer(modifier = Modifier.height(cellHeightIncludePadding))
-        Text(
-            text = "Wed",
-            modifier = Modifier.height(cellHeightIncludePadding),
-        )
-        Spacer(modifier = Modifier.height(cellHeightIncludePadding))
-        Text(
-            text = "Fri",
-            modifier = Modifier.height(cellHeightIncludePadding),
-        )
-    }
 }
