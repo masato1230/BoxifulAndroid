@@ -27,7 +27,7 @@ fun CalendarHeatmap(
     cellPadding: Dp,
     roundSize: Dp,
     textStyle: TextStyle = TextStyle.SHORT,
-    locale: Locale = Locale.JAPAN,
+    locale: Locale = Locale.getDefault(),
 ) {
     val dates = DateIterator(startDate, endDate, 1)
 
