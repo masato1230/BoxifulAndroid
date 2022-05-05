@@ -2,6 +2,7 @@
     <string name="app_name">Boxiful</string>
     <!-- common -->
     <string name="home">ホーム</string>
+    <string name="back_to_home">ホームに戻る</string>
     <string name="record">記録</string>
     <string name="settings">設定</string>
     <string name="menu">メニュー</string>
@@ -32,7 +33,6 @@
     <!-- record -->
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>
-    <string name="record_back_to_home">ホームに戻る</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
     <string name="result_unit_score">%d点</string>
@@ -72,7 +72,6 @@
     <!-- permission -->
     <string name="permission_camera_title">カメラの使用許可が必要です</string>
     <string name="permission_request_camera_permission">トレーニングを実施するにはカメラの\n使用を許可してください</string>
-    <string name="permission_back_to_home">ホームに戻る</string>
     <string name="permission_allow">許可する</string>
     <string name="permission_camera_rationale">姿勢推定を用いた動作評価を行うのにカメラの使用が必要です。\nカメラ情報がデバイスの外に出ることは一切ございません。</string>
     <!-- content description -->
