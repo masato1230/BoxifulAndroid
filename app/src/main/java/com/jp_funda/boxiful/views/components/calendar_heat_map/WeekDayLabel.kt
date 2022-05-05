@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import java.time.DayOfWeek
@@ -33,6 +34,7 @@ fun WeekDayLabel(
             modifier = Modifier
                 .height(cellHeightIncludePadding)
                 .padding(cellPadding),
+            color = Color.LightGray,
         )
         Spacer(modifier = Modifier.height(cellHeightIncludePadding))
         Text(
@@ -40,6 +42,7 @@ fun WeekDayLabel(
             modifier = Modifier
                 .height(cellHeightIncludePadding)
                 .padding(cellPadding),
+            color = Color.LightGray,
         )
         Spacer(modifier = Modifier.height(cellHeightIncludePadding))
         Text(
@@ -47,6 +50,7 @@ fun WeekDayLabel(
             modifier = Modifier
                 .height(cellHeightIncludePadding)
                 .padding(cellPadding),
+            color = Color.LightGray,
         )
     }
 }

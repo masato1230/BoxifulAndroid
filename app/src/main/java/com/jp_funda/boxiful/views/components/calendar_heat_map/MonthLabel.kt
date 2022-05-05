@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -33,6 +34,7 @@ fun MonthLabel(
                         x = (cellSize.width + cellPadding * 2) * index + cellPadding * iterateIndex,
                         y = 0.dp,
                     ),
+                color = Color.LightGray,
             )
         }
     }
