@@ -3,6 +3,7 @@ package com.jp_funda.boxiful.views.components.calendar_heat_map
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,17 +30,23 @@ fun WeekDayLabel(
         Spacer(modifier = Modifier.height(cellHeightIncludePadding))
         Text(
             text = DayOfWeek.MONDAY.getDisplayName(textStyle, locale),
-            modifier = Modifier.height(cellHeightIncludePadding),
+            modifier = Modifier
+                .height(cellHeightIncludePadding)
+                .padding(cellPadding),
         )
         Spacer(modifier = Modifier.height(cellHeightIncludePadding))
         Text(
             text = DayOfWeek.WEDNESDAY.getDisplayName(textStyle, locale),
-            modifier = Modifier.height(cellHeightIncludePadding),
+            modifier = Modifier
+                .height(cellHeightIncludePadding)
+                .padding(cellPadding),
         )
         Spacer(modifier = Modifier.height(cellHeightIncludePadding))
         Text(
             text = DayOfWeek.FRIDAY.getDisplayName(textStyle, locale),
-            modifier = Modifier.height(cellHeightIncludePadding),
+            modifier = Modifier
+                .height(cellHeightIncludePadding)
+                .padding(cellPadding),
         )
     }
 }
