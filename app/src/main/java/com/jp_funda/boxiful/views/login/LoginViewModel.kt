@@ -51,7 +51,7 @@ class LoginViewModel @Inject constructor(
                             tokenInfo.refreshToken
                         )
                         authPreferences.putString(PreferenceKey.EMAIL, _email.value!!)
-                        _networkStatus.value = NetworkStatus.Success(tokenInfo)
+                        _networkStatus.value = NetworkStatus.Success
                     } else {
                         _networkStatus.value =
                             NetworkStatus.Error(R.string.error_invalid_email_or_password)
@@ -79,7 +79,7 @@ class LoginViewModel @Inject constructor(
                     authPreferences.putString(PreferenceKey.ACCESS_TOKEN, tokenInfo!!.accessToken)
                     authPreferences.putString(PreferenceKey.REFRESH_TOKEN, tokenInfo.refreshToken)
                     authPreferences.putString(PreferenceKey.EMAIL, _email.value!!)
-                    _networkStatus.value = NetworkStatus.Success(tokenInfo)
+                    _networkStatus.value = NetworkStatus.Success
                 } else { // When register failed
                     _networkStatus.value =
                         NetworkStatus.Error(R.string.error_already_used_or_invalid_email)

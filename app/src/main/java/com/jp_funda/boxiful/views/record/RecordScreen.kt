@@ -36,7 +36,7 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
         val networkStatus = viewModel.networkStatus.observeAsState()
 
         when (networkStatus.value) {
-            is NetworkStatus.Success<*> -> {
+            is NetworkStatus.Success -> {
                 CalendarHeatmap(
                     startDate = LocalDate.now().minusDays(180),
                     cellSize = DpSize(20.dp, 20.dp),

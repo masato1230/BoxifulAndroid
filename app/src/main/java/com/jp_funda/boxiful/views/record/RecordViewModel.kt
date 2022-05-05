@@ -10,6 +10,7 @@ import com.jp_funda.boxiful.data.repository.training_result.TrainingResultReposi
 import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
 import com.jp_funda.boxiful.data.shared_preference.PreferenceKey
 import com.jp_funda.boxiful.models.NetworkStatus
+import com.jp_funda.boxiful.models.TrainingResultInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,6 +24,8 @@ class RecordViewModel @Inject constructor(
     private val _networkStatus = MutableLiveData<NetworkStatus>(NetworkStatus.Waiting)
     val networkStatus: LiveData<NetworkStatus> = _networkStatus
 
+    private var trainingResults: List<TrainingResultInfo>? = null
+
     val isLoggedIn: Boolean
         get() {
             return appUtils.isLoggedIn
@@ -35,13 +38,15 @@ class RecordViewModel @Inject constructor(
         _networkStatus.value = NetworkStatus.Loading
         viewModelScope.launch {
             try {
-                val trainingResults = trainingResultRepository.fetchTrainingResults(
+                trainingResults = trainingResultRepository.fetchTrainingResults(
                     authPreferences.getString(PreferenceKey.ACCESS_TOKEN)!!
                 )
-                if (trainingResults != null) _networkStatus.value =
-                    NetworkStatus.Success(trainingResults)
-                else _networkStatus.value =
-                    NetworkStatus.Error(errorRes = R.string.error_connect_server)
+                if (trainingResults != null) {
+                    _networkStatus.value = NetworkStatus.Success
+                } else {
+                    _networkStatus.value =
+                        NetworkStatus.Error(errorRes = R.string.error_connect_server)
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
                 _networkStatus.value = NetworkStatus.Error(errorRes = R.string.error_connect_server)
