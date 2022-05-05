@@ -3,7 +3,7 @@ package com.jp_funda.boxiful.views.components.calendar_heat_map
 import androidx.compose.ui.graphics.Color
 import com.jp_funda.boxiful.ui.theme.*
 
-enum class CalendarHeatMapLevel(val color: Color) {
+enum class CalendarHeatmapLevel(val color: Color) {
     Level0(Color.Transparent),
     Level1(Green50),
     Level2(Green100),

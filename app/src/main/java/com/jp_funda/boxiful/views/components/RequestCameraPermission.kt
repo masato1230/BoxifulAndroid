@@ -83,7 +83,7 @@ fun RequestCameraPermission(
                         colors = ButtonDefaults.buttonColors(backgroundColor = Green500),
                         modifier = Modifier.weight(0.5f),
                     ) {
-                        Text(text = stringResource(id = R.string.permission_back_to_home))
+                        Text(text = stringResource(id = R.string.back_to_home))
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     Button(

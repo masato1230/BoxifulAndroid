@@ -2,6 +2,8 @@ package com.jp_funda.boxiful.data.repository.training_result
 
 import com.jp_funda.boxiful.data.network.TrainingResultService
 import com.jp_funda.boxiful.models.TrainingResultInfo
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,7 +18,8 @@ class TrainingResultRepository @Inject constructor(
         else response.body()!!.map {
             TrainingResultInfo(
                 calorie = it.calorie,
-                createdAt = it.createdAt,
+                point = it.point,
+                createdAt = LocalDate.parse(it.createdAt, DateTimeFormatter.ISO_DATE_TIME),
             )
         }
     }

@@ -49,7 +49,7 @@ fun LoginScreen(navController: NavController) {
     if (networkStatus.value is NetworkStatus.Loading) {
         // Show loading dialog
         LoadingDialog(indicatorColor = Green500)
-    } else if (networkStatus.value is NetworkStatus.Success<*>) {
+    } else if (networkStatus.value is NetworkStatus.Success) {
         // Show login success dialog
         ConfirmDialog(title = stringResource(id = R.string.auth_success)) {
             navController.popBackStack(
