@@ -141,5 +141,12 @@ fun CalendarHeatmap(
                 }
             }
         }
+        WeekDayLabel(
+            cellSize = cellSize,
+            cellPadding = cellPadding,
+            initialOffset = monthLabelHeight,
+            textStyle = textStyle,
+            locale = locale,
+        )
     }
 }
