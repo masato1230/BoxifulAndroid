@@ -26,7 +26,7 @@ import java.util.*
 @Composable
 fun CalendarHeatmap(
     cellLevelMap: Map<LocalDate, CalendarHeatmapLevel>,
-    cellPopupContentMap: Map<LocalDate, @Composable () -> Unit>? = null,
+    cellPopupTextsMap: Map<LocalDate, List<String>>? = null,
     startDate: LocalDate,
     endDate: LocalDate = LocalDate.now(),
     cellSize: DpSize,
@@ -104,7 +104,7 @@ fun CalendarHeatmap(
                                 Column(
                                     modifier = Modifier
                                         .clip(RoundedCornerShape(10.dp))
-                                        .widthIn(max = 200.dp)
+                                        .widthIn(max = 230.dp)
                                         .background(Color.DarkGray),
                                     horizontalAlignment = Alignment.CenterHorizontally,
                                 ) {
@@ -116,25 +116,24 @@ fun CalendarHeatmap(
                                         style = MaterialTheme.typography.caption,
                                         modifier = Modifier.padding(horizontal = 20.dp),
                                     )
-                                    Divider(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(5.dp)
-                                    )
-                                    Text(
-                                        text = "消費したカロリー 22kcal",
-                                        color = Color.LightGray,
-                                        style = MaterialTheme.typography.caption,
-                                        modifier = Modifier.padding(horizontal = 20.dp),
-                                    )
-                                    Spacer(modifier = Modifier.height(5.dp))
-                                    Text(
-                                        text = "Boxifulポイント 22ポイント",
-                                        color = Color.LightGray,
-                                        style = MaterialTheme.typography.caption,
-                                        modifier = Modifier.padding(horizontal = 20.dp),
-                                    )
-                                    Spacer(modifier = Modifier.height(10.dp))
+                                    val popupTexts = cellPopupTextsMap?.get(date)
+                                    if (popupTexts != null) {
+                                        Divider(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(5.dp)
+                                        )
+                                        popupTexts.forEach { text ->
+                                            Text(
+                                                text = text,
+                                                color = Color.LightGray,
+                                                style = MaterialTheme.typography.caption,
+                                                modifier = Modifier.padding(horizontal = 20.dp),
+                                            )
+                                            Spacer(modifier = Modifier.height(5.dp))
+                                        }
+                                        Spacer(modifier = Modifier.height(5.dp))
+                                    }
                                 }
                             }
                         }

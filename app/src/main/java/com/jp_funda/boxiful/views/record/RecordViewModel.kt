@@ -11,6 +11,7 @@ import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
 import com.jp_funda.boxiful.data.shared_preference.PreferenceKey
 import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.models.TrainingResultInfo
+import com.jp_funda.boxiful.utils.date.DateIterator
 import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmapLevel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,6 +28,8 @@ class RecordViewModel @Inject constructor(
     val networkStatus: LiveData<NetworkStatus> = _networkStatus
 
     private var trainingResults: List<TrainingResultInfo>? = null
+
+    val resultStartDate: LocalDate = LocalDate.now().minusDays(180)
 
     /** LocalDate - CalendarHeatmapLevel map for draw graph. */
     val dateTrainingLevelMap: Map<LocalDate, CalendarHeatmapLevel>
@@ -48,6 +51,23 @@ class RecordViewModel @Inject constructor(
                     }
                 originalKeyValue.key to level
             }.toMap()
+        }
+
+    /** LocalDate - CalendarHeatmapLevel map for draw graph. */
+    val dateTextsMap: Map<LocalDate, List<String>>
+        get() {
+            val textsMap = mutableMapOf<LocalDate, List<String>>()
+            val dateIterator = DateIterator(resultStartDate, LocalDate.now(), 1)
+
+            dateIterator.forEach { date ->
+                trainingResults?.filter { it.createdAt == date }?.let { resultsInDate ->
+                    textsMap[date] = listOf(
+                        "消費したカロリー ${resultsInDate.sumOf { it.calorie }}kcal", // TODO use string resource
+                        "Boxifulポイント ${resultsInDate.sumOf { it.point }}ポイント", // TODO use string resource
+                    )
+                }
+            }
+            return textsMap
         }
 
     val isLoggedIn: Boolean

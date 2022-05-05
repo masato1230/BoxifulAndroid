@@ -17,7 +17,6 @@ import com.jp_funda.boxiful.views.components.ErrorView
 import com.jp_funda.boxiful.views.components.LoadingView
 import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.components.header.Header
-import java.time.LocalDate
 
 @Composable
 fun RecordScreen(navController: NavController) {
@@ -37,11 +36,12 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
         when (networkStatus.value) {
             is NetworkStatus.Success -> {
                 CalendarHeatmap(
-                    startDate = LocalDate.now().minusDays(180),
+                    startDate = viewModel.resultStartDate,
                     cellSize = DpSize(20.dp, 20.dp),
                     cellPadding = 2.dp,
                     roundSize = 5.dp,
                     cellLevelMap = viewModel.dateTrainingLevelMap,
+                    cellPopupTextsMap = viewModel.dateTextsMap,
                 )
             }
             is NetworkStatus.Error -> {
