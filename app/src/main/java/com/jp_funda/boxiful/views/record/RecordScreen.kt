@@ -15,7 +15,6 @@ import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.components.ErrorView
 import com.jp_funda.boxiful.views.components.LoadingView
-import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatMapLevel
 import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.components.header.Header
 import java.time.LocalDate
@@ -42,7 +41,7 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
                     cellSize = DpSize(20.dp, 20.dp),
                     cellPadding = 2.dp,
                     roundSize = 5.dp,
-                    cellLevelMap = mapOf(LocalDate.now() to CalendarHeatMapLevel.Level5), // TODO
+                    cellLevelMap = viewModel.dateTrainingLevelMap,
                 )
             }
             is NetworkStatus.Error -> {

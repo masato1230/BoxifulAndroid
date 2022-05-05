@@ -31,7 +31,7 @@ fun CalendarHeatmapCell(
     cellSize: DpSize,
     cellPadding: Dp,
     roundSize: Dp,
-    level: CalendarHeatMapLevel,
+    level: CalendarHeatmapLevel,
     alpha: Float = 0.5f,
 ) {
     val isShowDialog = remember { mutableStateOf(false) }

@@ -16,7 +16,7 @@ import java.util.*
 
 @Composable
 fun CalendarHeatmap(
-    cellLevelMap: Map<LocalDate, CalendarHeatMapLevel>,
+    cellLevelMap: Map<LocalDate, CalendarHeatmapLevel>,
     startDate: LocalDate,
     endDate: LocalDate = LocalDate.now(),
     cellSize: DpSize,
@@ -98,7 +98,7 @@ fun CalendarHeatmap(
                                     cellSize = cellSize,
                                     cellPadding = cellPadding,
                                     roundSize = roundSize,
-                                    level = CalendarHeatMapLevel.Level0,
+                                    level = CalendarHeatmapLevel.Level0,
                                 )
                             }
                         }
