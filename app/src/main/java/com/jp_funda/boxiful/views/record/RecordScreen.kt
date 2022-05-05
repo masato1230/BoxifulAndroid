@@ -1,9 +1,7 @@
 package com.jp_funda.boxiful.views.record
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -48,9 +46,9 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
                 )
             }
             is NetworkStatus.Error -> {
-                Text(
-                    text = stringResource((networkStatus.value as NetworkStatus.Error).errorRes),
-                    modifier = Modifier.fillMaxSize(),
+                ErrorView(
+                    navController = navController,
+                    errorMessage = stringResource((networkStatus.value as NetworkStatus.Error).errorRes)
                 )
             }
             else -> {

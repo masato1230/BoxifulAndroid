@@ -21,8 +21,8 @@ import com.jp_funda.boxiful.ui.theme.Yellow500
 fun ErrorView(
     navController: NavController,
     errorMessage: String,
-    actionMessage: String,
-    onActionButtonClicked: () -> Unit,
+    actionMessage: String? = null,
+    onActionButtonClicked: () -> Unit = {},
 ) {
     Column(modifier = Modifier.padding(30.dp)) {
         Image(
@@ -33,25 +33,30 @@ fun ErrorView(
         Text(
             text = errorMessage,
             textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth().padding(bottom = 5.dp),
         )
         Row(modifier = Modifier.fillMaxWidth()) {
             Button(
-                onClick = { navController.popBackStack(
-                    NavigationRoutes.HOME,
-                    inclusive = false
-                ) },
+                onClick = {
+                    navController.popBackStack(
+                        NavigationRoutes.HOME,
+                        inclusive = false
+                    )
+                },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Green500),
                 modifier = Modifier.weight(0.5f),
             ) {
                 Text(text = stringResource(id = R.string.back_to_home))
             }
             Spacer(modifier = Modifier.width(10.dp))
-            Button(
-                onClick = { onActionButtonClicked() },
-                colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
-                modifier = Modifier.weight(0.5f),
-            ) {
-                Text(text = actionMessage)
+            actionMessage?.let {
+                Button(
+                    onClick = { onActionButtonClicked() },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
+                    modifier = Modifier.weight(0.5f),
+                ) {
+                    Text(text = it)
+                }
             }
         }
     }
