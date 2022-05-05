@@ -18,6 +18,8 @@ fun WeekDayLabel(
     cellSize: DpSize,
     cellPadding: Dp,
     initialOffset: Dp,
+    textStyle: TextStyle,
+    locale: Locale,
 ) {
     val cellHeightIncludePadding = cellSize.height + cellPadding * 2
 
@@ -26,17 +28,17 @@ fun WeekDayLabel(
         Spacer(modifier = Modifier.height(cellPadding * 2 + initialOffset))
         Spacer(modifier = Modifier.height(cellHeightIncludePadding))
         Text(
-            text = DayOfWeek.MONDAY.getDisplayName(TextStyle.SHORT, Locale.JAPAN),
+            text = DayOfWeek.MONDAY.getDisplayName(textStyle, locale),
             modifier = Modifier.height(cellHeightIncludePadding),
         )
         Spacer(modifier = Modifier.height(cellHeightIncludePadding))
         Text(
-            text = "Wed",
+            text = DayOfWeek.WEDNESDAY.getDisplayName(textStyle, locale),
             modifier = Modifier.height(cellHeightIncludePadding),
         )
         Spacer(modifier = Modifier.height(cellHeightIncludePadding))
         Text(
-            text = "Fri",
+            text = DayOfWeek.FRIDAY.getDisplayName(textStyle, locale),
             modifier = Modifier.height(cellHeightIncludePadding),
         )
     }

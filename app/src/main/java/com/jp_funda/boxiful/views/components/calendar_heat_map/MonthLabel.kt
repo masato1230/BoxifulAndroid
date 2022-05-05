@@ -19,13 +19,15 @@ fun MonthLabel(
     cellSize: DpSize,
     cellPadding: Dp,
     height: Dp,
+    textStyle: TextStyle,
+    locale: Locale,
 ) {
     Box(modifier = Modifier.height(height)) {
         var iterateIndex = 0
         columnIndexesOfFirstDateInMonth.forEach { (date, index) ->
             iterateIndex++
             Text(
-                text = date.month.getDisplayName(TextStyle.SHORT, Locale.JAPAN),
+                text = date.month.getDisplayName(textStyle, locale),
                 modifier = Modifier
                     .offset(
                         x = (cellSize.width + cellPadding * 2) * index + cellPadding * iterateIndex,

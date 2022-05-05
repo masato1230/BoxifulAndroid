@@ -16,6 +16,8 @@ import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.utils.date.DateIterator
 import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.*
 
 @Composable
 fun CalendarHeatmap(
@@ -24,6 +26,8 @@ fun CalendarHeatmap(
     cellSize: DpSize,
     cellPadding: Dp,
     roundSize: Dp,
+    textStyle: TextStyle = TextStyle.SHORT,
+    locale: Locale = Locale.JAPAN,
 ) {
     val dates = DateIterator(startDate, endDate, 1)
 
@@ -54,6 +58,8 @@ fun CalendarHeatmap(
             cellSize = cellSize,
             cellPadding = cellPadding,
             initialOffset = monthLabelHeight,
+            textStyle = textStyle,
+            locale = locale,
         )
         Spacer(modifier = Modifier.width(2.dp))
         Column {
@@ -62,6 +68,8 @@ fun CalendarHeatmap(
                 cellSize = cellSize,
                 cellPadding = cellPadding,
                 height = monthLabelHeight,
+                textStyle = textStyle,
+                locale = locale,
             )
             Row {
                 datesSeparatedByDate.forEach { datesInOneColumn ->
