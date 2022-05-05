@@ -33,6 +33,8 @@
     <!-- record -->
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>
+    <string name="record_calorie_consumption">消費したカロリー %dkcal</string>
+    <string name="record_boxiful_point">Boxifulポイント %dポイント</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
     <string name="result_unit_score">%d点</string>

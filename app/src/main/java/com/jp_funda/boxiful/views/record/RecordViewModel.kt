@@ -1,5 +1,6 @@
 package com.jp_funda.boxiful.views.record
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecordViewModel @Inject constructor(
+    private val application: Application,
     private val appUtils: AppUtils,
     private val trainingResultRepository: TrainingResultRepository,
     private val authPreferences: AuthPreferences,
@@ -31,7 +33,7 @@ class RecordViewModel @Inject constructor(
 
     val resultStartDate: LocalDate = LocalDate.now().minusDays(180)
 
-    /** LocalDate - CalendarHeatmapLevel map for draw graph. */
+    /** LocalDate & CalendarHeatmapLevel map for draw graph. */
     val dateTrainingLevelMap: Map<LocalDate, CalendarHeatmapLevel>
         get() {
             val pointMap = mutableMapOf<LocalDate, Int>()
@@ -53,7 +55,7 @@ class RecordViewModel @Inject constructor(
             }.toMap()
         }
 
-    /** LocalDate - CalendarHeatmapLevel map for draw graph. */
+    /** LocalDate & Texts map for cell popup. */
     val dateTextsMap: Map<LocalDate, List<String>>
         get() {
             val textsMap = mutableMapOf<LocalDate, List<String>>()
@@ -62,8 +64,12 @@ class RecordViewModel @Inject constructor(
             dateIterator.forEach { date ->
                 trainingResults?.filter { it.createdAt == date }?.let { resultsInDate ->
                     textsMap[date] = listOf(
-                        "消費したカロリー ${resultsInDate.sumOf { it.calorie }}kcal", // TODO use string resource
-                        "Boxifulポイント ${resultsInDate.sumOf { it.point }}ポイント", // TODO use string resource
+                        application.getString(
+                            R.string.record_calorie_consumption,
+                            resultsInDate.sumOf { it.calorie }),
+                        application.getString(
+                            R.string.record_boxiful_point,
+                            resultsInDate.sumOf { it.point }),
                     )
                 }
             }
