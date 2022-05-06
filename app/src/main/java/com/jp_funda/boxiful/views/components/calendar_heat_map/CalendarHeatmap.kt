@@ -25,6 +25,7 @@ import java.util.*
 
 @Composable
 fun CalendarHeatmap(
+    modifier: Modifier = Modifier,
     cellLevelMap: Map<LocalDate, CalendarHeatmapLevel>,
     cellPopupTextsMap: Map<LocalDate, List<String>>? = null,
     startDate: LocalDate,
@@ -59,7 +60,7 @@ fun CalendarHeatmap(
     // Heatmap Contents
     val monthLabelHeight = 20.dp
 
-    Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
+    Row(modifier = modifier.horizontalScroll(rememberScrollState())) {
         WeekDayLabel(
             cellSize = cellSize,
             cellPadding = cellPadding,
@@ -95,7 +96,6 @@ fun CalendarHeatmap(
 
                             val cellLevel = cellLevelMap[date]
                             CalendarHeatmapCell(
-                                date = date,
                                 cellSize = cellSize,
                                 cellPadding = cellPadding,
                                 roundSize = roundSize,

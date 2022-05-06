@@ -20,12 +20,10 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.views.components.PopupWindowDialog
-import java.time.LocalDate
 import kotlin.math.roundToInt
 
 @Composable
 fun CalendarHeatmapCell(
-    date: LocalDate,
     cellSize: DpSize,
     cellPadding: Dp,
     roundSize: Dp,

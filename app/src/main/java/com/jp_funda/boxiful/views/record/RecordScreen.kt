@@ -1,5 +1,6 @@
 package com.jp_funda.boxiful.views.record
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -35,14 +36,7 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
 
         when (networkStatus.value) {
             is NetworkStatus.Success -> {
-                CalendarHeatmap(
-                    startDate = viewModel.resultStartDate,
-                    cellSize = DpSize(20.dp, 20.dp),
-                    cellPadding = 2.dp,
-                    roundSize = 5.dp,
-                    cellLevelMap = viewModel.dateTrainingLevelMap,
-                    cellPopupTextsMap = viewModel.dateTextsMap,
-                )
+                OnSuccessContent()
             }
             is NetworkStatus.Error -> {
                 ErrorView(
@@ -63,5 +57,22 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
         ) {
             navController.navigate(NavigationRoutes.LOGIN)
         }
+    }
+}
+
+@Composable
+fun OnSuccessContent() {
+    val viewModel = hiltViewModel<RecordViewModel>()
+
+    Column(modifier = Modifier.padding(10.dp)) {
+        CalendarHeatmap(
+            modifier = Modifier.padding(10.dp),
+            startDate = viewModel.resultStartDate,
+            cellSize = DpSize(20.dp, 20.dp),
+            cellPadding = 2.dp,
+            roundSize = 5.dp,
+            cellLevelMap = viewModel.dateTrainingLevelMap,
+            cellPopupTextsMap = viewModel.dateTextsMap,
+        )
     }
 }
