@@ -62,6 +62,7 @@ fun StatsRow(
     valueString: String,
 ) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        Spacer(modifier = Modifier.width(5.dp))
         Icon(
             imageVector = icon,
             contentDescription = stringResource(id = R.string.desc_icon),
@@ -76,5 +77,6 @@ fun StatsRow(
         )
         Spacer(modifier = Modifier.weight(1f))
         Text(text = valueString)
+        Spacer(modifier = Modifier.width(5.dp))
     }
 }
