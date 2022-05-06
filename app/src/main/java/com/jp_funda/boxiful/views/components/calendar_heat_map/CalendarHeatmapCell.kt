@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.views.components.PopupWindowDialog
 import java.time.LocalDate
 import kotlin.math.roundToInt
@@ -29,7 +30,6 @@ fun CalendarHeatmapCell(
     cellPadding: Dp,
     roundSize: Dp,
     level: CalendarHeatmapLevel?,
-    alpha: Float = 0.5f,
     popupContent: @Composable () -> Unit = {},
 ) {
     val isShowDialog = remember { mutableStateOf(false) }
@@ -40,8 +40,15 @@ fun CalendarHeatmapCell(
                 .padding(cellPadding)
                 .size(cellSize)
                 .clip(RoundedCornerShape(roundSize))
-                .background(level?.color?.copy(alpha = minOf(1f, alpha + 0.3f)) ?: Color.Transparent)
-                .border(width = 1.dp, color = level?.color ?: Color.Transparent, shape = RoundedCornerShape(roundSize))
+                .background(level?.backgroundAlpha?.let { Green500.copy(alpha = it) }
+                    ?: Color.DarkGray.copy(alpha = 0.3f))
+                .border(
+                    width = 1.dp,
+                    color = level?.backgroundAlpha?.let {
+                        Green500.copy(alpha = minOf(1f, it + 0.3f))
+                    } ?: Color.Transparent,
+                    shape = RoundedCornerShape(roundSize)
+                )
                 .clickable { isShowDialog.value = true }
         ) {
             PopupWindowDialog(
