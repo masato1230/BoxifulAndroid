@@ -109,7 +109,7 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 val composableScope = rememberCoroutineScope()
                 composableScope.launch {
                     delay(1500)
-                    if (networkStatus.value !is NetworkStatus.Error) {
+                    if (networkStatus.value is NetworkStatus.Success || networkStatus.value is NetworkStatus.Waiting) {
                         navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
                     }
                 }

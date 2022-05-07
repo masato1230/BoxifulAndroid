@@ -4,15 +4,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -21,7 +19,6 @@ import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.components.ErrorView
 import com.jp_funda.boxiful.views.components.LoadingView
-import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.components.header.Header
 import com.jp_funda.boxiful.views.record.component.TotalStatsSection
 import com.jp_funda.boxiful.views.record.component.WeeklyStatsSection
@@ -69,43 +66,18 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
 
 @Composable
 fun OnSuccessContent() {
-    val viewModel = hiltViewModel<RecordViewModel>()
-
-    Column(modifier = Modifier.padding(20.dp)) {
-        // Screen Title
-        Text(
-            text = stringResource(id = R.string.record_title),
-            style = MaterialTheme.typography.h5,
-            fontWeight = FontWeight.ExtraBold,
-            modifier = Modifier.padding(top = 10.dp),
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-
-        // Stats Section
-        TotalStatsSection()
-        Spacer(modifier = Modifier.height(10.dp))
-
-        // Heatmap Section
-        CalendarHeatmap(
-            modifier = Modifier.padding(10.dp),
-            startDate = viewModel.resultStartDate,
-            cellSize = DpSize(20.dp, 20.dp),
-            cellPadding = 2.dp,
-            roundSize = 5.dp,
-            cellLevelMap = viewModel.dateTrainingLevelMap,
-            cellPopupTextsMap = viewModel.dateTextsMap,
-        )
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
+        // Weekly Stats Section
+        WeeklyStatsSection()
         Spacer(modifier = Modifier.height(20.dp))
 
-        // WeeklyStats
-        // Title
-        Text(
-            text = stringResource(id = R.string.record_weekly_stats),
-            style = MaterialTheme.typography.h5,
-            fontWeight = FontWeight.ExtraBold,
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        // Card
-        WeeklyStatsSection()
+        // Total Stats Section
+        TotalStatsSection()
+
+        Spacer(modifier = Modifier.height(50.dp))
     }
 }

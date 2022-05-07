@@ -117,6 +117,26 @@ class RecordViewModel @Inject constructor(
             return textsMap
         }
 
+    /** Getter of calorie consumption of the day. */
+    private fun getOneDayCalorieConsumption(date: LocalDate): Int {
+        return trainingResults?.filter { it.createdAt == date }?.sumOf { it.calorie } ?: 0
+    }
+
+    val dateCaloriePairsInWeek: List<Pair<LocalDate, Int>>
+        get() {
+            val today = LocalDate.now()
+            val dateIterator = DateIterator(
+                startDate = today.minusWeeks(1).plusDays(1),
+                endDateInclusive = today,
+                stepDays = 1,
+            )
+            val dateCaloriePairs = mutableListOf<Pair<LocalDate, Int>>()
+            dateIterator.forEach {
+                dateCaloriePairs.add(it to getOneDayCalorieConsumption(it))
+            }
+            return dateCaloriePairs
+        }
+
     val isLoggedIn: Boolean
         get() {
             return appUtils.isLoggedIn
