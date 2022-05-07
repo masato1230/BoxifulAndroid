@@ -66,8 +66,6 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
 
 @Composable
 fun OnSuccessContent() {
-    val viewModel = hiltViewModel<RecordViewModel>()
-
     Column(
         modifier = Modifier
             .padding(20.dp)

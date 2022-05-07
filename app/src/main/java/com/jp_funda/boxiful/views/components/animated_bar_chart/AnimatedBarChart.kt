@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AnimatedBarChart(
     modifier: Modifier = Modifier,
-    labelValueMap: List<Pair<String, Int>>,
+    labelValueMap: List<Pair<String, Float>>,
     indicatorColor: Color = MaterialTheme.colors.primary,
     indicatorWidth: Dp = 10.dp,
     columnPadding: Dp = 10.dp,
