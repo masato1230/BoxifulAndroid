@@ -33,7 +33,7 @@
     <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
     <string name="home_service_description">メニュー一覧からトレーニング内容を選択して運動を始めましょう!</string>
     <!-- record -->
-    <string name="record_title">トレーニング記録</string>
+    <string name="record_title">累計トレーニング記録</string>
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>
     <string name="record_calorie_consumption">消費したカロリー %dkcal</string>

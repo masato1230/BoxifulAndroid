@@ -35,7 +35,7 @@ fun WeeklyStatsSection() {
                 vectorIcon = Icons.Default.DateRange,
                 iconColor = Green500,
                 labelString = stringResource(id = R.string.record_weekly_number_of_trainings),
-                valueString = stringResource(id = R.string.unit_times, viewModel.numberOfTrainings),
+                valueString = stringResource(id = R.string.unit_times, viewModel.weeklyNumberOfTrainings),
             )
             // Boxiful points
             StatsRow(
@@ -44,7 +44,7 @@ fun WeeklyStatsSection() {
                 labelString = stringResource(id = R.string.record_weekly_boxiful_point),
                 valueString = stringResource(
                     id = R.string.unit_points,
-                    viewModel.totalBoxifulPoints,
+                    viewModel.weeklyBoxifulPoints,
                 ),
             )
             // Calorie consumption
@@ -54,7 +54,7 @@ fun WeeklyStatsSection() {
                 labelString = stringResource(id = R.string.record_weekly_calorie_consumption),
                 valueString = stringResource(
                     id = R.string.unit_kcal,
-                    viewModel.totalCalorieConsumption,
+                    viewModel.weeklyCalorieConsumption,
                 ),
             )
         }
