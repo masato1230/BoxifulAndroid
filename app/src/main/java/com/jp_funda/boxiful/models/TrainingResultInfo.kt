@@ -6,6 +6,6 @@ data class TrainingResultInfo(
     val menu: String,
     val calorie: Int,
     val point: Int,
-    val createdAt: LocalDate,
+    val createdAt: LocalDate = LocalDate.now(),
     val score: Int,
 )

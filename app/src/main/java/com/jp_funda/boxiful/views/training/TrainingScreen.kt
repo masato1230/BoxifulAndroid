@@ -81,7 +81,7 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 }
             }
 
-            // UI
+            // UI Update
             // When finish menu
             if (index >= viewModel.getInstructions().size) {
                 // Pass data to MainViewModel
@@ -92,6 +92,8 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 )
                 // Show finish modal
                 FinishModal()
+                // Register training result to server
+                viewModel.registerTrainingResult()
                 // Navigate to result screen with delay
                 val composableScope = rememberCoroutineScope()
                 composableScope.launch {
