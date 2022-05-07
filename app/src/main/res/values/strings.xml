@@ -41,6 +41,7 @@
     <string name="record_number_of_trainings">これまでのトレーニング回数</string>
     <string name="record_total_boxiful_point">累計ボクシフルポイント</string>
     <string name="record_total_calorie_consumption">累計消費カロリー</string>
+    <string name="record_weekly_stats">週間トレーニング記録</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
     <string name="result_unit_score">%d点</string>
