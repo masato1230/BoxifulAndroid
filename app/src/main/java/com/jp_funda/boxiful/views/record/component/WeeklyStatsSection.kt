@@ -97,7 +97,7 @@ fun WeeklyStatsSection() {
             modifier = Modifier
                 .clip(RoundedCornerShape(5.dp))
                 .background(Color.DarkGray.copy(alpha = 0.3f))
-                .padding(vertical = 10.dp, horizontal = 5.dp)
+                .padding(10.dp)
         )
     }
 }

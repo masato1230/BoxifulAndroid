@@ -13,6 +13,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
@@ -44,7 +46,25 @@ fun AnimatedBarChart(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = maxValue.dp),
+                .heightIn(min = maxValue.dp)
+                .drawBehind {
+                    // Draw ruled lines
+                    drawLine(
+                        start = Offset(x = 0f, y = size.height - 50 * density),
+                        end = Offset(x = size.width, y = size.height - 50 * density),
+                        color = Color.Gray,
+                    )
+                    drawLine(
+                        start = Offset(x = 0f, y = size.height - 100 * density),
+                        end = Offset(x = size.width, y = size.height - 100 * density),
+                        color = Color.Gray,
+                    )
+                    drawLine(
+                        start = Offset(x = 0f, y = size.height),
+                        end = Offset(x = size.width, y = size.height),
+                        color = Color.Gray,
+                    )
+                },
             verticalAlignment = Alignment.Bottom,
         ) {
             for (triple in labelValueDescList) {
@@ -54,11 +74,13 @@ fun AnimatedBarChart(
                         .weight(columnWeight)
                         .padding(horizontal = columnPadding)
                         .clickable {
-                            Toast.makeText(
-                                context,
-                                triple.third,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast
+                                .makeText(
+                                    context,
+                                    triple.third,
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
                         },
                     contentAlignment = Alignment.BottomCenter,
                 ) {
