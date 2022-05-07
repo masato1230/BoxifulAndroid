@@ -11,13 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.ui.theme.Green500
+import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.record.RecordViewModel
 
@@ -33,19 +36,29 @@ fun StatsSection() {
         Column(modifier = Modifier.padding(10.dp)) {
             // Number of trainings
             StatsRow(
-                icon = Icons.Default.DateRange,
+                vectorIcon = Icons.Default.DateRange,
                 iconColor = Green500,
                 labelString = stringResource(id = R.string.record_number_of_trainings),
                 valueString = stringResource(id = R.string.unit_times, viewModel.numberOfTrainings),
             )
             // Boxiful points
             StatsRow(
-                icon = Icons.Default.CheckCircle,
+                vectorIcon = Icons.Default.CheckCircle,
                 iconColor = Yellow500,
                 labelString = stringResource(id = R.string.record_total_boxiful_point),
                 valueString = stringResource(
                     id = R.string.unit_points,
                     viewModel.totalBoxifulPoints,
+                ),
+            )
+            // Calorie consumption
+            StatsRow(
+                painterIcon = painterResource(id = R.drawable.ic_fire),
+                iconColor = Red500,
+                labelString = stringResource(id = R.string.record_total_calorie_consumption),
+                valueString = stringResource(
+                    id = R.string.unit_kcal,
+                    viewModel.totalCalorieConsumption,
                 ),
             )
         }
@@ -56,19 +69,30 @@ fun StatsSection() {
 @Composable
 fun StatsRow(
     modifier: Modifier = Modifier,
-    icon: ImageVector,
+    vectorIcon: ImageVector? = null,
+    painterIcon: Painter? = null,
     iconColor: Color,
     labelString: String,
     valueString: String,
 ) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         Spacer(modifier = Modifier.width(5.dp))
-        Icon(
-            imageVector = icon,
-            contentDescription = stringResource(id = R.string.desc_icon),
-            tint = iconColor,
-            modifier = Modifier.padding(vertical = 2.dp)
-        )
+        vectorIcon?.let {
+            Icon(
+                imageVector = it,
+                contentDescription = stringResource(id = R.string.desc_icon),
+                tint = iconColor,
+                modifier = Modifier.padding(vertical = 2.dp)
+            )
+        }
+        painterIcon?.let {
+            Icon(
+                painter = it,
+                contentDescription = stringResource(id = R.string.desc_icon),
+                tint = iconColor,
+                modifier = Modifier.padding(vertical = 2.dp)
+            )
+        }
         Spacer(modifier = Modifier.width(5.dp))
         Text(
             text = labelString,
