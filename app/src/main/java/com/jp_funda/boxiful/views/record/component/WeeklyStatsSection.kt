@@ -83,17 +83,21 @@ fun WeeklyStatsSection() {
 
         // Bar chart
         AnimatedBarChart(
-            labelValueMap = viewModel.dateCaloriePairsInWeek.map {
-                it.first.dayOfWeek.getDisplayName(
-                    TextStyle.SHORT,
-                    Locale.getDefault(),
-                ) to it.second.toFloat()
+            labelValueDescList = viewModel.dateCaloriePairsInWeek.map { pair ->
+                Triple(
+                    first = pair.first.dayOfWeek.getDisplayName(
+                        TextStyle.SHORT,
+                        Locale.getDefault(),
+                    ),
+                    second = pair.second.toFloat(),
+                    third = "${pair.first} - ${pair.second}kcal",
+                )
             },
             indicatorColor = Red500,
             modifier = Modifier
                 .clip(RoundedCornerShape(5.dp))
                 .background(Color.DarkGray.copy(alpha = 0.3f))
-                .padding(5.dp)
+                .padding(vertical = 10.dp, horizontal = 5.dp)
         )
     }
 }

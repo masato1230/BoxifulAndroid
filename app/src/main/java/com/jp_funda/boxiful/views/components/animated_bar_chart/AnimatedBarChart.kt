@@ -1,8 +1,10 @@
 package com.jp_funda.boxiful.views.components.animated_bar_chart
 
+import android.widget.Toast
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -12,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -19,18 +22,19 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AnimatedBarChart(
     modifier: Modifier = Modifier,
-    labelValueMap: List<Pair<String, Float>>,
+    labelValueDescList: List<Triple<String, Float, String>>,
     indicatorColor: Color = MaterialTheme.colors.primary,
     indicatorWidth: Dp = 10.dp,
     columnPadding: Dp = 10.dp,
 ) {
-    val columnWeight = 1f / labelValueMap.size
+    val columnWeight = 1f / labelValueDescList.size
     var isAnimationStarted by remember { mutableStateOf(false) }
     val animatedIndicatorHeightPercentage by animateFloatAsState(
         targetValue = if (isAnimationStarted) 1f else 0f,
         animationSpec = tween(2000)
     )
-    val maxValue = labelValueMap.maxOf { it.second }
+    val maxValue = labelValueDescList.maxOf { it.second }
+    val context = LocalContext.current
 
     LaunchedEffect(isAnimationStarted) {
         isAnimationStarted = true
@@ -43,12 +47,19 @@ fun AnimatedBarChart(
                 .heightIn(min = maxValue.dp),
             verticalAlignment = Alignment.Bottom,
         ) {
-            for (pair in labelValueMap) {
-                val value = pair.second
+            for (triple in labelValueDescList) {
+                val value = triple.second
                 Box(
                     modifier = Modifier
                         .weight(columnWeight)
-                        .padding(horizontal = columnPadding),
+                        .padding(horizontal = columnPadding)
+                        .clickable {
+                            Toast.makeText(
+                                context,
+                                triple.third,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
                     contentAlignment = Alignment.BottomCenter,
                 ) {
                     Box(
@@ -62,9 +73,10 @@ fun AnimatedBarChart(
                 }
             }
         }
+        Spacer(modifier = Modifier.height(5.dp))
         Row(modifier = Modifier.fillMaxWidth()) {
-            for (pair in labelValueMap) {
-                val label = pair.first
+            for (triple in labelValueDescList) {
+                val label = triple.first
                 Text(
                     text = label,
                     modifier = Modifier.weight(columnWeight),
