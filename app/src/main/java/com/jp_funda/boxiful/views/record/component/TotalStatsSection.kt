@@ -25,7 +25,7 @@ import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.record.RecordViewModel
 
 @Composable
-fun StatsSection() {
+fun TotalStatsSection() {
     val viewModel = hiltViewModel<RecordViewModel>()
 
     Card(

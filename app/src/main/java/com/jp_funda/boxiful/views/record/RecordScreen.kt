@@ -24,7 +24,7 @@ import com.jp_funda.boxiful.views.components.ErrorView
 import com.jp_funda.boxiful.views.components.LoadingView
 import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.components.header.Header
-import com.jp_funda.boxiful.views.record.component.StatsSection
+import com.jp_funda.boxiful.views.record.component.TotalStatsSection
 
 @Composable
 fun RecordScreen(navController: NavController) {
@@ -83,7 +83,7 @@ fun OnSuccessContent() {
         Spacer(modifier = Modifier.height(10.dp))
 
         // Stats Section
-        StatsSection()
+        TotalStatsSection()
         Spacer(modifier = Modifier.height(10.dp))
 
         // Heatmap Section
