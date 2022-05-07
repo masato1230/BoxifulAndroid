@@ -22,6 +22,7 @@ import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.views.components.SnsShareButtons
 import com.jp_funda.boxiful.views.components.animated_bar_chart.AnimatedBarChart
 import com.jp_funda.boxiful.views.record.RecordViewModel
 import java.time.format.TextStyle
@@ -79,7 +80,17 @@ fun WeeklyStatsSection() {
                 )
             }
         }
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(5.dp))
+
+        // Share buttons
+        SnsShareButtons(
+            shareMessage = stringResource(
+                id = R.string.record_weekly_share_template,
+                viewModel.weeklyCalorieConsumption,
+                viewModel.weeklyNumberOfTrainings,
+            )
+        )
+        Spacer(modifier = Modifier.height(5.dp))
 
         // Bar chart
         AnimatedBarChart(

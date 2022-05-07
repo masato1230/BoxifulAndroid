@@ -41,10 +41,12 @@
     <string name="record_total_number_of_trainings">これまでのトレーニング回数</string>
     <string name="record_total_boxiful_point">累計Boxifulポイント</string>
     <string name="record_total_calorie_consumption">累計消費カロリー</string>
+    <string name="record_total_share_template">【Boxiful累計記録】\n\nBoxifulでこれまでに消費したカロリーは%dkcalでした!\n1週間のトレーニング回数は%d回\nhttps://boxiful.jp</string>
     <string name="record_weekly_title">週間トレーニング記録</string>
     <string name="record_weekly_number_of_trainings">週間トレーニング回数</string>
     <string name="record_weekly_boxiful_point">週間Boxifulポイント</string>
     <string name="record_weekly_calorie_consumption">週間消費カロリー</string>
+    <string name="record_weekly_share_template">【Boxiful一週間記録】\n\nBoxifulで1週間の間に消費したカロリーは%dkcalでした！\n1週間のトレーニング回数は%d回\nhttps://boxiful.jp</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
     <string name="result_unit_score">%d点</string>
