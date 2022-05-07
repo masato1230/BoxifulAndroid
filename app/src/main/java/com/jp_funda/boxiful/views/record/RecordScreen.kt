@@ -95,7 +95,7 @@ fun OnSuccessContent() {
             cellLevelMap = viewModel.dateTrainingLevelMap,
             cellPopupTextsMap = viewModel.dateTextsMap,
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         // WeeklyStats
         // Title

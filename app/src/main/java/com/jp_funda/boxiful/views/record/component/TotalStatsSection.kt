@@ -34,7 +34,7 @@ fun TotalStatsSection() {
             StatsRow(
                 vectorIcon = Icons.Default.DateRange,
                 iconColor = Green500,
-                labelString = stringResource(id = R.string.record_number_of_trainings),
+                labelString = stringResource(id = R.string.record_total_number_of_trainings),
                 valueString = stringResource(id = R.string.unit_times, viewModel.numberOfTrainings),
             )
             // Boxiful points
