@@ -20,6 +20,7 @@ import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.views.components.SnsShareButtons
 import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.record.RecordViewModel
 
@@ -76,7 +77,17 @@ fun TotalStatsSection() {
                 )
             }
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(5.dp))
+
+        // Share buttons
+        SnsShareButtons(
+            shareMessage = stringResource(
+                id = R.string.record_total_share_template,
+                viewModel.totalCalorieConsumption,
+                viewModel.totalNumberOfTrainings,
+            )
+        )
+        Spacer(modifier = Modifier.height(5.dp))
 
         // Heatmap
         CalendarHeatmap(

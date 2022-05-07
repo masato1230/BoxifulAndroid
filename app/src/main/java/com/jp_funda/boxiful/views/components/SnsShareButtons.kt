@@ -17,22 +17,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
-import com.jp_funda.boxiful.models.ResultStats
 import com.jp_funda.boxiful.ui.theme.Blue500
 import com.jp_funda.boxiful.ui.theme.Green500
 import java.net.URLEncoder
 
 
 @Composable
-fun SnsShareButtons(resultStats: ResultStats) {
+fun SnsShareButtons(shareMessage: String) {
     val context = LocalContext.current
-    val message = stringResource(
-        id = R.string.result_share_template,
-        resultStats.boxifulAge,
-        resultStats.greatCount,
-        resultStats.goodCount,
-        resultStats.missCount,
-    )
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -46,7 +38,7 @@ fun SnsShareButtons(resultStats: ResultStats) {
             contentDescription = stringResource(id = R.string.desc_line_icon)
         ) {
             // Share result at line
-            val encodedMessage = URLEncoder.encode(message, "utf-8")
+            val encodedMessage = URLEncoder.encode(shareMessage, "utf-8")
             val intent = Intent()
             intent.action = Intent.ACTION_VIEW
             intent.data = Uri.parse("https://line.me/R/share?text=$encodedMessage")
@@ -61,7 +53,7 @@ fun SnsShareButtons(resultStats: ResultStats) {
             contentDescription = stringResource(id = R.string.desc_twitter_icon)
         ) {
             // Share result at twitter
-            val tweetUrl = ("https://twitter.com/intent/tweet?text=$message")
+            val tweetUrl = ("https://twitter.com/intent/tweet?text=$shareMessage")
             val uri = Uri.parse(tweetUrl)
             context.startActivity(Intent(Intent.ACTION_VIEW, uri))
         }
