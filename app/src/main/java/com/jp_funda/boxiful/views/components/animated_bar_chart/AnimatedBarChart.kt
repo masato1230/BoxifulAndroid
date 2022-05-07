@@ -22,17 +22,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import java.lang.Float.min
 
 @Composable
 fun AnimatedBarChart(
-    title: String? = null,
     modifier: Modifier = Modifier,
+    title: String? = null,
     labelValueDescList: List<Triple<String, Float, String>>,
     indicatorColor: Color = MaterialTheme.colors.primary,
     isEnableRuledLines: Boolean = true,
     ruledLineStep: Int = 50,
     indicatorWidth: Dp = 10.dp,
     columnPadding: Dp = 10.dp,
+    maxIndicatorHeight: Dp = 150.dp,
 ) {
     val columnWeight = 1f / labelValueDescList.size
     var isAnimationStarted by remember { mutableStateOf(false) }
@@ -41,6 +43,7 @@ fun AnimatedBarChart(
         animationSpec = tween(1000)
     )
     val maxValue = labelValueDescList.maxOf { it.second }
+    val indicatorScale = min(1f, maxIndicatorHeight.value / maxValue)
     val context = LocalContext.current
 
     LaunchedEffect(isAnimationStarted) {
@@ -52,11 +55,11 @@ fun AnimatedBarChart(
         title?.let {
             Text(text = it, style = MaterialTheme.typography.caption)
         }
-        // Bars
+        // Graphic Content
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = maxValue.dp)
+                .heightIn(min = maxValue.dp * indicatorScale)
                 .drawBehind {
                     // Draw ruled lines
                     if (isEnableRuledLines) {
@@ -68,17 +71,20 @@ fun AnimatedBarChart(
                         }
                         while (ruledLineValue < maxValue) {
                             drawLine(
-                                start = Offset(x = 0f, y = size.height - ruledLineValue * density),
+                                start = Offset(
+                                    x = 0f,
+                                    y = size.height - ruledLineValue * density * indicatorScale,
+                                ),
                                 end = Offset(
                                     x = size.width,
-                                    y = size.height - ruledLineValue * density,
+                                    y = size.height - ruledLineValue * density * indicatorScale,
                                 ),
                                 color = Color.Gray,
                             )
                             drawContext.canvas.nativeCanvas.drawText(
                                 ruledLineValue.toString(),
                                 size.width - textPaint.textSize,
-                                size.height - ruledLineValue * density,
+                                size.height - ruledLineValue * density * indicatorScale,
                                 textPaint,
                             )
                             ruledLineValue += ruledLineStep
@@ -106,7 +112,7 @@ fun AnimatedBarChart(
                 ) {
                     Box(
                         modifier = Modifier
-                            .height(value.dp * animatedIndicatorHeightPercentage)
+                            .height(value.dp * animatedIndicatorHeightPercentage * indicatorScale)
                             .widthIn(min = 1.dp)
                             .clip(RoundedCornerShape(1000.dp))
                             .width(indicatorWidth)
