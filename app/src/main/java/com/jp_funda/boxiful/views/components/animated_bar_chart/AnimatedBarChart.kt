@@ -38,7 +38,7 @@ fun AnimatedBarChart(
     var isAnimationStarted by remember { mutableStateOf(false) }
     val animatedIndicatorHeightPercentage by animateFloatAsState(
         targetValue = if (isAnimationStarted) 1f else 0f,
-        animationSpec = tween(2000)
+        animationSpec = tween(1000)
     )
     val maxValue = labelValueDescList.maxOf { it.second }
     val context = LocalContext.current
