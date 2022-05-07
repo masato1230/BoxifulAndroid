@@ -33,15 +33,15 @@
     <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
     <string name="home_service_description">メニュー一覧からトレーニング内容を選択して運動を始めましょう!</string>
     <!-- record -->
-    <string name="record_title">累計トレーニング記録</string>
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>
     <string name="record_calorie_consumption">消費したカロリー %dkcal</string>
     <string name="record_boxiful_point">Boxifulポイント %dポイント</string>
+    <string name="record_total_title">累計トレーニング記録</string>
     <string name="record_total_number_of_trainings">これまでのトレーニング回数</string>
     <string name="record_total_boxiful_point">累計Boxifulポイント</string>
     <string name="record_total_calorie_consumption">累計消費カロリー</string>
-    <string name="record_weekly_stats">週間トレーニング記録</string>
+    <string name="record_weekly_title">週間トレーニング記録</string>
     <string name="record_weekly_number_of_trainings">週間トレーニング回数</string>
     <string name="record_weekly_boxiful_point">週間Boxifulポイント</string>
     <string name="record_weekly_calorie_consumption">週間消費カロリー</string>

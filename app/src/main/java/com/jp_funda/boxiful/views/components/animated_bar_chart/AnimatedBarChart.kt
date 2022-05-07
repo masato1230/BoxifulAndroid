@@ -30,13 +30,19 @@ fun AnimatedBarChart(
         targetValue = if (isAnimationStarted) 1f else 0f,
         animationSpec = tween(2000)
     )
+    val maxValue = labelValueMap.maxOf { it.second }
 
     LaunchedEffect(isAnimationStarted) {
         isAnimationStarted = true
     }
 
     Column(modifier = modifier) {
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = maxValue.dp),
+            verticalAlignment = Alignment.Bottom,
+        ) {
             for (pair in labelValueMap) {
                 val value = pair.second
                 Box(
