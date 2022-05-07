@@ -8,16 +8,21 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun AnimatedBarChart(
     modifier: Modifier = Modifier,
-    labelValueMap: Map<String, Int>,
+    labelValueMap: List<Pair<String, Int>>,
     indicatorColor: Color = MaterialTheme.colors.primary,
+    indicatorWidth: Dp = 10.dp,
+    columnPadding: Dp = 10.dp,
 ) {
     val columnWeight = 1f / labelValueMap.size
     var isAnimationStarted by remember { mutableStateOf(false) }
@@ -32,19 +37,33 @@ fun AnimatedBarChart(
 
     Column(modifier = modifier) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            for (value in labelValueMap.values) {
+            for (pair in labelValueMap) {
+                val value = pair.second
                 Box(
                     modifier = Modifier
-                        .height(value.dp * animatedIndicatorHeightPercentage)
-                        .clip(RoundedCornerShape(1000.dp))
                         .weight(columnWeight)
-                        .background(indicatorColor)
-                )
+                        .padding(horizontal = columnPadding),
+                    contentAlignment = Alignment.BottomCenter,
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .height(value.dp * animatedIndicatorHeightPercentage)
+                            .widthIn(min = 1.dp)
+                            .clip(RoundedCornerShape(1000.dp))
+                            .width(indicatorWidth)
+                            .background(indicatorColor)
+                    )
+                }
             }
         }
         Row(modifier = Modifier.fillMaxWidth()) {
-            for (label in labelValueMap.keys) {
-                Text(text = label, modifier = Modifier.weight(columnWeight))
+            for (pair in labelValueMap) {
+                val label = pair.first
+                Text(
+                    text = label,
+                    modifier = Modifier.weight(columnWeight),
+                    textAlign = TextAlign.Center,
+                )
             }
         }
     }

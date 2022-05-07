@@ -114,8 +114,17 @@ fun OnSuccessContent() {
         Spacer(modifier = Modifier.height(10.dp))
         // Card
         WeeklyStatsSection()
+        Spacer(modifier = Modifier.height(10.dp))
         // Bar chart
-        AnimatedBarChart(labelValueMap = mapOf("test" to 1000))
+        AnimatedBarChart(labelValueMap = listOf(
+            "test" to 100,
+            "test" to 100,
+            "test" to 100,
+            "test" to 100,
+            "test" to 100,
+            "test" to 100,
+            "test" to 100,
+        ))
 
         Spacer(modifier = Modifier.height(50.dp))
     }
