@@ -60,7 +60,7 @@ fun CalendarHeatmap(
     // Heatmap Contents
     val monthLabelHeight = 20.dp
 
-    Row(modifier = modifier.horizontalScroll(rememberScrollState())) {
+    Row(modifier = modifier.horizontalScroll(rememberScrollState(initial = Int.MAX_VALUE))) {
         WeekDayLabel(
             cellSize = cellSize,
             cellPadding = cellPadding,

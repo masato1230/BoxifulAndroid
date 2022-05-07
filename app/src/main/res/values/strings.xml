@@ -12,6 +12,8 @@
     <string name="cancel">キャンセル</string>
     <string name="finish">終了!</string>
     <string name="unit_kcal">%dkcal</string>
+    <string name="unit_times">%d回</string>
+    <string name="unit_points">%dポイント</string>
     <string name="great">Great</string>
     <string name="good">Good</string>
     <string name="miss">Miss</string>
@@ -36,6 +38,9 @@
     <string name="record_login">ログインする</string>
     <string name="record_calorie_consumption">消費したカロリー %dkcal</string>
     <string name="record_boxiful_point">Boxifulポイント %dポイント</string>
+    <string name="record_number_of_trainings">これまでのトレーニング回数</string>
+    <string name="record_total_boxiful_point">累計ボクシフルポイント</string>
+    <string name="record_total_calorie_consumption">累計消費カロリー</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
     <string name="result_unit_score">%d点</string>

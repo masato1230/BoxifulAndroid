@@ -31,6 +31,21 @@ class RecordViewModel @Inject constructor(
 
     private var trainingResults: List<TrainingResultInfo>? = null
 
+    val numberOfTrainings: Int
+        get() {
+            return trainingResults?.size ?: 0
+        }
+
+    val totalBoxifulPoints: Int
+        get() {
+            return trainingResults?.sumOf { it.point } ?: 0
+        }
+
+    val totalCalorieConsumption: Int
+        get() {
+            return trainingResults?.sumOf { it.calorie } ?: 0
+        }
+
     val resultStartDate: LocalDate = LocalDate.now().minusDays(180)
 
     /** LocalDate & CalendarHeatmapLevel map for draw graph. */

@@ -1,6 +1,8 @@
 package com.jp_funda.boxiful.views.record
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -22,6 +24,7 @@ import com.jp_funda.boxiful.views.components.ErrorView
 import com.jp_funda.boxiful.views.components.LoadingView
 import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.components.header.Header
+import com.jp_funda.boxiful.views.record.component.TotalStatsSection
 
 @Composable
 fun RecordScreen(navController: NavController) {
@@ -68,7 +71,7 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
 fun OnSuccessContent() {
     val viewModel = hiltViewModel<RecordViewModel>()
 
-    Column(modifier = Modifier.padding(10.dp)) {
+    Column(modifier = Modifier.padding(20.dp)) {
         // Screen Title
         Text(
             text = stringResource(id = R.string.record_title),
@@ -77,7 +80,13 @@ fun OnSuccessContent() {
             fontWeight = FontWeight.ExtraBold,
             modifier = Modifier.padding(top = 10.dp),
         )
-        StatsSection()
+        Spacer(modifier = Modifier.height(10.dp))
+
+        // Stats Section
+        TotalStatsSection()
+        Spacer(modifier = Modifier.height(10.dp))
+
+        // Heatmap Section
         CalendarHeatmap(
             modifier = Modifier.padding(10.dp),
             startDate = viewModel.resultStartDate,
@@ -88,9 +97,4 @@ fun OnSuccessContent() {
             cellPopupTextsMap = viewModel.dateTextsMap,
         )
     }
-}
-
-@Composable
-fun StatsSection() {
-    // TODO
 }
