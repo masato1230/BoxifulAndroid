@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -21,6 +23,7 @@ import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.components.ErrorView
 import com.jp_funda.boxiful.views.components.LoadingView
+import com.jp_funda.boxiful.views.components.animated_bar_chart.AnimatedBarChart
 import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.components.header.Header
 import com.jp_funda.boxiful.views.record.component.TotalStatsSection
@@ -71,7 +74,11 @@ fun RecordMainContent(modifier: Modifier = Modifier, navController: NavControlle
 fun OnSuccessContent() {
     val viewModel = hiltViewModel<RecordViewModel>()
 
-    Column(modifier = Modifier.padding(20.dp)) {
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
         // Screen Title
         Text(
             text = stringResource(id = R.string.record_title),
@@ -107,5 +114,9 @@ fun OnSuccessContent() {
         Spacer(modifier = Modifier.height(10.dp))
         // Card
         WeeklyStatsSection()
+        // Bar chart
+        AnimatedBarChart(labelValueMap = mapOf("test" to 1000))
+
+        Spacer(modifier = Modifier.height(50.dp))
     }
 }
