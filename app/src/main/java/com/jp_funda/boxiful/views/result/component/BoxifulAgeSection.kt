@@ -38,6 +38,13 @@ fun BoxifulAgeSection(resultStats: ResultStats) {
         )
         Spacer(modifier = Modifier.height(20.dp))
         // SNS share buttons
-        SnsShareButtons(resultStats)
+        val shareMessage = stringResource(
+            id = R.string.result_share_template,
+            resultStats.boxifulAge,
+            resultStats.greatCount,
+            resultStats.goodCount,
+            resultStats.missCount,
+        )
+        SnsShareButtons(shareMessage)
     }
 }
