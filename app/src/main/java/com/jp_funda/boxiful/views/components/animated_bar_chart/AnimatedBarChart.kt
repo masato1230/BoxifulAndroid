@@ -1,5 +1,6 @@
 package com.jp_funda.boxiful.views.components.animated_bar_chart
 
+import android.graphics.Paint
 import android.widget.Toast
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -16,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -26,6 +28,8 @@ fun AnimatedBarChart(
     modifier: Modifier = Modifier,
     labelValueDescList: List<Triple<String, Float, String>>,
     indicatorColor: Color = MaterialTheme.colors.primary,
+    isEnableRuledLines: Boolean = true,
+    ruledLineStep: Int = 50,
     indicatorWidth: Dp = 10.dp,
     columnPadding: Dp = 10.dp,
 ) {
@@ -49,21 +53,31 @@ fun AnimatedBarChart(
                 .heightIn(min = maxValue.dp)
                 .drawBehind {
                     // Draw ruled lines
-                    drawLine(
-                        start = Offset(x = 0f, y = size.height - 50 * density),
-                        end = Offset(x = size.width, y = size.height - 50 * density),
-                        color = Color.Gray,
-                    )
-                    drawLine(
-                        start = Offset(x = 0f, y = size.height - 100 * density),
-                        end = Offset(x = size.width, y = size.height - 100 * density),
-                        color = Color.Gray,
-                    )
-                    drawLine(
-                        start = Offset(x = 0f, y = size.height),
-                        end = Offset(x = size.width, y = size.height),
-                        color = Color.Gray,
-                    )
+                    if (isEnableRuledLines) {
+                        var ruledLineValue = 0
+                        val textPaint = Paint()
+                        textPaint.apply {
+                            textSize = 30f
+                            color = android.graphics.Color.WHITE
+                        }
+                        while (ruledLineValue < maxValue) {
+                            drawLine(
+                                start = Offset(x = 0f, y = size.height - ruledLineValue * density),
+                                end = Offset(
+                                    x = size.width,
+                                    y = size.height - ruledLineValue * density,
+                                ),
+                                color = Color.Gray,
+                            )
+                            drawContext.canvas.nativeCanvas.drawText(
+                                ruledLineValue.toString(),
+                                size.width - textPaint.textSize,
+                                size.height - ruledLineValue * density,
+                                textPaint,
+                            )
+                            ruledLineValue += ruledLineStep
+                        }
+                    }
                 },
             verticalAlignment = Alignment.Bottom,
         ) {
