@@ -19,6 +19,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.AppConst
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.Instruction
+import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.models.SingleMenuResult
 import com.jp_funda.boxiful.navigation.NavigationRoutes
@@ -26,6 +27,7 @@ import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
 import com.jp_funda.boxiful.views.training.component.BottomInstructionOverlay
+import com.jp_funda.boxiful.views.training.component.ErrorRegisteringResultDialog
 import com.jp_funda.boxiful.views.training.component.FinishModal
 import com.jp_funda.boxiful.views.training.component.UpperInstructionOverlay
 import kotlinx.coroutines.delay
@@ -60,7 +62,16 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
     RequestCameraPermission(
         navController = navController,
     ) {
+        // Camera & Pose Preview
         PosePreview(poseObservers = listOf(viewModel))
+
+        // ErrorDialog
+        val networkStatus = viewModel.networkStatus.observeAsState()
+        if (networkStatus.value is NetworkStatus.Error) {
+            ErrorRegisteringResultDialog {
+                navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
+            }
+        }
 
         // Show training contents
         val observedInstructionIndex = viewModel.instructionIndex.observeAsState()
@@ -98,7 +109,9 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 val composableScope = rememberCoroutineScope()
                 composableScope.launch {
                     delay(1500)
-                    navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
+                    if (networkStatus.value !is NetworkStatus.Error) {
+                        navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
+                    }
                 }
             } else { // Next instruction
                 // Instruction overlay

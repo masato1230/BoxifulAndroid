@@ -132,6 +132,8 @@ class TrainingViewModel @Inject constructor(
         if (_networkStatus.value != NetworkStatus.Waiting) return
 
         viewModelScope.launch {
+            _networkStatus.value = NetworkStatus.Loading
+            try {
             val isSucceed = trainingResultRepository.postTrainingResult(
                 accessToken = authPreferences.getString(PreferenceKey.ACCESS_TOKEN)!!,
                 trainingResultInfo = trainingResultInfo
@@ -139,6 +141,10 @@ class TrainingViewModel @Inject constructor(
 
             if (isSucceed) _networkStatus.value = NetworkStatus.Success
             else _networkStatus.value = NetworkStatus.Error(R.string.error_connect_server)
+            } catch (e: Exception) {
+                _networkStatus.value = NetworkStatus.Error(R.string.error_connect_server)
+                e.printStackTrace()
+            }
         }
     }
 }

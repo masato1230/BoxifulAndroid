@@ -98,4 +98,5 @@
     <string name="error_empty_email_or_password">メールアドレスかパスワードが空です。</string>
     <string name="error_already_used_or_invalid_email">既にこのメールアドレスは使用されているか、不正なメールアドレスです。</string>
     <string name="error_connect_server">サーバー接続に失敗しました。</string>
+    <string name="error_desc_registering_result">トレーニング結果を保存するにはネットワーク環境が必要です。</string>
 </resources>
