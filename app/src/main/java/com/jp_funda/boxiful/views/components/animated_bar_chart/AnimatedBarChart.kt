@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AnimatedBarChart(
+    title: String? = null,
     modifier: Modifier = Modifier,
     labelValueDescList: List<Triple<String, Float, String>>,
     indicatorColor: Color = MaterialTheme.colors.primary,
@@ -47,6 +48,11 @@ fun AnimatedBarChart(
     }
 
     Column(modifier = modifier) {
+        // Title
+        title?.let {
+            Text(text = it, style = MaterialTheme.typography.caption)
+        }
+        // Bars
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -110,6 +116,7 @@ fun AnimatedBarChart(
             }
         }
         Spacer(modifier = Modifier.height(5.dp))
+        // Labels
         Row(modifier = Modifier.fillMaxWidth()) {
             for (triple in labelValueDescList) {
                 val label = triple.first

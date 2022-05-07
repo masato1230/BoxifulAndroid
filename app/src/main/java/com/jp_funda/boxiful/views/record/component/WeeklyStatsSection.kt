@@ -83,6 +83,7 @@ fun WeeklyStatsSection() {
 
         // Bar chart
         AnimatedBarChart(
+            title = stringResource(id = R.string.record_weekly_calorie_consumption),
             labelValueDescList = viewModel.dateCaloriePairsInWeek.map { pair ->
                 Triple(
                     first = pair.first.dayOfWeek.getDisplayName(
