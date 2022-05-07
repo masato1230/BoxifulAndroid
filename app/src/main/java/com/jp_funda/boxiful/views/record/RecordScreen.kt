@@ -10,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpSize
@@ -25,6 +24,7 @@ import com.jp_funda.boxiful.views.components.LoadingView
 import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.components.header.Header
 import com.jp_funda.boxiful.views.record.component.TotalStatsSection
+import com.jp_funda.boxiful.views.record.component.WeeklyStatsSection
 
 @Composable
 fun RecordScreen(navController: NavController) {
@@ -75,7 +75,6 @@ fun OnSuccessContent() {
         // Screen Title
         Text(
             text = stringResource(id = R.string.record_title),
-            color = Color.White,
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.ExtraBold,
             modifier = Modifier.padding(top = 10.dp),
@@ -96,5 +95,17 @@ fun OnSuccessContent() {
             cellLevelMap = viewModel.dateTrainingLevelMap,
             cellPopupTextsMap = viewModel.dateTextsMap,
         )
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // WeeklyStats
+        // Title
+        Text(
+            text = stringResource(id = R.string.record_weekly_stats),
+            style = MaterialTheme.typography.h5,
+            fontWeight = FontWeight.ExtraBold,
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        // Card
+        WeeklyStatsSection()
     }
 }

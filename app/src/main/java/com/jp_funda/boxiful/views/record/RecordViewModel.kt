@@ -30,23 +30,49 @@ class RecordViewModel @Inject constructor(
     val networkStatus: LiveData<NetworkStatus> = _networkStatus
 
     private var trainingResults: List<TrainingResultInfo>? = null
+    private val trainingResultsInWeek: List<TrainingResultInfo>?
+        get() {
+            val dateBeforeOneWeek = LocalDate.now().minusWeeks(1)
+            return trainingResults?.filter { it.createdAt.isAfter(dateBeforeOneWeek) }
+        }
 
-    val numberOfTrainings: Int
+    val resultStartDate: LocalDate = LocalDate.now().minusDays(180)
+
+    /** Total number of trainings. - for total stats */
+    val totalNumberOfTrainings: Int
         get() {
             return trainingResults?.size ?: 0
         }
 
+    /** Total boxiful points. - for total stats */
     val totalBoxifulPoints: Int
         get() {
             return trainingResults?.sumOf { it.point } ?: 0
         }
 
+    /** Total calorie consumption. - for total stats */
     val totalCalorieConsumption: Int
         get() {
             return trainingResults?.sumOf { it.calorie } ?: 0
         }
 
-    val resultStartDate: LocalDate = LocalDate.now().minusDays(180)
+    /** Weekly number of training. -for weekly stats */
+    val weeklyNumberOfTrainings: Int
+        get() {
+            return trainingResultsInWeek?.count() ?: 0
+        }
+
+    /** Weekly boxiful points. -for weekly stats */
+    val weeklyBoxifulPoints: Int
+        get() {
+            return trainingResultsInWeek?.sumOf { it.point } ?: 0
+        }
+
+    /** Weekly calorie consumption. -for weekly stats */
+    val weeklyCalorieConsumption: Int
+        get() {
+            return trainingResultsInWeek?.sumOf { it.calorie } ?: 0
+        }
 
     /** LocalDate & CalendarHeatmapLevel map for draw graph. */
     val dateTrainingLevelMap: Map<LocalDate, CalendarHeatmapLevel>

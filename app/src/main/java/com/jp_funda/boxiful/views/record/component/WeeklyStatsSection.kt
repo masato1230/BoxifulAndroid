@@ -21,7 +21,7 @@ import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.record.RecordViewModel
 
 @Composable
-fun TotalStatsSection() {
+fun WeeklyStatsSection() {
     val viewModel = hiltViewModel<RecordViewModel>()
 
     Card(
@@ -34,27 +34,27 @@ fun TotalStatsSection() {
             StatsRow(
                 vectorIcon = Icons.Default.DateRange,
                 iconColor = Green500,
-                labelString = stringResource(id = R.string.record_total_number_of_trainings),
-                valueString = stringResource(id = R.string.unit_times, viewModel.totalNumberOfTrainings),
+                labelString = stringResource(id = R.string.record_weekly_number_of_trainings),
+                valueString = stringResource(id = R.string.unit_times, viewModel.weeklyNumberOfTrainings),
             )
             // Boxiful points
             StatsRow(
                 vectorIcon = Icons.Default.CheckCircle,
                 iconColor = Yellow500,
-                labelString = stringResource(id = R.string.record_total_boxiful_point),
+                labelString = stringResource(id = R.string.record_weekly_boxiful_point),
                 valueString = stringResource(
                     id = R.string.unit_points,
-                    viewModel.totalBoxifulPoints,
+                    viewModel.weeklyBoxifulPoints,
                 ),
             )
             // Calorie consumption
             StatsRow(
                 painterIcon = painterResource(id = R.drawable.ic_fire),
                 iconColor = Red500,
-                labelString = stringResource(id = R.string.record_total_calorie_consumption),
+                labelString = stringResource(id = R.string.record_weekly_calorie_consumption),
                 valueString = stringResource(
                     id = R.string.unit_kcal,
-                    viewModel.totalCalorieConsumption,
+                    viewModel.weeklyCalorieConsumption,
                 ),
             )
         }
