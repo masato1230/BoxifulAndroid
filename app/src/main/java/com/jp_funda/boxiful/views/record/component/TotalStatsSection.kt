@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.jp_funda.boxiful.R
@@ -21,8 +20,8 @@ import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.components.SnsShareButtons
-import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmap
 import com.jp_funda.boxiful.views.record.RecordViewModel
+import com.jp_funda.github_heatmap.GitHubHeatmap
 
 @Composable
 fun TotalStatsSection() {
@@ -90,12 +89,9 @@ fun TotalStatsSection() {
         Spacer(modifier = Modifier.height(5.dp))
 
         // Heatmap
-        CalendarHeatmap(
+        GitHubHeatmap(
             modifier = Modifier.padding(10.dp),
             startDate = viewModel.resultStartDate,
-            cellSize = DpSize(20.dp, 20.dp),
-            cellPadding = 2.dp,
-            roundSize = 5.dp,
             cellLevelMap = viewModel.dateTrainingLevelMap,
             cellPopupTextsMap = viewModel.dateTextsMap,
         )

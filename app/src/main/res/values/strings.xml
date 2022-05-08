@@ -85,7 +85,7 @@
     <string name="menu_kick_title">キックメニュー</string>
     <string name="menu_normal_title">ノーマルメニュー</string>
     <string name="menu_hard_title">ハードメニュー</string>
-    <string name="menu_easy_description">パンチだめの短めのメニューです。ノーマルメニューが難しい人におすすめ</string>
+    <string name="menu_easy_description">パンチだけの短めのメニューです。ノーマルメニューが難しい人におすすめ</string>
     <string name="menu_kick_description">キックだけのメニューです。キックに集中的に取り組みたい人におすすめ</string>
     <string name="menu_normal_description">おすすめメニュー！\nパンチとキックを組み合わせたコースで、短い時間で気持ちよく運動できます。</string>
     <string name="menu_hard_description">ノーマルメニューでは物足りない方におすすめ、長くて少しキツいメニューです。</string>
