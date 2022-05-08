@@ -49,8 +49,7 @@ fun CopyrightSection() {
                 contentDescription = stringResource(id = R.string.desc_app_icon),
                 modifier = Modifier
                     .padding(10.dp)
-                    .size(60.dp)
-                    .alpha(0.6f),
+                    .size(60.dp),
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
