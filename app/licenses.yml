@@ -604,42 +604,42 @@
 - artifact: com.google.mlkit:acceleration:+
   name: acceleration
   copyrightHolder: Google Inc.
-  license: ML Kit Terms of Service
+  license: The Apache Software License, Version 2.0
   licenseUrl: https://developers.google.com/ml-kit/terms
 - artifact: com.google.mlkit:common:+
   name: common
   copyrightHolder: Google Inc.
-  license: ML Kit Terms of Service
+  license: The Apache Software License, Version 2.0
   licenseUrl: https://developers.google.com/ml-kit/terms
 - artifact: com.google.mlkit:mediapipe-internal:+
   name: mediapipe-internal
   copyrightHolder: Google Inc.
-  license: ML Kit Terms of Service
+  license: The Apache Software License, Version 2.0
   licenseUrl: https://developers.google.com/ml-kit/terms
 - artifact: com.google.mlkit:pose-detection-accurate:+
   name: pose-detection-accurate
   copyrightHolder: Google Inc.
-  license: ML Kit Terms of Service
+  license: The Apache Software License, Version 2.0
   licenseUrl: https://developers.google.com/ml-kit/terms
 - artifact: com.google.mlkit:pose-detection-common:+
   name: pose-detection-common
   copyrightHolder: Google Inc.
-  license: ML Kit Terms of Service
+  license: The Apache Software License, Version 2.0
   licenseUrl: https://developers.google.com/ml-kit/terms
 - artifact: com.google.mlkit:pose-detection:+
   name: pose-detection
   copyrightHolder: Google Inc.
-  license: ML Kit Terms of Service
+  license: The Apache Software License, Version 2.0
   licenseUrl: https://developers.google.com/ml-kit/terms
 - artifact: com.google.mlkit:vision-common:+
   name: vision-common
   copyrightHolder: Google Inc.
-  license: ML Kit Terms of Service
+  license: The Apache Software License, Version 2.0
   licenseUrl: https://developers.google.com/ml-kit/terms
 - artifact: com.google.mlkit:vision-interfaces:+
   name: vision-interfaces
   copyrightHolder: Google Inc.
-  license: ML Kit Terms of Service
+  license: The Apache Software License, Version 2.0
   licenseUrl: https://developers.google.com/ml-kit/terms
 - artifact: com.squareup.moshi:moshi-kotlin:+
   name: moshi-kotlin
