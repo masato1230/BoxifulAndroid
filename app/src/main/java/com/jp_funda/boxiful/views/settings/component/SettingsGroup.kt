@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.jp_funda.boxiful.ui.theme.BlueGray900
 
 @Composable
 fun SettingsGroup(
@@ -26,7 +27,7 @@ fun SettingsGroup(
         Surface(
             elevation = 8.dp,
             shape = RoundedCornerShape(20.dp),
-            color = Color.DarkGray,
+            color = BlueGray900,
         ) {
             Column { content() }
         }

@@ -55,6 +55,12 @@
     <!-- settings -->
     <string name="settings_copyright">© 2022 by Masato Ishikawa</string>
     <string name="settings_app_description">実際に体を動かすキックボクシングゲーム</string>
+    <string name="settings_about_boxiful">Boxifulについて</string>
+    <string name="settings_app_version">アプリバージョン</string>
+    <string name="settings_privacy_policy">プライバシー・ポリシー</string>
+    <string name="settings_oss_licences">オープンソースライセンス</string>
+    <string name="settings_contact">お問合せ</string>
+    <string name="settings_contact_form">お問合わせフォーム</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
     <string name="result_unit_score">%d点</string>
