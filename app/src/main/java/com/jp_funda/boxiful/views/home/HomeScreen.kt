@@ -25,6 +25,7 @@ import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.components.SingleMenuCard
 import com.jp_funda.boxiful.views.components.TrainingStartDailog
 import com.jp_funda.boxiful.views.components.header.Header
+import com.jp_funda.boxiful.views.home.component.TodayStatsSection
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -48,10 +49,10 @@ fun HomeMainContent(modifier: Modifier = Modifier, navController: NavController)
         // Top Section
         TopSection()
 
-        // Dashboard Section for logged in user
+        // Today's　Stats Section for logged in user
         if (viewModel.isLoggedIn) {
             Spacer(modifier = Modifier.height(20.dp))
-            DashboardSection()
+            TodayStatsSection(modifier = Modifier.padding(horizontal = 20.dp))
         }
 
         // Menus List Section for logged in users
@@ -90,16 +91,6 @@ fun TopSection() {
             color = Color.LightGray,
         )
     }
-}
-
-/** Dashboard Section for logged in user.  */
-@Composable
-fun DashboardSection() {
-    // TODO add something to show
-    Text(
-        text = "Dashboard",
-        modifier = Modifier.padding(start = 20.dp),
-    )
 }
 
 @Composable
