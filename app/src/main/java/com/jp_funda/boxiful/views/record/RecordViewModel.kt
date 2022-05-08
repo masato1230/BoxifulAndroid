@@ -12,8 +12,8 @@ import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
 import com.jp_funda.boxiful.data.shared_preference.PreferenceKey
 import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.models.TrainingResultInfo
-import com.jp_funda.boxiful.utils.date.DateIterator
-import com.jp_funda.boxiful.views.components.calendar_heat_map.CalendarHeatmapLevel
+import com.jp_funda.github_heatmap.models.GitHubHeatmapLevel
+import com.jp_funda.github_heatmap.utils.DateIterator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -75,7 +75,7 @@ class RecordViewModel @Inject constructor(
         }
 
     /** LocalDate & CalendarHeatmapLevel map for draw graph. */
-    val dateTrainingLevelMap: Map<LocalDate, CalendarHeatmapLevel>
+    val dateTrainingLevelMap: Map<LocalDate, GitHubHeatmapLevel>
         get() {
             val pointMap = mutableMapOf<LocalDate, Int>()
             trainingResults?.let {
@@ -87,10 +87,10 @@ class RecordViewModel @Inject constructor(
             return pointMap.map { originalKeyValue ->
                 val index = originalKeyValue.value / 200
                 val level =
-                    if (index < CalendarHeatmapLevel.values().size) {
-                        CalendarHeatmapLevel.values()[index]
+                    if (index < GitHubHeatmapLevel.values().size) {
+                        GitHubHeatmapLevel.values()[index]
                     } else {
-                        CalendarHeatmapLevel.Level10
+                        GitHubHeatmapLevel.Level10
                     }
                 originalKeyValue.key to level
             }.toMap()
