@@ -36,7 +36,7 @@ fun SettingsScreen(navController: NavController) {
 @Composable
 fun SettingsMainContent(navController: NavController) {
     Column(
-        modifier = Modifier.padding(start = 20.dp, top = 10.dp, end = 20.dp),
+        modifier = Modifier.padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(30.dp),
     ) {
         // About boxiful
