@@ -1,6 +1,5 @@
 package com.jp_funda.boxiful.navigation
 
-//import androidx.navigation.compose.composable
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
