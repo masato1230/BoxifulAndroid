@@ -1,6 +1,8 @@
 package com.jp_funda.boxiful.views.settings
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -14,6 +16,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -35,6 +38,8 @@ fun SettingsScreen(navController: NavController) {
 
 @Composable
 fun SettingsMainContent(navController: NavController) {
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier.padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(30.dp),
@@ -54,7 +59,11 @@ fun SettingsMainContent(navController: NavController) {
                 icon = Icons.Default.Person,
                 title = stringResource(id = R.string.settings_privacy_policy)
             ) {
-                // TODO navigate to privacy & policy web view
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://boxiful.jp/privacy"),
+                )
+                context.startActivity(intent)
             }
             Divider(color = Color.LightGray)
 
@@ -73,7 +82,11 @@ fun SettingsMainContent(navController: NavController) {
                 icon = Icons.Default.Email,
                 title = stringResource(id = R.string.settings_contact_form),
             ) {
-                // TODO intent to contact form
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://boxiful.jp/contact_form"),
+                )
+                context.startActivity(intent)
             }
         }
 
