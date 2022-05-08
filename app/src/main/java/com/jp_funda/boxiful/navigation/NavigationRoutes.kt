@@ -10,4 +10,5 @@ object NavigationRoutes {
     const val RESULT = "result"
     const val LOGIN = "login"
     const val MY_PAGE = "my page"
+    const val OSS_LICENSES = "oss licenses"
 }
