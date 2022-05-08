@@ -1,9 +1,7 @@
 package com.jp_funda.boxiful.navigation
 
 //import androidx.navigation.compose.composable
-import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.navigation.NavHostController
@@ -12,6 +10,10 @@ import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.jp_funda.boxiful.extensions.getLeftSlideInTransaction
+import com.jp_funda.boxiful.extensions.getLeftSlideOutTransaction
+import com.jp_funda.boxiful.extensions.getRightSlideInTransaction
+import com.jp_funda.boxiful.extensions.getRightSlideOutTransaction
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.home.HomeScreen
@@ -46,30 +48,10 @@ fun BottomNavGraph(
         composable(
             route = "${NavigationRoutes.TRAINING}/{$singleMenuKey}",
             arguments = listOf(navArgument(singleMenuKey) { type = NavType.StringType }),
-            enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            popEnterTransition = {
-                slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
-            popExitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            }
+            enterTransition = { getLeftSlideInTransaction() },
+            exitTransition = { getLeftSlideOutTransaction() },
+            popEnterTransition = { getRightSlideInTransaction() },
+            popExitTransition = { getRightSlideOutTransaction() },
         ) { backStackEntry ->
             bottomBarState.value = false
             TrainingScreen(
@@ -83,30 +65,10 @@ fun BottomNavGraph(
         /** Result Screen. */
         composable(
             route = NavigationRoutes.RESULT,
-            enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            popEnterTransition = {
-                slideIntoContainer(
-                    AnimatedContentScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
-            popExitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            }
+            enterTransition = { getLeftSlideInTransaction() },
+            exitTransition = { getLeftSlideOutTransaction() },
+            popEnterTransition = { getRightSlideInTransaction() },
+            popExitTransition = { getRightSlideOutTransaction() },
         ) {
             bottomBarState.value = true
             ResultScreen(navController, mainViewModel.singleMenuScores)
@@ -125,7 +87,13 @@ fun BottomNavGraph(
         }
 
         /** OSS licenses Screen. */
-        composable(route = NavigationRoutes.OSS_LICENSES) {
+        composable(
+            route = NavigationRoutes.OSS_LICENSES,
+            enterTransition = { getLeftSlideInTransaction() },
+            exitTransition = { getLeftSlideOutTransaction() },
+            popEnterTransition = { getRightSlideInTransaction() },
+            popExitTransition = { getRightSlideOutTransaction() },
+        ) {
             bottomBarState.value = false
             OssLicensesScreen()
         }
