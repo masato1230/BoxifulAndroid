@@ -102,5 +102,6 @@ dependencies {
     // OkHttp
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
+    // GitHubHeatmap
     implementation 'com.github.masato1230:github-heatmap:1.0.1'
 }
