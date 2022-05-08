@@ -17,6 +17,7 @@ import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.home.HomeScreen
 import com.jp_funda.boxiful.views.login.LoginScreen
 import com.jp_funda.boxiful.views.my_page.MyPageScreen
+import com.jp_funda.boxiful.views.oss_licenses.OssLicensesScreen
 import com.jp_funda.boxiful.views.record.RecordScreen
 import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.settings.SettingsScreen
@@ -121,6 +122,12 @@ fun BottomNavGraph(
         composable(route = BottomBarMenuItem.Settings.route) {
             bottomBarState.value = true
             SettingsScreen(navController)
+        }
+
+        /** OSS licenses Screen. */
+        composable(route = NavigationRoutes.OSS_LICENSES) {
+            bottomBarState.value = false
+            OssLicensesScreen()
         }
 
         /** Login Screen. */

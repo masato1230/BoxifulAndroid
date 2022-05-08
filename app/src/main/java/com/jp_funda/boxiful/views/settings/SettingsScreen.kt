@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.BuildConfig
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.components.header.Header
 import com.jp_funda.boxiful.views.settings.component.CopyrightSection
 import com.jp_funda.boxiful.views.settings.component.SettingRowOnlyText
@@ -72,7 +73,7 @@ fun SettingsMainContent(navController: NavController) {
                 icon = Icons.Default.List,
                 title = stringResource(id = R.string.settings_oss_licences),
             ) {
-                // TODO navigate to OSS licences web view
+                navController.navigate(NavigationRoutes.OSS_LICENSES)
             }
         }
 
