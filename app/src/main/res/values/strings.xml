@@ -52,6 +52,15 @@
     <string name="record_total_boxiful_point">累計Boxifulポイント</string>
     <string name="record_total_calorie_consumption">累計消費カロリー</string>
     <string name="record_total_share_template">【Boxiful累計記録】\n\nBoxifulでこれまでに消費したカロリーは%dkcalでした!\n1週間のトレーニング回数は%d回\nhttps://boxiful.jp</string>
+    <!-- settings -->
+    <string name="settings_copyright">© 2022 by Masato Ishikawa</string>
+    <string name="settings_app_description">実際に体を動かすキックボクシングゲーム</string>
+    <string name="settings_about_boxiful">Boxifulについて</string>
+    <string name="settings_app_version">アプリバージョン</string>
+    <string name="settings_privacy_policy">プライバシー・ポリシー</string>
+    <string name="settings_oss_licences">オープンソースライセンス</string>
+    <string name="settings_contact">お問合せ</string>
+    <string name="settings_contact_form">お問合わせフォーム</string>
     <!-- result -->
     <string name="result_training_evaluation">トレーニング評価</string>
     <string name="result_unit_score">%d点</string>
@@ -94,6 +103,7 @@
     <string name="permission_allow">許可する</string>
     <string name="permission_camera_rationale">姿勢推定を用いた動作評価を行うのにカメラの使用が必要です。\nカメラ情報がデバイスの外に出ることは一切ございません。</string>
     <!-- content description -->
+    <string name="desc_app_icon">アプリアイコン</string>
     <string name="desc_icon">アイコン</string>
     <string name="desc_left">左</string>
     <string name="desc_right">右</string>

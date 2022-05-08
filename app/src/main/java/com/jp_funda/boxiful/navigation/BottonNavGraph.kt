@@ -13,13 +13,13 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.SingleMenu
-import com.jp_funda.boxiful.views.MainContent
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.home.HomeScreen
 import com.jp_funda.boxiful.views.login.LoginScreen
 import com.jp_funda.boxiful.views.my_page.MyPageScreen
 import com.jp_funda.boxiful.views.record.RecordScreen
 import com.jp_funda.boxiful.views.result.ResultScreen
+import com.jp_funda.boxiful.views.settings.SettingsScreen
 import com.jp_funda.boxiful.views.training.TrainingScreen
 
 @ExperimentalAnimationApi
@@ -120,8 +120,7 @@ fun BottomNavGraph(
         /** Settings Screen. */
         composable(route = BottomBarMenuItem.Settings.route) {
             bottomBarState.value = true
-            // TODO change
-            MainContent()
+            SettingsScreen(navController)
         }
 
         /** Login Screen. */
