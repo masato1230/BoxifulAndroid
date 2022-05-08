@@ -12,8 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.ui.theme.Yellow500
 
 /** SettingRow with only text info */
 @Composable
@@ -34,7 +36,7 @@ fun SettingRowOnlyText(
         icon?.let {
             Icon(
                 imageVector = it,
-                tint = Color.Gray,
+                tint = Yellow500,
                 contentDescription = stringResource(id = R.string.desc_icon),
                 modifier = Modifier.height(40.dp)
             )
@@ -50,10 +52,11 @@ fun SettingRowOnlyText(
         Spacer(modifier = Modifier.width(15.dp))
         Text(
             text = title,
-            color = Color.White,
+            color = Color.Black,
             style = MaterialTheme.typography.subtitle1,
+            fontWeight = FontWeight.Bold,
         )
         Spacer(Modifier.weight(1f))
-        Text(text = value, color = Color.White)
+        Text(text = value, color = Color.Black)
     }
 }

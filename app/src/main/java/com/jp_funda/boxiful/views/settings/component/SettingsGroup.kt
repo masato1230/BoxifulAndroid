@@ -9,8 +9,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.jp_funda.boxiful.ui.theme.BlueGray900
 
 @Composable
 fun SettingsGroup(
@@ -20,14 +20,15 @@ fun SettingsGroup(
     Column {
         Text(
             text = title,
-            style = MaterialTheme.typography.subtitle2,
-            color = Color.LightGray,
+            style = MaterialTheme.typography.h6,
+            color = Color.White,
+            fontWeight = FontWeight.ExtraBold,
             modifier = Modifier.padding(start = 20.dp, bottom = 10.dp),
         )
         Surface(
             elevation = 8.dp,
-            shape = RoundedCornerShape(20.dp),
-            color = BlueGray900,
+            shape = RoundedCornerShape(5.dp),
+            color = Color.White,
         ) {
             Column { content() }
         }

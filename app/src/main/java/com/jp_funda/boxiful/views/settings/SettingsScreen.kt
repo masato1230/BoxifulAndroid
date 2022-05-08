@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -46,7 +47,7 @@ fun SettingsMainContent(navController: NavController) {
                 title = stringResource(id = R.string.settings_app_version),
                 value = BuildConfig.VERSION_NAME,
             )
-            Divider()
+            Divider(color = Color.LightGray)
 
             // Privacy & Policy
             SettingRowWithNext(
@@ -55,7 +56,7 @@ fun SettingsMainContent(navController: NavController) {
             ) {
                 // TODO navigate to privacy & policy web view
             }
-            Divider()
+            Divider(color = Color.LightGray)
 
             // OSS licences
             SettingRowWithNext(

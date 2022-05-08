@@ -13,8 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.ui.theme.Yellow500
 
 /** SettingRow with next screen */
 @Composable
@@ -33,22 +35,23 @@ fun SettingRowWithNext(
     ) {
         Icon(
             imageVector = icon,
-            tint = Color.Gray,
+            tint = Yellow500,
             contentDescription = stringResource(id = R.string.desc_icon),
             modifier = Modifier.height(40.dp)
         )
         Spacer(modifier = Modifier.width(15.dp))
         Text(
             text = title,
-            color = Color.White,
+            color = Color.Black,
             style = MaterialTheme.typography.subtitle1,
+            fontWeight = FontWeight.Bold,
         )
         Spacer(Modifier.weight(1f))
         selectedValue?.let { Text(text = it, color = Color.White) }
         Spacer(modifier = Modifier.width(10.dp))
         Icon(
             imageVector = Icons.Default.ArrowForward,
-            tint = Color.Gray,
+            tint = Color.DarkGray,
             contentDescription = stringResource(id = R.string.desc_right)
         )
     }
