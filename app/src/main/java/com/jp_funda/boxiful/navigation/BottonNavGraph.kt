@@ -120,7 +120,7 @@ fun BottomNavGraph(
         /** Settings Screen. */
         composable(route = BottomBarMenuItem.Settings.route) {
             bottomBarState.value = true
-            SettingsScreen()
+            SettingsScreen(navController)
         }
 
         /** Login Screen. */
