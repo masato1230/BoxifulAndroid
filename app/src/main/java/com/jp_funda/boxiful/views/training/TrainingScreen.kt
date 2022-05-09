@@ -2,15 +2,11 @@ package com.jp_funda.boxiful.views.training
 
 import android.annotation.SuppressLint
 import android.media.MediaPlayer
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -18,7 +14,6 @@ import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.AppConst
 import com.jp_funda.boxiful.R
-import com.jp_funda.boxiful.models.Instruction
 import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.models.SingleMenuResult
@@ -26,14 +21,12 @@ import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
-import com.jp_funda.boxiful.views.training.component.BottomInstructionOverlay
 import com.jp_funda.boxiful.views.training.component.ErrorRegisteringResultDialog
 import com.jp_funda.boxiful.views.training.component.FinishModal
-import com.jp_funda.boxiful.views.training.component.UpperInstructionOverlay
+import com.jp_funda.boxiful.views.training.component.InstructionOverlay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-// TODO calculate boxiful point <- sum(score) / 10
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPermissionsApi
 @Composable
@@ -92,7 +85,7 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 }
             }
 
-            // UI Update
+            // Overlays
             // When finish menu
             if (index >= viewModel.getInstructions().size) {
                 // Pass data to MainViewModel
@@ -122,23 +115,5 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 )
             }
         }
-    }
-}
-
-/**
- * Instruction overlay contents.
- */
-@Composable
-fun InstructionOverlay(title: String, instructionIndex: Int, instructions: List<Instruction>) {
-    val currentInstruction = instructions[instructionIndex]
-
-    Column(modifier = Modifier.fillMaxSize()) {
-        // Upper overlay
-        UpperInstructionOverlay(title, instructionIndex, instructions)
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        // Bottom overlay
-        BottomInstructionOverlay(instructionIndex, currentInstruction)
     }
 }

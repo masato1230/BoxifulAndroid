@@ -3,7 +3,7 @@ package com.jp_funda.boxiful.data.repository.training_result
 import com.jp_funda.boxiful.data.network.TrainingResultService
 import com.jp_funda.boxiful.data.repository.training_result.entity.TrainingResult
 import com.jp_funda.boxiful.models.TrainingResultInfo
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,7 +21,8 @@ class TrainingResultRepository @Inject constructor(
                 menu = it.menu,
                 calorie = it.calorie,
                 point = it.point,
-                createdAt = LocalDate.parse(it.createdAt, DateTimeFormatter.ISO_DATE_TIME),
+                createdAt = LocalDateTime.parse(it.createdAt, DateTimeFormatter.ISO_DATE_TIME)
+                    .plusHours(9).toLocalDate(),
                 score = it.score,
             )
         }
@@ -31,12 +32,15 @@ class TrainingResultRepository @Inject constructor(
      * Post training result.
      * @return whether result posting is succeed
      */
-    suspend fun postTrainingResult(accessToken: String, trainingResultInfo: TrainingResultInfo): Boolean {
+    suspend fun postTrainingResult(
+        accessToken: String,
+        trainingResultInfo: TrainingResultInfo
+    ): Boolean {
         val dataEntity = TrainingResult(
             menu = trainingResultInfo.menu,
             calorie = trainingResultInfo.calorie,
             point = trainingResultInfo.point,
-            score = trainingResultInfo.score
+            score = trainingResultInfo.score,
         )
         val response = trainingResultService.postTrainingResults(
             headers = mapOf("Authorization" to "JWT $accessToken"),

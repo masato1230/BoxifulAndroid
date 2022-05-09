@@ -40,6 +40,9 @@ class TrainingViewModel @Inject constructor(
     private val _instructionIndex = MutableLiveData(0)
     val instructionIndex: LiveData<Int> = _instructionIndex
 
+    /** Mode of overlay. */
+
+
     /** Getter for current instruction */
     private val currentInstruction: Instruction?
         get() {
