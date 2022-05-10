@@ -18,6 +18,11 @@ import com.jp_funda.boxiful.utils.calculator.CalorieCalculator
 import com.jp_funda.boxiful.utils.calculator.ScoreCalculator
 import com.jp_funda.boxiful.views.components.pose_preview.PoseObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -41,7 +46,11 @@ class TrainingViewModel @Inject constructor(
     val instructionIndex: LiveData<Int> = _instructionIndex
 
     /** Mode of overlay. */
+    private val _overlayType = MutableLiveData(OverlayType.Countdown)
+    val overlayType: LiveData<OverlayType> = _overlayType
 
+    private val _countDownTime = MutableStateFlow(5)
+    val countDownTime: StateFlow<Int> = _countDownTime
 
     /** Getter for current instruction */
     private val currentInstruction: Instruction?
@@ -103,6 +112,20 @@ class TrainingViewModel @Inject constructor(
         }
     }
 
+    fun startCountDown() {
+        if (_countDownTime.value != 5) return
+        flow {
+            while (_countDownTime.value > 0) {
+                emit(Unit)
+                _countDownTime.value--
+                delay(1000)
+                if (_countDownTime.value == 0) {
+                    _overlayType.value = OverlayType.Instruction
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
     /**
      * Pose Preview Callback.
      * called from PosePreview when pose is detected. (about 30 ~ 60fps)
@@ -137,13 +160,13 @@ class TrainingViewModel @Inject constructor(
         viewModelScope.launch {
             _networkStatus.value = NetworkStatus.Loading
             try {
-            val isSucceed = trainingResultRepository.postTrainingResult(
-                accessToken = authPreferences.getString(PreferenceKey.ACCESS_TOKEN)!!,
-                trainingResultInfo = trainingResultInfo
-            )
+                val isSucceed = trainingResultRepository.postTrainingResult(
+                    accessToken = authPreferences.getString(PreferenceKey.ACCESS_TOKEN)!!,
+                    trainingResultInfo = trainingResultInfo
+                )
 
-            if (isSucceed) _networkStatus.value = NetworkStatus.Success
-            else _networkStatus.value = NetworkStatus.Error(R.string.error_connect_server)
+                if (isSucceed) _networkStatus.value = NetworkStatus.Success
+                else _networkStatus.value = NetworkStatus.Error(R.string.error_connect_server)
             } catch (e: Exception) {
                 _networkStatus.value = NetworkStatus.Error(R.string.error_connect_server)
                 e.printStackTrace()

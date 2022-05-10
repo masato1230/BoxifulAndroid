@@ -107,12 +107,26 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                     }
                 }
             } else { // Next instruction
-                // Instruction overlay
-                InstructionOverlay(
-                    title = stringResource(viewModel.getSingleMenu().titleRes),
-                    instructionIndex = index,
-                    instructions = viewModel.getInstructions(),
-                )
+                val overlayType = viewModel.overlayType.observeAsState()
+
+                overlayType.value?.let { type ->
+                    when(type) {
+                        OverlayType.Countdown -> {
+                            viewModel.startCountDown()
+                        }
+                        OverlayType.Instruction -> {
+                            // Instruction overlay
+                            InstructionOverlay(
+                                title = stringResource(viewModel.getSingleMenu().titleRes),
+                                instructionIndex = index,
+                                instructions = viewModel.getInstructions(),
+                            )
+                        }
+                        OverlayType.Warning -> {
+                            // TODO
+                        }
+                    }
+                }
             }
         }
     }
