@@ -33,6 +33,10 @@ class TrainingViewModel @Inject constructor(
     private val authPreferences: AuthPreferences,
     private val trainingResultRepository: TrainingResultRepository,
 ) : ViewModel(), PoseObserver {
+    companion object {
+        const val MAX_COUNT_DOWN_TIME = 5
+    }
+
     private val _networkStatus = MutableLiveData<NetworkStatus>(NetworkStatus.Waiting)
     val networkStatus: LiveData<NetworkStatus> = _networkStatus
 
@@ -49,6 +53,9 @@ class TrainingViewModel @Inject constructor(
     private val _overlayType = MutableLiveData(OverlayType.Countdown)
     val overlayType: LiveData<OverlayType> = _overlayType
 
+    private var isCountDownStarted = false
+
+    /** Countdown time. */
     private val _countDownTime = MutableStateFlow(5)
     val countDownTime: StateFlow<Int> = _countDownTime
 
@@ -113,16 +120,16 @@ class TrainingViewModel @Inject constructor(
     }
 
     fun startCountDown() {
-        if (_countDownTime.value != 5) return
+        if (isCountDownStarted) return
+        isCountDownStarted = true
         flow {
+            delay(500)
             while (_countDownTime.value > 0) {
                 emit(Unit)
                 _countDownTime.value--
                 delay(1000)
-                if (_countDownTime.value == 0) {
-                    _overlayType.value = OverlayType.Instruction
-                }
             }
+            _overlayType.value = OverlayType.Instruction
         }.launchIn(viewModelScope)
     }
 
