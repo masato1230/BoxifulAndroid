@@ -1,7 +1,5 @@
 package com.jp_funda.boxiful.views.training.component
 
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,12 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.ui.theme.BlackAlpha50
 import com.jp_funda.boxiful.views.components.count_down_timer.CountDownTimer
 import com.jp_funda.boxiful.views.training.TrainingViewModel
@@ -24,10 +22,6 @@ import com.jp_funda.boxiful.views.training.TrainingViewModel
 fun CountDownOverlay() {
     val viewModel = hiltViewModel<TrainingViewModel>()
     val count = viewModel.countDownTime.collectAsState()
-    val animatedIndicatorPercentage by animateFloatAsState(
-        targetValue = count.value.toFloat(),
-        animationSpec = tween(1000)
-    )
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -41,6 +35,7 @@ fun CountDownOverlay() {
                 .padding(10.dp),
             maxValue = TrainingViewModel.MAX_COUNT_DOWN_TIME,
             remainingTime = count.value,
+            beepSoundRes = R.raw.timer_beep,
         )
     }
 }
