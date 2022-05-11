@@ -21,6 +21,7 @@ import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
+import com.jp_funda.boxiful.views.training.component.CountDownOverlay
 import com.jp_funda.boxiful.views.training.component.ErrorRegisteringResultDialog
 import com.jp_funda.boxiful.views.training.component.FinishModal
 import com.jp_funda.boxiful.views.training.component.InstructionOverlay
@@ -107,12 +108,27 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                     }
                 }
             } else { // Next instruction
-                // Instruction overlay
-                InstructionOverlay(
-                    title = stringResource(viewModel.getSingleMenu().titleRes),
-                    instructionIndex = index,
-                    instructions = viewModel.getInstructions(),
-                )
+                val overlayType = viewModel.overlayType.observeAsState()
+
+                overlayType.value?.let { type ->
+                    when(type) {
+                        OverlayType.Countdown -> {
+                            viewModel.startCountDown()
+                            CountDownOverlay()
+                        }
+                        OverlayType.Instruction -> {
+                            // Instruction overlay
+                            InstructionOverlay(
+                                title = stringResource(viewModel.getSingleMenu().titleRes),
+                                instructionIndex = index,
+                                instructions = viewModel.getInstructions(),
+                            )
+                        }
+                        OverlayType.Warning -> {
+                            // TODO
+                        }
+                    }
+                }
             }
         }
     }

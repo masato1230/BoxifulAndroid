@@ -18,6 +18,11 @@ import com.jp_funda.boxiful.utils.calculator.CalorieCalculator
 import com.jp_funda.boxiful.utils.calculator.ScoreCalculator
 import com.jp_funda.boxiful.views.components.pose_preview.PoseObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -28,6 +33,10 @@ class TrainingViewModel @Inject constructor(
     private val authPreferences: AuthPreferences,
     private val trainingResultRepository: TrainingResultRepository,
 ) : ViewModel(), PoseObserver {
+    companion object {
+        const val MAX_COUNT_DOWN_TIME = 5
+    }
+
     private val _networkStatus = MutableLiveData<NetworkStatus>(NetworkStatus.Waiting)
     val networkStatus: LiveData<NetworkStatus> = _networkStatus
 
@@ -41,7 +50,14 @@ class TrainingViewModel @Inject constructor(
     val instructionIndex: LiveData<Int> = _instructionIndex
 
     /** Mode of overlay. */
+    private val _overlayType = MutableLiveData(OverlayType.Countdown)
+    val overlayType: LiveData<OverlayType> = _overlayType
 
+    private var isCountDownStarted = false
+
+    /** Countdown time. */
+    private val _countDownTime = MutableStateFlow(MAX_COUNT_DOWN_TIME)
+    val countDownTime: StateFlow<Int> = _countDownTime
 
     /** Getter for current instruction */
     private val currentInstruction: Instruction?
@@ -103,11 +119,26 @@ class TrainingViewModel @Inject constructor(
         }
     }
 
+    fun startCountDown() {
+        if (isCountDownStarted) return
+        isCountDownStarted = true
+        flow {
+            delay(500)
+            while (_countDownTime.value > 0) {
+                emit(Unit)
+                _countDownTime.value--
+                delay(1000)
+            }
+            _overlayType.value = OverlayType.Instruction
+        }.launchIn(viewModelScope)
+    }
+
     /**
      * Pose Preview Callback.
      * called from PosePreview when pose is detected. (about 30 ~ 60fps)
      */
     override fun onPoseUpdated(pose: Pose) {
+        if (_overlayType.value != OverlayType.Instruction) return
         // Before start movement
         if (!isMoveStarted) {
             moveStartTime = Date().time
@@ -137,13 +168,13 @@ class TrainingViewModel @Inject constructor(
         viewModelScope.launch {
             _networkStatus.value = NetworkStatus.Loading
             try {
-            val isSucceed = trainingResultRepository.postTrainingResult(
-                accessToken = authPreferences.getString(PreferenceKey.ACCESS_TOKEN)!!,
-                trainingResultInfo = trainingResultInfo
-            )
+                val isSucceed = trainingResultRepository.postTrainingResult(
+                    accessToken = authPreferences.getString(PreferenceKey.ACCESS_TOKEN)!!,
+                    trainingResultInfo = trainingResultInfo
+                )
 
-            if (isSucceed) _networkStatus.value = NetworkStatus.Success
-            else _networkStatus.value = NetworkStatus.Error(R.string.error_connect_server)
+                if (isSucceed) _networkStatus.value = NetworkStatus.Success
+                else _networkStatus.value = NetworkStatus.Error(R.string.error_connect_server)
             } catch (e: Exception) {
                 _networkStatus.value = NetworkStatus.Error(R.string.error_connect_server)
                 e.printStackTrace()
