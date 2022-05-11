@@ -56,7 +56,7 @@ class TrainingViewModel @Inject constructor(
     private var isCountDownStarted = false
 
     /** Countdown time. */
-    private val _countDownTime = MutableStateFlow(5)
+    private val _countDownTime = MutableStateFlow(MAX_COUNT_DOWN_TIME)
     val countDownTime: StateFlow<Int> = _countDownTime
 
     /** Getter for current instruction */
@@ -138,6 +138,7 @@ class TrainingViewModel @Inject constructor(
      * called from PosePreview when pose is detected. (about 30 ~ 60fps)
      */
     override fun onPoseUpdated(pose: Pose) {
+        if (_overlayType.value != OverlayType.Instruction) return
         // Before start movement
         if (!isMoveStarted) {
             moveStartTime = Date().time

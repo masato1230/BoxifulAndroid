@@ -17,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.ui.theme.Green500
 import java.util.*
@@ -28,6 +30,8 @@ fun CountDownTimer(
     maxValue: Int,
     remainingTime: Int,
     indicatorAnimationSpec: AnimationSpec<Float> = tween(1000),
+    textStyle: TextStyle = MaterialTheme.typography.h1,
+    fontWeight: FontWeight = FontWeight.Normal,
     @RawRes beepSoundRes: Int? = null,
     @RawRes finishSoundRes: Int? = null,
 ) {
@@ -60,7 +64,11 @@ fun CountDownTimer(
         modifier = modifier,
         contentAlignment = Alignment.Center,
     ) {
-        Text(text = remainingTime.toString(), style = MaterialTheme.typography.h1)
+        Text(
+            text = remainingTime.toString(),
+            style = textStyle,
+            fontWeight = fontWeight,
+        )
         CircularProgressIndicator(
             color = Green500,
             modifier = Modifier.size(250.dp),
