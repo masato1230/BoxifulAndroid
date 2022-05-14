@@ -29,4 +29,8 @@ enum class WayToUsePage(
         descriptionRes = R.string.way_to_use_about_account_desc,
         thumbnail = R.drawable.ic_record,
     );
+
+    companion object {
+        fun fromName(name: String?): WayToUsePage? = values().find { it.name == name }
+    }
 }
