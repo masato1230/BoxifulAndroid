@@ -45,6 +45,7 @@ fun MainScreen(viewModel: MainViewModel) {
 fun BottomBar(navController: NavHostController) {
     val menuItems = listOf(
         BottomBarMenuItem.Home,
+        BottomBarMenuItem.WayToUse,
         BottomBarMenuItem.Record,
         BottomBarMenuItem.Settings,
     )

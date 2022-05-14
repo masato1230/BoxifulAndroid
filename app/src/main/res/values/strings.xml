@@ -3,6 +3,7 @@
     <!-- common -->
     <string name="home">ホーム</string>
     <string name="back_to_home">ホームに戻る</string>
+    <string name="way_to_use">使い方</string>
     <string name="record">記録</string>
     <string name="settings">設定</string>
     <string name="menu">メニュー</string>
@@ -37,6 +38,15 @@
     <string name="home_boxiful_point">Boxifulポイント</string>
     <string name="home_calorie_consumption">消費カロリー</string>
     <string name="home_today_share_template">【Boxiful本日の記録】\n\n本日Boxifulで消費したカロリーは%dkcalでした!\nトレーニング回数は%d回\nhttps://boxiful.jp</string>
+    <!-- way to use -->
+    <string name="way_to_use_get_started">Get Started</string>
+    <string name="way_to_use_get_started_desc">Boxifulの基本的な使い方</string>
+    <string name="way_to_use_about_judge">パンチ/キックの判定</string>
+    <string name="way_to_use_about_judge_desc">トレーニング中の動作の判定方法について</string>
+    <string name="way_to_use_about_account">アカウントについて</string>
+    <string name="way_to_use_about_account_desc">アカウント登録で使用できる機能 &amp; アカウント削除方法</string>
+    <string name="way_to_use_about_record">トレーニング結果について</string>
+    <string name="way_to_use_about_record_desc">ボクシフル年齢や評価点についての説明</string>
     <!-- record -->
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>
