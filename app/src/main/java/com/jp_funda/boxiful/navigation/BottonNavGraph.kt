@@ -8,6 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.extensions.getLeftSlideInTransaction
 import com.jp_funda.boxiful.extensions.getLeftSlideOutTransaction
@@ -27,6 +28,7 @@ import com.jp_funda.boxiful.views.way_to_use.WayToUsePage
 import com.jp_funda.boxiful.views.way_to_use.WayToUseScreen
 import com.jp_funda.boxiful.views.way_to_use_detail.WayToUseDetailScreen
 
+@ExperimentalPagerApi
 @ExperimentalAnimationApi
 @ExperimentalPermissionsApi
 @Composable
