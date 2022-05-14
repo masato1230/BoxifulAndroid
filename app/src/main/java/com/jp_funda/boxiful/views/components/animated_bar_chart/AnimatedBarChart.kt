@@ -53,7 +53,7 @@ fun AnimatedBarChart(
     Column(modifier = modifier) {
         // Title
         title?.let {
-            Text(text = it, style = MaterialTheme.typography.caption)
+            Text(text = it, style = MaterialTheme.typography.caption, color = Color.White)
         }
         // Graphic Content
         Row(
@@ -130,6 +130,7 @@ fun AnimatedBarChart(
                     text = label,
                     modifier = Modifier.weight(columnWeight),
                     textAlign = TextAlign.Center,
+                    color = Color.White,
                 )
             }
         }

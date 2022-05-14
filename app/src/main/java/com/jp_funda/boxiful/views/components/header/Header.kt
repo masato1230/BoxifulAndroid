@@ -21,7 +21,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.navigation.NavigationRoutes
-import com.jp_funda.boxiful.ui.theme.Gray900
 import com.jp_funda.boxiful.ui.theme.Yellow500
 
 @Composable
@@ -71,6 +70,6 @@ fun Header(navController: NavController) {
             )
             Spacer(modifier = Modifier.width(10.dp))
         },
-        backgroundColor = Gray900,
+        backgroundColor = Color.White,
     )
 }

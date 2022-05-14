@@ -39,6 +39,7 @@ fun TodayStatsSection(modifier: Modifier = Modifier) {
                 text = stringResource(id = R.string.home_today_stats_title),
                 style = MaterialTheme.typography.h5,
                 fontWeight = FontWeight.ExtraBold,
+                color = Color.White,
                 modifier = Modifier.padding(top = 10.dp),
             )
             Spacer(modifier = Modifier.height(10.dp))
