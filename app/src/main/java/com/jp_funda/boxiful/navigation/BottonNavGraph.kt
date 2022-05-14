@@ -23,6 +23,7 @@ import com.jp_funda.boxiful.views.record.RecordScreen
 import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.settings.SettingsScreen
 import com.jp_funda.boxiful.views.training.TrainingScreen
+import com.jp_funda.boxiful.views.way_to_use.WayToUseScreen
 
 @ExperimentalAnimationApi
 @ExperimentalPermissionsApi
@@ -76,7 +77,7 @@ fun BottomNavGraph(
         /** Way to use Screen. */
         composable(route = BottomBarMenuItem.WayToUse.route) {
             bottomBarState.value = true
-            RecordScreen(navController)
+            WayToUseScreen(navController)
         }
 
         /** Record Screen. */
