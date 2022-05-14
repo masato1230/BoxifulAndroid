@@ -51,7 +51,7 @@ fun BottomBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    BottomNavigation {
+    BottomNavigation(backgroundColor = Color.White) {
         menuItems.forEach { menuItem ->
             AddItem(
                 menuItem = menuItem,

@@ -1,7 +1,10 @@
 package com.jp_funda.boxiful.views.home
 
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -15,13 +18,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.navigation.NavigationRoutes
-import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.ui.theme.PagesBackground
 import com.jp_funda.boxiful.views.components.SingleMenuCard
 import com.jp_funda.boxiful.views.components.TrainingStartDailog
 import com.jp_funda.boxiful.views.components.header.Header
@@ -30,6 +34,7 @@ import com.jp_funda.boxiful.views.home.component.TodayStatsSection
 @Composable
 fun HomeScreen(navController: NavController) {
     Scaffold(topBar = { Header(navController) }) {
+        PagesBackground()
         HomeMainContent(modifier = Modifier.padding(it), navController = navController)
     }
 }
@@ -65,9 +70,9 @@ fun HomeMainContent(modifier: Modifier = Modifier, navController: NavController)
 @Composable
 fun TopSection() {
     Column {
+        Spacer(modifier = Modifier.height(10.dp))
         Box(
             modifier = Modifier
-                .background(Yellow500)
                 .fillMaxWidth(),
             contentAlignment = Alignment.Center,
         ) {
@@ -79,16 +84,20 @@ fun TopSection() {
         }
         Text(
             text = stringResource(id = R.string.home_service_slogan),
-            modifier = Modifier.padding(start = 20.dp, top = 15.dp, end = 15.dp),
-            style = MaterialTheme.typography.h6,
+            modifier = Modifier
+                .padding(start = 20.dp, top = 15.dp, end = 15.dp)
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.h5,
             fontFamily = FontFamily.Serif,
             fontWeight = FontWeight.ExtraBold,
+            color = Color.White,
         )
         Text(
             text = stringResource(id = R.string.home_service_description),
             modifier = Modifier.padding(start = 20.dp, top = 10.dp, end = 20.dp),
             fontFamily = FontFamily.Serif,
-            color = Color.LightGray,
+            color = Color.White,
         )
     }
 }
@@ -107,8 +116,9 @@ fun MenuListSection(navController: NavController) {
         // Section Title
         Text(
             text = stringResource(id = R.string.home_menu_list),
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold,
+            color = Color.White,
             modifier = Modifier.padding(start = 20.dp),
         )
 

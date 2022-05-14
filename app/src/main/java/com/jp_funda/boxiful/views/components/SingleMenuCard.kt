@@ -30,7 +30,8 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
         modifier = modifier
             .heightIn(min = 270.dp)
             .width(250.dp)
-            .clickable { onClick() }
+            .clickable { onClick() },
+        backgroundColor = Color.White,
     ) {
         Column {
             // Menu Thumbnail
@@ -38,8 +39,10 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
                 painter = painterResource(id = menu.getThumbnail()),
                 contentDescription = stringResource(id = R.string.menu),
                 modifier = Modifier
-                    .background(Yellow500)
                     .height(120.dp)
+                    .padding(10.dp)
+                    .clip(MaterialTheme.shapes.medium)
+                    .background(Yellow500)
                     .fillMaxWidth(),
             )
 
@@ -56,7 +59,6 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
                 text = stringResource(id = menu.descriptionRes),
                 modifier = Modifier.padding(horizontal = 5.dp),
                 style = MaterialTheme.typography.caption,
-                color = Color.LightGray,
                 fontFamily = FontFamily.Serif,
             )
 
