@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
+import com.jp_funda.boxiful.ui.theme.Background
 import com.jp_funda.boxiful.views.components.ErrorView
 import com.jp_funda.boxiful.views.components.LoadingView
 import com.jp_funda.boxiful.views.components.header.Header
@@ -26,6 +27,7 @@ import com.jp_funda.boxiful.views.record.component.WeeklyStatsSection
 @Composable
 fun RecordScreen(navController: NavController) {
     Scaffold(topBar = { Header(navController) }) {
+        Background()
         RecordMainContent(modifier = Modifier.padding(it), navController = navController)
     }
 }

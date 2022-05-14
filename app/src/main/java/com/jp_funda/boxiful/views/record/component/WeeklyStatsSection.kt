@@ -38,6 +38,7 @@ fun WeeklyStatsSection() {
             text = stringResource(id = R.string.record_weekly_title),
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.ExtraBold,
+            color = Color.White,
         )
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -108,7 +109,7 @@ fun WeeklyStatsSection() {
             indicatorColor = Red500,
             modifier = Modifier
                 .clip(RoundedCornerShape(5.dp))
-                .background(Color.DarkGray.copy(alpha = 0.3f))
+                .background(Color.DarkGray.copy(alpha = 0.8f))
                 .padding(10.dp)
         )
     }

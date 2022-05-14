@@ -73,6 +73,7 @@ fun BottomInstructionOverlay(instructionIndex: Int, instruction: Instruction) {
             fontSize = MaterialTheme.typography.h4.fontSize * 1.2,
             fontWeight = FontWeight.ExtraBold,
             textAlign = TextAlign.Center,
+            color = Color.White,
             modifier = Modifier.fillMaxWidth(),
         )
 
@@ -91,7 +92,8 @@ fun BottomInstructionOverlay(instructionIndex: Int, instruction: Instruction) {
                     .size(animatedIconSize.value.toInt().dp)
                     .clip(CircleShape)
                     .background(iconColor)
-                    .rotate(iconDegree)
+                    .rotate(iconDegree),
+                tint = Color.White,
             )
         }
     }
