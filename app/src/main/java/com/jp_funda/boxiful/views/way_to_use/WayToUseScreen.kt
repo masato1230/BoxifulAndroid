@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -32,7 +34,11 @@ fun WayToUseScreen(navController: NavController) {
 
 @Composable
 fun WayToUseMainContent(navController: NavController) {
-    Column(modifier = Modifier.padding(20.dp)) {
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
         // Screen Title
         Text(
             text = stringResource(id = R.string.way_to_use),
@@ -43,10 +49,15 @@ fun WayToUseMainContent(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
 
         // Lists
-        WayToUseCard(
-            title = "Get Started",
-            description = "Boxifulの基本的な使い方",
-            thumbnail = painterResource(id = R.drawable.ic_service_thumbnail),
-        )
+        WayToUsePage.values().forEach { pageInfo ->
+            WayToUseCard(
+                title = stringResource(id = pageInfo.titleRes),
+                description = stringResource(id = pageInfo.descriptionRes),
+                thumbnail = painterResource(id = pageInfo.thumbnail),
+            )
+            Spacer(modifier = Modifier.height(15.dp))
+        }
+
+        Spacer(modifier = Modifier.height(70.dp))
     }
 }

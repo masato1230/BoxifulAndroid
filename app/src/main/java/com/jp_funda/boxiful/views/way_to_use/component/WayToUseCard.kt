@@ -1,10 +1,7 @@
 package com.jp_funda.boxiful.views.way_to_use.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -27,7 +24,7 @@ fun WayToUseCard(
     thumbnail: Painter,
 ) {
     Card(
-        modifier = Modifier.height(80.dp),
+        modifier = Modifier.height(150.dp),
         backgroundColor = Color.White
     ) {
         Row(
@@ -35,18 +32,20 @@ fun WayToUseCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
-                modifier = Modifier.weight(0.3f),
+                modifier = Modifier.weight(0.3f).heightIn(max = 100.dp),
                 painter = thumbnail,
                 contentDescription = stringResource(id = R.string.desc_icon),
             )
+            Spacer(modifier =Modifier.width(10.dp))
             Column(
                 modifier = Modifier.weight(0.7f)
             ) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.h5,
+                    style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.ExtraBold,
                 )
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(text = description)
             }
         }
