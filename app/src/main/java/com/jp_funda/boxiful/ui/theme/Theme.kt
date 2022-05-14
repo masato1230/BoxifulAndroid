@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val ColorPalette = lightColors(
-    primary = Green500,
+    primary = Color.Black,
     primaryVariant = Yellow500,
     secondary = Teal200,
-    surface = Color.White,
+    surface = Color.Black,
 )
 
 @Composable
