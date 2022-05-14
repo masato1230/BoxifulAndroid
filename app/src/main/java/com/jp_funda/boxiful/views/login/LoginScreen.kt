@@ -3,7 +3,6 @@ package com.jp_funda.boxiful.views.login
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -35,10 +34,7 @@ import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
-import com.jp_funda.boxiful.ui.theme.Blue500
-import com.jp_funda.boxiful.ui.theme.Green500
-import com.jp_funda.boxiful.ui.theme.Red500
-import com.jp_funda.boxiful.ui.theme.Yellow500
+import com.jp_funda.boxiful.ui.theme.*
 import com.jp_funda.boxiful.views.components.ConfirmDialog
 import com.jp_funda.boxiful.views.components.LoadingDialog
 
@@ -60,6 +56,7 @@ fun LoginScreen(navController: NavController) {
     }
 
     Scaffold {
+        Background()
         LoginMainContent(
             modifier = Modifier.padding(it),
             navController = navController,
@@ -87,11 +84,7 @@ fun LoginMainContent(
         Spacer(modifier = Modifier.weight(1f))
 
         // Thumbnail
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(10.dp))
-                .background(Yellow500.copy(alpha = 0.8f))
-        ) {
+        Card(backgroundColor = Yellow500) {
             Image(
                 painter = painterResource(id = R.drawable.ic_service_thumbnail),
                 contentDescription = stringResource(id = R.string.desc_icon),
@@ -103,7 +96,7 @@ fun LoginMainContent(
         Text(
             text = buildAnnotatedString {
                 append("Boxi")
-                withStyle(style = SpanStyle(color = Yellow500)) {
+                withStyle(style = SpanStyle(color = Color.White)) {
                     append("ful")
                 }
             },
@@ -131,6 +124,7 @@ fun LoginMainContent(
             onValueChange = { viewModel.setEmail(it) },
             placeholder = { Text(text = stringResource(id = R.string.auth_email)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            colors = TextFieldDefaults.textFieldColors(textColor = Color.White),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Email,
@@ -174,7 +168,9 @@ fun LoginMainContent(
         // Reset password link
         Text(
             text = buildAnnotatedString {
-                append("パスワードを忘れた方は")
+                withStyle(style = SpanStyle(color = Color.White)) {
+                    append("パスワードを忘れた方は")
+                }
                 withStyle(style = SpanStyle(color = Blue500)) {
                     append("こちら")
                 }
@@ -198,7 +194,7 @@ fun LoginMainContent(
         // Login Button
         Button(
             onClick = { viewModel.login() },
-            colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Pink400),
             shape = RoundedCornerShape(1000.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -219,14 +215,14 @@ fun LoginMainContent(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
         ) {
-            Divider(modifier = modifier.weight(1f), color = Color.Gray)
+            Divider(modifier = modifier.weight(1f), color = Color.White)
             Text(
                 text = stringResource(id = R.string.auth_or),
-                color = Color.Gray,
+                color = Color.White,
                 style = MaterialTheme.typography.caption,
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
-            Divider(modifier = modifier.weight(1f), color = Color.Gray)
+            Divider(modifier = modifier.weight(1f), color = Color.White)
         }
 
         // Register Button

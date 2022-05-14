@@ -25,7 +25,7 @@ import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.navigation.NavigationRoutes
-import com.jp_funda.boxiful.ui.theme.PagesBackground
+import com.jp_funda.boxiful.ui.theme.Background
 import com.jp_funda.boxiful.views.components.SingleMenuCard
 import com.jp_funda.boxiful.views.components.TrainingStartDailog
 import com.jp_funda.boxiful.views.components.header.Header
@@ -34,7 +34,7 @@ import com.jp_funda.boxiful.views.home.component.TodayStatsSection
 @Composable
 fun HomeScreen(navController: NavController) {
     Scaffold(topBar = { Header(navController) }) {
-        PagesBackground()
+        Background()
         HomeMainContent(modifier = Modifier.padding(it), navController = navController)
     }
 }

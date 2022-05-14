@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 
 @Composable
-fun PagesBackground() {
+fun Background() {
     val shape = GenericShape { size, _ ->
         lineTo(size.width, 0f)
         lineTo(-size.width, size.height)
