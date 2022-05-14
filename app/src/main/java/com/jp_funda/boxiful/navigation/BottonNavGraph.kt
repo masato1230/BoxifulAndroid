@@ -73,6 +73,12 @@ fun BottomNavGraph(
             ResultScreen(navController, mainViewModel.singleMenuScores)
         }
 
+        /** Way to use Screen. */
+        composable(route = BottomBarMenuItem.WayToUse.route) {
+            bottomBarState.value = true
+            RecordScreen(navController)
+        }
+
         /** Record Screen. */
         composable(route = BottomBarMenuItem.Record.route) {
             bottomBarState.value = true

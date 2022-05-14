@@ -3,6 +3,7 @@
     <!-- common -->
     <string name="home">ホーム</string>
     <string name="back_to_home">ホームに戻る</string>
+    <string name="way_to_use">使い方</string>
     <string name="record">記録</string>
     <string name="settings">設定</string>
     <string name="menu">メニュー</string>
