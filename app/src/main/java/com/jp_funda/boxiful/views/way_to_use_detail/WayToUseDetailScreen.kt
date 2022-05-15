@@ -49,13 +49,21 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
     val scope = rememberCoroutineScope()
     val detailPages = WayToUseDetailPage.getDetailPages(wayToUsePage = page)
 
-    Column {
+    Column(modifier = Modifier.padding(20.dp)) {
+        // Screen Title
+        Text(
+            text = stringResource(id = page.titleRes),
+            color = Color.White,
+            style = MaterialTheme.typography.h5,
+            fontWeight = FontWeight.Bold,
+        )
+
         // Pager
         HorizontalPager(
             count = detailPages.size,
             state = pagerState,
-            // Add 32.dp horizontal padding to 'center' the pages
-            contentPadding = PaddingValues(horizontal = 32.dp),
+            // Add 12.dp horizontal padding to 'center' the pages
+            contentPadding = PaddingValues(horizontal = 12.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.8f)
@@ -73,7 +81,7 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = stringResource(id = detailPage.titleRes),
+                    text = "${pageIndex + 1}. " + stringResource(id = detailPage.titleRes),
                     color = Color.White,
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
@@ -118,7 +126,6 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
         // Next or Start button
         Row(
             modifier = Modifier
-                .padding(horizontal = 20.dp)
                 .widthIn(500.dp)
                 .height(50.dp)
                 .clip(RoundedCornerShape(1000.dp))
@@ -156,6 +163,6 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
             }
         }
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(20.dp))
     }
 }
