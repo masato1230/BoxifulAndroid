@@ -40,7 +40,29 @@ enum class WayToUseDetailPage(
         titleRes = R.string.way_to_use_record_training,
         contentRes = R.string.way_to_use_record_training_content,
         thumbnailRes = R.drawable.img_record,
-    );
+    ),
+    // About Judge pages
+    AboutPunchJudge(
+        titleRes = R.string.way_to_use_about_punch_judge,
+        contentRes = R.string.way_to_use_about_punch_judge_content,
+        thumbnailRes = R.drawable.ic_about_punch,
+    ),
+    AboutKickJudge(
+        titleRes = R.string.way_to_use_about_kick_judge,
+        contentRes = R.string.way_to_use_about_kick_judge_content,
+        thumbnailRes = R.drawable.ic_about_kick,
+    ),
+    NotRecognizeMovement(
+        titleRes = R.string.way_to_use_not_recognize_movement,
+        contentRes = R.string.way_to_use_not_recognize_movement_content,
+        thumbnailRes = R.drawable.ic_question,
+    ),
+    CameraAndImageProcessing(
+        titleRes = R.string.way_to_use_camera_and_image_processing,
+        contentRes = R.string.way_to_use_camera_and_image_processing_content,
+        thumbnailRes = R.drawable.ic_camera,
+    )
+    ;
 
     companion object {
         fun getDetailPages(wayToUsePage: WayToUsePage) : List<WayToUseDetailPage> {
@@ -52,6 +74,12 @@ enum class WayToUseDetailPage(
                     StartTraining,
                     CheckTrainingResult,
                     RecordTraining,
+                )
+                WayToUsePage.AboutJudge -> listOf(
+                    AboutPunchJudge,
+                    AboutKickJudge,
+                    NotRecognizeMovement,
+                    CameraAndImageProcessing,
                 )
                 else -> listOf()
             }

@@ -60,6 +60,14 @@
     <string name="way_to_use_check_result_content">トレーニングを最後まで実施すると、結果が表示されます。\n消費カロリーやボクシフル年齢を確認しましょう。また、結果はTwitterやLineで共有することができます。</string>
     <string name="way_to_use_record_training">トレーニング結果を記録</string>
     <string name="way_to_use_record_training_content">アカウントを作成するとトレーニング結果を記録することができます。\n消費カロリーやトレーニングの実施状況を振り返ってモチベーションを高めましょう!</string>
+    <string name="way_to_use_about_punch_judge">パンチの判定について</string>
+    <string name="way_to_use_about_punch_judge_content">パンチの判定では、パンチを繰り出す前に腕を曲げることができているかという点と、パンチをしたときにしっかりと腕が伸びているかという点を判定しています。\n上手く判定されないと思った時は、これら二つの点を意識してみてください。</string>
+    <string name="way_to_use_about_kick_judge">キックの判定について</string>
+    <string name="way_to_use_about_kick_judge_content">キックの判定では足を地面に降ろした状態から、足(膝)をしっかりと上まで上げられているかという点をみています。上手く判定されない時は、足をもっと上にあげてみてください。\nキックをするときは、蹴り出す脚と同じ側の腕を足の反対方向に降り出しながら蹴るのがポイントです。</string>
+    <string name="way_to_use_not_recognize_movement">体の動きが上手く認識されない時</string>
+    <string name="way_to_use_not_recognize_movement_content">動作が上手く認識されない時は部屋を明るくしたり、カメラに映るものを減らすことで動作認識の精度を上げることができます。\nトレーニング中の画像処理ではスマホのリソースを大量に使用します。アプリが重い時は他に開いているアプリを閉じてみてください。</string>
+    <string name="way_to_use_camera_and_image_processing">カメラと画像処理について</string>
+    <string name="way_to_use_camera_and_image_processing_content">カメラより取得している動画はスマホの外部に出ることは一切ありません。</string>
     <!-- record -->
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>
