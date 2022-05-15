@@ -97,7 +97,7 @@ fun BottomNavGraph(
             bottomBarState.value = false
             WayToUseDetailScreen(
                 navController = navController,
-                page = WayToUsePage.fromName(backStackEntry.arguments?.getString(wayToUsePageKey))
+                wayToUsePage = WayToUsePage.fromName(backStackEntry.arguments?.getString(wayToUsePageKey))
                     ?: WayToUsePage.GetStarted,
             )
         }

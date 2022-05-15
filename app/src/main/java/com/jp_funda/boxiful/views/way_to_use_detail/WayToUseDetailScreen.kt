@@ -1,6 +1,7 @@
 package com.jp_funda.boxiful.views.way_to_use_detail
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -14,7 +15,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -31,10 +35,10 @@ import kotlinx.coroutines.launch
 @ExperimentalPagerApi
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun WayToUseDetailScreen(navController: NavController, page: WayToUsePage) {
+fun WayToUseDetailScreen(navController: NavController, wayToUsePage: WayToUsePage) {
     Scaffold(topBar = { Header(navController) }) {
         Background()
-        WayToUseDetailMainContent(navController, page)
+        WayToUseDetailMainContent(navController, wayToUsePage)
     }
 }
 
@@ -43,24 +47,50 @@ fun WayToUseDetailScreen(navController: NavController, page: WayToUsePage) {
 fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) {
     val pagerState = rememberPagerState()
     val scope = rememberCoroutineScope()
-    
+    val detailPages = WayToUseDetailPage.getDetailPages(wayToUsePage = page)
+
     Column {
         // Pager
         HorizontalPager(
-            count = 5, // TODO Change
+            count = detailPages.size,
             state = pagerState,
             // Add 32.dp horizontal padding to 'center' the pages
             contentPadding = PaddingValues(horizontal = 32.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.8f)
-        ) {
+        ) { pageIndex ->
+            val detailPage = detailPages[pageIndex]
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // TODO something
+                Image(
+                    painter = painterResource(id = detailPage.thumbnailRes),
+                    contentDescription = stringResource(id = R.string.desc_icon),
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    text = stringResource(id = detailPage.titleRes),
+                    color = Color.White,
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp)
+                        .fillMaxWidth(),
+                    style = MaterialTheme.typography.h5,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                )
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    text = stringResource(id = detailPage.contentRes),
+                    color = Color.Black,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                )
             }
         }
 
