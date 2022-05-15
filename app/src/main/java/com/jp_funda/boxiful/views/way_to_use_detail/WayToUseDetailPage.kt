@@ -10,6 +10,7 @@ enum class WayToUseDetailPage(
     @StringRes val contentRes: Int,
     @DrawableRes val thumbnailRes: Int,
 ) {
+    // Get Started pages
     AboutThisApp(
         titleRes = R.string.way_to_use_about_this_app,
         contentRes = R.string.way_to_use_about_this_app_content,
@@ -19,6 +20,26 @@ enum class WayToUseDetailPage(
         titleRes = R.string.way_to_use_select_menu,
         contentRes = R.string.way_to_use_select_menu_content,
         thumbnailRes = R.drawable.img_select_menu,
+    ),
+    GrantCameraUse(
+        titleRes = R.string.way_to_use_grant_camera_use,
+        contentRes = R.string.way_to_use_grant_camera_use_content,
+        thumbnailRes = R.drawable.img_permission,
+    ),
+    StartTraining(
+        titleRes = R.string.way_to_use_start_training,
+        contentRes = R.string.way_to_use_start_training_content,
+        thumbnailRes = R.drawable.img_kicking,
+    ),
+    CheckTrainingResult(
+        titleRes = R.string.way_to_use_check_result,
+        contentRes = R.string.way_to_use_check_result_content,
+        thumbnailRes = R.drawable.img_result,
+    ),
+    RecordTraining(
+        titleRes = R.string.way_to_use_record_training,
+        contentRes = R.string.way_to_use_record_training_content,
+        thumbnailRes = R.drawable.img_record,
     );
 
     companion object {
@@ -27,6 +48,10 @@ enum class WayToUseDetailPage(
                 WayToUsePage.GetStarted -> listOf(
                     AboutThisApp,
                     SelectMenu,
+                    GrantCameraUse,
+                    StartTraining,
+                    CheckTrainingResult,
+                    RecordTraining,
                 )
                 else -> listOf()
             }

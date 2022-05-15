@@ -49,9 +49,17 @@
     <string name="way_to_use_about_record_desc">ボクシフル年齢や評価点についての説明</string>
     <string name="way_to_use_back_to_list">一覧に戻る</string>
     <string name="way_to_use_about_this_app">このアプリについて</string>
-    <string name="way_to_use_about_this_app_content">Boxiful(ボクシふる)はPCのインカメラとAIを利用した、実際に体を動かすキックボックシングゲームです。メニューを選択してトレーニングをスタートしましょう!</string>
+    <string name="way_to_use_about_this_app_content">Boxiful(ボクシふる)はスマホのインカメラとAIを利用した、実際に体を動かすキックボックシングゲームです。メニューを選択してトレーニングをスタートしましょう!</string>
     <string name="way_to_use_select_menu">メニューを選択</string>
     <string name="way_to_use_select_menu_content">ホームのメニュー一覧よりやってみたいメニューを選択しましょう。メニューを選択するとトレーニング画面に移ります。</string>
+    <string name="way_to_use_grant_camera_use">カメラの使用を許可</string>
+    <string name="way_to_use_grant_camera_use_content">トレーニング中はインカメラを利用して体の動きを判定します。\nトレーニング画面に移動するとカメラの利用を許可するか拒否するかのダイアログが表示されるので、カメラの利用を許可してください。</string>
+    <string name="way_to_use_start_training">トレーニング開始</string>
+    <string name="way_to_use_start_training_content">カメラの使用を許可したら、いよいよトレーニング開始です。スマホを壁などに立てかけ、画面から2mほど離れ、体の膝から上がカメラに映るようにしましょう。\n画面のキックやパンチの表示されるので表示に従ってパンチやキックを繰り出しましょう。</string>
+    <string name="way_to_use_check_result">結果の確認</string>
+    <string name="way_to_use_check_result_content">トレーニングを最後まで実施すると、結果が表示されます。\n消費カロリーやボクシフル年齢を確認しましょう。また、結果はTwitterやLineで共有することができます。</string>
+    <string name="way_to_use_record_training">トレーニング結果を記録</string>
+    <string name="way_to_use_record_training_content">アカウントを作成するとトレーニング結果を記録することができます。\n消費カロリーやトレーニングの実施状況を振り返ってモチベーションを高めましょう!</string>
     <!-- record -->
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>

@@ -62,8 +62,6 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
         HorizontalPager(
             count = detailPages.size,
             state = pagerState,
-            // Add 12.dp horizontal padding to 'center' the pages
-            contentPadding = PaddingValues(horizontal = 12.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.8f)
@@ -77,6 +75,7 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
                 Image(
                     painter = painterResource(id = detailPage.thumbnailRes),
                     contentDescription = stringResource(id = R.string.desc_icon),
+                    modifier = Modifier.height(180.dp)
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -96,8 +95,9 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
                 Text(
                     text = stringResource(id = detailPage.contentRes),
                     color = Color.Black,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp),
                 )
             }
         }
