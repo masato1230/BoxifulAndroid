@@ -61,6 +61,17 @@ enum class WayToUseDetailPage(
         titleRes = R.string.way_to_use_camera_and_image_processing,
         contentRes = R.string.way_to_use_camera_and_image_processing_content,
         thumbnailRes = R.drawable.ic_camera,
+    ),
+    // About Account
+    AvailableByAccount(
+        titleRes = R.string.way_to_use_available_by_account,
+        contentRes = R.string.way_to_use_available_by_account_content,
+        thumbnailRes = R.drawable.img_total_record,
+    ),
+    DeleteAccount(
+        titleRes = R.string.way_to_use_delete_account,
+        contentRes = R.string.way_to_use_delete_account_content,
+        thumbnailRes = R.drawable.ic_delete_account,
     )
     ;
 
@@ -80,6 +91,10 @@ enum class WayToUseDetailPage(
                     AboutKickJudge,
                     NotRecognizeMovement,
                     CameraAndImageProcessing,
+                )
+                WayToUsePage.AboutAccount -> listOf(
+                    AvailableByAccount,
+                    DeleteAccount,
                 )
                 else -> listOf()
             }

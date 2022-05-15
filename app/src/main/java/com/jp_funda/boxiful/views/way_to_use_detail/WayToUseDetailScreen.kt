@@ -1,9 +1,7 @@
 package com.jp_funda.boxiful.views.way_to_use_detail
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -68,9 +66,11 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
         ) { pageIndex ->
             val detailPage = detailPages[pageIndex]
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Image(
                     painter = painterResource(id = detailPage.thumbnailRes),
