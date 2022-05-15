@@ -8,6 +8,7 @@ object NavigationRoutes {
     const val SETTINGS = "setting"
     // Other
     const val TRAINING = "training"
+    const val WAY_TO_USE_DETAIL = "way to use detail"
     const val RESULT = "result"
     const val LOGIN = "login"
     const val MY_PAGE = "my page"

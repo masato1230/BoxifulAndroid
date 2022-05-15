@@ -8,6 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.extensions.getLeftSlideInTransaction
 import com.jp_funda.boxiful.extensions.getLeftSlideOutTransaction
@@ -23,8 +24,11 @@ import com.jp_funda.boxiful.views.record.RecordScreen
 import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.settings.SettingsScreen
 import com.jp_funda.boxiful.views.training.TrainingScreen
+import com.jp_funda.boxiful.views.way_to_use.WayToUsePage
 import com.jp_funda.boxiful.views.way_to_use.WayToUseScreen
+import com.jp_funda.boxiful.views.way_to_use_detail.WayToUseDetailScreen
 
+@ExperimentalPagerApi
 @ExperimentalAnimationApi
 @ExperimentalPermissionsApi
 @Composable
@@ -78,6 +82,24 @@ fun BottomNavGraph(
         composable(route = BottomBarMenuItem.WayToUse.route) {
             bottomBarState.value = true
             WayToUseScreen(navController)
+        }
+
+        /** Way to use Detail Screen. */
+        val wayToUsePageKey = "wayToUsePage"
+        composable(
+            route = "${NavigationRoutes.WAY_TO_USE_DETAIL}/{$wayToUsePageKey}",
+            arguments = listOf(navArgument(wayToUsePageKey) { type = NavType.StringType }),
+            enterTransition = { getLeftSlideInTransaction() },
+            exitTransition = { getLeftSlideOutTransaction() },
+            popEnterTransition = { getRightSlideInTransaction() },
+            popExitTransition = { getRightSlideOutTransaction() },
+        ) { backStackEntry ->
+            bottomBarState.value = false
+            WayToUseDetailScreen(
+                navController = navController,
+                wayToUsePage = WayToUsePage.fromName(backStackEntry.arguments?.getString(wayToUsePageKey))
+                    ?: WayToUsePage.GetStarted,
+            )
         }
 
         /** Record Screen. */

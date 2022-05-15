@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenu
@@ -49,7 +50,8 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
             // Menu Title
             Text(
                 text = stringResource(id = menu.titleRes),
-                modifier = Modifier.padding(5.dp),
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.button,
                 fontWeight = FontWeight.ExtraBold,
             )
@@ -89,7 +91,7 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
                 backgroundColor = Blue100,
             )
 
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(10.dp))
         }
     }
 }

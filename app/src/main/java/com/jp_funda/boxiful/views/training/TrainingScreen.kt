@@ -18,6 +18,7 @@ import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.models.SingleMenuResult
 import com.jp_funda.boxiful.navigation.NavigationRoutes
+import com.jp_funda.boxiful.ui.theme.Background
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
@@ -36,6 +37,7 @@ fun TrainingScreen(navController: NavController, menu: SingleMenu, mainViewModel
     hiltViewModel<TrainingViewModel>().setSingleMenu(menu)
 
     Scaffold {
+        Background()
         TrainingMainContent(navController = navController, mainViewModel = mainViewModel)
     }
 }

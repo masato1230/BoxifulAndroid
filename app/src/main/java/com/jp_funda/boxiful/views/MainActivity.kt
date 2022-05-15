@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.ui.theme.BoxfulTheme
@@ -21,6 +22,7 @@ import com.jp_funda.boxiful.views.components.pose_preview.CameraPreview
 import com.jp_funda.boxiful.views.components.pose_preview.PoseGraphic
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPagerApi
 @ExperimentalAnimationApi
 @ExperimentalPermissionsApi
 @AndroidEntryPoint
