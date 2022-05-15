@@ -56,7 +56,7 @@
     <string name="way_to_use_grant_camera_use">カメラの使用を許可</string>
     <string name="way_to_use_grant_camera_use_content">トレーニング中はインカメラを利用して体の動きを判定します。\nトレーニング画面に移動するとカメラの利用を許可するか拒否するかのダイアログが表示されるので、カメラの利用を許可してください。</string>
     <string name="way_to_use_start_training">トレーニング開始</string>
-    <string name="way_to_use_start_training_content">カメラの使用を許可したら、いよいよトレーニング開始です。スマホを壁などに立てかけ、画面から2mほど離れ、体の膝から上がカメラに映るようにしましょう。\n画面のキックやパンチの表示されるので表示に従ってパンチやキックを繰り出しましょう。</string>
+    <string name="way_to_use_start_training_content">カメラの使用を許可したら、いよいよトレーニング開始です。スマホを壁などに立てかけ、画面から2mほど離れ、体の膝から上がカメラに映るようにしましょう。\n画面にキックやパンチの指示が表示されるので表示に従ってパンチやキックを繰り出しましょう。</string>
     <string name="way_to_use_check_result">結果の確認</string>
     <string name="way_to_use_check_result_content">トレーニングを最後まで実施すると、結果が表示されます。\n消費カロリーやボクシフル年齢を確認しましょう。また、結果はTwitterやLineで共有することができます。</string>
     <string name="way_to_use_record_training">トレーニング結果を記録</string>
@@ -70,10 +70,10 @@
     <string name="way_to_use_camera_and_image_processing">カメラと画像処理について</string>
     <string name="way_to_use_camera_and_image_processing_content">カメラより取得している動画はスマホの外部に出ることは一切ありません。</string>
     <string name="way_to_use_available_by_account">アカウントを作るとできること</string>
-    <string name="way_to_use_available_by_account_content">アカウントを作成するとトレーニング結果の記録と閲覧ができるようになります\n累計消費カロリーやトレーニング実施回数を確認してモチベーションを上げながらトレーニングを続けましょう。</string>
+    <string name="way_to_use_available_by_account_content">アカウントを作成するとトレーニング結果の記録と閲覧ができるようになります。\n累計消費カロリーやトレーニング実施回数を確認してモチベーションを上げながらトレーニングを続けましょう。</string>
     <string name="way_to_use_delete_account">アカウントの削除方法</string>
     <string name="way_to_use_delete_account_content">ログインした状態で画面右上のアカウントボタンを押すとアカウント情報の画面が表示されます。\n「アカウント削除」ボタンを押すとアカウントの削除ができます。</string>
-    <string name="way_to_use_about_result_content">トレーニングメニューを最後まで行うと、トレーニング結果が表示されます。\nトレーニング結果では、トレーニング中の瞬発力、体力を評価した<b>ボクシフル年齢</b>や、100点満点での評価点、キック・パンチそれぞれの評価点、トレーニングで消費したカロリーが確認できます。\nトレーニング結果はLineやTwitterで共有できます。友達や家族に共有してみましょう!</string>
+    <string name="way_to_use_about_result_content">トレーニングメニューを最後まで実施すると、結果が表示されます。\nトレーニング結果では、トレーニング中の瞬発力、体力を評価した<b>ボクシフル年齢</b>や、100点満点での評価点、キック・パンチそれぞれの評価点、消費したカロリーが確認できます。\nトレーニング結果はLineやTwitterで共有できます。友達や家族に共有してみましょう!</string>
     <string name="way_to_use_boxiful_age_content">ボクシフル年齢はパンチやキックをどれだけ速く繰り出せたかを評価して計算されます。\nあくまで目安の数値で、何らかの統計に基づいている訳ではない点はご了承ください。\nメニューの難易度を考慮した数値ではないので、メニューが難しければ難しいほどボクシフル年齢は高くなりやすいです。</string>
     <string name="way_to_use_about_score">評価点について</string>
     <string name="way_to_use_about_score_content">全体の評価点と、パンチ・キックそれぞれの評価点を確認することができます。\nパンチとキックどちらかの点数が著しく低いときは、点数が低い方の改善を心がけてトレーニングしてみましょう。\n特に、キックに関してはフォームを改善することで大幅に点数が改善されます。フォームを一度確認してみましょう。\nパンチは常にガードを上げるように意識すると点数が改善するかもしれません。</string>
