@@ -14,13 +14,19 @@ enum class WayToUseDetailPage(
         titleRes = R.string.way_to_use_about_this_app,
         contentRes = R.string.way_to_use_about_this_app_content,
         thumbnailRes = R.drawable.ic_service_thumbnail,
+    ),
+    SelectMenu(
+        titleRes = R.string.way_to_use_select_menu,
+        contentRes = R.string.way_to_use_select_menu_content,
+        thumbnailRes = R.drawable.img_select_menu,
     );
 
     companion object {
         fun getDetailPages(wayToUsePage: WayToUsePage) : List<WayToUseDetailPage> {
             return when (wayToUsePage) {
                 WayToUsePage.GetStarted -> listOf(
-                    AboutThisApp
+                    AboutThisApp,
+                    SelectMenu,
                 )
                 else -> listOf()
             }

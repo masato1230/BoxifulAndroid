@@ -50,6 +50,8 @@
     <string name="way_to_use_back_to_list">一覧に戻る</string>
     <string name="way_to_use_about_this_app">このアプリについて</string>
     <string name="way_to_use_about_this_app_content">Boxiful(ボクシふる)はPCのインカメラとAIを利用した、実際に体を動かすキックボックシングゲームです。メニューを選択してトレーニングをスタートしましょう!</string>
+    <string name="way_to_use_select_menu">メニューを選択</string>
+    <string name="way_to_use_select_menu_content">ホームのメニュー一覧よりやってみたいメニューを選択しましょう。メニューを選択するとトレーニング画面に移ります。</string>
     <!-- record -->
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>
