@@ -6,20 +6,23 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Yellow500
 
 @Composable
-fun ConfirmDialog(title: String, onDismiss: () -> Unit) {
-    val isShowDialog = remember { mutableStateOf(true) }
+fun ConfirmDialog(
+    title: String,
+    isShowNegativeButton: Boolean = false,
+    onClickPositive: () -> Unit = {},
+    onClickNegative: () -> Unit = {},
+    onDismiss: () -> Unit,
+) {
     AlertDialog(
         onDismissRequest = {
-            isShowDialog.value = false
             onDismiss()
         },
         title = {
@@ -31,10 +34,25 @@ fun ConfirmDialog(title: String, onDismiss: () -> Unit) {
                 horizontalArrangement = Arrangement.Center
             ) {
                 Spacer(modifier = Modifier.weight(1f))
+                if (isShowNegativeButton) {
+                    Button(
+                        modifier = Modifier.width(120.dp),
+                        onClick = {
+                            onClickNegative()
+                            onDismiss()
+                        },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Green500)
+                    ) {
+                        Text(text = stringResource(id = R.string.cancel))
+                    }
+                    Spacer(modifier = Modifier.width(10.dp))
+                } else {
+                    Spacer(modifier = Modifier.weight(1f))
+                }
                 Button(
                     modifier = Modifier.width(120.dp),
                     onClick = {
-                        isShowDialog.value = false
+                        onClickPositive()
                         onDismiss()
                     },
                     colors = ButtonDefaults.buttonColors(backgroundColor = Yellow500)

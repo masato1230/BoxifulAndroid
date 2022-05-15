@@ -30,6 +30,8 @@
     <string name="auth_success">ログイン/新規会員登録に成功しました。</string>
     <string name="auth_logout">ログアウト</string>
     <string name="auth_logged_out">ログアウトしました。</string>
+    <string name="auth_delete_account">アカウント削除</string>
+    <string name="auth_ask_delete_account">本当にアカウントを削除しますか？</string>
     <!--  home  -->
     <string name="home_menu_list">メニュー一覧</string>
     <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
