@@ -7,6 +7,7 @@
     <string name="record">記録</string>
     <string name="settings">設定</string>
     <string name="menu">メニュー</string>
+    <string name="boxiful_age">ボクシフル年齢</string>
     <string name="kickboxing">キックボクシング</string>
     <string name="ok">OK</string>
     <string name="start">スタート</string>
@@ -45,8 +46,8 @@
     <string name="way_to_use_about_judge_desc">トレーニング中の動作の判定方法について</string>
     <string name="way_to_use_about_account">アカウントについて</string>
     <string name="way_to_use_about_account_desc">アカウント登録で使用できる機能 &amp; アカウント削除方法</string>
-    <string name="way_to_use_about_record">トレーニング結果について</string>
-    <string name="way_to_use_about_record_desc">ボクシフル年齢や評価点についての説明</string>
+    <string name="way_to_use_about_result">トレーニング結果について</string>
+    <string name="way_to_use_about_result_desc">ボクシフル年齢や評価点についての説明</string>
     <string name="way_to_use_back_to_list">使い方一覧に戻る</string>
     <string name="way_to_use_about_this_app">このアプリについて</string>
     <string name="way_to_use_about_this_app_content">Boxiful(ボクシフル)はスマホのインカメラとAIを利用した、実際に体を動かすキックボックシングゲームです。メニューを選択してトレーニングをスタートしましょう!</string>
@@ -72,6 +73,10 @@
     <string name="way_to_use_available_by_account_content">アカウントを作成するとトレーニング結果の記録と閲覧ができるようになります\n累計消費カロリーやトレーニング実施回数を確認してモチベーションを上げながらトレーニングを続けましょう。</string>
     <string name="way_to_use_delete_account">アカウントの削除方法</string>
     <string name="way_to_use_delete_account_content">ログインした状態で画面右上のアカウントボタンを押すとアカウント情報の画面が表示されます。\n「アカウント削除」ボタンを押すとアカウントの削除ができます。</string>
+    <string name="way_to_use_about_result_content">トレーニングメニューを最後まで行うと、トレーニング結果が表示されます。\nトレーニング結果では、トレーニング中の瞬発力、体力を評価した<b>ボクシフル年齢</b>や、100点満点での評価点、キック・パンチそれぞれの評価点、トレーニングで消費したカロリーが確認できます。\nトレーニング結果はLineやTwitterで共有できます。友達や家族に共有してみましょう!</string>
+    <string name="way_to_use_boxiful_age_content">ボクシフル年齢はパンチやキックをどれだけ速く繰り出せたかを評価して計算されます。\nあくまで目安の数値で、何らかの統計に基づいている訳ではない点はご了承ください。\nメニューの難易度を考慮した数値ではないので、メニューが難しければ難しいほどボクシフル年齢は高くなりやすいです。</string>
+    <string name="way_to_use_about_score">評価点について</string>
+    <string name="way_to_use_about_score_content">全体の評価点と、パンチ・キックそれぞれの評価点を確認することができます。\nパンチとキックどちらかの点数が著しく低いときは、点数が低い方の改善を心がけてトレーニングしてみましょう。\n特に、キックに関してはフォームを改善することで大幅に点数が改善されます。フォームを一度確認してみましょう。\nパンチは常にガードを上げるように意識すると点数が改善するかもしれません。</string>
     <!-- record -->
     <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
     <string name="record_login">ログインする</string>

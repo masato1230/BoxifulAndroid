@@ -55,6 +55,7 @@ fun WayToUseDetailMainContent(navController: NavController, page: WayToUsePage) 
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold,
         )
+        Spacer(modifier = Modifier.height(10.dp))
 
         // Pager
         HorizontalPager(

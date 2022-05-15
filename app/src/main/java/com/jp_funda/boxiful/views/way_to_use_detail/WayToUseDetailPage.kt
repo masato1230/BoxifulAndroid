@@ -41,6 +41,7 @@ enum class WayToUseDetailPage(
         contentRes = R.string.way_to_use_record_training_content,
         thumbnailRes = R.drawable.img_record,
     ),
+
     // About Judge pages
     AboutPunchJudge(
         titleRes = R.string.way_to_use_about_punch_judge,
@@ -62,6 +63,7 @@ enum class WayToUseDetailPage(
         contentRes = R.string.way_to_use_camera_and_image_processing_content,
         thumbnailRes = R.drawable.ic_camera,
     ),
+
     // About Account
     AvailableByAccount(
         titleRes = R.string.way_to_use_available_by_account,
@@ -72,11 +74,25 @@ enum class WayToUseDetailPage(
         titleRes = R.string.way_to_use_delete_account,
         contentRes = R.string.way_to_use_delete_account_content,
         thumbnailRes = R.drawable.ic_delete_account,
-    )
-    ;
+    ),
+    AboutResult(
+        titleRes = R.string.way_to_use_about_result,
+        contentRes = R.string.way_to_use_about_result_content,
+        thumbnailRes = R.drawable.img_overall_result,
+    ),
+    BoxifulAge(
+        titleRes = R.string.boxiful_age,
+        contentRes = R.string.way_to_use_boxiful_age_content,
+        thumbnailRes = R.drawable.ic_record,
+    ),
+    AboutScore(
+        titleRes = R.string.way_to_use_about_score,
+        contentRes = R.string.way_to_use_about_score_content,
+        thumbnailRes = R.drawable.img_punch_kick_result,
+    );
 
     companion object {
-        fun getDetailPages(wayToUsePage: WayToUsePage) : List<WayToUseDetailPage> {
+        fun getDetailPages(wayToUsePage: WayToUsePage): List<WayToUseDetailPage> {
             return when (wayToUsePage) {
                 WayToUsePage.GetStarted -> listOf(
                     AboutThisApp,
@@ -96,7 +112,11 @@ enum class WayToUseDetailPage(
                     AvailableByAccount,
                     DeleteAccount,
                 )
-                else -> listOf()
+                WayToUsePage.AboutResult -> listOf(
+                    AboutResult,
+                    BoxifulAge,
+                    AboutScore,
+                )
             }
         }
     }
