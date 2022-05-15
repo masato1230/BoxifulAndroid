@@ -35,12 +35,11 @@ fun MyPageMainContent(modifier: Modifier = Modifier, navController: NavControlle
 
     val isShowLoggedOutDialog = remember { mutableStateOf(false) }
     if (isShowLoggedOutDialog.value) {
-        ConfirmDialog(title = stringResource(id = R.string.auth_logged_out)) {
-            isShowLoggedOutDialog.value = false
-            navController.popBackStack(
-                route = NavigationRoutes.HOME,
-                inclusive = false,
-            )
+        ConfirmDialog(
+            title = stringResource(id = R.string.auth_logged_out),
+            isShowDialog = isShowLoggedOutDialog,
+        ) {
+            navController.popBackStack(route = NavigationRoutes.HOME, inclusive = false)
         }
     }
 
@@ -48,13 +47,12 @@ fun MyPageMainContent(modifier: Modifier = Modifier, navController: NavControlle
     if (isShowDeleteAccountDialog.value) {
         ConfirmDialog(
             title = stringResource(id = R.string.auth_ask_delete_account),
-            onDismiss = { isShowDeleteAccountDialog.value = false },
+            isShowDialog = isShowDeleteAccountDialog,
+            onDismiss = {},
             isShowNegativeButton = true,
             onClickPositive = {
-                isShowDeleteAccountDialog.value = false
                 navController.popBackStack(route = NavigationRoutes.HOME, inclusive = false)
             },
-            onClickNegative = { isShowDeleteAccountDialog.value = false }
         )
     }
 

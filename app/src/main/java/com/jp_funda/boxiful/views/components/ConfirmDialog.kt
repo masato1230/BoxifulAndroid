@@ -6,6 +6,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -16,6 +17,7 @@ import com.jp_funda.boxiful.ui.theme.Yellow500
 @Composable
 fun ConfirmDialog(
     title: String,
+    isShowDialog: MutableState<Boolean>,
     isShowNegativeButton: Boolean = false,
     onClickPositive: () -> Unit = {},
     onClickNegative: () -> Unit = {},
@@ -23,6 +25,7 @@ fun ConfirmDialog(
 ) {
     AlertDialog(
         onDismissRequest = {
+            isShowDialog.value = false
             onDismiss()
         },
         title = {
@@ -38,6 +41,7 @@ fun ConfirmDialog(
                     Button(
                         modifier = Modifier.width(120.dp),
                         onClick = {
+                            isShowDialog.value = false
                             onClickNegative()
                             onDismiss()
                         },
@@ -52,6 +56,7 @@ fun ConfirmDialog(
                 Button(
                     modifier = Modifier.width(120.dp),
                     onClick = {
+                        isShowDialog.value = false
                         onClickPositive()
                         onDismiss()
                     },

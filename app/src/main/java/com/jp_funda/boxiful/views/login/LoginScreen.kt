@@ -14,6 +14,8 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -47,7 +49,10 @@ fun LoginScreen(navController: NavController) {
         LoadingDialog(indicatorColor = Green500)
     } else if (networkStatus.value is NetworkStatus.Success) {
         // Show login success dialog
-        ConfirmDialog(title = stringResource(id = R.string.auth_success)) {
+        ConfirmDialog(
+            title = stringResource(id = R.string.auth_success),
+            isShowDialog = remember { mutableStateOf(true) }
+        ) {
             navController.popBackStack(
                 NavigationRoutes.HOME,
                 inclusive = false
