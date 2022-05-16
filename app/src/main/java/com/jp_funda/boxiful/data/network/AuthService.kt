@@ -3,6 +3,8 @@ package com.jp_funda.boxiful.data.network
 import com.jp_funda.boxiful.data.repository.auth.entity.*
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.HeaderMap
 import retrofit2.http.POST
 
 interface AuthService {
@@ -15,4 +17,7 @@ interface AuthService {
 
     @POST("users/register/")
     suspend fun register(@Body request: LoginRequest): Response<RegisterResponse>
+
+    @DELETE("uses/delete/")
+    suspend fun deleteAccount(@HeaderMap headers: Map<String, String>): Response<DeleteAccountResponse>
 }

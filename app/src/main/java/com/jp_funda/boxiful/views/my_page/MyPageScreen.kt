@@ -32,7 +32,9 @@ fun MyPageScreen(navController: NavController) {
 @Composable
 fun MyPageMainContent(modifier: Modifier = Modifier, navController: NavController) {
     val viewModel = hiltViewModel<MyPageViewModel>()
+    // TODO Observe NetworkStatus for delete account
 
+    // Logout finish dialog
     val isShowLoggedOutDialog = remember { mutableStateOf(false) }
     if (isShowLoggedOutDialog.value) {
         ConfirmDialog(
@@ -43,6 +45,7 @@ fun MyPageMainContent(modifier: Modifier = Modifier, navController: NavControlle
         }
     }
 
+    // Delete account confirm dialog
     val isShowDeleteAccountDialog = remember { mutableStateOf(false) }
     if (isShowDeleteAccountDialog.value) {
         ConfirmDialog(
@@ -51,7 +54,7 @@ fun MyPageMainContent(modifier: Modifier = Modifier, navController: NavControlle
             onDismiss = {},
             isShowNegativeButton = true,
             onClickPositive = {
-                navController.popBackStack(route = NavigationRoutes.HOME, inclusive = false)
+                viewModel.deleteAccount()
             },
         )
     }
