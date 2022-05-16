@@ -1,5 +1,6 @@
 package com.jp_funda.boxiful.views
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.ui.theme.BoxifulTheme
+import com.jp_funda.boxiful.views.intro.IntroActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagerApi
@@ -26,6 +28,9 @@ class MainActivity : ComponentActivity() {
 
         // Refresh auth tokens
         viewModel.refreshAuthTokens()
+
+        // TODO delete
+        startActivity(Intent(this, IntroActivity::class.java))
 
         setContent {
             BoxifulTheme {
