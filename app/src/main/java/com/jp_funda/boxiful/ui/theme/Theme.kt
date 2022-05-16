@@ -13,7 +13,7 @@ private val ColorPalette = lightColors(
 )
 
 @Composable
-fun BoxfulTheme(content: @Composable () -> Unit) {
+fun BoxifulTheme(content: @Composable () -> Unit) {
     val colors = ColorPalette
 
     MaterialTheme(
