@@ -44,6 +44,8 @@ class MyPageViewModel @Inject constructor(
                 val isSuccessDelete =
                     authRepository.deleteAccount(authPreferences.getString(PreferenceKey.ACCESS_TOKEN)!!)
                 if (isSuccessDelete) {
+                    // Logout when succeed - Remove email, access token and refresh token cach
+                    logout()
                     _networkStatus.value = NetworkStatus.Success
                 } else {
                     _networkStatus.value =
