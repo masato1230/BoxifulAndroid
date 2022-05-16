@@ -18,6 +18,6 @@ interface AuthService {
     @POST("users/register/")
     suspend fun register(@Body request: LoginRequest): Response<RegisterResponse>
 
-    @DELETE("uses/delete/")
+    @DELETE("users/delete/")
     suspend fun deleteAccount(@HeaderMap headers: Map<String, String>): Response<DeleteAccountResponse>
 }

@@ -114,7 +114,7 @@ fun LoginMainContent(
         if (networkStatus is NetworkStatus.Error) {
             Text(
                 text = stringResource(id = networkStatus.errorRes),
-                color = Red500,
+                color = Red900,
                 modifier = Modifier.padding(10.dp),
                 style = MaterialTheme.typography.body2,
                 textAlign = TextAlign.Center,

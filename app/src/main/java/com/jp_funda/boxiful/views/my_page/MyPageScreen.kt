@@ -5,6 +5,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -14,11 +15,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.models.NetworkStatus
 import com.jp_funda.boxiful.navigation.NavigationRoutes
 import com.jp_funda.boxiful.ui.theme.Background
+import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
 import com.jp_funda.boxiful.views.components.ConfirmDialog
+import com.jp_funda.boxiful.views.components.LoadingDialog
 import com.jp_funda.boxiful.views.components.header.Header
 
 @Composable
@@ -32,7 +36,38 @@ fun MyPageScreen(navController: NavController) {
 @Composable
 fun MyPageMainContent(modifier: Modifier = Modifier, navController: NavController) {
     val viewModel = hiltViewModel<MyPageViewModel>()
-    // TODO Observe NetworkStatus for delete account
+    // Observe NetworkStatus for delete account
+    val networkStatus = viewModel.networkStatus.observeAsState()
+    when (networkStatus.value) {
+        is NetworkStatus.Loading -> {
+            // Show Loading dialog
+            LoadingDialog(indicatorColor = Green500)
+        }
+        is NetworkStatus.Success -> {
+            // Show delete account success dialog
+            ConfirmDialog(
+                title = stringResource(id = R.string.auth_success_delete_account),
+                isShowDialog = remember { mutableStateOf(true) }) {
+                navController.popBackStack(
+                    route = NavigationRoutes.HOME,
+                    inclusive = false,
+                )
+            }
+        }
+        is NetworkStatus.Error -> {
+            val isShowErrorDialog = remember { mutableStateOf(true) }
+            if (isShowErrorDialog.value) {
+                ConfirmDialog(
+                    title = stringResource(id = (networkStatus.value as NetworkStatus.Error).errorRes),
+                    isShowDialog = isShowErrorDialog,
+                    onDismiss = {},
+                )
+            }
+        }
+        else -> {
+            // Do nothing
+        }
+    }
 
     // Logout finish dialog
     val isShowLoggedOutDialog = remember { mutableStateOf(false) }
