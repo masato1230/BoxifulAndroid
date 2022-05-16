@@ -46,4 +46,10 @@ class AuthRepository @Inject constructor(private val authService: AuthService) {
             accessToken = response.body()!!.accessToken,
         )
     }
+
+    /** Delete account. */
+    suspend fun deleteAccount(accessToken: String): Boolean {
+        val response = authService.deleteAccount(mapOf("Authorization" to "JWT $accessToken"))
+        return response.isSuccessful
+    }
 }
