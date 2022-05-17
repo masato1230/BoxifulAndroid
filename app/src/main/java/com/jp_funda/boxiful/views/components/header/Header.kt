@@ -48,7 +48,9 @@ fun Header(navController: NavController) {
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /* do something */ }) {
+            IconButton(onClick = {
+                navController.popBackStack(NavigationRoutes.HOME, false)
+            }) {
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.ic_boxiful),
