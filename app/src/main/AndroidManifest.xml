@@ -31,7 +31,7 @@
             android:name=".views.intro.IntroActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Intro"
+            android:theme="@style/Theme.Boxiful"
             tools:ignore="LockedOrientationActivity" />
     </application>
 

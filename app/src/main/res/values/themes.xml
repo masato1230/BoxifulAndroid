@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Boxiful" parent="android:Theme.Material.NoActionBar">
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/white</item>
-    </style>
-    <style name="Theme.Intro" parent="android:Theme.Material.NoActionBar">
         <item name="android:statusBarColor">@color/pink_400</item>
     </style>
 </resources>

@@ -21,6 +21,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.navigation.NavigationRoutes
+import com.jp_funda.boxiful.ui.theme.Pink400
 import com.jp_funda.boxiful.ui.theme.Yellow500
 
 @Composable
@@ -30,7 +31,9 @@ fun Header(navController: NavController) {
         title = {
             Text(
                 buildAnnotatedString {
-                    append("Boxi")
+                    withStyle(style = SpanStyle(color = Color.White)) {
+                        append("Boxi")
+                    }
                     withStyle(style = SpanStyle(color = Yellow500)) {
                         append("ful")
                     }
@@ -41,6 +44,7 @@ fun Header(navController: NavController) {
                 text = stringResource(id = R.string.kickboxing),
                 style = MaterialTheme.typography.caption,
                 fontFamily = FontFamily.Serif,
+                color = Color.LightGray,
             )
         },
         navigationIcon = {
@@ -66,10 +70,10 @@ fun Header(navController: NavController) {
                             navController.navigate(NavigationRoutes.LOGIN)
                         }
                     },
-                tint = if (viewModel.isLoggedIn) Yellow500 else Color.Gray,
+                tint = if (viewModel.isLoggedIn) Yellow500 else Color.LightGray,
             )
             Spacer(modifier = Modifier.width(10.dp))
         },
-        backgroundColor = Color.White,
+        backgroundColor = Pink400,
     )
 }
