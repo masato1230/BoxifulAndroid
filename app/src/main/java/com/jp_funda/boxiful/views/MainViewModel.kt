@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.jp_funda.boxiful.data.repository.auth.AuthRepository
 import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
 import com.jp_funda.boxiful.data.shared_preference.PreferenceKey
+import com.jp_funda.boxiful.data.shared_preference.SettingsPreferences
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.models.SingleMenuResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,17 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val authPreferences: AuthPreferences,
+    private val settingsPreferences: SettingsPreferences,
 ) : ViewModel() {
+    /** Is first app launch. */
+    val isFirstAppLaunch: Boolean
+        get() {
+            return !settingsPreferences.getBoolean(PreferenceKey.IS_FIRST_LAUNCH_FINISHED)
+        }
+
+    fun markAsFirstAppLaunchFinished() {
+        settingsPreferences.putBoolean(PreferenceKey.IS_FIRST_LAUNCH_FINISHED, true)
+    }
 
     /** Single Menu scores */
     var singleMenuScores = SingleMenuResult(

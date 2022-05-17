@@ -29,8 +29,11 @@ class MainActivity : ComponentActivity() {
         // Refresh auth tokens
         viewModel.refreshAuthTokens()
 
-        // TODO delete
-        startActivity(Intent(this, IntroActivity::class.java))
+        // Show intro when first time app launch
+        if (viewModel.isFirstAppLaunch) {
+            viewModel.markAsFirstAppLaunchFinished()
+            startActivity(Intent(this, IntroActivity::class.java))
+        }
 
         setContent {
             BoxifulTheme {
