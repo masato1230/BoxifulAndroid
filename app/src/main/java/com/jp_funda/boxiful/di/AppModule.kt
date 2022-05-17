@@ -7,6 +7,7 @@ import com.jp_funda.boxiful.data.network.TrainingResultService
 import com.jp_funda.boxiful.data.repository.auth.AuthRepository
 import com.jp_funda.boxiful.data.repository.training_result.TrainingResultRepository
 import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
+import com.jp_funda.boxiful.data.shared_preference.SettingsPreferences
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -32,6 +33,11 @@ class AppModule {
     @Singleton
     fun provideAuthPreferences(@ApplicationContext appContext: Context) =
         AuthPreferences(appContext)
+
+    @Provides
+    @Singleton
+    fun provideSettingsPreferences(@ApplicationContext appContext: Context) =
+        SettingsPreferences(appContext)
 
     @Provides
     @Singleton

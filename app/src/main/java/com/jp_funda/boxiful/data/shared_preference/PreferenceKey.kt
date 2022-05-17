@@ -4,5 +4,7 @@ enum class PreferenceKey(val key: String) {
     // Auth
     REFRESH_TOKEN("refresh token"),
     ACCESS_TOKEN("access token"),
-    EMAIL("email");
+    EMAIL("email"),
+    // Settings
+    IS_FIRST_LAUNCH("is first launch");
 }
