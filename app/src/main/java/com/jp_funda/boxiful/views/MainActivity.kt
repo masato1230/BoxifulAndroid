@@ -1,7 +1,7 @@
 package com.jp_funda.boxiful.views
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -9,17 +9,11 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.jp_funda.boxiful.models.SingleMenu
-import com.jp_funda.boxiful.ui.theme.BoxfulTheme
-import com.jp_funda.boxiful.views.components.pose_preview.CameraPreview
-import com.jp_funda.boxiful.views.components.pose_preview.PoseGraphic
+import com.jp_funda.boxiful.ui.theme.BoxifulTheme
+import com.jp_funda.boxiful.views.intro.IntroActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagerApi
@@ -35,8 +29,14 @@ class MainActivity : ComponentActivity() {
         // Refresh auth tokens
         viewModel.refreshAuthTokens()
 
+        // Show intro when first time app launch
+        if (viewModel.isFirstAppLaunch) {
+            viewModel.markAsFirstAppLaunchFinished()
+            startActivity(Intent(this, IntroActivity::class.java))
+        }
+
         setContent {
-            BoxfulTheme {
+            BoxifulTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -46,30 +46,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@ExperimentalPermissionsApi
-@Composable
-fun MainContent(
-    modifier: Modifier = Modifier,
-    menu: SingleMenu? = null
-) { // TODO change second param
-    Log.d("Single Menu", menu?.name.toString())
-    val context = LocalContext.current
-    CameraPreview(poseObservers = listOf())
-    PoseGraphic()
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    BoxfulTheme {
-        Greeting("Android")
     }
 }
