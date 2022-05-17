@@ -12,9 +12,9 @@ import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.ui.theme.Green500
 
 @Composable
-fun LoadingView() {
+fun LoadingView(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
