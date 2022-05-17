@@ -1,14 +1,17 @@
 package com.jp_funda.boxiful.views.components.header
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,7 +47,7 @@ fun Header(navController: NavController) {
                 text = stringResource(id = R.string.kickboxing),
                 style = MaterialTheme.typography.caption,
                 fontFamily = FontFamily.Serif,
-                color = Color.LightGray,
+                color = Color.White,
             )
         },
         navigationIcon = {
@@ -71,7 +74,9 @@ fun Header(navController: NavController) {
                         } else {
                             navController.navigate(NavigationRoutes.LOGIN)
                         }
-                    },
+                    }
+                    .clip(CircleShape)
+                    .background(if (viewModel.isLoggedIn) Color.White else Color.Transparent),
                 tint = if (viewModel.isLoggedIn) Yellow500 else Color.LightGray,
             )
             Spacer(modifier = Modifier.width(10.dp))
