@@ -106,4 +106,7 @@ dependencies {
 
     // GitHubHeatmap
     implementation 'com.github.masato1230:github-heatmap:1.0.1'
+
+    // Splash screen
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
 }
