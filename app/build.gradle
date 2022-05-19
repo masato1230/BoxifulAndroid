@@ -47,6 +47,18 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    flavorDimensions "advertisement"
+    productFlavors {
+        staging {
+            dimension "advertisement"
+            buildConfigField "String", "resultInterstitialUnitId", "\"ca-app-pub-3940256099942544/1033173712\""
+        }
+        product {
+            dimension "advertisement"
+            buildConfigField "String", "resultInterstitialUnitId", "\"\n" + "ca-app-pub-8353659026777346/5564116394\""
+        }
+    }
 }
 
 dependencies {
