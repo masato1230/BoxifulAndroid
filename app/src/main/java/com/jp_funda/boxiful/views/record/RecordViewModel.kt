@@ -36,7 +36,7 @@ class RecordViewModel @Inject constructor(
             return trainingResults?.filter { it.createdAt.isAfter(dateBeforeOneWeek) }
         }
 
-    val resultStartDate: LocalDate = LocalDate.now().minusDays(180)
+    val resultStartDate: LocalDate = LocalDate.now().minusDays(90)
 
     /** Total number of trainings. - for total stats */
     val totalNumberOfTrainings: Int
