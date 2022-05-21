@@ -67,7 +67,6 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun initializeInterstitialAd() {
-        // Load Interstitial Ad
         // Initialize Mobile Ads SDK
         MobileAds.initialize(this)
         // Specify test device
@@ -85,7 +84,6 @@ class MainActivity : ComponentActivity() {
 
                 override fun onAdLoaded(loadedAd: InterstitialAd) {
                     interstitialAd = loadedAd
-                    interstitialAd?.show(this@MainActivity)
                 }
             })
     }
