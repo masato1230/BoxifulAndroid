@@ -42,7 +42,7 @@ fun ResultScreen(navController: NavController, singleMenuResult: SingleMenuResul
     val context = LocalContext.current
     LaunchedEffect(key1 = Unit) {
         delay(500)
-        (context as MainActivity).showInterstitial()
+        (context as MainActivity).showInterstitialAd()
     }
 
     Scaffold(topBar = { Header(navController) }) {

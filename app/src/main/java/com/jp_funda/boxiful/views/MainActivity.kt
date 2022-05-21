@@ -14,10 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.jp_funda.boxiful.BuildConfig
@@ -32,7 +29,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel by viewModels<MainViewModel>()
     var interstitialAd: InterstitialAd? = null
-    private lateinit var adRequest: AdRequest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -58,7 +54,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background,
                 ) {
                     LaunchedEffect(key1 = "") {
-                        showInterstitial()
+                        showInterstitialAd()
                     }
                     MainScreen(viewModel)
                 }
@@ -75,7 +71,11 @@ class MainActivity : ComponentActivity() {
                 .setTestDeviceIds(listOf("2680A52322369B561BAF8E9FAEC62987"))
                 .build()
         )
-        adRequest = AdRequest.Builder().build()
+        loadInterstitialAd()
+    }
+
+    private fun loadInterstitialAd() {
+        val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(this, BuildConfig.interstitialUnitId, adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(p0: LoadAdError) {
@@ -88,8 +88,18 @@ class MainActivity : ComponentActivity() {
             })
     }
 
-    fun showInterstitial() {
+    fun showInterstitialAd() {
         if (interstitialAd != null) {
+            interstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    interstitialAd = null
+                    loadInterstitialAd()
+                }
+
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                    interstitialAd = null
+                }
+            }
             interstitialAd?.show(this)
         }
     }
