@@ -75,47 +75,10 @@ class RecordViewModel @Inject constructor(
         }
 
     /** LocalDate & CalendarHeatmapLevel map for draw graph. */
-    val dateTrainingLevelMap: Map<LocalDate, GitHubHeatmapLevel>
-        get() {
-            val pointMap = mutableMapOf<LocalDate, Int>()
-            trainingResults?.let {
-                it.forEach { trainingResultInfo ->
-                    pointMap[trainingResultInfo.createdAt] =
-                        trainingResultInfo.point + (pointMap[trainingResultInfo.createdAt] ?: 0)
-                }
-            }
-            return pointMap.map { originalKeyValue ->
-                val index = originalKeyValue.value / 200
-                val level =
-                    if (index < GitHubHeatmapLevel.values().size) {
-                        GitHubHeatmapLevel.values()[index]
-                    } else {
-                        GitHubHeatmapLevel.Level10
-                    }
-                originalKeyValue.key to level
-            }.toMap()
-        }
+    var dateTrainingLevelMap: Map<LocalDate, GitHubHeatmapLevel> = mapOf()
 
     /** LocalDate & Texts map for cell popup. */
-    val dateTextsMap: Map<LocalDate, List<String>>
-        get() {
-            val textsMap = mutableMapOf<LocalDate, List<String>>()
-            val dateIterator = DateIterator(resultStartDate, LocalDate.now(), 1)
-
-            dateIterator.forEach { date ->
-                trainingResults?.filter { it.createdAt == date }?.let { resultsInDate ->
-                    textsMap[date] = listOf(
-                        application.getString(
-                            R.string.record_calorie_consumption,
-                            resultsInDate.sumOf { it.calorie }),
-                        application.getString(
-                            R.string.record_boxiful_point,
-                            resultsInDate.sumOf { it.point }),
-                    )
-                }
-            }
-            return textsMap
-        }
+    var dateTextsMap: Map<LocalDate, List<String>> = mapOf()
 
     /** Getter of calorie consumption of the day. */
     private fun getOneDayCalorieConsumption(date: LocalDate): Int {
@@ -142,6 +105,7 @@ class RecordViewModel @Inject constructor(
             return appUtils.isLoggedIn
         }
 
+    /** Get Training Results form server and map it to easy to use data. */
     fun getTrainingResults() {
         // Do nothing when already loaded
         if (_networkStatus.value != NetworkStatus.Waiting) return
@@ -152,6 +116,12 @@ class RecordViewModel @Inject constructor(
                 trainingResults = trainingResultRepository.fetchTrainingResults(
                     authPreferences.getString(PreferenceKey.ACCESS_TOKEN)!!
                 )
+                // data translations
+                trainingResults?.let {
+                    dateTrainingLevelMap = translateTrainingResultsToTrainingLevelMap(it)
+                    dateTextsMap = translateTrainingResultsToDateTextsMap(it)
+                }
+                // update fags
                 if (trainingResults != null) {
                     _networkStatus.value = NetworkStatus.Success
                 } else {
@@ -163,5 +133,44 @@ class RecordViewModel @Inject constructor(
                 _networkStatus.value = NetworkStatus.Error(errorRes = R.string.error_connect_server)
             }
         }
+    }
+
+    /** Translate training result -> training level map. */
+    private fun translateTrainingResultsToTrainingLevelMap(results: List<TrainingResultInfo>): Map<LocalDate, GitHubHeatmapLevel> {
+        val pointMap = mutableMapOf<LocalDate, Int>()
+        results.forEach { trainingResultInfo ->
+            pointMap[trainingResultInfo.createdAt] =
+                trainingResultInfo.point + (pointMap[trainingResultInfo.createdAt] ?: 0)
+        }
+        return pointMap.map { originalKeyValue ->
+            val index = originalKeyValue.value / 200
+            val level =
+                if (index < GitHubHeatmapLevel.values().size) {
+                    GitHubHeatmapLevel.values()[index]
+                } else {
+                    GitHubHeatmapLevel.Level10
+                }
+            originalKeyValue.key to level
+        }.toMap()
+    }
+
+    /** Translate training result -> description text map. */
+    private fun translateTrainingResultsToDateTextsMap(results: List<TrainingResultInfo>): Map<LocalDate, List<String>> {
+        val textsMap = mutableMapOf<LocalDate, List<String>>()
+        val dateIterator = DateIterator(resultStartDate, LocalDate.now(), 1)
+
+        dateIterator.forEach { date ->
+            results.filter { it.createdAt == date }.let { resultsInDate ->
+                textsMap[date] = listOf(
+                    application.getString(
+                        R.string.record_calorie_consumption,
+                        resultsInDate.sumOf { it.calorie }),
+                    application.getString(
+                        R.string.record_boxiful_point,
+                        resultsInDate.sumOf { it.point }),
+                )
+            }
+        }
+        return textsMap
     }
 }
