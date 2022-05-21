@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.ui.theme.BlackAlpha50
 import com.jp_funda.boxiful.ui.theme.Pink500
 import com.jp_funda.boxiful.views.components.AnimatedPieChart
 import kotlinx.coroutines.delay
@@ -51,7 +52,7 @@ fun OverallScoreSection(score: Int) {
             modifier = Modifier
                 .clip(MaterialTheme.shapes.medium)
                 .fillMaxWidth()
-                .background(Color.White),
+                .background(BlackAlpha50),
             contentAlignment = Alignment.Center,
         ) {
             AnimatedPieChart(
@@ -65,7 +66,7 @@ fun OverallScoreSection(score: Int) {
             )
             Text(
                 text = stringResource(id = R.string.result_unit_score, animatedScore),
-                color = Color.Black,
+                color = Color.White,
                 style = MaterialTheme.typography.h3
             )
         }

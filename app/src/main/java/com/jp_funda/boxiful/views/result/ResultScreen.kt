@@ -41,7 +41,7 @@ fun ResultScreen(navController: NavController, singleMenuResult: SingleMenuResul
     // Show interstitial Ad
     val context = LocalContext.current
     LaunchedEffect(key1 = Unit) {
-        delay(500)
+        delay(2000)
         (context as MainActivity).showInterstitialAd()
     }
 
