@@ -1,5 +1,6 @@
 package com.jp_funda.boxiful.views
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,11 +9,17 @@ import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.jp_funda.boxiful.BuildConfig
 import com.jp_funda.boxiful.ui.theme.BoxifulTheme
 import com.jp_funda.boxiful.views.intro.IntroActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,10 +30,34 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel by viewModels<MainViewModel>()
+    var interstitialAd: InterstitialAd? = null
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
+
+        // Load Interstitial Ad
+        // Initialize Mobile Ads SDK
+        MobileAds.initialize(this)
+        // Specify test device
+        MobileAds.setRequestConfiguration(
+            RequestConfiguration.Builder()
+                .setTestDeviceIds(listOf("2680A52322369B561BAF8E9FAEC62987"))
+                .build()
+        )
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this, BuildConfig.interstitialUnitId, adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(p0: LoadAdError) {
+                    interstitialAd = null
+                }
+
+                override fun onAdLoaded(loadedAd: InterstitialAd) {
+                    interstitialAd = loadedAd
+                    interstitialAd?.show(this@MainActivity)
+                }
+            })
 
         // Refresh auth tokens
         viewModel.refreshAuthTokens()
@@ -42,9 +73,21 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.background,
                 ) {
-                    MainScreen(viewModel)
+                    Scaffold(
+                        bottomBar = {
+                            AndroidView(factory = {
+                                AdView(it).apply {
+                                    adSize = AdSize.BANNER
+                                    adUnitId = BuildConfig.interstitialUnitId
+                                    loadAd(adRequest)
+                                }
+                            })
+                        }
+                    ) {
+                        MainScreen(viewModel)
+                    }
                 }
             }
         }
