@@ -10,9 +10,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -26,11 +23,9 @@ import com.jp_funda.boxiful.ui.theme.Gray900
 import com.jp_funda.boxiful.ui.theme.Green500
 import com.jp_funda.boxiful.ui.theme.Red500
 import com.jp_funda.boxiful.ui.theme.Yellow500
-import com.jp_funda.boxiful.views.components.LoadingView
 import com.jp_funda.boxiful.views.components.SnsShareButtons
 import com.jp_funda.boxiful.views.record.RecordViewModel
 import com.jp_funda.github_heatmap.GitHubHeatmap
-import kotlinx.coroutines.delay
 
 @Composable
 fun TotalStatsSection() {
@@ -99,28 +94,13 @@ fun TotalStatsSection() {
         Spacer(modifier = Modifier.height(5.dp))
 
         // Heatmap
-        val isHeatmapVisible = remember { mutableStateOf(false) }
-        LaunchedEffect(key1 = isHeatmapVisible) {
-            delay(1000)
-            isHeatmapVisible.value = true
-        }
-
-        if (isHeatmapVisible.value) {
-            GitHubHeatmap(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(5.dp))
-                    .background(Gray900),
-                startDate = viewModel.resultStartDate,
-                cellLevelMap = viewModel.dateTrainingLevelMap,
-                cellPopupTextsMap = viewModel.dateTextsMap,
-            )
-        } else {
-            LoadingView(modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
+        GitHubHeatmap(
+            modifier = Modifier
                 .clip(RoundedCornerShape(5.dp))
-                .background(Gray900)
-            )
-        }
+                .background(Gray900),
+            startDate = viewModel.resultStartDate,
+            cellLevelMap = viewModel.dateTrainingLevelMap,
+            cellPopupTextsMap = viewModel.dateTextsMap,
+        )
     }
 }
