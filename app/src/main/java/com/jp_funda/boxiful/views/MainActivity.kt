@@ -2,7 +2,6 @@ package com.jp_funda.boxiful.views
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -23,7 +22,6 @@ import com.jp_funda.boxiful.BuildConfig
 import com.jp_funda.boxiful.ui.theme.BoxifulTheme
 import com.jp_funda.boxiful.views.intro.IntroActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @ExperimentalPagerApi
 @ExperimentalAnimationApi
@@ -44,9 +42,6 @@ class MainActivity : ComponentActivity() {
         // TODO check conditions
         val installedDate = packageManager.getPackageInfo(packageName, 0).firstInstallTime
         if (viewModel.checkIsReviewRequestNeeded(installedDate)) {
-            Log.d("Installed", installedDate.toString())
-            Log.d("Now", Date().time.toString())
-            Log.d("Requested", "True")
             viewModel.setIsReviewRequested(true)
             requestReview()
         }
@@ -119,7 +114,7 @@ class MainActivity : ComponentActivity() {
     }
 
     /** Request in App review. */
-    fun requestReview() {
+    private fun requestReview() {
         val manager = ReviewManagerFactory.create(this)
         val request = manager.requestReviewFlow()
         request.addOnCompleteListener { task ->
