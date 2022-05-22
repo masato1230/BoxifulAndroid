@@ -2,6 +2,7 @@ package com.jp_funda.boxiful.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -22,6 +23,7 @@ import com.jp_funda.boxiful.BuildConfig
 import com.jp_funda.boxiful.ui.theme.BoxifulTheme
 import com.jp_funda.boxiful.views.intro.IntroActivity
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @ExperimentalPagerApi
 @ExperimentalAnimationApi
@@ -40,7 +42,14 @@ class MainActivity : ComponentActivity() {
 
         // Request in app review. if user satisfy conditions.
         // TODO check conditions
-        requestReview()
+        val installedDate = packageManager.getPackageInfo(packageName, 0).firstInstallTime
+        if (viewModel.checkIsReviewRequestNeeded(installedDate)) {
+            Log.d("Installed", installedDate.toString())
+            Log.d("Now", Date().time.toString())
+            Log.d("Requested", "True")
+            viewModel.setIsReviewRequested(true)
+            requestReview()
+        }
 
         // Refresh auth tokens
         viewModel.refreshAuthTokens()

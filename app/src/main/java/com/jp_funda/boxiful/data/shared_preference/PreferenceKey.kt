@@ -6,5 +6,6 @@ enum class PreferenceKey(val key: String) {
     ACCESS_TOKEN("access token"),
     EMAIL("email"),
     // Settings
-    IS_FIRST_LAUNCH_FINISHED("is first launch finished");
+    IS_FIRST_LAUNCH_FINISHED("is first launch finished"),
+    IS_REVIEW_REQUESTED("is review requested");
 }
