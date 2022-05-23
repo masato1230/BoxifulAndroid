@@ -78,7 +78,7 @@ fun RowScope.SnsShareButton(
             contentDescription = contentDescription,
             modifier = Modifier.size(24.dp)
         )
-        Spacer(modifier = Modifier.width(10.dp))
+        Spacer(modifier = Modifier.widthIn(min = 5.dp, max = 10.dp))
         Text(
             text = title,
             style = MaterialTheme.typography.caption,
