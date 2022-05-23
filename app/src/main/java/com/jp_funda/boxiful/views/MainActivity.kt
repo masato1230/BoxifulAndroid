@@ -39,7 +39,6 @@ class MainActivity : ComponentActivity() {
         initializeInterstitialAd()
 
         // Request in app review. if user satisfy conditions.
-        // TODO check conditions
         val installedDate = packageManager.getPackageInfo(packageName, 0).firstInstallTime
         if (viewModel.checkIsReviewRequestNeeded(installedDate)) {
             viewModel.setIsReviewRequested(true)
