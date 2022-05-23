@@ -17,6 +17,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.jp_funda.boxiful.BuildConfig
 import com.jp_funda.boxiful.ui.theme.BoxifulTheme
 import com.jp_funda.boxiful.views.intro.IntroActivity
@@ -36,6 +37,13 @@ class MainActivity : ComponentActivity() {
 
         // AdMob initialization
         initializeInterstitialAd()
+
+        // Request in app review. if user satisfy conditions.
+        val installedDate = packageManager.getPackageInfo(packageName, 0).firstInstallTime
+        if (viewModel.checkIsReviewRequestNeeded(installedDate)) {
+            viewModel.setIsReviewRequested(true)
+            requestReview()
+        }
 
         // Refresh auth tokens
         viewModel.refreshAuthTokens()
@@ -101,6 +109,22 @@ class MainActivity : ComponentActivity() {
                 }
             }
             interstitialAd?.show(this)
+        }
+    }
+
+    /** Request in App review. */
+    private fun requestReview() {
+        val manager = ReviewManagerFactory.create(this)
+        val request = manager.requestReviewFlow()
+        request.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // We got the ReviewInfo object
+                val reviewInfo = task.result
+                manager.launchReviewFlow(this, reviewInfo)
+            } else {
+                // There was some problem, log or handle the error code.
+                task.exception?.printStackTrace()
+            }
         }
     }
 }

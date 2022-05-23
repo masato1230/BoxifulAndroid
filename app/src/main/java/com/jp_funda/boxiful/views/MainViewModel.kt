@@ -10,6 +10,7 @@ import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.models.SingleMenuResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -63,5 +64,26 @@ class MainViewModel @Inject constructor(
                 e.printStackTrace()
             }
         }
+    }
+
+    /**
+     * @return is need review request
+     */
+    fun checkIsReviewRequestNeeded(installedTime: Long): Boolean {
+        val durationFromInstalled = Date().time - installedTime
+        val secondsInMilli = 1000
+        val minutesInMilli = secondsInMilli * 60
+        val hoursInMilli = minutesInMilli * 60
+        val daysInMilli = hoursInMilli * 24
+
+        val isEnoughTimePassed = durationFromInstalled > 7 * daysInMilli
+        // check pref
+        val isReviewRequested = settingsPreferences.getBoolean(PreferenceKey.IS_REVIEW_REQUESTED)
+
+        return isEnoughTimePassed && !isReviewRequested
+    }
+
+    fun setIsReviewRequested(value: Boolean) {
+        settingsPreferences.putBoolean(PreferenceKey.IS_REVIEW_REQUESTED, value)
     }
 }
