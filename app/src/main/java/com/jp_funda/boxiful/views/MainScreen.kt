@@ -79,7 +79,12 @@ fun RowScope.AddItem(
         label = { Text(text = stringResource(id = menuItem.titleRes)) },
         icon = { Icon(imageVector = menuItem.icon, contentDescription = "Navigation Icon") },
         selected = currentDestination?.hierarchy?.any { it.route == menuItem.route } == true,
-        onClick = { navController.navigate(menuItem.route) { popUpTo(NavigationRoutes.HOME) } },
+        onClick = {
+            // Navigate only when current route and destination is not the same
+            if (navController.currentDestination?.route != menuItem.route) {
+                navController.navigate(menuItem.route) { popUpTo(NavigationRoutes.HOME) }
+            }
+        },
         selectedContentColor = Pink400,
         unselectedContentColor = Color.White,
         modifier = Modifier.background(Yellow500)
