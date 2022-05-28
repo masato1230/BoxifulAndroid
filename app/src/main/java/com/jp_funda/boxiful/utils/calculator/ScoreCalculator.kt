@@ -10,7 +10,7 @@ object ScoreCalculator {
      * @return score in range of 0 ~ 100 (actually min value is 20)
      */
     fun getSingleMenuMoveScore(time: Float): Int {
-        val rawScore = 100 - (time - 0.65f) * 30
+        val rawScore = 100 - (time - 0.5f) * 30
         val score = when {
             rawScore > 100 -> 100
             rawScore < 20 -> 20
@@ -28,7 +28,7 @@ object ScoreCalculator {
 
     /** Calculate boxiful age by single menu scores. */
     fun getBoxifulAge(score: Int): Int {
-        var age = 110 - score
+        var age = 115 - score
         if (age < 20) age = 20
         return age
     }
