@@ -36,7 +36,7 @@ class TrainingViewModel @Inject constructor(
 ) : ViewModel(), PoseObserver {
     companion object {
         const val MAX_COUNT_DOWN_TIME = 5
-        const val WARNING_THRESHHOLD_TIME = 5
+        const val WARNING_THRESHOLD_TIME = 3
     }
 
     private val _networkStatus = MutableLiveData<NetworkStatus>(NetworkStatus.Waiting)
@@ -152,7 +152,7 @@ class TrainingViewModel @Inject constructor(
             if (mainJointsMissingStartTime == null) mainJointsMissingStartTime = Date()
             else {
                 if (
-                    Date().time - mainJointsMissingStartTime!!.time > WARNING_THRESHHOLD_TIME * 1000 &&
+                    Date().time - mainJointsMissingStartTime!!.time > WARNING_THRESHOLD_TIME * 1000 &&
                     _overlayType.value != OverlayType.Warning
                 ) {
                     _overlayType.value = OverlayType.Warning

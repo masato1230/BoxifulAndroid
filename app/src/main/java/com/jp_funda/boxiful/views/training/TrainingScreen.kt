@@ -22,10 +22,7 @@ import com.jp_funda.boxiful.ui.theme.Background
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
-import com.jp_funda.boxiful.views.training.component.CountDownOverlay
-import com.jp_funda.boxiful.views.training.component.ErrorRegisteringResultDialog
-import com.jp_funda.boxiful.views.training.component.FinishModal
-import com.jp_funda.boxiful.views.training.component.InstructionOverlay
+import com.jp_funda.boxiful.views.training.component.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -127,7 +124,7 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                             )
                         }
                         OverlayType.Warning -> {
-                            // TODO
+                            WarningOverlay()
                         }
                     }
                 }

@@ -123,6 +123,8 @@
     <string name="instructions_left_foot_right_kick">左足で右にキック</string>
     <string name="instructions_right_foot_left_kick">右足で左にキック</string>
     <string name="instructions_right_foot_right_kick">右足で右にキック</string>
+    <!-- warnings -->
+    <string name="warnings_ensure_entire_body_in_camera_frame">体全体がカメラに映るようにしてください</string>
     <!-- menu -->
     <string name="menu_easy_title">イージーメニュー</string>
     <string name="menu_kick_title">キックメニュー</string>
