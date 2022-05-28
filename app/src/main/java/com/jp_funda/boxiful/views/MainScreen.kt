@@ -22,7 +22,6 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.jp_funda.boxiful.navigation.BottomBarMenuItem
 import com.jp_funda.boxiful.navigation.BottomNavGraph
 import com.jp_funda.boxiful.navigation.NavigationRoutes
-import com.jp_funda.boxiful.ui.theme.Pink400
 import com.jp_funda.boxiful.ui.theme.Yellow500
 
 @ExperimentalPagerApi
@@ -85,8 +84,8 @@ fun RowScope.AddItem(
                 navController.navigate(menuItem.route) { popUpTo(NavigationRoutes.HOME) }
             }
         },
-        selectedContentColor = Pink400,
-        unselectedContentColor = Color.White,
-        modifier = Modifier.background(Yellow500)
+        selectedContentColor = Yellow500,
+        unselectedContentColor = Color.Gray,
+        modifier = Modifier.background(Color.White)
     )
 }
