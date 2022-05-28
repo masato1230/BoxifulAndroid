@@ -36,6 +36,7 @@ class TrainingViewModel @Inject constructor(
 ) : ViewModel(), PoseObserver {
     companion object {
         const val MAX_COUNT_DOWN_TIME = 5
+        const val WARNING_THRESHHOLD_TIME = 5
     }
 
     private val _networkStatus = MutableLiveData<NetworkStatus>(NetworkStatus.Waiting)
@@ -90,6 +91,9 @@ class TrainingViewModel @Inject constructor(
             )
         }
 
+    /** Main Joints missing start time. */
+    private var mainJointsMissingStartTime: Date? = null
+
     /** Getter for single menu. */
     fun getSingleMenu(): SingleMenu {
         return singleMenu
@@ -139,6 +143,29 @@ class TrainingViewModel @Inject constructor(
      * called from PosePreview when pose is detected. (about 30 ~ 60fps)
      */
     override fun onPoseUpdated(pose: Pose) {
+        // Check whether countdown is finished
+        if (_overlayType.value == OverlayType.Countdown) return
+
+        // Check whether warning overlay is needed
+        val inFrameMainJointsCount = countInFrameMainJoints(pose)
+        if (inFrameMainJointsCount < 2) {
+            if (mainJointsMissingStartTime == null) mainJointsMissingStartTime = Date()
+            else {
+                if (
+                    Date().time - mainJointsMissingStartTime!!.time > WARNING_THRESHHOLD_TIME * 1000 &&
+                    _overlayType.value != OverlayType.Warning
+                ) {
+                    _overlayType.value = OverlayType.Warning
+                }
+            }
+        } else {
+            mainJointsMissingStartTime = null
+            if (_overlayType.value != OverlayType.Instruction) {
+                _overlayType.value = OverlayType.Instruction
+            }
+        }
+
+        // Start motion detection
         if (_overlayType.value != OverlayType.Instruction) return
         // Before start movement
         if (!isMoveStarted) {
@@ -159,7 +186,7 @@ class TrainingViewModel @Inject constructor(
     }
 
     /** Count main joint in frame. */
-    fun countInFrameMainJoints(pose: Pose): Int {
+    private fun countInFrameMainJoints(pose: Pose): Int {
         val mainJoints = setOf(
             pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER)?.inFrameLikelihood ?: 0f,
             pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER)?.inFrameLikelihood ?: 0f,
