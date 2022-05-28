@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.mlkit.vision.pose.Pose
+import com.google.mlkit.vision.pose.PoseLandmark
 import com.jp_funda.boxiful.AppUtils
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.data.repository.training_result.TrainingResultRepository
@@ -155,6 +156,18 @@ class TrainingViewModel @Inject constructor(
                 _instructionIndex.value = _instructionIndex.value!! + 1
             }
         }
+    }
+
+    /** Count main joint in frame. */
+    fun countInFrameMainJoints(pose: Pose): Int {
+        val mainJoints = setOf(
+            pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER)?.inFrameLikelihood ?: 0f,
+            pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER)?.inFrameLikelihood ?: 0f,
+            pose.getPoseLandmark(PoseLandmark.LEFT_HIP)?.inFrameLikelihood ?: 0f,
+            pose.getPoseLandmark(PoseLandmark.RIGHT_HIP)?.inFrameLikelihood ?: 0f,
+        )
+
+        return mainJoints.count { it > 0.8 }
     }
 
     /** Post training result to server. */
