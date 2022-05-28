@@ -194,7 +194,7 @@ class TrainingViewModel @Inject constructor(
             pose.getPoseLandmark(PoseLandmark.RIGHT_HIP)?.inFrameLikelihood ?: 0f,
         )
 
-        return mainJoints.count { it > 0.8 }
+        return mainJoints.count { it > 0.9 }
     }
 
     /** Post training result to server. */

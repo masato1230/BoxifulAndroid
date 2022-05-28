@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
@@ -99,18 +100,24 @@ fun TrainingMainContent(navController: NavController, mainViewModel: MainViewMod
                 // Register training result to server
                 viewModel.registerTrainingResult()
                 // Navigate to result screen with delay
+                val isAlreadyFiredNavigation = remember { mutableStateOf(false) }
                 val composableScope = rememberCoroutineScope()
-                composableScope.launch {
-                    delay(1500)
-                    if (networkStatus.value is NetworkStatus.Success || networkStatus.value is NetworkStatus.Waiting) {
-                        navController.navigate(NavigationRoutes.RESULT) { popUpTo(NavigationRoutes.HOME) }
+                if (!isAlreadyFiredNavigation.value) {
+                    composableScope.launch {
+                        delay(1500)
+                        if (networkStatus.value is NetworkStatus.Success || networkStatus.value is NetworkStatus.Waiting) {
+                            navController.navigate(NavigationRoutes.RESULT) {
+                                popUpTo(NavigationRoutes.HOME)
+                            }
+                        }
                     }
+                    isAlreadyFiredNavigation.value = true
                 }
             } else { // Next instruction
                 val overlayType = viewModel.overlayType.observeAsState()
 
                 overlayType.value?.let { type ->
-                    when(type) {
+                    when (type) {
                         OverlayType.Countdown -> {
                             viewModel.startCountDown()
                             CountDownOverlay()
