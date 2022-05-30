@@ -59,6 +59,9 @@ android {
             buildConfigField "String", "interstitialUnitId", "\"ca-app-pub-8353659026777346/5564116394\""
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
