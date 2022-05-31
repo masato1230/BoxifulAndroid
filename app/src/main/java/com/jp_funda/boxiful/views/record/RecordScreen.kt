@@ -1,5 +1,6 @@
 package com.jp_funda.boxiful.views.record
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -21,16 +22,17 @@ import com.jp_funda.boxiful.views.components.header.Header
 import com.jp_funda.boxiful.views.record.component.TotalStatsSection
 import com.jp_funda.boxiful.views.record.component.WeeklyStatsSection
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RecordScreen(navController: NavController) {
     Scaffold(topBar = { Header(navController) }) {
         Background()
-        RecordMainContent(modifier = Modifier.padding(it), navController = navController)
+        RecordMainContent(navController = navController)
     }
 }
 
 @Composable
-fun RecordMainContent(modifier: Modifier = Modifier, navController: NavController) {
+fun RecordMainContent(navController: NavController) {
     val viewModel = hiltViewModel<RecordViewModel>()
     if (viewModel.isLoggedIn) {
         // If logged in, then fetch training results
