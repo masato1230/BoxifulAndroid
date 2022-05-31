@@ -3,6 +3,7 @@ package com.jp_funda.boxiful.views.login
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -81,7 +82,7 @@ fun LoginMainContent(
 
     Column(
         modifier = modifier
-            .padding(30.dp)
+            .padding(15.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -115,7 +116,9 @@ fun LoginMainContent(
             Text(
                 text = stringResource(id = networkStatus.errorRes),
                 color = Red900,
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier
+                    .padding(10.dp)
+                    .background(Color.White.copy(alpha = 0.5f)),
                 style = MaterialTheme.typography.body2,
                 textAlign = TextAlign.Center,
             )
@@ -135,12 +138,12 @@ fun LoginMainContent(
                     imageVector = Icons.Default.Email,
                     contentDescription = stringResource(id = R.string.desc_icon),
                     tint = Color.White,
-                    modifier = Modifier.padding(start = 30.dp, end = 10.dp),
+                    modifier = Modifier.padding(start = 15.dp, end = 10.dp),
                 )
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
+                .wrapContentHeight()
                 .border(width = 1.dp, color = Yellow500, shape = RoundedCornerShape(1000.dp))
                 .clip(RoundedCornerShape(1000.dp))
         )
@@ -159,12 +162,12 @@ fun LoginMainContent(
                     imageVector = Icons.Default.Lock,
                     contentDescription = stringResource(id = R.string.desc_icon),
                     tint = Color.White,
-                    modifier = Modifier.padding(start = 30.dp, end = 10.dp),
+                    modifier = Modifier.padding(start = 15.dp, end = 10.dp),
                 )
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
+                .wrapContentHeight()
                 .border(width = 1.dp, color = Yellow500, shape = RoundedCornerShape(1000.dp))
                 .clip(RoundedCornerShape(1000.dp))
         )
