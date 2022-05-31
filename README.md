@@ -1,6 +1,12 @@
 # BoxifulAndroid
 Android版のBoxiful
 
+please run below command before releasing app.
+```
+./gradlew generateLicensePage
+```
+This will genelate licences.html which is shown at the licences screen in this app.
+
 <div>
   <img src="https://user-images.githubusercontent.com/66544606/170872184-9503f992-0879-48cb-9b62-4045033a58c8.png" width="200px" />
   <img src="https://user-images.githubusercontent.com/66544606/170872192-541781a5-6177-4840-840c-f7bd9fc087a7.png" width="200px" />
