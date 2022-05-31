@@ -7,14 +7,14 @@ import com.jp_funda.boxiful.R
 /** Menu for one term training. */
 enum class SingleMenu(
     @StringRes
-    val titleRes: Int,
+    override val titleRes: Int,
     @StringRes
     val descriptionRes: Int,
     val instructionTypes: Set<Instruction>,
     val calorieConsumption: Int,
     val durationInMinutes: Int,
     val numOfInstructions: Int,
-) {
+) : SeriesModule {
     /**
      * Easy Menu.
      * Menu which contains only punch instructions
