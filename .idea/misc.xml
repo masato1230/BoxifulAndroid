@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/compose-model-1652397350065.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1652490769670.xml" value="0.3592592592592593" />
+        <entry key="../../../../layout/compose-model-1652506364047.xml" value="0.3291245791245791" />
+        <entry key="app/src/main/res/drawable/bg_main.xml" value="0.22673034667968744" />
+        <entry key="app/src/main/res/drawable/ic_boxiful.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/ic_easy.xml" value="0.1935" />
+        <entry key="app/src/main/res/drawable/ic_easy_menu.xml" value="0.122" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3615" />
+        <entry key="app/src/main/res/drawable/ic_launcher_round.xml" value="0.379" />
+        <entry key="app/src/main/res/drawable/ic_normal_menu.xml" value="0.1935" />
+        <entry key="app/src/main/res/drawable/ic_record.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_service_thumbnail.xml" value="0.379" />
+        <entry key="app/src/main/res/drawable/ic_timer.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_twitter_social_icons___rounded_square___blue.xml" value="0.1905" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.144" />
+        <entry key="app/src/main/res/mipmap-anydpi/ic_launcher.xml" value="0.202" />
+        <entry key="app/src/main/res/mipmap-anydpi/ic_launcher_round.xml" value="0.202" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

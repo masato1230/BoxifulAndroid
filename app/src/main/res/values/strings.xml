@@ -1,3 +1,163 @@
 <resources>
-    <string name="app_name">Boxful</string>
+    <string name="app_name">Boxiful</string>
+    <!-- common -->
+    <string name="home">ホーム</string>
+    <string name="back_to_home">ホームに戻る</string>
+    <string name="way_to_use">使い方</string>
+    <string name="record">記録</string>
+    <string name="settings">設定</string>
+    <string name="menu">メニュー</string>
+    <string name="boxiful_age">ボクシフル年齢</string>
+    <string name="kickboxing">キックボクシング</string>
+    <string name="ok">OK</string>
+    <string name="start">スタート</string>
+    <string name="next">次へ</string>
+    <string name="cancel">キャンセル</string>
+    <string name="finish">終了!</string>
+    <string name="unit_kcal">%dkcal</string>
+    <string name="unit_times">%d回</string>
+    <string name="unit_points">%dポイント</string>
+    <string name="great">Great</string>
+    <string name="good">Good</string>
+    <string name="miss">Miss</string>
+    <string name="calories_burned">消費カロリー</string>
+    <!-- auth & my page -->
+    <string name="auth_login">ログイン</string>
+    <string name="auth_sign_up">新規会員登録</string>
+    <string name="auth_or">もしくは</string>
+    <string name="auth_email">メールアドレス</string>
+    <string name="auth_password">パスワード</string>
+    <string name="auth_success">ログイン/新規会員登録に成功しました。</string>
+    <string name="auth_logout">ログアウト</string>
+    <string name="auth_logged_out">ログアウトしました。</string>
+    <string name="auth_delete_account">アカウント削除</string>
+    <string name="auth_ask_delete_account">本当にアカウントを削除しますか？</string>
+    <string name="auth_success_delete_account">アカウントを削除しました。</string>
+    <!--  home  -->
+    <string name="home_menu_list">メニュー一覧</string>
+    <string name="home_service_slogan">Boxifulで運動を習慣化しよう!</string>
+    <string name="home_service_description">メニュー一覧からトレーニング内容を選択して運動を始めましょう!</string>
+    <string name="home_today_stats_title">本日のトレーニング記録</string>
+    <string name="home_number_of_trainings">トレーニング回数</string>
+    <string name="home_boxiful_point">Boxifulポイント</string>
+    <string name="home_calorie_consumption">消費カロリー</string>
+    <string name="home_today_share_template">【Boxiful本日の記録】\n\n本日Boxifulで消費したカロリーは%dkcalでした!\nトレーニング回数は%d回\nhttps://boxiful.jp</string>
+    <!-- way to use -->
+    <string name="way_to_use_get_started">Get Started</string>
+    <string name="way_to_use_get_started_desc">Boxifulの基本的な使い方</string>
+    <string name="way_to_use_about_judge">パンチ/キックの判定</string>
+    <string name="way_to_use_about_judge_desc">トレーニング中の動作の判定方法について</string>
+    <string name="way_to_use_about_account">アカウントについて</string>
+    <string name="way_to_use_about_account_desc">アカウント登録で使用できる機能 &amp; アカウント削除方法</string>
+    <string name="way_to_use_about_result">トレーニング結果について</string>
+    <string name="way_to_use_back_to_list">使い方一覧に戻る</string>
+    <string name="way_to_use_about_this_app">このアプリについて</string>
+    <string name="way_to_use_about_this_app_content">Boxiful(ボクシフル)はスマホのインカメラとAIを利用した、実際に体を動かすキックボックシングゲームです。メニューを選択してトレーニングをスタートしましょう!</string>
+    <string name="way_to_use_select_menu">メニューを選択</string>
+    <string name="way_to_use_select_menu_content">ホームのメニュー一覧からやってみたいメニューを選択しましょう。メニューを選択するとトレーニング画面に移ります。</string>
+    <string name="way_to_use_grant_camera_use">カメラの使用を許可</string>
+    <string name="way_to_use_grant_camera_use_content">トレーニング中はインカメラを利用して体の動きを判定します。\nトレーニング画面に移動するとカメラの利用を許可するか拒否するかのダイアログが表示されるので、カメラの利用を許可してください。</string>
+    <string name="way_to_use_start_training">トレーニング開始</string>
+    <string name="way_to_use_start_training_content">カメラの使用を許可したら、いよいよトレーニング開始です。スマホを壁などに立てかけ、画面から2mほど離れ、体の膝から上がカメラに映るようにしましょう。\n画面にキックやパンチの指示が表示されるので表示に従ってパンチやキックを繰り出しましょう。</string>
+    <string name="way_to_use_check_result">結果の確認</string>
+    <string name="way_to_use_check_result_content">トレーニングを最後まで実施すると、結果が表示されます。\n消費カロリーやボクシフル年齢を確認しましょう。また、結果はTwitterやLineで共有することができます。</string>
+    <string name="way_to_use_record_training">トレーニング結果を記録</string>
+    <string name="way_to_use_record_training_content">アカウントを作成するとトレーニング結果を記録することができます。\n消費カロリーやトレーニングの実施状況を振り返ってモチベーションを高めましょう!</string>
+    <string name="way_to_use_about_punch_judge">パンチの判定について</string>
+    <string name="way_to_use_about_punch_judge_content">パンチの判定では、パンチを繰り出す前に腕を曲げることができているかという点と、パンチをしたときにしっかりと腕が伸びているかという点を判定しています。\n上手く判定されないと思った時は、これら二つの点を意識してみてください。</string>
+    <string name="way_to_use_about_kick_judge">キックの判定について</string>
+    <string name="way_to_use_about_kick_judge_content">キックの判定では足を地面に降ろした状態から、足(膝)をしっかりと上まで上げられているかという点をみています。上手く判定されない時は、足をもっと上にあげてみてください。\nキックをするときは、蹴り出す脚と同じ側の腕を足の反対方向に降り出しながら蹴るのがポイントです。</string>
+    <string name="way_to_use_not_recognize_movement">体の動きが上手く認識されない時</string>
+    <string name="way_to_use_not_recognize_movement_content">動作が上手く認識されない時は部屋を明るくしたり、カメラに映るものを減らすことで動作認識の精度を上げることができます。\nトレーニング中の画像処理ではスマホのリソースを大量に使用します。アプリが重い時は他に開いているアプリを閉じてみてください。</string>
+    <string name="way_to_use_camera_and_image_processing">カメラと画像処理について</string>
+    <string name="way_to_use_camera_and_image_processing_content">カメラより取得している動画はスマホの外部に出ることは一切ありません。</string>
+    <string name="way_to_use_available_by_account">アカウントを作るとできること</string>
+    <string name="way_to_use_available_by_account_content">アカウントを作成するとトレーニング結果の記録と閲覧ができるようになります。\n累計消費カロリーやトレーニング実施回数を確認してモチベーションを上げながらトレーニングを続けましょう。</string>
+    <string name="way_to_use_delete_account">アカウントの削除方法</string>
+    <string name="way_to_use_delete_account_content">ログインした状態で画面右上のアカウントボタンを押すとアカウント情報の画面が表示されます。\n「アカウント削除」ボタンを押すとアカウントの削除ができます。</string>
+    <string name="way_to_use_about_result_content">トレーニングメニューを最後まで実施すると、結果が表示されます。\nトレーニング結果では、トレーニング中の瞬発力、体力を評価した<b>ボクシフル年齢</b>や、100点満点での評価点、キック・パンチそれぞれの評価点、消費したカロリーが確認できます。\nトレーニング結果はLineやTwitterで共有できます。友達や家族に共有してみましょう!</string>
+    <string name="way_to_use_boxiful_age_content">ボクシフル年齢はパンチやキックをどれだけ速く繰り出せたかを評価して計算されます。\nあくまで目安の数値で、何らかの統計に基づいている訳ではない点はご了承ください。\nメニューの難易度を考慮した数値ではないので、メニューが難しければ難しいほどボクシフル年齢は高くなりやすいです。</string>
+    <string name="way_to_use_about_score">評価点について</string>
+    <string name="way_to_use_about_score_content">全体の評価点と、パンチ・キックそれぞれの評価点を確認することができます。\nパンチとキックどちらかの点数が著しく低いときは、点数が低い方の改善を心がけてトレーニングしてみましょう。\n特に、キックに関してはフォームを改善することで大幅に点数が改善されます。フォームを一度確認してみましょう。\nパンチは常にガードを上げるように意識すると点数が改善するかもしれません。</string>
+    <!-- record -->
+    <string name="record_login_needed_to_recording">トレーニング結果を記録するにはログインが必要です。</string>
+    <string name="record_login">ログインする</string>
+    <string name="record_calorie_consumption">消費したカロリー %dkcal</string>
+    <string name="record_boxiful_point">Boxifulポイント %dポイント</string>
+    <string name="record_weekly_title">週間トレーニング記録</string>
+    <string name="record_weekly_number_of_trainings">週間トレーニング回数</string>
+    <string name="record_weekly_boxiful_point">週間Boxifulポイント</string>
+    <string name="record_weekly_calorie_consumption">週間消費カロリー</string>
+    <string name="record_weekly_share_template">【Boxiful一週間記録】\n\nBoxifulで1週間の間に消費したカロリーは%dkcalでした！\n1週間のトレーニング回数は%d回\nhttps://boxiful.jp</string>
+    <string name="record_total_title">累計トレーニング記録</string>
+    <string name="record_total_number_of_trainings">これまでのトレーニング回数</string>
+    <string name="record_total_boxiful_point">累計Boxifulポイント</string>
+    <string name="record_total_calorie_consumption">累計消費カロリー</string>
+    <string name="record_total_share_template">【Boxiful累計記録】\n\nBoxifulでこれまでに消費したカロリーは%dkcalでした!\n1週間のトレーニング回数は%d回\nhttps://boxiful.jp</string>
+    <!-- settings -->
+    <string name="settings_copyright">© 2022 by Masato Ishikawa</string>
+    <string name="settings_app_description">実際に体を動かすキックボクシングゲーム</string>
+    <string name="settings_about_boxiful">Boxifulについて</string>
+    <string name="settings_app_version">アプリバージョン</string>
+    <string name="settings_privacy_policy">プライバシー・ポリシー</string>
+    <string name="settings_oss_licences">オープンソースライセンス</string>
+    <string name="settings_contact">お問合せ</string>
+    <string name="settings_contact_form">お問合わせフォーム</string>
+    <!-- result -->
+    <string name="result_training_evaluation">トレーニング評価</string>
+    <string name="result_unit_score">%d点</string>
+    <string name="result_your_boxiful_age_is">あなたボクシフル年齢は</string>
+    <string name="result_age">%d歳です。</string>
+    <string name="result_detail">結果詳細</string>
+    <string name="result_times">回です。</string>
+    <string name="result_punch_evaluation">パンチ評価</string>
+    <string name="result_kick_evaluation">キック評価</string>
+    <string name="result_share_template">【Boxifulのトレーニング結果】\n\nイージーメニューでボクシフル年齢は%d歳でした！\nGreat %d回\nGood %d回\nMiss %d回\nhttps://boxiful.jp</string>
+    <!-- instructions -->
+    <string name="instructions_left_hand_left_punch">左手で左にパンチ</string>
+    <string name="instructions_left_hand_right_punch">左手で右にパンチ</string>
+    <string name="instructions_right_hand_left_punch">右手で左にパンチ</string>
+    <string name="instructions_right_hand_right_punch">右手で右にパンチ</string>
+    <string name="instructions_left_foot_left_kick">左足で左にキック</string>
+    <string name="instructions_left_foot_right_kick">左足で右にキック</string>
+    <string name="instructions_right_foot_left_kick">右足で左にキック</string>
+    <string name="instructions_right_foot_right_kick">右足で右にキック</string>
+    <!-- warnings -->
+    <string name="warnings_ensure_entire_body_in_camera_frame">体全体がカメラに映るようにしてください</string>
+    <!-- menu -->
+    <string name="menu_easy_title">イージーメニュー</string>
+    <string name="menu_kick_title">キックメニュー</string>
+    <string name="menu_normal_title">ノーマルメニュー</string>
+    <string name="menu_hard_title">ハードメニュー</string>
+    <string name="menu_easy_description">パンチだけの短めのメニューです。ノーマルメニューが難しい人におすすめ</string>
+    <string name="menu_kick_description">キックだけのメニューです。キックに集中的に取り組みたい人におすすめ</string>
+    <string name="menu_normal_description">おすすめメニュー！\nパンチとキックを組み合わせたコースで、短い時間で気持ちよく運動できます。</string>
+    <string name="menu_hard_description">ノーマルメニューでは物足りない方におすすめ、長くて少しキツいメニューです。</string>
+    <string name="menu_approximate_calorie_consumption">消費カロリー目安</string>
+    <string name="menu_duration_in_minutes">所要時間 約%s分</string>
+    <!-- SNS share -->
+    <string name="sns_share_line">Lineでシェア</string>
+    <string name="sns_share_twitter">Twitterでシェア</string>
+    <!-- training start -->
+    <string name="training_start_title">トレーニングスタート</string>
+    <string name="training_start_message">トレーニング中はカメラを使って姿勢推定を行います。</string>
+    <!-- permission -->
+    <string name="permission_camera_title">カメラの使用許可が必要です</string>
+    <string name="permission_request_camera_permission">トレーニングを実施するにはカメラの\n使用を許可してください</string>
+    <string name="permission_allow">許可する</string>
+    <string name="permission_camera_rationale">姿勢推定を用いた動作評価を行うのにカメラの使用が必要です。\nカメラ情報がデバイスの外に出ることは一切ございません。</string>
+    <!-- content description -->
+    <string name="desc_app_icon">アプリアイコン</string>
+    <string name="desc_icon">アイコン</string>
+    <string name="desc_left">左</string>
+    <string name="desc_right">右</string>
+    <string name="desc_line_icon">Lineアイコン</string>
+    <string name="desc_twitter_icon">Twitterアイコン</string>
+    <string name="desc_account_icon">アカウントアイコン</string>
+    <!-- error -->
+    <string name="error_invalid_email_or_password">メールアドレスかパスワードが間違っています。</string>
+    <string name="error_empty_email_or_password">メールアドレスかパスワードが空です。</string>
+    <string name="error_already_used_or_invalid_email">既にこのメールアドレスは使用されているか、不正なメールアドレスです。</string>
+    <string name="error_connect_server">サーバー接続に失敗しました。</string>
+    <string name="error_desc_registering_result">トレーニング結果を保存するにはネットワーク環境が必要です。</string>
 </resources>
