@@ -7,7 +7,7 @@
         <item name="postSplashScreenTheme">@style/Theme.Boxiful</item>
 
         <!-- Status bar and Nav bar configs -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/yellow_500</item>
+        <item name="android:statusBarColor">@color/yellow_500</item>
         <item name="android:navigationBarColor">@color/yellow_500</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>

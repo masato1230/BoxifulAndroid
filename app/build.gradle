@@ -59,6 +59,9 @@ android {
             buildConfigField "String", "interstitialUnitId", "\"ca-app-pub-8353659026777346/5564116394\""
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -86,7 +89,7 @@ dependencies {
     implementation "com.google.mlkit:pose-detection-accurate:$ml_kit_pose_detection_version"
 
     // CameraX
-    def camera_x_version = "1.1.0-rc01"
+    def camera_x_version = "1.2.0-alpha01"
     implementation "androidx.camera:camera-camera2:$camera_x_version"
     implementation "androidx.camera:camera-lifecycle:$camera_x_version"
     implementation "androidx.camera:camera-view:$camera_x_version"
@@ -121,10 +124,10 @@ dependencies {
     implementation 'com.github.masato1230:github-heatmap:1.0.2'
 
     // Splash screen
-    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+    implementation 'androidx.core:core-splashscreen:1.0.0-rc01'
 
     // AdMob
-    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+    implementation 'com.google.android.gms:play-services-ads:21.0.0'
 
     // Play Store In App Review
     implementation 'com.google.android.play:review:2.0.0'
