@@ -5,4 +5,5 @@ import androidx.annotation.StringRes
 interface SeriesModule {
     @get: StringRes
     val titleRes: Int
+    val durationInMinutes: Float
 }

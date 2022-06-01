@@ -124,7 +124,7 @@
     <string name="instructions_right_foot_right_kick">右足で右にキック</string>
     <!-- warnings -->
     <string name="warnings_ensure_entire_body_in_camera_frame">体全体がカメラに映るようにしてください</string>
-    <!-- menu -->
+    <!-- single menu -->
     <string name="menu_easy_title">イージーメニュー</string>
     <string name="menu_kick_title">キックメニュー</string>
     <string name="menu_normal_title">ノーマルメニュー</string>
@@ -135,6 +135,11 @@
     <string name="menu_hard_description">ノーマルメニューでは物足りない方におすすめ、長くて少しキツいメニューです。</string>
     <string name="menu_approximate_calorie_consumption">消費カロリー目安</string>
     <string name="menu_duration_in_minutes">所要時間 約%s分</string>
+    <!-- series menu -->
+    <string name="menu_everyday_five_minutes_title">毎日５分間メニュー</string>
+    <string name="menu_everyday_five_minutes_description">忙しくても毎日取り組める短めのメニュー</string>
+    <!-- interval -->
+    <string name="interval_fifteen_seconds">15秒間インターバル</string>
     <!-- SNS share -->
     <string name="sns_share_line">Lineでシェア</string>
     <string name="sns_share_twitter">Twitterでシェア</string>
