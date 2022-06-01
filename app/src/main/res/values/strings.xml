@@ -138,6 +138,8 @@
     <!-- series menu -->
     <string name="menu_everyday_five_minutes_title">毎日５分間メニュー</string>
     <string name="menu_everyday_five_minutes_description">忙しくても毎日取り組める短めのメニュー</string>
+    <string name="menu_only_kick_title">キックだけメニュー</string>
+    <string name="menu_only_kick_description">１０分間ひたすらキックし続けるメニュー。短時間で高カロリーを消費したい時におすすめ</string>
     <!-- interval -->
     <string name="interval_fifteen_seconds">15秒間インターバル</string>
     <!-- SNS share -->
