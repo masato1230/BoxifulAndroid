@@ -35,6 +35,29 @@ enum class SeriesMenu(
             Interval.FifteenSecondsInterval,
             SingleMenu.KickMenu,
         ),
+    ),
+    TrainWellMenu(
+        titleRes = R.string.menu_train_well_title,
+        description = R.string.menu_train_well_description,
+        modules = listOf(
+            SingleMenu.EasyMenu,
+            Interval.FiveSecondsInterval,
+            SingleMenu.KickMenu,
+            Interval.FifteenSecondsInterval,
+            SingleMenu.HardMenu,
+            Interval.FifteenSecondsInterval,
+            SingleMenu.NormalMenu,
+            Interval.FifteenSecondsInterval,
+            SingleMenu.EasyMenu,
+            Interval.FiveSecondsInterval,
+            SingleMenu.KickMenu,
+            Interval.FifteenSecondsInterval,
+            SingleMenu.HardMenu,
+            Interval.FifteenSecondsInterval,
+            SingleMenu.NormalMenu,
+            Interval.FiveSecondsInterval,
+            SingleMenu.EasyMenu,
+        ),
     );
 
     val durationInMinutes = modules.sumOf { it.durationInMinutes.toDouble() }.toFloat()

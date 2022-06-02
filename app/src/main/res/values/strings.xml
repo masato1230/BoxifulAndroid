@@ -140,8 +140,11 @@
     <string name="menu_everyday_five_minutes_description">忙しくても毎日取り組める短めのメニュー</string>
     <string name="menu_only_kick_title">キックだけメニュー</string>
     <string name="menu_only_kick_description">１０分間ひたすらキックし続けるメニュー。短時間で高カロリーを消費したい時におすすめ</string>
+    <string name="menu_train_well_title">しっかりトレーニングメニュー</string>
+    <string name="menu_train_well_description">２０分使ってしっかりとトレーニングするメニュー。毎日やったらしっかりとした運動習慣になります。</string>
     <!-- interval -->
-    <string name="interval_fifteen_seconds">15秒間インターバル</string>
+    <string name="interval_five_seconds">５秒間インターバル</string>
+    <string name="interval_fifteen_seconds">１５秒間インターバル</string>
     <!-- SNS share -->
     <string name="sns_share_line">Lineでシェア</string>
     <string name="sns_share_twitter">Twitterでシェア</string>
