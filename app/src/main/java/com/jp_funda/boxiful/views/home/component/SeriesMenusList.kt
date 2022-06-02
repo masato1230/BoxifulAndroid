@@ -16,49 +16,37 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
-import com.jp_funda.boxiful.models.SingleMenu
-import com.jp_funda.boxiful.navigation.NavigationRoutes
-import com.jp_funda.boxiful.views.components.SingleMenuCard
 import com.jp_funda.boxiful.views.components.TrainingStartDailog
 import com.jp_funda.boxiful.views.home.HomeViewModel
 
 @Composable
-fun SingleMenusList(navController: NavController) {
+fun SeriesMenusList(navController: NavController) {
     val viewModel: HomeViewModel = hiltViewModel()
     // Camera open dialog
     val isShowCameraOpenDialog = remember { mutableStateOf(false) }
     TrainingStartDailog(isShowCameraOpenDialog) {
-        navController.navigate("${NavigationRoutes.TRAINING}/${viewModel.getSelectedMenu().name}")
+        // TODO navigate to seriesMenuTrainingScreen
     }
 
     // Menus
     Column {
         // Section Title
         Text(
-            text = stringResource(id = R.string.home_menu_list),
+            text = stringResource(id = R.string.home_series_menu_list),
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold,
             color = Color.White,
-            modifier = Modifier.padding(start = 20.dp),
+            modifier = Modifier.padding(start = 20.dp)
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         // List
-        Row(
-            modifier = Modifier.horizontalScroll(rememberScrollState()),
-        ) {
+        Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
             Spacer(modifier = Modifier.width(20.dp))
 
             // Single menu cards
-            for (menu in SingleMenu.values()) {
-                SingleMenuCard(menu = menu) {
-                    viewModel.setSelectedMenu(menu)
-                    isShowCameraOpenDialog.value = true
-                }
-                Spacer(modifier = Modifier.width(20.dp))
-            }
+            for (menu in Series)
         }
-        Spacer(modifier = Modifier.height(100.dp))
     }
 }

@@ -42,6 +42,7 @@
     <string name="home_boxiful_point">Boxifulポイント</string>
     <string name="home_calorie_consumption">消費カロリー</string>
     <string name="home_today_share_template">【Boxiful本日の記録】\n\n本日Boxifulで消費したカロリーは%dkcalでした!\nトレーニング回数は%d回\nhttps://boxiful.jp</string>
+    <string name="home_series_menu_list">シリーズメニュー一覧</string>
     <!-- way to use -->
     <string name="way_to_use_get_started">Get Started</string>
     <string name="way_to_use_get_started_desc">Boxifulの基本的な使い方</string>
