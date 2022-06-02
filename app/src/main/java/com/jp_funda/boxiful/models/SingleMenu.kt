@@ -7,14 +7,14 @@ import com.jp_funda.boxiful.R
 /** Menu for one term training. */
 enum class SingleMenu(
     @StringRes
-    val titleRes: Int,
+    override val titleRes: Int,
     @StringRes
     val descriptionRes: Int,
     val instructionTypes: Set<Instruction>,
     val calorieConsumption: Int,
-    val durationInMinutes: Int,
+    override val durationInMinutes: Float,
     val numOfInstructions: Int,
-) {
+) : SeriesModule {
     /**
      * Easy Menu.
      * Menu which contains only punch instructions
@@ -29,7 +29,7 @@ enum class SingleMenu(
             Instruction.RightHandRightPunch,
         ),
         calorieConsumption = 9,
-        durationInMinutes = 1,
+        durationInMinutes = 1f,
         numOfInstructions = 30,
     ),
     /**
@@ -41,7 +41,7 @@ enum class SingleMenu(
         descriptionRes = R.string.menu_normal_description,
         instructionTypes = Instruction.values().toSet(),
         calorieConsumption = 15,
-        durationInMinutes = 2,
+        durationInMinutes = 2f,
         numOfInstructions = 30,
     ),
     /**
@@ -53,7 +53,7 @@ enum class SingleMenu(
         descriptionRes = R.string.menu_hard_description,
         instructionTypes = Instruction.values().toSet(),
         calorieConsumption = 45,
-        durationInMinutes = 3,
+        durationInMinutes = 3f,
         numOfInstructions = 100,
     ),
     /**
@@ -70,7 +70,7 @@ enum class SingleMenu(
             Instruction.RightFootRightKick,
         ),
         calorieConsumption = 18,
-        durationInMinutes = 2,
+        durationInMinutes = 2f,
         numOfInstructions = 30,
     );
 
