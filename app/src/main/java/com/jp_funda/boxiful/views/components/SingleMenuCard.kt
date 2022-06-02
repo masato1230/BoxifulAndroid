@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.ui.theme.*
+import kotlin.math.roundToInt
 
 @Composable
 fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () -> Unit) {
@@ -85,7 +86,7 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
                 iconRes = R.drawable.ic_timer,
                 label = stringResource(
                     id = R.string.menu_duration_in_minutes,
-                    menu.durationInMinutes,
+                    menu.durationInMinutes.roundToInt(),
                 ),
                 iconColor = Blue500,
                 backgroundColor = Blue100,
