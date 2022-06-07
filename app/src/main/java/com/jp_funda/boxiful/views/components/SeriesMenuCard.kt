@@ -1,20 +1,15 @@
 package com.jp_funda.boxiful.views.components
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -22,18 +17,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.jp_funda.boxiful.R
-import com.jp_funda.boxiful.models.SingleMenu
+import com.jp_funda.boxiful.models.SeriesMenu
 import com.jp_funda.boxiful.ui.theme.*
 import kotlin.math.roundToInt
 
 @Composable
-fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun SeriesMenuCard(menu: SeriesMenu, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Card(
         modifier = modifier
             .heightIn(min = 270.dp)
             .width(250.dp)
-            .clickable { onClick() },
-        backgroundColor = Color.White,
+            .clickable { onClick() }
     ) {
         Column {
             // Menu Thumbnail
@@ -48,6 +42,7 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
                     .fillMaxWidth(),
             )
 
+            // Menu Title
             // Menu Title
             Text(
                 text = stringResource(id = menu.titleRes),
@@ -94,37 +89,5 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
 
             Spacer(modifier = Modifier.height(10.dp))
         }
-    }
-}
-
-@Composable
-fun IconLabel(
-    @DrawableRes iconRes: Int,
-    label: String,
-    iconColor: Color,
-    backgroundColor: Color,
-) {
-    Row(
-        modifier = Modifier
-            .padding(horizontal = 20.dp)
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(1000.dp))
-            .background(backgroundColor),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Icon(
-            painter = painterResource(id = iconRes),
-            contentDescription = stringResource(id = R.string.desc_icon),
-            tint = iconColor,
-            modifier = Modifier.padding(vertical = 2.dp)
-        )
-        Spacer(modifier = Modifier.width(5.dp))
-        Text(
-            text = label,
-            color = Color.DarkGray,
-            style = MaterialTheme.typography.caption,
-            fontWeight = FontWeight.ExtraBold,
-        )
     }
 }

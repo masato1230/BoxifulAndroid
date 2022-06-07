@@ -1,5 +1,6 @@
 package com.jp_funda.boxiful.models
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.jp_funda.boxiful.R
 
@@ -7,12 +8,12 @@ enum class SeriesMenu(
     @StringRes
     val titleRes: Int,
     @StringRes
-    val description: Int,
+    val descriptionRes: Int,
     val modules: List<SeriesModule>,
 ) {
     EveryDayFiveMinutesMenu(
         titleRes = R.string.menu_everyday_five_minutes_title,
-        description = R.string.menu_everyday_five_minutes_description,
+        descriptionRes = R.string.menu_everyday_five_minutes_description,
         modules = listOf(
             SingleMenu.EasyMenu,
             Interval.FifteenSecondsInterval,
@@ -23,7 +24,7 @@ enum class SeriesMenu(
     ),
     OnlyKickMenu(
         titleRes = R.string.menu_only_kick_title,
-        description = R.string.menu_only_kick_title,
+        descriptionRes = R.string.menu_only_kick_title,
         modules = listOf(
             SingleMenu.KickMenu,
             Interval.FifteenSecondsInterval,
@@ -38,7 +39,7 @@ enum class SeriesMenu(
     ),
     TrainWellMenu(
         titleRes = R.string.menu_train_well_title,
-        description = R.string.menu_train_well_description,
+        descriptionRes = R.string.menu_train_well_description,
         modules = listOf(
             SingleMenu.EasyMenu,
             Interval.FiveSecondsInterval,
@@ -62,4 +63,17 @@ enum class SeriesMenu(
 
     val durationInMinutes = modules.sumOf { it.durationInMinutes.toDouble() }.toFloat()
     val calorieConsumption = modules.filterIsInstance<SingleMenu>().sumOf { it.calorieConsumption }
+
+    @DrawableRes
+    fun getThumbnailRes(): Int {
+        return when (this) {
+            EveryDayFiveMinutesMenu -> R.drawable.ic_menu_easy
+            OnlyKickMenu -> R.drawable.ic_menu_normal
+            TrainWellMenu -> R.drawable.ic_menu_hard
+        }
+    }
+
+    companion object {
+        fun fromName(name: String?): SeriesMenu? = values().find { it.name == name }
+    }
 }

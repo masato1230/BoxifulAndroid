@@ -53,14 +53,14 @@ class HomeViewModel @Inject constructor(
             return todayTrainings?.sumOf { it.calorie } ?: 0
         }
 
-    private var selectedMenu: SingleMenu = SingleMenu.NormalMenu
+    private var selectedSingleMenu: SingleMenu = SingleMenu.NormalMenu
 
-    fun setSelectedMenu(menu: SingleMenu) {
-        selectedMenu = menu
+    fun setSelectedSingleMenu(menu: SingleMenu) {
+        selectedSingleMenu = menu
     }
 
-    fun getSelectedMenu(): SingleMenu {
-        return selectedMenu
+    fun getSelectedSingleMenu(): SingleMenu {
+        return selectedSingleMenu
     }
 
     fun getTrainingResults() {

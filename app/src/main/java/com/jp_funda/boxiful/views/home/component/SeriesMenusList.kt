@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.R
+import com.jp_funda.boxiful.models.SeriesMenu
+import com.jp_funda.boxiful.views.components.SeriesMenuCard
 import com.jp_funda.boxiful.views.components.TrainingStartDailog
 import com.jp_funda.boxiful.views.home.HomeViewModel
 
@@ -46,7 +48,14 @@ fun SeriesMenusList(navController: NavController) {
             Spacer(modifier = Modifier.width(20.dp))
 
             // Single menu cards
-            for (menu in Series)
+            for (menu in SeriesMenu.values()) {
+                SeriesMenuCard(menu = menu) {
+                    viewModel.setSelectedSeriesMenu()
+                    isShowCameraOpenDialog.value = true
+                }
+                Spacer(modifier = Modifier.width(20.dp))
+            }
         }
+        Spacer(modifier = Modifier.height(20.dp))
     }
 }

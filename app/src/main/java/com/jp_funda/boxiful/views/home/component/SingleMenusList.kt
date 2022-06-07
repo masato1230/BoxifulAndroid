@@ -28,7 +28,7 @@ fun SingleMenusList(navController: NavController) {
     // Camera open dialog
     val isShowCameraOpenDialog = remember { mutableStateOf(false) }
     TrainingStartDailog(isShowCameraOpenDialog) {
-        navController.navigate("${NavigationRoutes.TRAINING}/${viewModel.getSelectedMenu().name}")
+        navController.navigate("${NavigationRoutes.TRAINING}/${viewModel.getSelectedSingleMenu().name}")
     }
 
     // Menus
@@ -53,7 +53,7 @@ fun SingleMenusList(navController: NavController) {
             // Single menu cards
             for (menu in SingleMenu.values()) {
                 SingleMenuCard(menu = menu) {
-                    viewModel.setSelectedMenu(menu)
+                    viewModel.setSelectedSingleMenu(menu)
                     isShowCameraOpenDialog.value = true
                 }
                 Spacer(modifier = Modifier.width(20.dp))
