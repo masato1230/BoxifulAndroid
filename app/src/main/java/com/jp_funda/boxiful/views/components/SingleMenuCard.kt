@@ -30,7 +30,7 @@ import kotlin.math.roundToInt
 fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Card(
         modifier = modifier
-            .heightIn(min = 270.dp)
+            .heightIn(min = 280.dp)
             .width(250.dp)
             .clickable { onClick() },
         backgroundColor = Color.White,
@@ -56,16 +56,19 @@ fun SingleMenuCard(menu: SingleMenu, modifier: Modifier = Modifier, onClick: () 
                 style = MaterialTheme.typography.button,
                 fontWeight = FontWeight.ExtraBold,
             )
+            Spacer(modifier = Modifier.height(5.dp))
 
             // Menu Description
             Text(
                 text = stringResource(id = menu.descriptionRes),
-                modifier = Modifier.padding(horizontal = 5.dp),
+                modifier = Modifier.padding(horizontal = 10.dp),
                 style = MaterialTheme.typography.caption,
                 fontFamily = FontFamily.Serif,
             )
 
-            Spacer(modifier = Modifier.weight(1f).heightIn(10.dp))
+            Spacer(modifier = Modifier
+                .weight(1f)
+                .heightIn(10.dp))
 
             // Approximate calorie consumption
             val approximateCalorieText =

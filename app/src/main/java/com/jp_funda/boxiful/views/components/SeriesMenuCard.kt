@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -25,9 +26,10 @@ import kotlin.math.roundToInt
 fun SeriesMenuCard(menu: SeriesMenu, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Card(
         modifier = modifier
-            .heightIn(min = 270.dp)
+            .heightIn(min = 280.dp)
             .width(250.dp)
-            .clickable { onClick() }
+            .clickable { onClick() },
+        backgroundColor = Color.White,
     ) {
         Column {
             // Menu Thumbnail
@@ -51,16 +53,19 @@ fun SeriesMenuCard(menu: SeriesMenu, modifier: Modifier = Modifier, onClick: () 
                 style = MaterialTheme.typography.button,
                 fontWeight = FontWeight.ExtraBold,
             )
+            Spacer(modifier = Modifier.height(5.dp))
 
             // Menu Description
             Text(
                 text = stringResource(id = menu.descriptionRes),
-                modifier = Modifier.padding(horizontal = 5.dp),
+                modifier = Modifier.padding(horizontal = 10.dp),
                 style = MaterialTheme.typography.caption,
                 fontFamily = FontFamily.Serif,
             )
 
-            Spacer(modifier = Modifier.weight(1f).heightIn(10.dp))
+            Spacer(modifier = Modifier
+                .weight(1f)
+                .heightIn(10.dp))
 
             // Approximate calorie consumption
             val approximateCalorieText =
