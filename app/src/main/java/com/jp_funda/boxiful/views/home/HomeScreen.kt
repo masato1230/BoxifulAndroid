@@ -14,6 +14,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jp_funda.boxiful.ui.theme.Background
 import com.jp_funda.boxiful.views.components.header.Header
+import com.jp_funda.boxiful.views.home.component.SeriesMenusList
 import com.jp_funda.boxiful.views.home.component.SingleMenusList
 import com.jp_funda.boxiful.views.home.component.TodayStatsSection
 import com.jp_funda.boxiful.views.home.component.TopSection
@@ -47,7 +48,11 @@ fun HomeMainContent(modifier: Modifier = Modifier, navController: NavController)
             TodayStatsSection(modifier = Modifier.padding(horizontal = 20.dp))
         }
 
-        // Menus List Section for logged in users
+        // Series Menus ListSection
+        Spacer(modifier = Modifier.height(20.dp))
+        SeriesMenusList(navController)
+
+        // Single Menus List Section
         Spacer(modifier = Modifier.height(20.dp))
         SingleMenusList(navController)
     }

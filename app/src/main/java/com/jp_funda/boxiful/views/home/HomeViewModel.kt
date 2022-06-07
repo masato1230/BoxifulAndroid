@@ -10,6 +10,7 @@ import com.jp_funda.boxiful.data.repository.training_result.TrainingResultReposi
 import com.jp_funda.boxiful.data.shared_preference.AuthPreferences
 import com.jp_funda.boxiful.data.shared_preference.PreferenceKey
 import com.jp_funda.boxiful.models.NetworkStatus
+import com.jp_funda.boxiful.models.SeriesMenu
 import com.jp_funda.boxiful.models.SingleMenu
 import com.jp_funda.boxiful.models.TrainingResultInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -61,6 +62,16 @@ class HomeViewModel @Inject constructor(
 
     fun getSelectedSingleMenu(): SingleMenu {
         return selectedSingleMenu
+    }
+
+    private var selectedSeriesMenu: SeriesMenu = SeriesMenu.EveryDayFiveMinutesMenu
+
+    fun setSelectedSeriesMenu(menu: SeriesMenu) {
+        selectedSeriesMenu = menu
+    }
+
+    fun getSelectedSeriesMenu(): SeriesMenu {
+        return selectedSeriesMenu
     }
 
     fun getTrainingResults() {

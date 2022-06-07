@@ -50,7 +50,7 @@ fun SeriesMenusList(navController: NavController) {
             // Single menu cards
             for (menu in SeriesMenu.values()) {
                 SeriesMenuCard(menu = menu) {
-                    viewModel.setSelectedSeriesMenu()
+                    viewModel.setSelectedSeriesMenu(menu)
                     isShowCameraOpenDialog.value = true
                 }
                 Spacer(modifier = Modifier.width(20.dp))
