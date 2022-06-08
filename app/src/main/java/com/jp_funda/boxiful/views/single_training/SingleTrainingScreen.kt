@@ -36,16 +36,16 @@ fun SingleTrainingScreen(navController: NavController, menu: SingleMenu, mainVie
 
     Scaffold {
         Background()
-        TrainingMainContent(navController = navController, mainViewModel = mainViewModel)
+        SingleTrainingMainContent(navController = navController, mainViewModel = mainViewModel)
     }
 }
 
 /**
- * TrainingMainContent.
+ * Single TrainingMainContent.
  */
 @ExperimentalPermissionsApi
 @Composable
-fun TrainingMainContent(navController: NavController, mainViewModel: MainViewModel) {
+fun SingleTrainingMainContent(navController: NavController, mainViewModel: MainViewModel) {
     val viewModel = hiltViewModel<SigleTrainingViewModel>()
     val context = LocalContext.current
     val greatSoundPlayer = remember { MediaPlayer.create(context, R.raw.great_punch) }
