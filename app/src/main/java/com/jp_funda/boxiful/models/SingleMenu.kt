@@ -75,7 +75,7 @@ enum class SingleMenu(
     );
 
     @DrawableRes
-    fun getThumbnail(): Int {
+    fun getThumbnailRes(): Int {
         return when (this) {
             EasyMenu -> R.drawable.ic_menu_easy
             KickMenu -> R.drawable.ic_menu_normal
