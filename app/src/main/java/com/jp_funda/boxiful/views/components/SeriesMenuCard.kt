@@ -40,7 +40,7 @@ fun SeriesMenuCard(menu: SeriesMenu, modifier: Modifier = Modifier, onClick: () 
                     .height(120.dp)
                     .padding(10.dp)
                     .clip(MaterialTheme.shapes.medium)
-                    .background(Yellow500)
+                    .background(Pink400)
                     .fillMaxWidth(),
             )
 
