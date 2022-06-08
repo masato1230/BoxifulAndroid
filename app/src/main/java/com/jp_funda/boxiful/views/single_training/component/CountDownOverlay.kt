@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.training.component
+package com.jp_funda.boxiful.views.single_training.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,11 +16,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.jp_funda.boxiful.R
 import com.jp_funda.boxiful.ui.theme.BlackAlpha50
 import com.jp_funda.boxiful.views.components.count_down_timer.CountDownTimer
-import com.jp_funda.boxiful.views.training.TrainingViewModel
+import com.jp_funda.boxiful.views.single_training.SigleTrainingViewModel
 
 @Composable
 fun CountDownOverlay() {
-    val viewModel = hiltViewModel<TrainingViewModel>()
+    val viewModel = hiltViewModel<SigleTrainingViewModel>()
     val count = viewModel.countDownTime.collectAsState()
 
     Column(
@@ -33,7 +33,7 @@ fun CountDownOverlay() {
                 .clip(RoundedCornerShape(20.dp))
                 .background(BlackAlpha50)
                 .padding(10.dp),
-            maxValue = TrainingViewModel.MAX_COUNT_DOWN_TIME,
+            maxValue = SigleTrainingViewModel.MAX_COUNT_DOWN_TIME,
             remainingTime = count.value,
             beepSoundRes = R.raw.timer_beep,
         )

@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.training.component
+package com.jp_funda.boxiful.views.single_training.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

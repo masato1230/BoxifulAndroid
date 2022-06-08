@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.training
+package com.jp_funda.boxiful.views.single_training
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -29,7 +29,7 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class TrainingViewModel @Inject constructor(
+class SigleTrainingViewModel @Inject constructor(
     private val appUtils: AppUtils,
     private val authPreferences: AuthPreferences,
     private val trainingResultRepository: TrainingResultRepository,

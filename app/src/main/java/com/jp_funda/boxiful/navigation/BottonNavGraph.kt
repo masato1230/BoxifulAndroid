@@ -23,7 +23,7 @@ import com.jp_funda.boxiful.views.oss_licenses.OssLicensesScreen
 import com.jp_funda.boxiful.views.record.RecordScreen
 import com.jp_funda.boxiful.views.result.ResultScreen
 import com.jp_funda.boxiful.views.settings.SettingsScreen
-import com.jp_funda.boxiful.views.training.TrainingScreen
+import com.jp_funda.boxiful.views.single_training.SingleTrainingScreen
 import com.jp_funda.boxiful.views.way_to_use.WayToUsePage
 import com.jp_funda.boxiful.views.way_to_use.WayToUseScreen
 import com.jp_funda.boxiful.views.way_to_use_detail.WayToUseDetailScreen
@@ -58,7 +58,7 @@ fun BottomNavGraph(
             popExitTransition = { getRightSlideOutTransaction() },
         ) { backStackEntry ->
             bottomBarState.value = false
-            TrainingScreen(
+            SingleTrainingScreen(
                 navController = navController,
                 menu = SingleMenu.fromName(backStackEntry.arguments?.getString(singleMenuKey))
                     ?: SingleMenu.NormalMenu,

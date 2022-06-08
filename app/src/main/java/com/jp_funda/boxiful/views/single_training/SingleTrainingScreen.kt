@@ -1,4 +1,4 @@
-package com.jp_funda.boxiful.views.training
+package com.jp_funda.boxiful.views.single_training
 
 import android.annotation.SuppressLint
 import android.media.MediaPlayer
@@ -23,16 +23,16 @@ import com.jp_funda.boxiful.ui.theme.Background
 import com.jp_funda.boxiful.views.MainViewModel
 import com.jp_funda.boxiful.views.components.RequestCameraPermission
 import com.jp_funda.boxiful.views.components.pose_preview.PosePreview
-import com.jp_funda.boxiful.views.training.component.*
+import com.jp_funda.boxiful.views.single_training.component.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPermissionsApi
 @Composable
-fun TrainingScreen(navController: NavController, menu: SingleMenu, mainViewModel: MainViewModel) {
+fun SingleTrainingScreen(navController: NavController, menu: SingleMenu, mainViewModel: MainViewModel) {
     // Set menu to viewModel
-    hiltViewModel<TrainingViewModel>().setSingleMenu(menu)
+    hiltViewModel<SigleTrainingViewModel>().setSingleMenu(menu)
 
     Scaffold {
         Background()
@@ -46,7 +46,7 @@ fun TrainingScreen(navController: NavController, menu: SingleMenu, mainViewModel
 @ExperimentalPermissionsApi
 @Composable
 fun TrainingMainContent(navController: NavController, mainViewModel: MainViewModel) {
-    val viewModel = hiltViewModel<TrainingViewModel>()
+    val viewModel = hiltViewModel<SigleTrainingViewModel>()
     val context = LocalContext.current
     val greatSoundPlayer = remember { MediaPlayer.create(context, R.raw.great_punch) }
     val goodSoundPlayer = remember { MediaPlayer.create(context, R.raw.good_punch) }
