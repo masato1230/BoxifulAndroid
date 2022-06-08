@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -34,11 +35,21 @@ fun SeriesMenusList(navController: NavController) {
     Column {
         // Section Title
         Text(
-            text = stringResource(id = R.string.home_series_menu_list),
+            text = stringResource(id = R.string.home_series_menu_title),
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold,
             color = Color.White,
             modifier = Modifier.padding(start = 20.dp)
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+
+        // Section Description
+        Text(
+            text = stringResource(id = R.string.home_series_menu_description),
+            modifier = Modifier.padding(horizontal = 20.dp),
+            style = MaterialTheme.typography.body2,
+            fontFamily = FontFamily.Serif,
+            color = Color.White,
         )
 
         Spacer(modifier = Modifier.height(10.dp))

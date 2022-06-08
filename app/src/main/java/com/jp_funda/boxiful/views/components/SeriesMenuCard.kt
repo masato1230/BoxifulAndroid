@@ -45,7 +45,6 @@ fun SeriesMenuCard(menu: SeriesMenu, modifier: Modifier = Modifier, onClick: () 
             )
 
             // Menu Title
-            // Menu Title
             Text(
                 text = stringResource(id = menu.titleRes),
                 modifier = Modifier.fillMaxWidth(),
